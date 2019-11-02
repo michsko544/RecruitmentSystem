@@ -1,0 +1,29 @@
+{
+  "name": "recruitmentsystem",
+  "version": "1.0.0",
+  "description": "Project of recruitment system website. Used technologies: HTML, SASS/SCSS, JavaScript, SQL, PHP, Relational Database, node.js Authors: D. Tabaka, A. Bebel, Ł. Pojda, K. Chodkiewicz, M. Skorus",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michsko544/RecruitmentSystem.git"
+  },
+  "keywords": [
+    "recruitment",
+    "system",
+    "recruit",
+    "apply",
+    "job",
+    "work",
+    "experience",
+    "development"
+  ],
+  "author": "Adrian Bebel, Damian Tabaka, Łukasz Pojda, Krzysztof Chodkiewicz, Michał Skorus",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/michsko544/RecruitmentSystem/issues"
+  },
+  "homepage": "https://github.com/michsko544/RecruitmentSystem#readme"
+}
