@@ -1,0 +1,123 @@
+$color-cyan: #36C3D9;
+$color-white: #fff;
+$color-background: #F6F6F6;
+$color-darkgrey: #464650;
+$color-titlebar: #E5E8E8;
+$color-seagrey: #95A5A6;
+
+
+*{
+    margin:0;
+    padding:0;
+    letter-spacing: 0;
+}
+
+body {
+    background-color: $color-background;
+}
+
+a{
+    text-decoration: none;
+}
+
+#index-container{
+    color: $color-darkgrey;
+    display: flex;
+    justify-content: center;
+    margin-top:250px;
+
+    .logo {
+        font-size: 29px;
+        padding: 2px 4px;
+        width: 164px;
+        height: 32px;
+        border: 2px $color-darkgrey solid;
+        -webkit-box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.25);
+        -moz-box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.25);
+        box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.25);
+        text-shadow: 0px 3px 6px rgba(0,0,0,0.25);
+    }
+
+    .logo-text{
+        margin-top: 12px;
+        font-size: 20px;
+        text-shadow: 0px 3px 6px rgba(0,0,0,0.25);
+    }
+}
+
+.center-wrapper{
+    text-align: center;
+}
+
+.btn-sign-in{
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: $color-darkgrey;
+    font-size: 15px;
+    margin: 6px;
+}
+
+.index-btn-container{
+    margin-top: 70px;
+}
+
+.btn-dark{
+    color: $color-background;
+    width: 155px;
+    height: 23px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: $color-darkgrey;
+    cursor: pointer;
+    font-size:22px;
+    padding: 6px 0;
+    -webkit-box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.25);
+    -moz-box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.25);
+    box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.25);
+}
+
+.nav-bar{
+    width: 100%;
+    height: 85px;
+    background-color: $color-darkgrey;
+}
+
+#sign-in{
+    position: fixed;
+    width:100%;
+    height:100%;
+    top:0;
+    z-index: 100;
+    background-color: #5D5D5D64;
+
+    form{
+        width:80%;
+        margin-left:auto;
+        margin-right: auto;
+
+        label{
+            font-size: 13px;
+        }
+
+        input[type=text],
+        input[type=password]{
+            width:100%;
+            outline: none;
+            border: none;
+            font-size:16px;
+            border-bottom: 2px $color-darkgrey solid;
+            background-color: #ffffff00;
+            padding: 5px 0;
+        }
+
+        input[type=submit]{
+            outline: none;
+            border: 2px $color-darkgrey solid;
+            color: $color-darkgrey;
+            font-size: 22px;
+            background-color: #ffffff00;
+        }
+    }
+}
+
