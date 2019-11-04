@@ -88,6 +88,7 @@ a {
 }
 #sign-in form label {
   font-size: 13px;
+  color: #464650;
 }
 #sign-in form input[type=text],
 #sign-in form input[type=password] {
@@ -95,6 +96,7 @@ a {
   outline: none;
   border: none;
   font-size: 16px;
+  color: #F6F6F6;
   border-bottom: 2px #464650 solid;
   background-color: #ffffff00;
   padding: 5px 0;
@@ -105,4 +107,8 @@ a {
   color: #464650;
   font-size: 22px;
   background-color: #ffffff00;
+  width: 155px;
+  height: 35px;
+  margin-left: auto;
+  margin-right: auto;
 }
