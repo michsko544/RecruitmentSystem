@@ -14,6 +14,7 @@ $color-seagrey: #95A5A6;
 
 body {
     background-color: $color-background;
+    font-family: 'avenirregular';
 }
 
 a{
@@ -24,29 +25,43 @@ a{
     color: $color-darkgrey;
     display: flex;
     justify-content: center;
-    margin-top:250px;
 
-    .logo {
-        font-size: 29px;
-        padding: 2px 4px;
-        width: 164px;
-        height: 32px;
-        border: 2px $color-darkgrey solid;
-        -webkit-box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.25);
-        -moz-box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.25);
-        box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.25);
-        text-shadow: 0px 3px 6px rgba(0,0,0,0.25);
+    .heroimage {
+        background: url(/img/heroimg.jpg) center center no-repeat;
+        background-size: cover;
+        height: 100vh;
+        width:100%;
+        opacity: 0.39;
+        position:fixed;
+        z-index: -100;
     }
+    .logo-wrapper{
+        text-align: center;
 
-    .logo-text{
-        margin-top: 12px;
-        font-size: 20px;
-        text-shadow: 0px 3px 6px rgba(0,0,0,0.25);
+        .logo {
+            font-size: 29px;
+            padding: 2px 7px 4px;
+            width: 164px;
+            height: 32px;
+            border: 3px $color-darkgrey solid;
+            -webkit-box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.25);
+            -moz-box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.25);
+            box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.25);
+            text-shadow: 0px 3px 6px rgba(0,0,0,0.25);
+        }
+
+        .logo-text{
+            margin-top: 12px;
+            font-size: 20px;
+            text-shadow: 0px 3px 6px rgba(0,0,0,0.25);
+        }
     }
 }
 
 .center-wrapper{
-    text-align: center;
+    display: flex;
+    align-items: center;
+    height: 100vh;
 }
 
 .btn-sign-in{
@@ -71,7 +86,7 @@ a{
     background-color: $color-darkgrey;
     cursor: pointer;
     font-size:22px;
-    padding: 6px 0;
+    padding: 4px 0 8px;
     -webkit-box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.25);
     -moz-box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.25);
     box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.25);
@@ -127,3 +142,8 @@ a{
     }
 }
 
+.form-btn-wrapper{
+    margin-top: 100px;
+    display: flex;
+    align-items: center;
+}

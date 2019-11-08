@@ -25,5 +25,8 @@
   "bugs": {
     "url": "https://github.com/michsko544/RecruitmentSystem/issues"
   },
-  "homepage": "https://github.com/michsko544/RecruitmentSystem#readme"
+  "homepage": "https://github.com/michsko544/RecruitmentSystem#readme",
+  "dependencies": {
+    "sass": "^1.23.3"
+  }
 }

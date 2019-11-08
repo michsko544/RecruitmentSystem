@@ -9,7 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Recruitment System</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/font/stylesheet.css" type="text/css" charset="utf-8" />
 </head>
 <body>
     <div id="sign-in">
@@ -17,17 +18,22 @@
             
         </div>
         <div class="input-wrapper">
+            <div class="center-wrapper">  
             <form>
                 <label for="login">Login</label>
                 <input type="text" placeholder="Username">
                 <label for="password">Password</label>
                 <input type="password" placeholder="**********">
-                <input type="submit" value="Sign in">
+                <div class="form-btn-wrapper">
+                    <input type="submit" value="Sign in">
+                </div>
             </form>
+            </div>
         </div>
     </div>
     <a href="#"><div class="btn-sign-in">Sign in</div></a>
     <div id="index-container">
+        <div class="heroimage"></div>
         <div class="center-wrapper">
             <div class="logo-wrapper">
                 <div class="logo">myCompany</div>
