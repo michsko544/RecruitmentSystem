@@ -20,8 +20,8 @@ else
     $login = $_POST['username'];
     $password = $_POST['password'];
 
-    $login = htmlentities(($login, ENT_QUOTES, "UTF-8"));
-    $password = htmlentities(($password, ENT_QUOTES, "UTF-8"));
+    $login = htmlentities($login, ENT_QUOTES, "UTF-8");
+    $password = htmlentities($password, ENT_QUOTES, "UTF-8");
 
     if ($result_login = @$connection->query(sprintf("SELECT * FROM Users WHERE username='%s' AND pass='%s'",
         mysqli_real_escape_string($connection, $login),
