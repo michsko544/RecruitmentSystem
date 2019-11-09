@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -19,11 +19,17 @@
         </div>
         <div class="input-wrapper">
             <div class="center-wrapper">  
-            <form>
+            <form action="log_in.php" method="post">
                 <label for="login">Login</label>
-                <input type="text" placeholder="Username">
+                <input type="text" name="login" placeholder="Username">
                 <label for="password">Password</label>
-                <input type="password" placeholder="**********">
+                <input type="password" name="password" placeholder="**********">
+                <?php
+                if(isset($_SESSION['error']))
+                {
+                    echo $_SESSION['error'];
+                }
+                ?>
                 <div class="form-btn-wrapper">
                     <input type="submit" value="Sign in">
                 </div>
