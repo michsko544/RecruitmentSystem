@@ -1,0 +1,3 @@
+Prosby, uwagi, sugestie
+* w rejestracji usunął bym pole Position i dał je dopiero przy aplikacji (ktos moze chciec aplikowac na rozne pozycje)
+* zrobilem poczatek formularza rejestracji - jakies uwagi i poprawki co by mozna bylo robic backend
