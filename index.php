@@ -1,5 +1,4 @@
 <?php
-session_start();
 if ((isset($_SESSION['logged_in'])) && ($_SESSION['logged_in'] == true))
 {
     if ($_SESSION['role_name'] == 'recruit')
@@ -41,17 +40,22 @@ if ((isset($_SESSION['logged_in'])) && ($_SESSION['logged_in'] == true))
     <link rel="stylesheet" href="/font/stylesheet.css" type="text/css" charset="utf-8" />
 </head>
 <body>
-    <div id="sign-in">
+    <div id="sign-in--hidden">
         <div class="nav-bar">
-            
+            <div class="logo-nav">myCompany</div>
+            <div id="btn-exit" class="btn-nav"></div>
         </div>
         <div class="input-wrapper">
             <div class="center-wrapper">  
             <form action="log_in.php" method="post">
-                <label for="login">Login</label>
-                <input type="text" name="login" placeholder="Username">
-                <label for="password">Password</label>
-                <input type="password" name="password" placeholder="**********">
+                <div class="sign-in-row">
+                    <label for="login">Login</label>
+                    <input type="text" name="login" placeholder="Username">
+                </div>
+                <div class="sign-in-row">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" placeholder="●●●●●●●●●●">
+                </div>
                 <?php
                 if(isset($_SESSION['error']))
                 {
@@ -65,20 +69,20 @@ if ((isset($_SESSION['logged_in'])) && ($_SESSION['logged_in'] == true))
             </div>
         </div>
     </div>
-    <a href="#"><div class="btn-sign-in">Sign in</div></a>
+    <div id="btn-sign-in">Sign in</div>
     <div id="index-container">
         <div class="heroimage"></div>
         <div class="center-wrapper">
             <div class="logo-wrapper">
-                <div class="logo">myCompany</div>
+                <div class="logo-main">myCompany</div>
                 <div class="logo-text"><span style="color:#36C3D9;">Apply</span> to us easily</div>
                 <div class="index-btn-container">
-                    <a href="sign_up.php"><div class="btn-dark">Join us!</div></a>
+                    <a href="sign_up.php"><div class="btn btn-dark">Join us!</div></a>
                 </div>
             </div>
         </div>
     </div>
     
-    
+    <script src="script/index.js"></script>
 </body>
 </html>
