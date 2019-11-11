@@ -1,3 +1,4 @@
+
 const hideDiv = (id) => {
     document.getElementById(id).id=id+"--hidden";
 };

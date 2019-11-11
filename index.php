@@ -1,5 +1,33 @@
+﻿
 <?php
-session_start();
+if ((isset($_SESSION['logged_in'])) && ($_SESSION['logged_in'] == true))
+{
+    if ($_SESSION['role_name'] == 'recruit')
+    {
+        header('Location: recruit_account.php');
+    }
+    elseif ($_SESSION['role_name'] == 'manager')
+    {
+        header('Location: manager_account.php');
+    }
+    elseif ($_SESSION['role_name'] == 'assistant')
+    {
+        header('Location: assistant_account.php');
+    }
+    elseif ($_SESSION['role_name'] == 'recruiter')
+    {
+        header('Location: recruiter_account.php');
+    }
+    elseif ($_SESSION['role_name'] == 'admin')
+    {
+        header('Location: admin_panel.php');
+    }
+    else
+    {
+        $_SESSION['error'] = '<span> Internal error </span>';
+    }
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -50,7 +78,7 @@ session_start();
                 <div class="logo-main">myCompany</div>
                 <div class="logo-text"><span style="color:#36C3D9;">Apply</span> to us easily</div>
                 <div class="index-btn-container">
-                    <a href="#"><div class="btn btn-dark">Join us!</div></a>
+                    <a href="sign_up.php"><div class="btn btn-dark">Join us!</div></a>
                 </div>
             </div>
         </div>
