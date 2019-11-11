@@ -96,6 +96,7 @@ a {
   cursor: pointer;
   font-size: 22px;
   padding: 4px 0 8px;
+  border: none;
   -webkit-box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.25);
   -moz-box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.25);
   box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.25);
@@ -104,6 +105,11 @@ a {
 .btn-dark {
   color: #F6F6F6;
   background-color: #464650;
+}
+
+.btn-cyan {
+  color: #F6F6F6;
+  background-color: #36C3D9;
 }
 
 .nav-bar {
@@ -197,8 +203,61 @@ a {
   cursor: pointer;
 }
 
+.form-row {
+  margin-top: 10%;
+}
+
 .form-btn-wrapper {
   margin-top: 20%;
   display: flex;
   align-items: center;
+  height: 50px;
+}
+
+.sign-up-container {
+  background-color: #F6F6F6;
+  height: 100vh;
+}
+
+.sign-up-wrapper {
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.sign-up-wrapper label {
+  font-size: 13px;
+  color: #95A5A6B3;
+}
+.sign-up-wrapper input[type=text],
+.sign-up-wrapper input[type=password],
+.sign-up-wrapper input[type=email],
+.sign-up-wrapper input[type=tel] {
+  width: 100%;
+  outline: none;
+  border: none;
+  font-size: 16px;
+  color: #95A5A6;
+  border-bottom: 2px #95A5A6 solid;
+  background-color: #ffffff00;
+  padding: 5px 0 12px;
+}
+.sign-up-wrapper input[type=password] {
+  font: large Verdana, sans-serif;
+}
+.sign-up-wrapper ::placeholder {
+  color: #95A5A6;
+  font-family: "avenirregular";
+}
+.sign-up-wrapper :-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #95A5A6;
+  font-family: "avenirregular";
+}
+.sign-up-wrapper ::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: #95A5A6;
+  font-family: "avenirregular";
+}
+.sign-up-wrapper input[type=submit] {
+  height: 35px;
 }

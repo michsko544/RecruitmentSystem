@@ -83,7 +83,8 @@ if ((isset($_SESSION['logged_in'])) && ($_SESSION['logged_in'] == true))
             </div>
         </div>
     </div>
-    
-    <script src="script/index.js"></script>
 </body>
+<script src="script/main.js"></script>
+<script src="script/index.js"></script>
+
 </html>

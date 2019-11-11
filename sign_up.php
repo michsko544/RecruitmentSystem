@@ -18,21 +18,34 @@ dostosuj do swoich potrzeb
     <link rel="stylesheet" href="/font/stylesheet.css" type="text/css" charset="utf-8" />
 </head>
 <body>
+<div class="nav-bar">
+    <div class="logo-nav">myCompany</div>
+</div>
 
-
-<form action="log_in.php" method="post">
-    <div class="form-1st-page-wrapper">
-        <!-- TODO Find your job by joining us!-->
-       <br/> <label for="login">Login</label>
-       <br/> <input type="text" name="login" placeholder="Username" required>
-       <br/> <label for="e-mail">E-mail</label>
-       <br/> <input type="email" name="e-mail" placeholder="john.smith@example.com" required>
-       <br/> <label for="password-one">Password</label>
-       <br/> <input type="password" name="password-one" placeholder="********" required>
-       <br/> <label for="password-two">Password</label>
-       <br/> <input type="password" name="password-two" placeholder="********" required>
-       <br/> <label for="terms-of-use">Terms and Privacy Policy</label>
-       <br/> <input type="checkbox" required> I agree to <a href="terms-of-use-contents.php">Terms</a> and <a href="privacy-policy-contents.php">Privacy Policy</a>.
+<div class="sign-up-container">
+    <div id="sign-up-1" class="sign-up-wrapper">
+        <form action="#" method="post">    
+    <!-- TODO Find your job by joining us!-->
+        <div class="form-row">
+            <label for="login">Login</label>
+            <input type="text" name="login" placeholder="Username" required>
+        </div>
+        <div class="form-row">
+            <label for="e-mail">E-mail</label>
+            <input type="email" name="e-mail" placeholder="john.smith@example.com" required>
+        </div>
+        <div class="form-row">
+            <label for="password-one">Password</label>
+            <input type="password" name="password-one" placeholder="********" required>
+        </div>
+        <div class="form-row">
+            <label for="password-two">Password</label>
+            <input type="password" name="password-two" placeholder="********" required>
+        </div>    
+        <div class="form-row">
+            <label for="terms-of-use">Terms and Privacy Policy</label>
+            <input type="checkbox" required> I agree to <a href="terms-of-use-contents.php">Terms</a> and <a href="privacy-policy-contents.php">Privacy Policy</a>.
+        </div>
         <?php
         if(isset($_SESSION['error']))
         {
@@ -40,21 +53,32 @@ dostosuj do swoich potrzeb
         }
         ?>
         <div class="form-btn-wrapper">
-            <input type="submit" value="Sign in">
+            <input type="submit" value="Sign in" class="btn btn-cyan" id="btn-sign-up-1">
         </div>
+        </form>
     </div>
-    <div class="form-2nd-page-wrapper">
+
+    <div id="sign-up-2--hidden" class="sign-up-wrapper">
+        <form action="#" method="post">
         <!-- TODO A few more things about you, employers need to know-->
         <!-- TODO Step 1/4-->
-       <br/> <label for="first-name">First name</label>
-       <br/> <input type="text" name="first-name" placeholder="John" required>
-       <br/> <label for="last-name">Last name</label>
-       <br/> <input type="text" name="last-name" placeholder="Smith" required>
-       <br/> <label for="phone-num">Phone number</label>
-       <br/> <input type="tel" name="phone-num" placeholder="600 700 800"
+        <div class="form-row">
+        <label for="first-name">First name</label>
+        <input type="text" name="first-name" placeholder="John" required>
+        </div>
+        <div class="form-row">
+        <label for="last-name">Last name</label>
+        <input type="text" name="last-name" placeholder="Smith" required>
+        </div>
+        <div class="form-row">
+        <label for="phone-num">Phone number</label>
+        <input type="tel" name="phone-num" placeholder="600 700 800"
         pattern="[0-9]{3} [0-9]{3} [0-9]{3}" required>
-       <br/> <label for="city">Your city</label>
-       <br/> <input type="text" name="city" placeholder="London" required>
+        </div>
+        <div class="form-row">
+        <label for="city">Your city</label>
+        <input type="text" name="city" placeholder="London" required>
+        </div>
         <?php
         if(isset($_SESSION['error']))
         {
@@ -62,23 +86,36 @@ dostosuj do swoich potrzeb
         }
         ?>
         <div class="form-btn-wrapper">
-            <input type="submit" value="Next">
+            <input type="submit" value="Next" class="btn btn-dark" id="btn-sign-up-2">
         </div>
+        </form>
     </div>
-    <div class="form-3rd-page-wrapper">
+
+    <div id="sign-up-3--hidden" class="sign-up-wrapper">
+        <form action="#" method="post">
         <!-- TODO What's your experience?-->
         <!-- TODO Step 2/4-->
-       <br/> <label for="job-title">Job title</label>
-       <br/> <input type="text" name="job-title" placeholder="Waiter" required>
-       <br/> <label for="employer">Employer</label>
-       <br/> <input type="text" name="employer" placeholder="Italian Restaurant London" required>
-       <br/> <label for="start-end-date">Start & End date</label>
-       <br/> <input type="date" name=start-date" placeholder="Oct, 2019" required>
+        <div class="form-row">
+        <label for="job-title">Job title</label>
+        <input type="text" name="job-title" placeholder="Waiter" required>
+        </div>
+        <div class="form-row">
+        <label for="employer">Employer</label>
+        <input type="text" name="employer" placeholder="Italian Restaurant London" required>
+        </div>
+        <div class="form-row">
+        <label for="start-end-date">Start & End date</label>
+        <input type="date" name=start-date" placeholder="Oct, 2019" required>
         <input type="date" name="end-date" placeholder="Nov, 2019" required>
-       <br/> <label for="job-city">City</label>
-       <br/> <input type="text" name="job-city" placeholder="London" required>
-       <br/> <label for="description">Description</label>
-       <br/> <textarea name="description" cols="35" rows="5" placeholder="Waitressing, preparing venue for events, taking care of restaurant clarity ..."></textarea>
+        </div>
+        <div class="form-row">
+        <label for="job-city">City</label>
+        <input type="text" name="job-city" placeholder="London" required>
+        </div>
+        <div class="form-row">
+        <label for="description">Description</label>
+        <textarea name="description" cols="35" rows="5" placeholder="Waitressing, preparing venue for events, taking care of restaurant clarity ..."></textarea>
+        </div>
         <?php
         if(isset($_SESSION['error']))
         {
@@ -87,16 +124,23 @@ dostosuj do swoich potrzeb
         ?>
         <!-- TODO Add employment btn -->
         <div class="form-btn-wrapper">
-            <input type="submit" value="Next">
+            <input type="submit" value="Next" class="btn btn-dark" id="btn-sign-up-3">
         </div>
+        </form>
     </div>
-    <div class="form-4th-page-wrapper">
+
+    <div id="sign-up-4--hidden" class="sign-up-wrapper">
+        <form action="#" method="post">
         <!-- TODO Skills & Education-->
         <!-- TODO Step 3/4-->
-       <br/> <label for="languages">Languages</label>
-       <br/> <input type="text" name="languages" placeholder="German" required>
-       <br/> <label for="skills">Skills</label>
-       <br/> <input type="text" name="skills" placeholder="Marketing" required>
+        <div class="form-row">
+        <label for="languages">Languages</label>
+        <input type="text" name="languages" placeholder="German" required>
+        </div>
+        <div class="form-row">
+        <label for="skills">Skills</label>
+        <input type="text" name="skills" placeholder="Marketing" required>
+        </div>
         <?php
         if(isset($_SESSION['error']))
         {
@@ -104,18 +148,27 @@ dostosuj do swoich potrzeb
         }
         ?>
         <!-- TODO Add skill btn -->
-
-       <br/> <label for="school">School</label>
-       <br/> <input type="text" name="school" placeholder="Silesian University of Science" required>
-       <br/> <label for="specialization">Specialization</label>
-       <br/> <input type="text" name="specialization" placeholder="Teleinformatics" required>
-       <br/> <label for="start-end-date">Start & End date</label>
-       <br/> <input type="date" name=start-date" placeholder="Oct, 2019" required>
+        <div class="form-row">
+        <label for="school">School</label>
+        <input type="text" name="school" placeholder="Silesian University of Science" required>
+        </div>
+        <div class="form-row">
+        <label for="specialization">Specialization</label>
+        <input type="text" name="specialization" placeholder="Teleinformatics" required>
+        </div>
+        <div class="form-row">
+        <label for="start-end-date">Start & End date</label>
+        <input type="date" name=start-date" placeholder="Oct, 2019" required>
         <input type="date" name="end-date" placeholder="Nov, 2019" required>
-       <br/> <label for="school-city">City</label>
-       <br/> <input type="text" name="school-city" placeholder="Gliwice" required>
-       <br/> <label for="description">Description</label>
-       <br/> <textarea name="description" cols="35" rows="5" placeholder="Programming, data analysing, network designing ..."></textarea>
+        </div>
+        <div class="form-row">
+        <label for="school-city">City</label>
+        <input type="text" name="school-city" placeholder="Gliwice" required>
+        </div>
+        <div class="form-row">
+        <label for="description">Description</label>
+        <textarea name="description" cols="35" rows="5" placeholder="Programming, data analysing, network designing ..."></textarea>
+        </div>
         <?php
         if(isset($_SESSION['error']))
         {
@@ -124,20 +177,29 @@ dostosuj do swoich potrzeb
         ?>
         <!-- TODO Add school btn -->
         <div class="form-btn-wrapper">
-            <input type="submit" value="Next">
+            <input type="submit" value="Next" class="btn btn-dark" id="btn-sign-up-4">
         </div>
+        </form>
     </div>
-    <div class="form-5th-page-wrapper">
+
+    <div id="sign-up-5--hidden" class="sign-up-wrapper">
+        <form action="#" method="post">
         <!-- TODO CV & Additional references-->
         <!-- TODO Step 4/4-->
-       <br/> <label for="cv-file">Curriculum vitae</label>
-       <br/> <input type="file" name="cv-file" placeholder="My CV" required>
+        <div class="form-row">
+        <label for="cv-file">Curriculum vitae</label>
+        <input type="file" name="cv-file" placeholder="My CV" required>
+        </div>
         <!-- TODO Add CV btn -->
-       <br/> <label for="certificate-file">Certificate</label>
-       <br/> <input type="file" name="certificate-file" placeholder="Cisco">
+        <div class="form-row">
+        <label for="certificate-file">Certificate</label>
+        <input type="file" name="certificate-file" placeholder="Cisco">
+        </div>
         <!-- TODO Add certificate btn -->
-       <br/> <label for="course-file">Course</label>
-       <br/> <input type="file" name="course-file" placeholder="Google Internet Revolutions">
+        <div class="form-row">
+        <label for="course-file">Course</label>
+        <input type="file" name="course-file" placeholder="Google Internet Revolutions">
+        </div>
         <!-- TODO Add course btn -->
         <?php
         if(isset($_SESSION['error']))
@@ -146,10 +208,12 @@ dostosuj do swoich potrzeb
         }
         ?>
         <div class="form-btn-wrapper">
-            <input type="submit" value="Finish">
+            <input type="submit" value="Finish" class="btn btn-cyan" id="btn-sign-up-5">
         </div>
+        </form>
     </div>
-</form>
-
+</div>
 </body>
+<script src="script/main.js"></script>
+<script src="script/sign-up.js"></script>
 </html>
