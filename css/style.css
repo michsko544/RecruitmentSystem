@@ -13,10 +13,15 @@ a {
   text-decoration: none;
 }
 
+[id$="--hidden"] {
+  display: none;
+}
+
 #index-container {
   color: #464650;
   display: flex;
   justify-content: center;
+  transition: filter 0.3s ease-in-out;
 }
 #index-container .heroimage {
   background: url(/img/heroimg.jpg) center center no-repeat;
@@ -30,12 +35,12 @@ a {
 #index-container .logo-wrapper {
   text-align: center;
 }
-#index-container .logo-wrapper .logo {
+#index-container .logo-wrapper .logo-main {
+  border: 3px #464650 solid;
   font-size: 29px;
   padding: 2px 7px 4px;
   width: 164px;
   height: 32px;
-  border: 3px #464650 solid;
   -webkit-box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.25);
   -moz-box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.25);
   box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.25);
@@ -47,32 +52,47 @@ a {
   text-shadow: 0px 3px 6px rgba(0, 0, 0, 0.25);
 }
 
+.input-wrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 20px;
+}
+
 .center-wrapper {
   display: flex;
   align-items: center;
   height: 100vh;
 }
 
-.btn-sign-in {
+#btn-sign-in {
   position: absolute;
   top: 0;
   right: 0;
   color: #464650;
   font-size: 15px;
-  margin: 6px;
+  margin: 10px;
+  cursor: pointer;
+  z-index: 50;
+}
+
+.blur {
+  -webkit-filter: blur(6px);
+  -moz-filter: blur(6px);
+  -o-filter: blur(6px);
+  -ms-filter: blur(6px);
+  filter: blur(6px);
 }
 
 .index-btn-container {
   margin-top: 70px;
 }
 
-.btn-dark {
-  color: #F6F6F6;
+.btn {
   width: 155px;
   height: 23px;
   margin-left: auto;
   margin-right: auto;
-  background-color: #464650;
   cursor: pointer;
   font-size: 22px;
   padding: 4px 0 8px;
@@ -81,10 +101,39 @@ a {
   box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.25);
 }
 
+.btn-dark {
+  color: #F6F6F6;
+  background-color: #464650;
+}
+
 .nav-bar {
   width: 100%;
   height: 85px;
   background-color: #464650;
+  position: relative;
+}
+.nav-bar .logo-nav {
+  width: 102px;
+  height: 24px;
+  color: #36C3D9;
+  border: 2px #36C3D9 solid;
+  font-size: 18px;
+  position: absolute;
+  top: 30px;
+  left: 20px;
+  padding: 1px 2px;
+}
+.nav-bar .btn-nav {
+  position: absolute;
+  top: 33px;
+  right: 23px;
+  width: 23px;
+  height: 23px;
+  background: #F6F6F6;
+  z-index: 101;
+}
+.nav-bar #btn-exit {
+  cursor: pointer;
 }
 
 #sign-in {
@@ -96,9 +145,12 @@ a {
   background-color: #5D5D5D64;
 }
 #sign-in form {
-  width: 80%;
+  width: 75%;
   margin-left: auto;
   margin-right: auto;
+}
+#sign-in form .sign-in-row {
+  margin-top: 15%;
 }
 #sign-in form label {
   font-size: 13px;
@@ -113,7 +165,24 @@ a {
   color: #F6F6F6;
   border-bottom: 2px #464650 solid;
   background-color: #ffffff00;
-  padding: 5px 0;
+  padding: 5px 0 12px;
+}
+#sign-in form input[type=password] {
+  font: large Verdana, sans-serif;
+}
+#sign-in form ::placeholder {
+  color: #F6F6F6;
+  font-family: "avenirregular";
+}
+#sign-in form :-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #F6F6F6;
+  font-family: "avenirregular";
+}
+#sign-in form ::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: #F6F6F6;
+  font-family: "avenirregular";
 }
 #sign-in form input[type=submit] {
   outline: none;
@@ -125,10 +194,11 @@ a {
   height: 35px;
   margin-left: auto;
   margin-right: auto;
+  cursor: pointer;
 }
 
 .form-btn-wrapper {
-  margin-top: 100px;
+  margin-top: 20%;
   display: flex;
   align-items: center;
 }
