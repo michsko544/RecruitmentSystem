@@ -1,26 +1,25 @@
-﻿
-<?php
+﻿<?php
 if ((isset($_SESSION['logged_in'])) && ($_SESSION['logged_in'] == true))
 {
     if ($_SESSION['role_name'] == 'recruit')
     {
-        header('Location: recruit_account.php');
+        header('Location: accounts/recruit_account.php');
     }
     elseif ($_SESSION['role_name'] == 'manager')
     {
-        header('Location: manager_account.php');
+        header('Location: accounts/manager_account.php');
     }
     elseif ($_SESSION['role_name'] == 'assistant')
     {
-        header('Location: assistant_account.php');
+        header('Location: accounts/assistant_account.php');
     }
     elseif ($_SESSION['role_name'] == 'recruiter')
     {
-        header('Location: recruiter_account.php');
+        header('Location: accounts/recruiter_account.php');
     }
     elseif ($_SESSION['role_name'] == 'admin')
     {
-        header('Location: admin_panel.php');
+        header('Location: accounts/admin_panel.php');
     }
     else
     {
@@ -56,13 +55,14 @@ if ((isset($_SESSION['logged_in'])) && ($_SESSION['logged_in'] == true))
                 <div class="sign-in-row">
                     <label for="password">Password</label>
                     <input type="password" name="password" placeholder="●●●●●●●●●●">
+                    <?php
+                    if(isset($_SESSION['error']))
+                    {
+                        echo $_SESSION['error'];
+                    }
+                    ?>
                 </div>
-                <?php
-                if(isset($_SESSION['error']))
-                {
-                    echo $_SESSION['error'];
-                }
-                ?>
+
                 <div class="form-btn-wrapper">
                     <input type="submit" value="Sign in">
                 </div>
