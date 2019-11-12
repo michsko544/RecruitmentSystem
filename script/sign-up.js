@@ -13,12 +13,12 @@ for(let i=0; i<buttons.length-1; ++i){
     //         console.log(`pokazuje ${i+2}`);
     //     }
     // });
-    $(`sform-${i+1}`).submit(function(e){
+    $(`#sform-${i+1}`).submit(function(e){
         e.preventDefault();
         $.ajax({
             url:'',
             type:'post',
-            data:$('#myForm').serialize(),
+            data:$(`#sform-${i+1}`).serialize(),
             success:function(){
                 console.log("Poprawnie wypelniony");
                 hideDiv(document.getElementById(`sign-up-${i+1}`).id);
