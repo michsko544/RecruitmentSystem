@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 ?>
 
@@ -25,7 +24,7 @@ dostosuj do swoich potrzeb
 
 <div class="sign-up-container">
     <div id="sign-up-1" class="sign-up-wrapper">
-        <form action="php/sign_up/sign_up_system.php" method="post">
+        <form id="sform-1" action="#" method="post">    
     <!-- TODO Find your job by joining us!-->
         <div class="form-row">
             <label for="login">Login</label>
@@ -45,7 +44,7 @@ dostosuj do swoich potrzeb
         </div>    
         <div class="form-row">
             <label for="terms-of-use">Terms and Privacy Policy</label>
-            <input type="checkbox" name="terms-of-use" required> I agree to <a href="documents/terms-of-use-contents.html">Terms</a> and <a href="documents/privacy-policy-contents.html">Privacy Policy</a>.
+            <input type="checkbox" required> I agree to <a href="terms-of-use-contents.php">Terms</a> and <a href="privacy-policy-contents.php">Privacy Policy</a>.
         </div>
         <?php
         if(isset($_SESSION['error']))
@@ -60,7 +59,7 @@ dostosuj do swoich potrzeb
     </div>
 
     <div id="sign-up-2--hidden" class="sign-up-wrapper">
-        <form action="#" method="post">
+        <form id="sform-2" action="#" method="post">
         <!-- TODO A few more things about you, employers need to know-->
         <!-- TODO Step 1/4-->
         <div class="form-row">
@@ -74,7 +73,7 @@ dostosuj do swoich potrzeb
         <div class="form-row">
         <label for="phone-num">Phone number</label>
         <input type="tel" name="phone-num" placeholder="600 700 800"
-        pattern="[0-9]{3}[0-9]{3}[0-9]{3}" required>
+        pattern="[0-9]{3} [0-9]{3} [0-9]{3}" required>
         </div>
         <div class="form-row">
         <label for="city">Your city</label>
@@ -93,7 +92,7 @@ dostosuj do swoich potrzeb
     </div>
 
     <div id="sign-up-3--hidden" class="sign-up-wrapper">
-        <form action="#" method="post">
+        <form id="sform-3" action="#" method="post">
         <!-- TODO What's your experience?-->
         <!-- TODO Step 2/4-->
         <div class="form-row">
@@ -131,7 +130,7 @@ dostosuj do swoich potrzeb
     </div>
 
     <div id="sign-up-4--hidden" class="sign-up-wrapper">
-        <form action="#" method="post">
+        <form id="sform-4" action="#" method="post">
         <!-- TODO Skills & Education-->
         <!-- TODO Step 3/4-->
         <div class="form-row">
@@ -184,7 +183,7 @@ dostosuj do swoich potrzeb
     </div>
 
     <div id="sign-up-5--hidden" class="sign-up-wrapper">
-        <form action="#" method="post">
+        <form id="sform-5" action="#" method="post">
         <!-- TODO CV & Additional references-->
         <!-- TODO Step 4/4-->
         <div class="form-row">
@@ -215,6 +214,7 @@ dostosuj do swoich potrzeb
     </div>
 </div>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="script/main.js"></script>
 <script src="script/sign-up.js"></script>
 </html>
