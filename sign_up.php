@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 ?>
 
@@ -24,7 +25,7 @@ dostosuj do swoich potrzeb
 
 <div class="sign-up-container">
     <div id="sign-up-1" class="sign-up-wrapper">
-        <form action="#" method="post">    
+        <form action="php/sign_up/sign_up_system.php" method="post">
     <!-- TODO Find your job by joining us!-->
         <div class="form-row">
             <label for="login">Login</label>
@@ -44,7 +45,7 @@ dostosuj do swoich potrzeb
         </div>    
         <div class="form-row">
             <label for="terms-of-use">Terms and Privacy Policy</label>
-            <input type="checkbox" required> I agree to <a href="terms-of-use-contents.php">Terms</a> and <a href="privacy-policy-contents.php">Privacy Policy</a>.
+            <input type="checkbox" name="terms-of-use" required> I agree to <a href="documents/terms-of-use-contents.html">Terms</a> and <a href="documents/privacy-policy-contents.html">Privacy Policy</a>.
         </div>
         <?php
         if(isset($_SESSION['error']))
@@ -73,7 +74,7 @@ dostosuj do swoich potrzeb
         <div class="form-row">
         <label for="phone-num">Phone number</label>
         <input type="tel" name="phone-num" placeholder="600 700 800"
-        pattern="[0-9]{3} [0-9]{3} [0-9]{3}" required>
+        pattern="[0-9]{3}[0-9]{3}[0-9]{3}" required>
         </div>
         <div class="form-row">
         <label for="city">Your city</label>
