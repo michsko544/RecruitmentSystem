@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 ?>
 
 <!--
@@ -24,7 +24,7 @@ dostosuj do swoich potrzeb
 
 <div class="sign-up-container">
     <div id="sign-up-1" class="sign-up-wrapper">
-        <form id="sform-1" action="#" method="post">    
+        <form id="sform-1" action="/php/sign_up/sign_up_system.php" method="post">
     <!-- TODO Find your job by joining us!-->
         <div class="form-row">
             <label for="login">Login</label>

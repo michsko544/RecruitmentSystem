@@ -47,7 +47,7 @@ if ((isset($_SESSION['logged_in'])) && ($_SESSION['logged_in'] == true))
         </div>
         <div class="input-wrapper">
             <div class="center-wrapper">  
-            <form action="log_in.php" method="post">
+            <form action="php/log_in/log_in.php" method="post">
                 <div class="sign-in-row">
                     <label for="login">Login</label>
                     <input type="text" name="login" placeholder="Username">

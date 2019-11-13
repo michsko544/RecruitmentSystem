@@ -3,13 +3,17 @@
 
 class SignUpSystem
 {
-/* pobierz z formularza
- * sprawdz poprawność
- * dodaj to $_SESSION
- *
- *
- *
- */
+public $correct_data = true;
+public $_SESSION['insert_username'] = '';
+public $_SESSION['insert_email'] = '';
+public $_SESSION['insert_password'] = '';
+
+function notGood($err_name, $err_message)
+{
+    $correct_data = false;
+    $_SESSION["$err_name"] = $err_message;
+}
+
 function rememberValue ($value_name)
 {
     if (isset($_SESSION["$value_name"]))
@@ -27,5 +31,7 @@ function setError($error_name)
         unset($_SESSION["$error_name"]);
     }
 }
+
+// TODO add insert function
 }
 
