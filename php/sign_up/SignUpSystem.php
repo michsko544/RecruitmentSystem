@@ -3,18 +3,26 @@
 
 class SignUpSystem
 {
-public $correct_data = true;
-public $_SESSION['insert_username'] = '';
-public $_SESSION['insert_email'] = '';
-public $_SESSION['insert_password'] = '';
+private $correct_data = true;
+
+function __construct($flag_status)
+{
+    $this->correct_data = $flag_status;
+}
+
+function checkFlag()
+{
+    if ($this->correct_data == true) return true;
+    else return false;
+}
 
 function notGood($err_name, $err_message)
 {
-    $correct_data = false;
+    $this->correct_data = false;
     $_SESSION["$err_name"] = $err_message;
 }
 
-function rememberValue ($value_name)
+function rememberValue($value_name)
 {
     if (isset($_SESSION["$value_name"]))
     {

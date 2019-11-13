@@ -3,7 +3,7 @@ session_start();
 
 if ((!isset($_POST['username'])) || (!isset($_POST['password'])))
 {
-    header('Location: index.php');
+    header('Location: ../../index.php');
     exit();
 }
 
@@ -59,19 +59,19 @@ try
                         $_SESSION['role_name'] = $row_roles['role_name'];
                         if ($row_roles['role_name'] == 'recruit') {
                             $result_role->free(); // clear memory
-                            header('Location: accounts/recruit_account.php');
+                            header('Location: ../../accounts/recruit_account.php');
                         } elseif ($row_roles['role_name'] == 'manager') {
                             $result_role->free(); // clear memory
-                            header('Location: accounts/manager_account.php');
+                            header('Location: ../../accounts/manager_account.php');
                         } elseif ($row_roles['role_name'] == 'assistant') {
                             $result_role->free(); // clear memory
-                            header('Location: accounts/assistant_account.php');
+                            header('Location: ../../accounts/assistant_account.php');
                         } elseif ($row_roles['role_name'] == 'recruiter') {
                             $result_role->free(); // clear memory
-                            header('Location: accounts/recruiter_account.php');
+                            header('Location: ../../accounts/recruiter_account.php');
                         } elseif ($row_roles['role_name'] == 'admin') {
                             $result_role->free(); // clear memory
-                            header('Location: accounts/admin_panel.php');
+                            header('Location: ../../accounts/admin_panel.php');
                         } else {
                             $_SESSION['error'] = '<span> Internal error </span>';
                         }
@@ -83,13 +83,13 @@ try
                 else
                 {
                     $_SESSION['error'] = '<span> Incorrect username or password </span>';
-                    header('Location: index.php');
+                    header('Location: ../../index.php');
                 }
             }
             else
             {
                 $_SESSION['error'] = '<span> Incorrect username or password </span>';
-                header('Location: index.php');
+                header('Location: ../../index.php');
             }
         }
         else

@@ -1,5 +1,7 @@
 <?php
 session_start();
+require_once "php/sign_up/SignUpSystem.php";
+$sign_up_class = new SignUpSystem(true);
 ?>
 
 <!--
@@ -32,24 +34,43 @@ dostosuj do swoich potrzeb
 
         <div class="form-row">
             <label for="login">Login</label>
-            <input type="text" name="login" placeholder="Username" required>
+            <input type="text" name="login" value="<?php $sign_up_class->rememberValue('rem_username'); ?>" placeholder="Username" required>
+            <?php
+            $sign_up_class->setError('err_username');
+            ?>
         </div>
         <div class="form-row">
             <label for="e-mail">E-mail</label>
-            <input type="email" name="e-mail" placeholder="john.smith@example.com" required>
+            <input type="email" name="e-mail" value="<?php $sign_up_class->rememberValue('rem_email'); ?>" placeholder="john.smith@example.com" required>
+            <?php
+            $sign_up_class->setError('err_email');
+            ?>
         </div>
         <div class="form-row">
             <label for="password-one">Password</label>
-            <input type="password" name="password-one" placeholder="●●●●●●●●●●" required>
+            <input type="password" name="password-one" value="<?php $sign_up_class->rememberValue('rem_password_one'); ?>" placeholder="●●●●●●●●●●" required>
+            <?php
+            $sign_up_class->setError('err_password');
+            ?>
         </div>
         <div class="form-row">
             <label for="password-two">Password</label>
-            <input type="password" name="password-two" placeholder="●●●●●●●●●●" required>
+            <input type="password" name="password-two" value="<?php $sign_up_class->rememberValue('rem_password_two'); ?>" placeholder="●●●●●●●●●●" required>
+            <?php
+            $sign_up_class->setError('err_password');
+            ?>
         </div>
     <!-- TODO Position-->
         <div class="form-row">
             <label for="terms-of-use">Terms and Privacy Policy</label>
-            <div class="checkbox"><input type="checkbox" required>I agree to&nbsp;<a href="terms-of-use-contents.php">Terms&nbsp;</a> and&nbsp;<a href="privacy-policy-contents.php">Privacy Policy</a>.</div>
+            <div class="checkbox"><input type="checkbox" required <?php
+                if (isset($_SESSION['rem_terms']))
+                {echo "checked";
+                unset($_SESSION['rem_terms']);}
+                ?>>I agree to&nbsp;<a href="terms-of-use-contents.php">Terms&nbsp;</a> and&nbsp;<a href="privacy-policy-contents.php">Privacy Policy</a>.</div>
+            <?php
+            $sign_up_class->setError('err_terms');
+            ?>
         </div>
         <?php
         if(isset($_SESSION['error']))
