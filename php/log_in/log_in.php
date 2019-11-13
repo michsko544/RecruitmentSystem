@@ -7,7 +7,7 @@ if ((!isset($_POST['username'])) || (!isset($_POST['password'])))
     exit();
 }
 
-require_once "php/connect.php";
+require_once "../connect.php";
 mysqli_report(MYSQLI_REPORT_STRICT);
 try
 {

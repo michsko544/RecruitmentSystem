@@ -62,7 +62,7 @@ if (isset($_POST['e-mail']))
     }
 
     // DB connection
-    require_once "php/connect.php";
+    require_once "../connect.php";
     mysqli_report(MYSQLI_REPORT_STRICT);
 
     try

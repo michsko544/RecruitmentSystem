@@ -1,3 +1,4 @@
+@charset "UTF-8";
 * {
   margin: 0;
   padding: 0;
@@ -112,6 +113,14 @@ a {
   background-color: #36C3D9;
 }
 
+.cyan-color {
+  color: #36C3D9;
+}
+
+.dark-color {
+  color: #464650;
+}
+
 .nav-bar {
   width: 100%;
   height: 85px;
@@ -204,11 +213,11 @@ a {
 }
 
 .form-row {
-  margin-top: 10%;
+  margin-top: 25.5px;
 }
 
 .form-btn-wrapper {
-  margin-top: 20%;
+  margin-top: 25.5px;
   display: flex;
   align-items: center;
   height: 50px;
@@ -231,7 +240,10 @@ a {
 .sign-up-wrapper input[type=text],
 .sign-up-wrapper input[type=password],
 .sign-up-wrapper input[type=email],
-.sign-up-wrapper input[type=tel] {
+.sign-up-wrapper input[type=tel],
+.sign-up-wrapper input[type=date],
+.sign-up-wrapper input[type=number],
+.sign-up-wrapper textarea {
   width: 100%;
   outline: none;
   border: none;
@@ -243,6 +255,85 @@ a {
 }
 .sign-up-wrapper input[type=password] {
   font: large Verdana, sans-serif;
+}
+.sign-up-wrapper input[type=checkbox] {
+  border: #95A5A6;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+.sign-up-wrapper .checkbox {
+  color: #95A5A6;
+  font-size: 14px;
+  padding: 5px 0 12px;
+  display: flex;
+  align-items: center;
+}
+.sign-up-wrapper .checkbox a {
+  color: #464650;
+  cursor: pointer;
+}
+.sign-up-wrapper input[type=date] {
+  width: 46%;
+}
+.sign-up-wrapper .date {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.sign-up-wrapper .date input[type=text] {
+  width: 46%;
+}
+.sign-up-wrapper .relative {
+  position: relative;
+}
+.sign-up-wrapper .degree {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  position: absolute;
+  width: 100%;
+  font-size: 16px;
+  color: #95A5A6;
+  top: 22px;
+}
+.sign-up-wrapper .degree input[type=number] {
+  border: none;
+  padding: 0;
+  text-align: right;
+  width: 10%;
+}
+.sign-up-wrapper .upload {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding: 8px 0 7px;
+  text-align: center;
+  background: #ffffff00;
+  border: 2px #36C3D9 solid;
+  cursor: pointer;
+  margin-top: 5px;
+}
+.sign-up-wrapper .upload input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  opacity: 0;
+}
+.sign-up-wrapper .upload label {
+  color: #36C3D9;
+  font-size: 16px;
+  cursor: pointer;
+  font-family: "avenirregular";
+}
+.sign-up-wrapper .upload label:before {
+  content: "⇪";
+  margin-right: 5px;
 }
 .sign-up-wrapper ::placeholder {
   color: #95A5A6;
@@ -260,4 +351,43 @@ a {
 }
 .sign-up-wrapper input[type=submit] {
   height: 35px;
+}
+.sign-up-wrapper .step {
+  margin-top: 17px;
+  width: 100%;
+  color: #36C3D9;
+  text-align: right;
+  font-size: 13px;
+}
+
+.page-title {
+  font-size: 22px;
+  text-align: center;
+  width: 100%;
+  margin-top: 32px;
+}
+
+.btn-add {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 31.5px;
+  align-items: center;
+  color: #36C3D9;
+  cursor: pointer;
+}
+
+.btn-text {
+  font-size: 16px;
+  margin-right: 8px;
+}
+
+.btn-border {
+  width: 21px;
+  height: 21px;
+  border: 2px solid #36C3D9;
+}
+
+.btn-icon {
+  font-size: 30px;
+  transform: translate(0.5px, -8.5px);
 }
