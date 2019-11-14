@@ -2,6 +2,7 @@
 session_start();
 require_once "SignUpSystem.php";
 
+//Form 1
 if (isset($_POST['e-mail']))
 {
     $sign_up_class = new SignUpSystem(true);
@@ -96,33 +97,137 @@ if (isset($_POST['e-mail']))
             if ($sign_up_class->checkFlag() == true)
             {
                 // Add to session variables and wait for other steps
-                $_SESSION['insert_username'] = $username;
-                $_SESSION['insert_email'] = $email;
-                $_SESSION['insert_password'] = $hashed_password;
+               // $_SESSION['insert_username'] = $username;
+               // $_SESSION['insert_email'] = $email;
+               // $_SESSION['insert_password'] = $hashed_password;
+
+                // Add to array and wait
+                $sign_up_class->setInsertValue('username', $username);
+                $sign_up_class->setInsertValue('email', $email);
+                $sign_up_class->setInsertValue('password', $hashed_password);
             }
             $connection->close();
-            unset($sign_up_class);
+
         }
     }
     catch(Exception $e)
     {
         echo 'Server error! Try signing up later';
     }
-    // Unsetting remembered values
+    // Unset remembered values
     if (isset($_SESSION['rem_username'])) unset($_SESSION['rem_username']);
     if (isset($_SESSION['rem_email'])) unset($_SESSION['rem_email']);
     if (isset($_SESSION['rem_password_one'])) unset($_SESSION['rem_password_one']);
     if (isset($_SESSION['rem_password_two'])) unset($_SESSION['rem_password_two']);
     if (isset($_SESSION['rem_terms'])) unset($_SESSION['rem_terms']);
-
-    // Unsetting error values
+    // Unset error values
     if (isset($_SESSION['err_username'])) unset($_SESSION['err_username']);
     if (isset($_SESSION['err_email'])) unset($_SESSION['err_email']);
     if (isset($_SESSION['err_password_one'])) unset($_SESSION['err_password_one']);
     if (isset($_SESSION['err_password_two'])) unset($_SESSION['err_password_two']);
     if (isset($_SESSION['err_terms'])) unset($_SESSION['err_terms']);
-
-    // TODO add other steps
-
-
 }
+
+//Form 2
+if (isset($_POST['first-name']))
+{
+    // Validate first name
+    $first_name = $_POST['first-name'];
+    if (ctype_alpha($first_name) == false)
+    {
+        $sign_up_class->notGood('err_first_name', 'First name may contain only letters');
+    }
+
+    //Validate last name
+    $last_name = $_POST['last-name'];
+    if (ctype_alpha($last_name) == false)
+    {
+        $sign_up_class->notGood('err_last_name', 'Last name may contain only letters');
+    }
+
+    //Validate phone number
+    $phone = $_POST['phone-num'];
+    if (ctype_digit($phone) == false)
+    {
+        $sign_up_class->notGood('err_phone', 'Phone number may contain only numbers');
+    }
+    if (strlen($phone) != 9)
+    {
+        $sign_up_class->notGood('err_phone', 'Phone number must be 9 digits long');
+    }
+
+    //Validate country
+    $residence_country = $_POST['residence-country'];
+    if (ctype_alpha($residence_country) == false)
+    {
+        $sign_up_class->notGood('err_residence_country', 'Country name may contain only letters');
+    }
+    //TODO add country list (from db)
+
+    //Validate city
+    $residence_city = $_POST['residence-city'];
+    if (ctype_alpha($residence_city) == false)
+    {
+        $sign_up_class->notGood('err_residence_city', 'City name may contain only letters');
+    }
+    
+    // Remember value
+    $_SESSION['rem_first_name'] = $first_name;
+    $_SESSION['rem_last_name'] = $last_name;
+    $_SESSION['rem_phone'] = $phone;
+    $_SESSION['rem_residence_country'] = $residence_country;
+    $_SESSION['rem_residence_city'] = $residence_city;
+
+    try
+    {
+        $connection = new mysqli($host, $db_user, $db_pass, $db_name);
+        if ($connection->connect_errno != 0)
+        {
+            throw new Exception(mysqli_connect_errno());
+        }
+        else
+        {
+            if ($sign_up_class->checkFlag() == true)
+            {
+                // Add to session variables and wait for other steps
+               // $_SESSION['insert_first_name'] = $first_name;
+               // $_SESSION['insert_last_name'] = $last_name;
+               // $_SESSION['insert_phone'] = $phone;
+               // $_SESSION['insert_residence_country'] = $residence_country;
+               // $_SESSION['insert_residence_city'] = $residence_city;
+
+                //Add to array and wait
+                $sign_up_class->setInsertValue('first_name', $first_name);
+                $sign_up_class->setInsertValue('last_name', $last_name);
+                $sign_up_class->setInsertValue('phone', $phone);
+                $sign_up_class->setInsertValue('residence_country', $residence_country);
+                $sign_up_class->setInsertValue('residence_city', $residence_city);
+            }
+            $connection->close();
+        }
+    }
+    catch(Exception $e)
+    {
+        echo 'Server error! Try signing up later';
+    }
+
+    // Unset remembered values
+    if (isset($_SESSION['rem_first_name'])) unset($_SESSION['rem_first_name']);
+    if (isset($_SESSION['rem_last_name'])) unset($_SESSION['rem_last_name']);
+    if (isset($_SESSION['rem_phone'])) unset($_SESSION['rem_phone']);
+    if (isset($_SESSION['rem_residence_country'])) unset($_SESSION['rem_residence_country']);
+    if (isset($_SESSION['rem_residence_city'])) unset($_SESSION['rem_residence_city']);
+    // Unset error values
+    if (isset($_SESSION['err_first_name'])) unset($_SESSION['err_first_name']);
+    if (isset($_SESSION['err_last_name'])) unset($_SESSION['err_last_name']);
+    if (isset($_SESSION['err_phone'])) unset($_SESSION['err_phone']);
+    if (isset($_SESSION['err_residence_country'])) unset($_SESSION['err_residence_country']);
+    if (isset($_SESSION['err_residence_city'])) unset($_SESSION['err_residence_city']);
+}
+
+//Form 3
+
+
+// TODO unset insert values
+
+unset($sign_up_class);

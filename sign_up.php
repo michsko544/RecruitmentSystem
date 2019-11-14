@@ -67,7 +67,7 @@ dostosuj do swoich potrzeb
                 if (isset($_SESSION['rem_terms']))
                 {echo "checked";
                 unset($_SESSION['rem_terms']);}
-                ?>>I agree to&nbsp;<a href="terms-of-use-contents.php">Terms&nbsp;</a> and&nbsp;<a href="privacy-policy-contents.php">Privacy Policy</a>.</div>
+                ?>>I agree to&nbsp;<a href="documents/terms-of-use-contents.html">Terms&nbsp;</a> and&nbsp;<a href="documents/privacy-policy-contents.html">Privacy Policy</a>.</div>
             <?php
             $sign_up_class->setError('err_terms');
             ?>
@@ -86,7 +86,7 @@ dostosuj do swoich potrzeb
     <div class="page-title dark-color">A few more things about you, employers need to know</div>
     <div id="sign-up-2" class="sign-up-wrapper">
         <div class="step">Step 1/3</div>
-        <form id="sform-2" action="#" method="post">
+        <form id="sform-2" action="php/sign_up/sign_up_system.php" method="post">
        
         <div class="form-row">
         <label for="first-name">First name</label>
@@ -99,11 +99,15 @@ dostosuj do swoich potrzeb
         <div class="form-row">
         <label for="phone-num">Phone number</label>
         <input type="tel" name="phone-num" placeholder="600 700 800"
-        pattern="[0-9]{3} [0-9]{3} [0-9]{3}" required>
+        pattern="[0-9]{3}[0-9]{3}[0-9]{3}" required>
         </div>
         <div class="form-row">
-        <label for="city">Your city</label>
-        <input type="text" name="city" placeholder="London" required>
+            <label for="residence-country">Your country</label>
+            <input type="text" name="residence-country" placeholder="UK" required>
+        </div>
+        <div class="form-row">
+        <label for="residence-city">Your city</label>
+        <input type="text" name="residence-city" placeholder="London" required>
         </div>
         <?php
         if(isset($_SESSION['error']))
@@ -120,7 +124,7 @@ dostosuj do swoich potrzeb
     <div class="page-title dark-color">What's your experience?</div>
     <div id="sign-up-3" class="sign-up-wrapper">
         <div class="step">Step 2/3</div>
-        <form id="sform-3" action="#" method="post">
+        <form id="sform-3" action="php/sign_up/sign_up_system.php" method="post">
         <div class="form-row">
         <label for="job-title">Job title</label>
         <input type="text" name="job-title" placeholder="Waiter" required>
