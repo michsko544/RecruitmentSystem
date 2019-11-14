@@ -13,19 +13,20 @@ for(let i=0; i<buttons.length-1; ++i){
     //         console.log(`pokazuje ${i+2}`);
     //     }
     // });
-    $(`#sform-${i+1}`).submit(function(e){
-        e.preventDefault();
-        $.ajax({
-            url:'',
-            type:'post',
-            data:$(`#sform-${i+1}`).serialize(),
-            success:function(){
-                console.log("Poprawnie wypelniony");
-                hideDiv(document.getElementById(`sign-up-${i+1}`).id);
-                console.log(`chowam ${i+1}`);
-                showDiv(document.getElementById(`sign-up-${i+2}--hidden`).id);
-                console.log(`pokazuje ${i+2}`);
-            }
-        });
-    });
+    // $(`#sform-${i+1}`).submit(function(e){
+    //     e.preventDefault();
+    //     $.ajax({
+    //         url:'',
+    //         type:'post',
+    //         data:$(`#sform-${i+1}`).serialize(),
+    //         success:function(){
+    //             console.log("Poprawnie wypelniony");
+    //             hideDiv(document.getElementById(`sign-up-${i+1}`).id);
+    //             console.log(`chowam ${i+1}`);
+    //             showDiv(document.getElementById(`sign-up-${i+2}--hidden`).id);
+    //             console.log(`pokazuje ${i+2}`);
+    //         }
+    //     });
+    // });
 }
+

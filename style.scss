@@ -5,6 +5,7 @@ $color-darkgrey: #464650;
 $color-titlebar: #E5E8E8;
 $color-seagrey: #95A5A6;
 $color-label: #95A5A6B3;
+$color-list-line: #95A5A659;
 
 
 *{
@@ -150,20 +151,59 @@ a{
         left: 20px;
         padding: 1px 2px;
     }
-
+    
     .btn-nav{
         position: absolute;
         top: 33px;
         right: 23px;
-        width: 23px;
-        height: 23px;
-        background: $color-background;
-        
         z-index: 101;
     }
 
-    #btn-exit{
+    #btn-exit{  
+        width: 25px;
+        height: 25px;
         cursor: pointer;
+
+        div {
+            width: 100%;
+            height: 3px;
+            background-color: $color-background;
+            position: absolute;
+            top: 12px;
+        }
+
+        .line1{
+            transform: rotate(45deg);
+        }
+
+        .line2{
+            transform: rotate(135deg);
+        }
+    }
+
+    #btn-burger{  
+        width: 24px;
+        height: 16px;
+        top: 36px;
+
+        div {
+            width: 100%;
+            height: 2px;
+            background-color: $color-background;
+            position: absolute;
+        }
+
+        .line1{
+            top:0;
+        }
+
+        .line2{
+            top:7px;
+        }
+
+        .line3{
+            top:14px;
+        }
     }
 }
 
@@ -181,6 +221,7 @@ a{
         width:75%;
         margin-left:auto;
         margin-right: auto;
+        max-width: 400px;
 
         .sign-in-row{
             margin-top: 15%;
@@ -255,6 +296,7 @@ a{
     width:75%;
     margin-left:auto;
     margin-right: auto;
+    max-width: 500px;
 
     label{
         font-size: 13px;
@@ -277,6 +319,7 @@ a{
         border-bottom: 2px $color-seagrey solid;
         background-color: #ffffff00;
         padding: 5px 0 12px;
+        resize: none;
     }
     input[type=password]{
         font: large Verdana,sans-serif;
@@ -425,4 +468,59 @@ a{
 .btn-icon{
     font-size: 30px;
     transform: translate(0.5px,-8.5px);
+}
+
+.container{
+    width: 100%;
+    height: 100vh;
+    background-color: $color-background;
+
+    .small-title{
+        background-color: $color-titlebar;
+        font-size: 18px;
+        color: $color-darkgrey;
+        text-align: center;
+        height: 24px;
+        width: 100%;
+        padding: 20px 0;
+    }
+
+    .list-row{
+        width:100%;
+        min-height:63px;
+        border-bottom: 2px $color-list-line solid;
+        position:relative;
+
+    }
+}
+
+.title-element{
+    font-size: 20px;
+    color: $color-label;
+    position: absolute;
+    top: 19px;
+    left: 23px;
+
+}
+
+.btn-element{
+    position: absolute;
+    top: 28px;
+    right: 31px;
+
+    .btn-unwrap{
+        width: 16px;
+        height: 10px;
+        background-color: red;
+    }
+}
+
+.element-wrapper{
+    width: 75%;
+    color: $color-seagrey;
+    margin: 32px auto;
+
+    label{
+
+    }
 }

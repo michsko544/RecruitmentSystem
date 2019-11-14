@@ -35,7 +35,7 @@ if ((isset($_SESSION['logged_in'])) && ($_SESSION['logged_in'] == true))
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Recruitment System</title>
+    <title>Recruitment System - Register</title>
     <link rel="stylesheet" href="/css/style.css" type="text/css">
     <link rel="stylesheet" href="/font/stylesheet.css" type="text/css" charset="utf-8" />
 </head>
@@ -43,7 +43,10 @@ if ((isset($_SESSION['logged_in'])) && ($_SESSION['logged_in'] == true))
     <div id="sign-in--hidden">
         <div class="nav-bar">
             <div class="logo-nav">myCompany</div>
-            <div id="btn-exit" class="btn-nav"></div>
+            <div id="btn-exit" class="btn-nav">
+                <div class="line1"></div>
+                <div class="line2"></div>
+            </div>
         </div>
         <div class="input-wrapper">
             <div class="center-wrapper">  
