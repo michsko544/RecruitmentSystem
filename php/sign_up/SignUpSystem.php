@@ -4,10 +4,26 @@
 class SignUpSystem
 {
 private $correct_data = true;
+private $insert_values = array(
+    'username' => '',
+    'email' => '',
+    'password' => '',
+    'first_name' => '',
+    'last_name' => '',
+    'phone' => '',
+    'country' => '',
+    'city' => '',
+
+);
 
 function __construct($flag_status)
 {
     $this->correct_data = $flag_status;
+}
+
+function setInsertValue($column, $value)
+{
+    $this->insert_values[$column] = $value;
 }
 
 function checkFlag()
