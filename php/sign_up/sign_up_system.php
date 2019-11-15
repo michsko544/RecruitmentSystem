@@ -1,6 +1,10 @@
 <?php
 session_start();
 require_once "SignUpSystem.php";
+// DB connection
+require_once "../connect.php";
+mysqli_report(MYSQLI_REPORT_STRICT);
+
 
 //Form 1
 if (isset($_POST['e-mail']))
@@ -40,6 +44,8 @@ if (isset($_POST['e-mail']))
     }
     $hashed_password = password_hash($password_one, PASSWORD_DEFAULT);
 
+    // Validate position TODO get position
+
     // Validate terms of use
     if (!isset($_POST['terms-of-use']))
     {
@@ -57,10 +63,6 @@ if (isset($_POST['e-mail']))
     {
         $_SESSION['rem_terms'] = true;
     }
-
-    // DB connection
-    require_once "../connect.php";
-    mysqli_report(MYSQLI_REPORT_STRICT);
 
     try
     {
@@ -263,7 +265,7 @@ if (isset($_POST['job-title']))
         }
 
         // Validate description
-        $job_description = $_POST['job-description']
+        $job_description = $_POST['job-description'];
         if (ctype_alnum($job_description) == false)
         {
             $sign_up_class->notGood('err_job_description', 'Description may only contain letters and numbers');
@@ -272,12 +274,68 @@ if (isset($_POST['job-title']))
         {
             $sign_up_class->notGood('err_job_description', 'Description must have less than 500 characters');
         }
-        // TODO correct data
+        // Remember value
+        $_SESSION['rem_job_title'] = $job_title;
+        $_SESSION['rem_employer'] = $employer;
+       // TODO $_SESSION['rem_start_date'] = ;
+       // TODO $_SESSION['rem_end_date'] = ;
+        $_SESSION['rem_job_city'] = $job_city;
+        $_SESSION['rem_description'] = $job_description;
+
+        try
+        {
+            $connection = new mysqli($host, $db_user, $db_pass, $db_name);
+            if ($connection->connect_errno != 0)
+            {
+                throw new Exception(mysqli_connect_errno());
+            }
+            else
+            {
+                if ($sign_up_class->checkFlag() == true)
+                {
+                    //Add to array and wait
+                    $sign_up_class->setInsertValue('job_title', $job_title);
+                    $sign_up_class->setInsertValue('employer', $employer);
+                    // TODO $sign_up_class->setInsertValue('star_date', $);
+                    // TODO $sign_up_class->setInsertValue('end_date', $);
+                    $sign_up_class->setInsertValue('job_city', $job_city);
+                    $sign_up_class->setInsertValue('description', $job_description);
+                }
+                $connection->close();
+            }
+        }
+        catch(Exception $e)
+        {
+            echo 'Server error! Try signing up later';
+        }
+
+        // Unset remembered values
+        if (isset($_SESSION['rem_job_title'])) unset($_SESSION['rem_job_title']);
+        if (isset($_SESSION['rem_employer'])) unset($_SESSION['rem_employer']);
+        // TODO if (isset($_SESSION['rem_start_date'])) unset($_SESSION['rem_start_date']);
+        // TODO if (isset($_SESSION['rem_end_date'])) unset($_SESSION['rem_end_date']);
+        if (isset($_SESSION['rem_job_city'])) unset($_SESSION['rem_job_city']);
+        if (isset($_SESSION['rem_description'])) unset($_SESSION['rem_description']);
+        // Unset error values
+        if (isset($_SESSION['err_job_title'])) unset($_SESSION['err_job_title']);
+        if (isset($_SESSION['err_employer'])) unset($_SESSION['err_employer']);
+        // TODO if (isset($_SESSION['err_start_date'])) unset($_SESSION['err_start_date']);
+        // TODO if (isset($_SESSION['err_end_date'])) unset($_SESSION['err_end_date']);
+        if (isset($_SESSION['err_job_city'])) unset($_SESSION['err_job_city']);
+        if (isset($_SESSION['err_description'])) unset($_SESSION['err_description']);
     }
     else
     {
-        // TODO co robic gdy nie ma doswiadczenia
+        // TODO co robic gdy nie ma doswiadczenia -- chyba nic
     }
+}
+
+// Form 4
+if (isset($_POST['languages']))
+{
+    // Validate language
+    $language = $_POST['languages'];
+
 }
 
 // TODO unset insert values

@@ -62,6 +62,46 @@ dostosuj do swoich potrzeb
         </div>
     <!-- TODO Position-->
         <div class="form-row">
+            <label for="position">Position</label>
+            <div class="position">
+                <select name="position">
+                    <!-- chyba dziala -- potrzebna baza danych -->
+                    <?php
+                    // Pick data from DB
+                    $connection = new mysqli($host, $db_user, $db_pass, $db_name);
+                    try
+                    {
+                        if ($connection->connect_errno != 0)
+                        {
+                            throw new Exception(mysqli_connect_errno());
+                        }
+                        else
+                        {
+                            $position_name = $connection->query("SELECT position FROM Positions");
+                            if (!$position_name)
+                            {
+                                throw new Exception($connection->error);
+                            }
+                            else
+                            {
+                                $pos_name = $position_name;
+                            }
+                        }
+                    }
+                    catch (Exception $e)
+                    {
+                        echo 'Server error! Try signing up later';
+                    }
+                    $connection->close();
+                    foreach ($pos_name as $key=>$value)
+                    {
+                        echo '<option value="'.$value.'">'.$value.' </option>';
+                    }
+                    ?>
+                </select>
+            </div>
+        </div>
+        <div class="form-row">
             <label for="terms-of-use">Terms and Privacy Policy</label>
             <div class="checkbox"><input type="checkbox" required <?php
                 if (isset($_SESSION['rem_terms']))
