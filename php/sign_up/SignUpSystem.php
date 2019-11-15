@@ -15,6 +15,14 @@ private $insert_values = array(
     'city' => '',
 
 );
+private $insert_employment = array(
+    'job_title'=>'', '', '', '',
+    'employer'=>'', '', '', '',
+    'start_date'=>'', '', '', '',
+    'end_date'=>'', '', '', '',
+    'city'=>'', '', '', '',
+    'description'=>'', '', '', '',
+);
 
 function __construct($flag_status)
 {
@@ -23,7 +31,12 @@ function __construct($flag_status)
 
 function setInsertValue($column, $value)
 {
-    $this->insert_values[$column] = $value;
+    $this->insert_values[$column] = $value; // TODO wpisywać w kolejne pola dla danej kategorii
+}
+
+function setInsertEmploymentValues($column, $value)
+{
+    $this->insert_employment[$column] = $value;
 }
 
 function checkFlag()

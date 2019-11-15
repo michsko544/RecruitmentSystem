@@ -126,27 +126,32 @@ dostosuj do swoich potrzeb
         <div class="step">Step 2/3</div>
         <form id="sform-3" action="php/sign_up/sign_up_system.php" method="post">
         <div class="form-row">
+            <div class="checkbox"><label for="no-experience"></label>
+            <input type="checkbox" name="no-experience" >I don't have any experience <!-- TODO jak by ktos nie mial -->
+            </div>
+        </div>
+        <div class="form-row">
         <label for="job-title">Job title</label>
-        <input type="text" name="job-title" placeholder="Waiter" required>
+        <input type="text" name="job-title" placeholder="Waiter" >
         </div>
         <div class="form-row">
         <label for="employer">Employer</label>
-        <input type="text" name="employer" placeholder="Italian Restaurant London" required>
+        <input type="text" name="employer" placeholder="Italian Restaurant London" >
         </div>
         <div class="form-row">
         <label for="start-end-date">Start & End date</label>
         <div class="date">
-            <input type="text" id="datej1" class="start-date" name="start-date" placeholder="Oct, 2019" required>
-            <input type="text" id="datej2" class="end-date" name="end-date" placeholder="Nov, 2019" required>
+            <input type="text" id="datej1" class="start-date" name="start-date" placeholder="Oct, 2019" >
+            <input type="text" id="datej2" class="end-date" name="end-date" placeholder="Nov, 2019">
         </div>
         </div>
         <div class="form-row">
         <label for="job-city">City</label>
-        <input type="text" name="job-city" placeholder="London" required>
+        <input type="text" name="job-city" placeholder="London" >
         </div>
         <div class="form-row">
-        <label for="description">Description</label>
-        <textarea name="description" cols="35" rows="4" placeholder="e.g. waitressing,preparing venue for events, taking care of restaurant clarity, making basic drinks, brewing coffee"></textarea>
+        <label for="job-description">Description</label>
+        <textarea name="job-description" cols="35" rows="4" placeholder="e.g. waitressing,preparing venue for events, taking care of restaurant clarity, making basic drinks, brewing coffee"></textarea>
         </div>
         <?php
         if(isset($_SESSION['error']))
@@ -226,8 +231,8 @@ dostosuj do swoich potrzeb
         <input type="text" name="school-city" placeholder="Gliwice" required>
         </div>
         <div class="form-row">
-        <label for="description">Description</label>
-        <textarea name="description" cols="35" rows="4" placeholder="e.g. programming, data analysing, network designing, microprocessors coding"></textarea>
+        <label for="school-description">Description</label>
+        <textarea name="school-description" cols="35" rows="4" placeholder="e.g. programming, data analysing, network designing, microprocessors coding"></textarea>
         </div>
         <?php
         if(isset($_SESSION['error']))

@@ -226,7 +226,59 @@ if (isset($_POST['first-name']))
 }
 
 //Form 3
+if (isset($_POST['job-title']))
+{
+    if ($_POST['no-experience'] == false)
+    {
+        // Validate job title
+        $job_title = $_POST['job- title'];
+        if (ctype_alnum($job_title) == false)
+        {
+            $sign_up_class->notGood('err_job_title', 'Job title may only contain letters and numbers');
+        }
+        if (strlen($job_title) > 40)
+        {
+            $sign_up_class->notGood('err_job_title', 'Job title must have less than 40 characters');
+        }
 
+        // Validate employer
+        $employer = $_POST['employer'];
+        if (ctype_alnum($employer) == false)
+        {
+            $sign_up_class->notGood('err_employer', 'Employer name may only contain letters and numbers');
+        }
+        if (strlen($employer) > 40)
+        {
+            $sign_up_class->notGood('err_employer', 'Employer name must have less than 40 characters');
+        }
+
+        // Validate date
+        // TODO czy end jest po start
+
+        //Validate city
+        $job_city = $_POST['job-city'];
+        if (ctype_alpha($job_city) == false)
+        {
+            $sign_up_class->notGood('err_job_city', 'City name may contain only letters');
+        }
+
+        // Validate description
+        $job_description = $_POST['job-description']
+        if (ctype_alnum($job_description) == false)
+        {
+            $sign_up_class->notGood('err_job_description', 'Description may only contain letters and numbers');
+        }
+        if (strlen($job_description) > 500)
+        {
+            $sign_up_class->notGood('err_job_description', 'Description must have less than 500 characters');
+        }
+        // TODO correct data
+    }
+    else
+    {
+        // TODO co robic gdy nie ma doswiadczenia
+    }
+}
 
 // TODO unset insert values
 
