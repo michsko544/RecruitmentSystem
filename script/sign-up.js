@@ -30,3 +30,6 @@ for(let i=0; i<buttons.length-1; ++i){
     // });
 }
 
+document.getElementById("no-experience").addEventListener("click", ()=>{
+    //<!TODO>document.getElementById('sform-3').querySelectorAll('div.form-row').forEach(element=>{console.log(element.children)}); 
+});

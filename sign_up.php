@@ -166,8 +166,8 @@ dostosuj do swoich potrzeb
         <div class="step">Step 2/3</div>
         <form id="sform-3" action="php/sign_up/sign_up_system.php" method="post">
         <div class="form-row">
-            <div class="checkbox"><label for="no-experience"></label>
-            <input type="checkbox" name="no-experience" >I don't have any experience <!-- TODO jak by ktos nie mial -->
+            <div class="checkbox">
+            <input type="checkbox" name="no-experience" id="no-experience">I don't have any experience <!-- TODO jak by ktos nie mial -->
             </div>
         </div>
         <div class="form-row">
@@ -226,6 +226,16 @@ dostosuj do swoich potrzeb
             <input type="number" min=1 max=5 placeholder=1>
             <div class="limit">/5</div>
         </div>
+        </div>
+        <div class="btn-add">
+            <div class="btn-text">
+                Add language
+            </div>
+            <div class="btn-border">
+                <div class="btn-icon">
+                +
+                </div>
+            </div>
         </div>
         <div class="form-row relative">
         <label for="skills">Skills</label>
