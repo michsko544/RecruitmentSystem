@@ -218,12 +218,12 @@ dostosuj do swoich potrzeb
     <div class="page-title dark-color">Skills & Education</div>
     <div id="sign-up-4" class="sign-up-wrapper">
         <div class="step">Step 3/3</div>
-        <form id="sform-4" action="#" method="post">        
+        <form id="sform-4" action="php/sign_up/sign_up_system.php" method="post">
         <div class="form-row relative">
         <label for="languages">Languages</label>
         <input type="text" name="languages" placeholder="German" required>
         <div class="degree">
-            <input type="number" min=1 max=5 placeholder=1>
+            <input type="number" name="language_level" min=1 max=5 placeholder=1>
             <div class="limit">/5</div>
         </div>
         </div>
@@ -241,7 +241,7 @@ dostosuj do swoich potrzeb
         <label for="skills">Skills</label>
         <input type="text" name="skills" placeholder="Marketing" required>
         <div class="degree">
-            <input type="number" min=1 max=5 placeholder=1>
+            <input type="number" name="skill_level" min=1 max=5 placeholder=1>
             <div class="limit">/5</div>
         </div>
         </div>

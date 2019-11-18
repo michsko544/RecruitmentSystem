@@ -1,6 +1,4 @@
 <?php
-
-
 class SignUpSystem
 {
 private $correct_data = true;
@@ -13,15 +11,124 @@ private $insert_values = array(
     'phone' => '',
     'country' => '',
     'city' => '',
-
 );
 private $insert_employment = array(
-    'job_title'=>'', '', '', '',
-    'employer'=>'', '', '', '',
-    'start_date'=>'', '', '', '',
-    'end_date'=>'', '', '', '',
-    'city'=>'', '', '', '',
-    'description'=>'', '', '', '',
+    'job_title'=>array(
+        1=>'',
+        2=>'',
+        3=>'',
+        4=>'',
+        5=>'',
+    ),
+    'employer'=>array(
+        1=>'',
+        2=>'',
+        3=>'',
+        4=>'',
+        5=>'',
+    ),
+    'start_date'=>array(
+        1=>'',
+        2=>'',
+        3=>'',
+        4=>'',
+        5=>'',
+    ),
+    'end_date'=>array(
+        1=>'',
+        2=>'',
+        3=>'',
+        4=>'',
+        5=>'',
+    ),
+    'city'=>array(
+        1=>'',
+        2=>'',
+        3=>'',
+        4=>'',
+        5=>'',
+    ),
+    'description'=>array(
+        1=>'',
+        2=>'',
+        3=>'',
+        4=>'',
+        5=>'',
+    ),
+);
+private $insert_skill_language = array(
+    'language'=>array(
+        1=>'',
+        2=>'',
+        3=>'',
+        4=>'',
+        5=>'',
+    ),
+    'language_level'=>array(
+        1=>'',
+        2=>'',
+        3=>'',
+        4=>'',
+        5=>'',
+    ),
+    'skill'=>array(
+        1=>'',
+        2=>'',
+        3=>'',
+        4=>'',
+        5=>'',
+    ),
+    'skill_level'=>array(
+        1=>'',
+        2=>'',
+        3=>'',
+        4=>'',
+        5=>'',
+    ),
+);
+private $insert_school = array(
+    'school'=>array(
+        1=>'',
+        2=>'',
+        3=>'',
+        4=>'',
+        5=>'',
+    ),
+    'specialization'=>array(
+        1=>'',
+        2=>'',
+        3=>'',
+        4=>'',
+        5=>'',
+    ),
+    'start_date'=>array(
+        1=>'',
+        2=>'',
+        3=>'',
+        4=>'',
+        5=>'',
+    ),
+    'end_date'=>array(
+        1=>'',
+        2=>'',
+        3=>'',
+        4=>'',
+        5=>'',
+    ),
+    'city'=>array(
+        1=>'',
+        2=>'',
+        3=>'',
+        4=>'',
+        5=>'',
+    ),
+    'description'=>array(
+        1=>'',
+        2=>'',
+        3=>'',
+        4=>'',
+        5=>'',
+    ),
 );
 
 function __construct($flag_status)
@@ -31,12 +138,23 @@ function __construct($flag_status)
 
 function setInsertValue($column, $value)
 {
-    $this->insert_values[$column] = $value; // TODO wpisywać w kolejne pola dla danej kategorii
+    $this->insert_values[$column] = $value;
 }
 
 function setInsertEmploymentValues($column, $value)
 {
-    $this->insert_employment[$column] = $value;
+    array_push($this->insert_employment[$column], $value);
+    // $this->insert_employment[$column] = $value; // TODO wpisywać w kolejne pola dla danej kategorii
+}
+
+function setInsertSkillLanguageValues($column, $value)
+{
+    array_push($this->insert_skill_language[$column], $value);
+}
+
+function setInsertSchoolValues($column, $value)
+{
+    array_push($this->insert_school[$column], $value);
 }
 
 function checkFlag()

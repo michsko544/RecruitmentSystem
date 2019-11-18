@@ -53,6 +53,7 @@ if (isset($_POST['e-mail']))
     }
 
     // Validate CAPTCHA TODO add reCAPTCHA
+    // Validate position TODO Position
 
     // Remember value
     $_SESSION['rem_username'] = $username;
@@ -294,12 +295,12 @@ if (isset($_POST['job-title']))
                 if ($sign_up_class->checkFlag() == true)
                 {
                     //Add to array and wait
-                    $sign_up_class->setInsertValue('job_title', $job_title);
-                    $sign_up_class->setInsertValue('employer', $employer);
-                    // TODO $sign_up_class->setInsertValue('star_date', $);
-                    // TODO $sign_up_class->setInsertValue('end_date', $);
-                    $sign_up_class->setInsertValue('job_city', $job_city);
-                    $sign_up_class->setInsertValue('description', $job_description);
+                    $sign_up_class->setInsertEmploymentValues('job_title', $job_title);
+                    $sign_up_class->setInsertEmploymentValues('employer', $employer);
+                    // TODO $sign_up_class->setInsertEmploymentValues('star_date', $);
+                    // TODO $sign_up_class->setInsertEmploymentValues('end_date', $);
+                    $sign_up_class->setInsertEmploymentValues('job_city', $job_city);
+                    $sign_up_class->setInsertEmploymentValues('description', $job_description);
                 }
                 $connection->close();
             }
@@ -335,8 +336,93 @@ if (isset($_POST['languages']))
 {
     // Validate language
     $language = $_POST['languages'];
+    // TODO validate
+    $language_level = $_POST['language_level'];
+    if (($language_level < 1) && ($language_level > 5))
+    {
+        $sign_up_class->notGood('err_language_level', 'Language level must be between 1 and 5');
+    }
+    // Validate skills
+    $skill = $_POST['skills'];
+    // TODO validate
+    $skill_level = $_POST['skill_level'];
+    if (($skill_level < 1) && ($skill_level > 5))
+    {
+        $sign_up_class->notGood('err_skill_level', 'Skill level must be between 1 and 5');
+    }
+    // TODO add insert etc.
+
+    // Maybe another form
+    $school = $_POST['school'];
+
+    $specialization = $_POST['specialization'];
+
+    $school_start_date = $_POST['start-date'];
+    // TODO add validation
+    $school_end_date = $_POST['end-date'];
+    // TODO add validation
+    $school_city = $_POST['school-city'];
+    if (ctype_alpha($school_city) == false)
+    {
+        $sign_up_class->notGood('err_school_city', 'City name may contain only letters');
+    }
+    $school_description = $_POST['school-description'];
+    if (ctype_alnum($school_description) == false)
+    {
+        $sign_up_class->notGood('err_school_description', 'Description may only contain letters and numbers');
+    }
+    if (strlen($school_description) > 500)
+    {
+        $sign_up_class->notGood('err_school_description', 'Description must have less than 500 characters');
+    }
+    // Remember value TODO change to skills and school
+    $_SESSION['rem_job_title'] = $job_title;
+    $_SESSION['rem_employer'] = $employer;
+    // TODO $_SESSION['rem_start_date'] = ;
+    // TODO $_SESSION['rem_end_date'] = ;
+    $_SESSION['rem_job_city'] = $job_city;
+    $_SESSION['rem_description'] = $job_description;
+
+    try
+    {
+        $connection = new mysqli($host, $db_user, $db_pass, $db_name);
+        if ($connection->connect_errno != 0)
+        {
+            throw new Exception(mysqli_connect_errno());
+        }
+        else
+        {
+            if ($sign_up_class->checkFlag() == true)
+            {
+                //Add to array and wait
+                $sign_up_class->setInsertSkillLanguageValues('language', $language);
+                $sign_up_class->setInsertSkillLanguageValues('language_level', $language_level);
+                $sign_up_class->setInsertSkillLanguageValues('skill', $skill);
+                $sign_up_class->setInsertSkillLanguageValues('skill_level', $skill_level);
+                $sign_up_class->setInsertSchoolValues('school', $school);
+                $sign_up_class->setInsertSchoolValues('specialization', $specialization);
+                $sign_up_class->setInsertSchoolValues('start_date', $school_start_date);
+                $sign_up_class->setInsertSchoolValues('end_date', $school_end_date);
+                $sign_up_class->setInsertSchoolValues('city', $school_city);
+                $sign_up_class->setInsertSchoolValues('description', $school_description);
+            }
+            $connection->close();
+        }
+    }
+    catch(Exception $e)
+    {
+        echo 'Server error! Try signing up later';
+    }
+
+    // Unset remembered values
+
+    // Unset error values
+
 
 }
+
+// Form 5
+
 
 // TODO unset insert values
 
