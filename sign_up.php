@@ -48,7 +48,7 @@ dostosuj do swoich potrzeb
         </div>
         <div class="form-row">
             <label for="password-one">Password</label>
-            <input type="password" name="password-one" value="<?php $sign_up_class->rememberValue('rem_password_one'); ?>" placeholder="●●●●●●●●●●" required>
+            <input type="password" name="password-one" value="<?php $sign_up_class->rememberValue('rem_password_one'); ?>" placeholder="*********" required>
             <?php
             $sign_up_class->setError('err_password');
             ?>
@@ -199,7 +199,7 @@ dostosuj do swoich potrzeb
             echo $_SESSION['error'];
         }
         ?>
-        <div class="btn-add">
+        <div class="btn-add" id="btn-experiance">
             <div class="btn-text">
                 Add employment
             </div>

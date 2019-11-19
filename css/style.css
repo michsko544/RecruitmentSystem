@@ -15,7 +15,7 @@ a {
 }
 
 [id$="--hidden"] {
-  display: none;
+  display: none !important;
 }
 
 #index-container {
@@ -278,6 +278,7 @@ a {
 .sign-up-wrapper input[type=date],
 .sign-up-wrapper input[type=number],
 .sign-up-wrapper textarea {
+  font-family: "avenirregular";
   width: 100%;
   outline: none;
   border: none;
@@ -290,6 +291,23 @@ a {
 }
 .sign-up-wrapper input[type=password] {
   font: large Verdana, sans-serif;
+}
+.sign-up-wrapper input[type=password]::placeholder {
+  color: #95A5A6;
+  font: large Verdana, sans-serif;
+  font-size: 16px;
+}
+.sign-up-wrapper input[type=password]:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #95A5A6;
+  font: large Verdana, sans-serif;
+  font-size: 16px;
+}
+.sign-up-wrapper input[type=password]::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: #95A5A6;
+  font: large Verdana, sans-serif;
+  font-size: 16px;
 }
 .sign-up-wrapper input[type=checkbox] {
   border: #95A5A6;
@@ -373,16 +391,19 @@ a {
 .sign-up-wrapper ::placeholder {
   color: #95A5A6;
   font-family: "avenirregular";
+  font-size: 16px;
 }
 .sign-up-wrapper :-ms-input-placeholder {
   /* Internet Explorer 10-11 */
   color: #95A5A6;
   font-family: "avenirregular";
+  font-size: 16px;
 }
 .sign-up-wrapper ::-ms-input-placeholder {
   /* Microsoft Edge */
   color: #95A5A6;
   font-family: "avenirregular";
+  font-size: 16px;
 }
 .sign-up-wrapper input[type=submit] {
   height: 35px;

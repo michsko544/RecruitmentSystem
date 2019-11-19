@@ -30,6 +30,15 @@ for(let i=0; i<buttons.length-1; ++i){
     // });
 }
 
-document.getElementById("no-experience").addEventListener("click", ()=>{
-    //<!TODO>document.getElementById('sform-3').querySelectorAll('div.form-row').forEach(element=>{console.log(element.children)}); 
+document.getElementById("no-experience").addEventListener("click", function(){
+    if(this.checked===true){
+        document.getElementById('sform-3').querySelectorAll('div.form-row').forEach(element=>{element.children[1]!==undefined ? element.children[1].required=false : console.log(false)}); 
+
+        hideDiv("btn-experiance");
+    } else {
+        document.getElementById('sform-3').querySelectorAll('div.form-row').forEach(element=>{element.children[1]!==undefined ? element.children[1].required=true : console.log(false)});
+
+        showDiv("btn-experiance--hidden");
+    }
 });
+
