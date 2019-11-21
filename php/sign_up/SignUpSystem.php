@@ -9,8 +9,9 @@ private $insert_values = array(
     'first_name' => '',
     'last_name' => '',
     'phone' => '',
-    'country' => '',
-    'city' => '',
+    'residence_country' => '',
+    'residence_city' => '',
+    'cv-file' => '',
 );
 private $insert_employment = array(
     'job_title'=>array(
@@ -130,6 +131,22 @@ private $insert_school = array(
         5=>'',
     ),
 );
+private $insert_cert_course = array(
+    'certificate' => array(
+        1 =>'', // TODO what type is file / how to add it
+        2 =>'',
+        3 =>'',
+        4 =>'',
+        5 =>'',
+    ),
+    'course' => array(
+        1=>'',
+        2=>'',
+        3=>'',
+        4=>'',
+        5=>'',
+    ),
+);
 
 function __construct($flag_status)
 {
@@ -155,6 +172,11 @@ function setInsertSkillLanguageValues($column, $value)
 function setInsertSchoolValues($column, $value)
 {
     array_push($this->insert_school[$column], $value);
+}
+
+function setInsertCertSkillValues($column, $value)
+{
+    array_push($this->insert_cert_course[$column], $value);
 }
 
 function checkFlag()

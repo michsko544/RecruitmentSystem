@@ -53,7 +53,8 @@ if (isset($_POST['e-mail']))
     }
 
     // Validate CAPTCHA TODO add reCAPTCHA
-    // Validate position TODO Position
+
+
 
     // Remember value
     $_SESSION['rem_username'] = $username;
@@ -376,13 +377,16 @@ if (isset($_POST['languages']))
         $sign_up_class->notGood('err_school_description', 'Description must have less than 500 characters');
     }
     // Remember value TODO change to skills and school
-    $_SESSION['rem_job_title'] = $job_title;
-    $_SESSION['rem_employer'] = $employer;
-    // TODO $_SESSION['rem_start_date'] = ;
-    // TODO $_SESSION['rem_end_date'] = ;
-    $_SESSION['rem_job_city'] = $job_city;
-    $_SESSION['rem_description'] = $job_description;
-
+    $_SESSION['rem_language'] = $language;
+    $_SESSION['rem_language_level'] = $language_level;
+    $_SESSION['rem_skill'] = $skill;
+    $_SESSION['rem_skill_level'] = $skill_level;
+    $_SESSION['rem_school'] = $school;
+    $_SESSION['rem_specialization'] = $specialization;
+    $_SESSION['rem_school_start_date'] = $school_start_date;
+    $_SESSION['rem_school_end_date'] = $school_end_date;
+    $_SESSION['rem_school_city'] = $school_city;
+    $_SESSION['rem_school_description'] = $school_description;
     try
     {
         $connection = new mysqli($host, $db_user, $db_pass, $db_name);
@@ -415,13 +419,79 @@ if (isset($_POST['languages']))
     }
 
     // Unset remembered values
-
+    if (isset($_SESSION['rem_language'])) unset($_SESSION['rem_language']);
+    if (isset($_SESSION['rem_language_level'])) unset($_SESSION['rem_language_level']);
+    if (isset($_SESSION['rem_skill'])) unset($_SESSION['rem_skill']);
+    if (isset($_SESSION['rem_skill_level'])) unset($_SESSION['rem_skill_level']);
+    if (isset($_SESSION['rem_school'])) unset($_SESSION['rem_school']);
+    if (isset($_SESSION['rem_specialization'])) unset($_SESSION['rem_specialization']);
+    // TODO if (isset($_SESSION['rem_school_start_date'])) unset($_SESSION['rem_school_start_date']);
+    // TODO if (isset($_SESSION['rem_school_end_date'])) unset($_SESSION['rem_school_end_date']);
+    if (isset($_SESSION['rem_school_city'])) unset($_SESSION['rem_school_city']);
+    if (isset($_SESSION['rem_school_description'])) unset($_SESSION['rem_school_description']);
     // Unset error values
-
-
+    if (isset($_SESSION['err_language'])) unset($_SESSION['err_language']);
+    if (isset($_SESSION['err_language_level'])) unset($_SESSION['err_language_level']);
+    if (isset($_SESSION['err_skill'])) unset($_SESSION['err_skill']);
+    if (isset($_SESSION['err_skill_level'])) unset($_SESSION['err_skill_level']);
+    if (isset($_SESSION['err_school'])) unset($_SESSION['err_school']);
+    if (isset($_SESSION['err_specialization'])) unset($_SESSION['err_specialization']);
+    // TODO if (isset($_SESSION['err_school_start_date'])) unset($_SESSION['err_school_start_date']);
+    // TODO if (isset($_SESSION['err_school_end_date'])) unset($_SESSION['err_school_end_date']);
+    if (isset($_SESSION['err_school_city'])) unset($_SESSION['err_school_city']);
+    if (isset($_SESSION['err_school_description'])) unset($_SESSION['err_school_description']);
 }
 
 // Form 5
+if (isset($_POST['cv-file']))
+{
+    // Validate cv
+    $cv = $_POST['cv-file'];
+    $file_format = pathinfo($cv);
+    if ($file_format['extension'] != "pdf")
+    {
+        $sign_up_class->notGood('err_cv_file', 'File must have .pdf extension');
+    }
+    // Validate certificate
+    $cert = $_POST['certificate-file'];
+    $file_format = pathinfo($cert);
+    if ($file_format['extension'] != "pdf")
+    {
+        $sign_up_class->notGood('err_certificate_file', 'File must have .pdf extension');
+    }
+
+    // Validate course
+    $course = $_POST['course-file'];
+    $file_format = pathinfo($course);
+    if ($file_format['extension'] != "pdf")
+    {
+        $sign_up_class->notGood('err_course_file', 'File must have .pdf extension');
+    }
+
+    try
+    {
+        $connection = new mysqli($host, $db_user, $db_pass, $db_name);
+        if ($connection->connect_errno != 0)
+        {
+            throw new Exception(mysqli_connect_errno());
+        }
+        else
+        {
+            if ($sign_up_class->checkFlag() == true)
+            {
+                //Add to array and wait
+                $sign_up_class->setInsertValue('cv-file', $cv);
+                $sign_up_class->setInsertCertSkillValues('certificate', $cert);
+                $sign_up_class->setInsertCertSkillValues('course', $course);
+            }
+            $connection->close();
+        }
+    }
+    catch(Exception $e)
+    {
+        echo 'Server error! Try signing up later';
+    }
+}
 
 
 // TODO unset insert values
