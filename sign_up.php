@@ -48,7 +48,7 @@ dostosuj do swoich potrzeb
         </div>
         <div class="form-row">
             <label for="password-one">Password</label>
-            <input type="password" name="password-one" value="<?php $sign_up_class->rememberValue('rem_password_one'); ?>" placeholder="*********" required>
+            <input type="password" name="password-one" value="<?php $sign_up_class->rememberValue('rem_password_one'); ?>" placeholder="●●●●●●●●●●" required>
             <?php
             $sign_up_class->setError('err_password');
             ?>
@@ -172,26 +172,26 @@ dostosuj do swoich potrzeb
         </div>
         <div class="form-row">
         <label for="job-title">Job title</label>
-        <input type="text" name="job-title" placeholder="Waiter" >
+        <input type="text" name="job-title" placeholder="Waiter" required>
         </div>
         <div class="form-row">
         <label for="employer">Employer</label>
-        <input type="text" name="employer" placeholder="Italian Restaurant London" >
+        <input type="text" name="employer" placeholder="Italian Restaurant London" required>
         </div>
         <div class="form-row">
         <label for="start-end-date">Start & End date</label>
         <div class="date">
-            <input type="text" id="datej1" class="start-date" name="start-date" placeholder="Oct, 2019" >
-            <input type="text" id="datej2" class="end-date" name="end-date" placeholder="Nov, 2019">
+            <input type="text" id="datej1" class="start-date" name="start-date" placeholder="Oct, 2019" required>
+            <input type="text" id="datej2" class="end-date" name="end-date" placeholder="Nov, 2019" required>
         </div>
         </div>
         <div class="form-row">
         <label for="job-city">City</label>
-        <input type="text" name="job-city" placeholder="London" >
+        <input type="text" name="job-city" placeholder="London" required>
         </div>
         <div class="form-row">
         <label for="job-description">Description</label>
-        <textarea name="job-description" cols="35" rows="4" placeholder="e.g. waitressing,preparing venue for events, taking care of restaurant clarity, making basic drinks, brewing coffee"></textarea>
+        <textarea name="job-description" cols="35" rows="4" placeholder="e.g. waitressing,preparing venue for events, taking care of restaurant clarity, making basic drinks, brewing coffee" required></textarea>
         </div>
         <?php
         if(isset($_SESSION['error']))
@@ -227,7 +227,7 @@ dostosuj do swoich potrzeb
             <div class="limit">/5</div>
         </div>
         </div>
-        <div class="btn-add">
+        <div class="btn-add" id="btn-language">
             <div class="btn-text">
                 Add language
             </div>
@@ -251,7 +251,7 @@ dostosuj do swoich potrzeb
             echo $_SESSION['error'];
         }
         ?>
-        <div class="btn-add">
+        <div class="btn-add" id="btn-skill">
             <div class="btn-text">
                 Add skill
             </div>
@@ -290,7 +290,7 @@ dostosuj do swoich potrzeb
             echo $_SESSION['error'];
         }
         ?>
-        <div class="btn-add">
+        <div class="btn-add" id="btn-school">
             <div class="btn-text">
                 Add school
             </div>
@@ -312,23 +312,27 @@ dostosuj do swoich potrzeb
         <div class="form-row">
         <label for="cv-file">Curriculum vitae</label>
         <div class="upload">
-            <label>Wybierz plik</label>
-            <input type="file" name="cv-file">
+            <input type="file" name="cv-file" class="inputfile">
+            <label for="cv-file">Wybierz plik</label>
         </div>
         </div>
         <div class="form-row ">
-        <label for="certificate-file">Certificate</label>
+        <label for="certificate-file">Certificates</label>
         <div class="upload">
+            <input type="file" name="certificate-file" class="inputfile" data-multiple-caption="{count} files selected" multiple>
             <label>Wybierz plik</label>
-            <input type="file" name="certificate-file">
         </div>
         </div>
         <div class="form-row">
-        <label for="course-file">Course</label>
+        <label for="lm-file">Cover Letter</label>
         <div class="upload">
+            <input type="file" name="lm-file" class="inputfile" data-multiple-caption="{count} files selected" multiple>
             <label>Wybierz plik</label>
-            <input type="file" name="course-file">
         </div>
+        </div>
+        <div class="form-row">
+        <label for="course">Courses</label>
+        <input type="text" name="course" placeholder="e.g. Google Internet Revolutions">
         </div>
         <?php
         if(isset($_SESSION['error']))
@@ -336,6 +340,16 @@ dostosuj do swoich potrzeb
             echo $_SESSION['error'];
         }
         ?>
+        <div class="btn-add" id="btn-course">
+            <div class="btn-text">
+                Add Course
+            </div>
+            <div class="btn-border">
+                <div class="btn-icon">
+                +
+                </div>
+            </div>
+        </div>
         <div class="form-btn-wrapper">
             <input type="submit" value="Finish" class="btn btn-cyan" id="btn-sign-up-5">
         </div>

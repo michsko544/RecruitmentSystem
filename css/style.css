@@ -345,16 +345,21 @@ a {
   align-items: center;
   justify-content: flex-end;
   position: absolute;
-  width: 100%;
+  right: 0;
   font-size: 16px;
   color: #95A5A6;
-  top: 22px;
+  bottom: 14px;
 }
 .sign-up-wrapper .degree input[type=number] {
+  position: relative;
+  right: 0;
   border: none;
   padding: 0;
   text-align: right;
-  width: 10%;
+}
+.sign-up-wrapper .degree .limit {
+  position: relative;
+  right: 0;
 }
 .sign-up-wrapper .upload {
   position: relative;

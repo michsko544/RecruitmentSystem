@@ -1,4 +1,4 @@
-$( function() {
+$( function calendar(){
     var dateFormat = "mm/dd/yy",
       from = $( ".start-date" )
         .datepicker({
