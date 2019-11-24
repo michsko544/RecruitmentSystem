@@ -468,6 +468,11 @@ if (isset($_POST['cv-file']))
         $sign_up_class->notGood('err_course_file', 'File must have .pdf extension');
     }
 
+    // Remember values
+    $_SESSION['rem_cv'] = $cv;
+    $_SESSION['rem_certificate'] = $cert;
+    $_SESSION['rem_course'] = $course;
+
     try
     {
         $connection = new mysqli($host, $db_user, $db_pass, $db_name);

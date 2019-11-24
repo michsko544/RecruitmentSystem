@@ -4,11 +4,6 @@ require_once "php/sign_up/SignUpSystem.php";
 $sign_up_class = new SignUpSystem(true);
 ?>
 
-<!--
-##########################
-dostosuj do swoich potrzeb
-##########################
--->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,8 +25,6 @@ dostosuj do swoich potrzeb
     <div id="sign-up-1" class="sign-up-wrapper">
 
         <form id="sform-1" action="/php/sign_up/sign_up_system.php" method="post">
-    <!-- TODO Find your job by joining us!-->
-
         <div class="form-row">
             <label for="login">Login</label>
             <input type="text" name="login" value="<?php $sign_up_class->rememberValue('rem_username'); ?>" placeholder="Username" required>
@@ -60,7 +53,6 @@ dostosuj do swoich potrzeb
             $sign_up_class->setError('err_password');
             ?>
         </div>
-    <!-- TODO Position-->
         <div class="form-row">
             <label for="position">Position</label>
             <div class="position">
@@ -167,7 +159,7 @@ dostosuj do swoich potrzeb
         <form id="sform-3" action="php/sign_up/sign_up_system.php" method="post">
         <div class="form-row">
             <div class="checkbox">
-            <input type="checkbox" name="no-experience" id="no-experience">I don't have any experience <!-- TODO jak by ktos nie mial -->
+            <input type="checkbox" name="no-experience" id="no-experience">I don't have any experience
             </div>
         </div>
         <div class="form-row">
@@ -312,22 +304,40 @@ dostosuj do swoich potrzeb
         <div class="form-row">
         <label for="cv-file">Curriculum vitae</label>
         <div class="upload">
+            <table> <!-- TODO bedzie sie wyswietlać nazwa wrzuconego pliku -- popraw jeśli coś źle zrobiłem-->
+                <tr>
+                    <?php
+                    // Usuń komentarz z linii poniżej żeby mieć przykładowy tekst wyświetlony
+                    // $_SESSION['rem_cv'] = 'filename'; ?>
+                    <?= isset($_SESSION['rem_cv']) ? $_SESSION['rem_cv'] : ''?>
+                </tr>
+            </table>
             <input type="file" name="cv-file" class="inputfile">
-            <label for="cv-file">Wybierz plik</label>
+            <label for="cv-file">Choose a file</label>
         </div>
         </div>
         <div class="form-row ">
         <label for="certificate-file">Certificates</label>
         <div class="upload">
+            <table>
+                <tr>
+                    <?= isset($_SESSION['rem_certificate']) ? $_SESSION['rem_certificate'] : ''?>
+                </tr>
+            </table>
             <input type="file" name="certificate-file" class="inputfile" data-multiple-caption="{count} files selected" multiple>
-            <label>Wybierz plik</label>
+            <label>Choose a file</label>
         </div>
         </div>
         <div class="form-row">
-        <label for="lm-file">Cover Letter</label>
+        <label for="lm-file">Cover Letter</label> <!-- TODO nie miał być cover letter dopiero przy aplikowaniu?-->
         <div class="upload">
+            <table>
+                <tr>
+                    <?= isset($_SESSION['rem_course']) ? $_SESSION['rem_course'] : ''?>
+                </tr>
+            </table>
             <input type="file" name="lm-file" class="inputfile" data-multiple-caption="{count} files selected" multiple>
-            <label>Wybierz plik</label>
+            <label>Choose a file</label>
         </div>
         </div>
         <div class="form-row">
