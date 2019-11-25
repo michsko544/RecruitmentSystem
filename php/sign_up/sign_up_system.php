@@ -365,11 +365,16 @@ if (isset($_POST['languages']))
     }
     // TODO add insert etc.
 
-    // Maybe another form
     $school = $_POST['school'];
-
+    if (ctype_alnum($school) == false)
+    {
+        $sign_up_class->notGood('err_school', 'School name may only contain letters and numbers');
+    }
     $specialization = $_POST['specialization'];
-
+    if (ctype_alnum($specialization) == false)
+    {
+        $sign_up_class->notGood('err_specialization', 'Specialization name may only contain letters and numbers');
+    }
     $school_start_date = $_POST['start-date'];
     // TODO add validation
     $school_end_date = $_POST['end-date'];
@@ -472,17 +477,29 @@ if (isset($_POST['cv-file']))
         $sign_up_class->notGood('err_certificate_file', 'File must have .pdf extension');
     }
 
-    // Validate course
-    $course = $_POST['course-file'];
-    $file_format = pathinfo($course);
+    // Validate cover letter
+    $cover_letter = $_POST['lm-file'];
+    $file_format = pathinfo($cover_letter);
     if ($file_format['extension'] != "pdf")
     {
-        $sign_up_class->notGood('err_course_file', 'File must have .pdf extension');
+        $sign_up_class->notGood('err_cover_letter_file', 'File must have .pdf extension');
+    }
+
+    // Validate course
+    $course = $_POST['course'];
+    if (ctype_alnum($course) == false)
+    {
+        $sign_up_class->notGood('err_course', 'Course name may contain only letters and numbers');
+    }
+    if (strlen($course) > 30)
+    {
+        $sign_up_class->notGood('err_course', 'Course name must have less than 30 characters');
     }
 
     // Remember values
     $_SESSION['rem_cv'] = $cv;
     $_SESSION['rem_certificate'] = $cert;
+    $_SESSION['rem_cover_letter'] = $cover_letter;
     $_SESSION['rem_course'] = $course;
 
     try
@@ -499,6 +516,7 @@ if (isset($_POST['cv-file']))
                 //Add to array and wait
                 $sign_up_class->setInsertValue('cv-file', $cv);
                 $sign_up_class->setInsertCertSkillValues('certificate', $cert);
+                $sign_up_class->setInsertCertSkillValues('cover-letter', $cover_letter);
                 $sign_up_class->setInsertCertSkillValues('course', $course);
             }
             $connection->close();
@@ -509,12 +527,7 @@ if (isset($_POST['cv-file']))
         echo 'Server error! Try signing up later';
     }
 }
-//$addcounter = $_GET['a'];
-//for ($i=0; $i<$addcounter;$i++)
-//{
-//    $schol = 'school-'.$i;
- //   funckcjafakna($schol)
-//}
+
 
 
 

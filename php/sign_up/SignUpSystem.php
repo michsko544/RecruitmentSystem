@@ -139,7 +139,7 @@ private $insert_cert_course = array(
         4 =>'',
         5 =>'',
     ),
-    'course' => array(
+    'cover-letter' => array(
         1=>'',
         2=>'',
         3=>'',
