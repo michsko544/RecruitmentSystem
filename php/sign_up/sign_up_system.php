@@ -231,14 +231,17 @@ if (isset($_POST['first-name']))
 
 //Form 3
 $experience_count = $_GET['exp-count'];
-for($i=0; $i<$experience_count; $i++)
+if (isset($_POST['job-title-0']))
 {
-    $job_title = $_POST['job-title-' . $i];
-    $no_experience = $_POST['no-experience'];
-    $employer = $_POST['employer-' . $i];
-    $job_city = $_POST['job-city-' . $i];
-    $job_description = $_POST['job-description-' . $i];
-    $sign_up_class->validateForm3($job_title, $no_experience, $employer, $job_city, $job_description, $host, $db_user, $db_pass, $db_name);
+    for($i=0; $i<$experience_count; $i++)
+    {
+        $job_title = $_POST['job-title-' . $i];
+        $no_experience = $_POST['no-experience'];
+        $employer = $_POST['employer-' . $i];
+        $job_city = $_POST['job-city-' . $i];
+        $job_description = $_POST['job-description-' . $i];
+        $sign_up_class->validateForm3($job_title, $no_experience, $employer, $job_city, $job_description, $host, $db_user, $db_pass, $db_name);
+    }
 }
 /*
 if (isset($_POST['job-title']))
@@ -345,6 +348,25 @@ if (isset($_POST['job-title']))
 */
 
 // Form 4
+$school_count = $_GET['school-count'];
+if (isset($_POST['languages-0']))
+{
+    for($i=0; $i<$school_count; $i++)
+    {
+        $language = $_POST['languages-' . $i];
+        $language_level = $_POST['language-level-' . $i];
+        $skill = $_POST['skill-' . $i];
+        $skill_level = $_POST['skill-level-' . $i];
+        $school = $_POST['school-' . $i];
+        $specialization = $_POST['specialization-' . $i];
+        $school_start_date = $_POST['school-start-date-' . $i];
+        $school_end_date = $_POST['school-end-date-' . $i];
+        $school_city = $_POST['school-city-' . $i];
+        $school_description = $_POST['school-description-' . $i];
+        $sign_up_class->validateForm4($language, $language_level, $skill, $skill_level, $school, $specialization, $school_start_date, $school_end_date, $school_city, $school_description, $host, $db_user, $db_pass, $db_name);
+    }
+}
+/*
 if (isset($_POST['languages']))
 {
     // Validate language
@@ -457,9 +479,23 @@ if (isset($_POST['languages']))
     // TODO if (isset($_SESSION['err_school_end_date'])) unset($_SESSION['err_school_end_date']);
     if (isset($_SESSION['err_school_city'])) unset($_SESSION['err_school_city']);
     if (isset($_SESSION['err_school_description'])) unset($_SESSION['err_school_description']);
-}
+}*/
 
 // Form 5
+$docs_count = $_GET['docs-count'];
+if (isset($_POST['cv-file']))
+{
+    for($i=0; $i<$docs_count; $i++)
+    {
+        $cv = $_POST['cv-file'];
+        $cert = $_POST['cert-' . $i];
+        $cover_letter = $_POST['cover-letter'];
+        $course = $_POST['course-' . $i];
+        $sign_up_class->validateForm5($cv, $cert, $cover_letter, $course, $host, $db_user, $db_pass, $db_name);
+    }
+}
+
+/*
 if (isset($_POST['cv-file']))
 {
     // Validate cv
@@ -514,9 +550,9 @@ if (isset($_POST['cv-file']))
             if ($sign_up_class->checkFlag() == true)
             {
                 //Add to array and wait
-                $sign_up_class->setInsertValue('cv-file', $cv);
+                $sign_up_class->setInsertValue('cv_file', $cv);
                 $sign_up_class->setInsertCertSkillValues('certificate', $cert);
-                $sign_up_class->setInsertCertSkillValues('cover-letter', $cover_letter);
+                $sign_up_class->setInsertValue('cover_letter', $cover_letter);
                 $sign_up_class->setInsertCertSkillValues('course', $course);
             }
             $connection->close();
@@ -527,9 +563,7 @@ if (isset($_POST['cv-file']))
         echo 'Server error! Try signing up later';
     }
 }
-
-
-
+*/
 
 // TODO unset insert values
 

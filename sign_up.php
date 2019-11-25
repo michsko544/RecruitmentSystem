@@ -193,7 +193,7 @@ $sign_up_class = new SignUpSystem(true);
         ?>
         <div class="btn-add" id="btn-experiance">
             <div class="btn-text">
-                Add employment
+                Add employment <!--TODO var exp-count -->
             </div>
             <div class="btn-border">
                 <div class="btn-icon">
@@ -215,7 +215,7 @@ $sign_up_class = new SignUpSystem(true);
         <label for="languages">Languages</label>
         <input type="text" name="languages-0" placeholder="German" required>
         <div class="degree">
-            <input type="number" name="language_level-0" min=1 max=5 placeholder=1>
+            <input type="number" name="language-level-0" min=1 max=5 placeholder=1>
             <div class="limit">/5</div>
         </div>
         </div>
@@ -233,7 +233,7 @@ $sign_up_class = new SignUpSystem(true);
         <label for="skills">Skills</label>
         <input type="text" name="skills-0" placeholder="Marketing" required>
         <div class="degree">
-            <input type="number" name="skill_level-0" min=1 max=5 placeholder=1>
+            <input type="number" name="skill-level-0" min=1 max=5 placeholder=1>
             <div class="limit">/5</div>
         </div>
         </div>
@@ -264,8 +264,8 @@ $sign_up_class = new SignUpSystem(true);
         <div class="form-row">
         <label for="start-end-date">Start & End date</label>
         <div class="date">
-            <input type="text" class="start-date" name="start-date-0" placeholder="Oct, 2019" required>
-            <input type="text" class="end-date" name="end-date-0" placeholder="Nov, 2019" required>
+            <input type="text" class="start-date" name="school-start-date-0" placeholder="Oct, 2019" required>
+            <input type="text" class="end-date" name="school-end-date-0" placeholder="Nov, 2019" required>
         </div>
         </div>
         <div class="form-row">
@@ -284,7 +284,7 @@ $sign_up_class = new SignUpSystem(true);
         ?>
         <div class="btn-add" id="btn-school">
             <div class="btn-text">
-                Add school
+                Add school <!-- TODO var school-count -->
             </div>
             <div class="btn-border">
                 <div class="btn-icon">
@@ -311,7 +311,7 @@ $sign_up_class = new SignUpSystem(true);
         <div class="form-row ">
         <label for="certificate-file">Certificates</label>
         <div class="upload">
-            <input type="file" name="certificate-file" class="inputfile" accept="application/pdf" data-multiple-caption="{count} files selected" multiple>
+            <input type="file" name="certificate-file-0" class="inputfile" accept="application/pdf" data-multiple-caption="{count} files selected" multiple>
             <label>Choose a file</label>
         </div>
         </div>
@@ -324,7 +324,7 @@ $sign_up_class = new SignUpSystem(true);
         </div>
         <div class="form-row">
         <label for="course">Courses</label>
-        <input type="text" name="course" placeholder="e.g. Google Internet Revolutions">
+        <input type="text" name="course-0" placeholder="e.g. Google Internet Revolutions">
         </div>
         <?php
         if(isset($_SESSION['error']))
@@ -334,7 +334,7 @@ $sign_up_class = new SignUpSystem(true);
         ?>
         <div class="btn-add" id="btn-course">
             <div class="btn-text">
-                Add Course
+                Add Course <!-- TODO var docs-count -->
             </div>
             <div class="btn-border">
                 <div class="btn-icon">
