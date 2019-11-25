@@ -230,6 +230,17 @@ if (isset($_POST['first-name']))
 }
 
 //Form 3
+$experience_count = $_GET['exp-count'];
+for($i=0; $i<$experience_count; $i++)
+{
+    $job_title = $_POST['job-title-' . $i];
+    $no_experience = $_POST['no-experience'];
+    $employer = $_POST['employer-' . $i];
+    $job_city = $_POST['job-city-' . $i];
+    $job_description = $_POST['job-description-' . $i];
+    $sign_up_class->validateForm3($job_title, $no_experience, $employer, $job_city, $job_description, $host, $db_user, $db_pass, $db_name);
+}
+/*
 if (isset($_POST['job-title']))
 {
     if ($_POST['no-experience'] == false)
@@ -331,6 +342,7 @@ if (isset($_POST['job-title']))
         // TODO co robic gdy nie ma doswiadczenia -- chyba nic
     }
 }
+*/
 
 // Form 4
 if (isset($_POST['languages']))
@@ -497,12 +509,12 @@ if (isset($_POST['cv-file']))
         echo 'Server error! Try signing up later';
     }
 }
-$addcounter = $_GET['a'];
-for ($i=0; $i<$addcounter;$i++)
-{
-    $schol = 'school-'.$i;
-    funckcjafakna($schol)
-}
+//$addcounter = $_GET['a'];
+//for ($i=0; $i<$addcounter;$i++)
+//{
+//    $schol = 'school-'.$i;
+ //   funckcjafakna($schol)
+//}
 
 
 

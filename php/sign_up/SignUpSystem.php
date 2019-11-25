@@ -209,14 +209,13 @@ function setError($error_name)
     }
 }
 
-function validateForm3()
+function validateForm3($job_title, $no_experience, $employer, $job_city, $job_description, $host, $db_user, $db_pass, $db_name)
 {
-    if (isset($_POST['job-title']))
+    if (isset($job_title))
     {
-        if ($_POST['no-experience'] == false)
+        if ($no_experience == false)
         {
             // Validate job title
-            $job_title = $_POST['job- title'];
             if (ctype_alnum($job_title) == false)
             {
                 $this->notGood('err_job_title', 'Job title may only contain letters and numbers');
@@ -227,7 +226,6 @@ function validateForm3()
             }
 
             // Validate employer
-            $employer = $_POST['employer'];
             if (ctype_alnum($employer) == false)
             {
                 $this->notGood('err_employer', 'Employer name may only contain letters and numbers');
@@ -241,14 +239,12 @@ function validateForm3()
             // TODO czy end jest po start
 
             //Validate city
-            $job_city = $_POST['job-city'];
             if (ctype_alpha($job_city) == false)
             {
                 $this->notGood('err_job_city', 'City name may contain only letters');
             }
 
             // Validate description
-            $job_description = $_POST['job-description'];
             if (ctype_alnum($job_description) == false)
             {
                 $this->notGood('err_job_description', 'Description may only contain letters and numbers');
