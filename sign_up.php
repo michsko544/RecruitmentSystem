@@ -304,21 +304,21 @@ $sign_up_class = new SignUpSystem(true);
         <div class="form-row">
         <label for="cv-file">Curriculum vitae</label>
         <div class="upload">
-            <input type="file" name="cv-file" class="inputfile">
+            <input type="file" name="cv-file" class="inputfile" accept="application/pdf">
             <label for="cv-file">Choose a file</label>
         </div>
         </div>
         <div class="form-row ">
         <label for="certificate-file">Certificates</label>
         <div class="upload">
-            <input type="file" name="certificate-file" class="inputfile" data-multiple-caption="{count} files selected" multiple>
+            <input type="file" name="certificate-file" class="inputfile" accept="application/pdf" data-multiple-caption="{count} files selected" multiple>
             <label>Choose a file</label>
         </div>
         </div>
         <div class="form-row">
         <label for="lm-file">Cover Letter</label>
         <div class="upload">
-            <input type="file" name="lm-file" class="inputfile" data-multiple-caption="{count} files selected" multiple>
+            <input type="file" name="lm-file" class="inputfile" accept="application/pdf" data-multiple-caption="{count} files selected" multiple>
             <label>Choose a file</label>
         </div>
         </div>

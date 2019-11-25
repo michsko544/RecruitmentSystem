@@ -473,13 +473,38 @@ a {
   border-bottom: 2px #95A5A659 solid;
   position: relative;
 }
+.container .first-text {
+  position: absolute;
+  font-size: 16px;
+  color: #95A5A6;
+  top: 10px;
+  left: 21px;
+}
+.container .last-text {
+  position: absolute;
+  font-size: 16px;
+  bottom: 10px;
+  left: 21px;
+}
+.container .app-status-sent {
+  color: #95A5A6B3;
+}
+.container .app-status-opened {
+  color: #75757B;
+}
+.container .app-status-replied {
+  color: #75757B;
+}
+.container .app-status-replied a {
+  color: #36C3D9;
+}
 
 .title-element {
   font-size: 20px;
   color: #95A5A6B3;
   position: absolute;
   top: 19px;
-  left: 23px;
+  left: 21px;
 }
 
 .btn-element {

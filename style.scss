@@ -517,6 +517,41 @@ a{
         position:relative;
 
     }
+
+    .first-text{
+        position: absolute;
+        font-size: 16px;
+        color: $color-seagrey;
+        top:10px;
+        left: 21px;
+    }
+
+    .last-text{
+        position: absolute;
+        font-size: 16px;
+        bottom:10px;
+        left: 21px;
+    }
+
+    .position{
+
+    }
+
+    .app-status-sent{
+        color: $color-label;
+    }
+
+    .app-status-opened{
+        color: #75757B;
+    }
+
+    .app-status-replied{
+        color: #75757B;
+
+        a{
+            color: $color-cyan
+        }
+    }
 }
 
 .title-element{
@@ -524,7 +559,7 @@ a{
     color: $color-label;
     position: absolute;
     top: 19px;
-    left: 23px;
+    left: 21px;
 
 }
 
@@ -549,3 +584,4 @@ a{
 
     }
 }
+
