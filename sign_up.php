@@ -164,26 +164,26 @@ $sign_up_class = new SignUpSystem(true);
         </div>
         <div class="form-row">
         <label for="job-title">Job title</label>
-        <input type="text" name="job-title" placeholder="Waiter" required>
+        <input type="text" name="job-title-0" placeholder="Waiter" required>
         </div>
         <div class="form-row">
         <label for="employer">Employer</label>
-        <input type="text" name="employer" placeholder="Italian Restaurant London" required>
+        <input type="text" name="employer-0" placeholder="Italian Restaurant London" required>
         </div>
         <div class="form-row">
         <label for="start-end-date">Start & End date</label>
         <div class="date">
-            <input type="text" id="datej1" class="start-date" name="start-date" placeholder="Oct, 2019" required>
-            <input type="text" id="datej2" class="end-date" name="end-date" placeholder="Nov, 2019" required>
+            <input type="text" id="datej1" class="start-date" name="start-date-0" placeholder="Oct, 2019" required>
+            <input type="text" id="datej2" class="end-date" name="end-date-0" placeholder="Nov, 2019" required>
         </div>
         </div>
         <div class="form-row">
         <label for="job-city">City</label>
-        <input type="text" name="job-city" placeholder="London" required>
+        <input type="text" name="job-city-0" placeholder="London" required>
         </div>
         <div class="form-row">
         <label for="job-description">Description</label>
-        <textarea name="job-description" cols="35" rows="4" placeholder="e.g. waitressing,preparing venue for events, taking care of restaurant clarity, making basic drinks, brewing coffee" required></textarea>
+        <textarea name="job-description-0" cols="35" rows="4" placeholder="e.g. waitressing,preparing venue for events, taking care of restaurant clarity, making basic drinks, brewing coffee" required></textarea>
         </div>
         <?php
         if(isset($_SESSION['error']))
@@ -213,9 +213,9 @@ $sign_up_class = new SignUpSystem(true);
         <form id="sform-4" action="php/sign_up/sign_up_system.php" method="post">
         <div class="form-row relative">
         <label for="languages">Languages</label>
-        <input type="text" name="languages" placeholder="German" required>
+        <input type="text" name="languages-0" placeholder="German" required>
         <div class="degree">
-            <input type="number" name="language_level" min=1 max=5 placeholder=1>
+            <input type="number" name="language_level-0" min=1 max=5 placeholder=1>
             <div class="limit">/5</div>
         </div>
         </div>
@@ -231,9 +231,9 @@ $sign_up_class = new SignUpSystem(true);
         </div>
         <div class="form-row relative">
         <label for="skills">Skills</label>
-        <input type="text" name="skills" placeholder="Marketing" required>
+        <input type="text" name="skills-0" placeholder="Marketing" required>
         <div class="degree">
-            <input type="number" name="skill_level" min=1 max=5 placeholder=1>
+            <input type="number" name="skill_level-0" min=1 max=5 placeholder=1>
             <div class="limit">/5</div>
         </div>
         </div>
@@ -255,26 +255,26 @@ $sign_up_class = new SignUpSystem(true);
         </div>
         <div class="form-row">
         <label for="school">School</label>
-        <input type="text" name="school" placeholder="Silesian University of Technology" required>
+        <input type="text" name="school-0" placeholder="Silesian University of Technology" required>
         </div>
         <div class="form-row">
         <label for="specialization">Specialization</label>
-        <input type="text" name="specialization" placeholder="Teleinformatics" required>
+        <input type="text" name="specialization-0" placeholder="Teleinformatics" required>
         </div>
         <div class="form-row">
         <label for="start-end-date">Start & End date</label>
         <div class="date">
-            <input type="text" class="start-date" name="start-date" placeholder="Oct, 2019" required>
-            <input type="text" class="end-date" name="end-date" placeholder="Nov, 2019" required>
+            <input type="text" class="start-date" name="start-date-0" placeholder="Oct, 2019" required>
+            <input type="text" class="end-date" name="end-date-0" placeholder="Nov, 2019" required>
         </div>
         </div>
         <div class="form-row">
         <label for="school-city">City</label>
-        <input type="text" name="school-city" placeholder="Gliwice" required>
+        <input type="text" name="school-city-0" placeholder="Gliwice" required>
         </div>
         <div class="form-row">
         <label for="school-description">Description</label>
-        <textarea name="school-description" cols="35" rows="4" placeholder="e.g. programming, data analysing, network designing, microprocessors coding"></textarea>
+        <textarea name="school-description-0" cols="35" rows="4" placeholder="e.g. programming, data analysing, network designing, microprocessors coding"></textarea>
         </div>
         <?php
         if(isset($_SESSION['error']))
@@ -300,18 +300,10 @@ $sign_up_class = new SignUpSystem(true);
 
     <div class="page-title cyan-color">CV & Additional references</div>
     <div id="sign-up-5" class="sign-up-wrapper">
-        <form id="sform-5" action="#" method="post">
+        <form id="sform-5" action="php/sign_up/sign_up_system.php" method="post">
         <div class="form-row">
         <label for="cv-file">Curriculum vitae</label>
         <div class="upload">
-            <table> <!-- TODO bedzie sie wyswietlać nazwa wrzuconego pliku -- popraw jeśli coś źle zrobiłem-->
-                <tr>
-                    <?php
-                    // Usuń komentarz z linii poniżej żeby mieć przykładowy tekst wyświetlony
-                    // $_SESSION['rem_cv'] = 'filename'; ?>
-                    <?= isset($_SESSION['rem_cv']) ? $_SESSION['rem_cv'] : ''?>
-                </tr>
-            </table>
             <input type="file" name="cv-file" class="inputfile">
             <label for="cv-file">Choose a file</label>
         </div>
@@ -319,23 +311,13 @@ $sign_up_class = new SignUpSystem(true);
         <div class="form-row ">
         <label for="certificate-file">Certificates</label>
         <div class="upload">
-            <table>
-                <tr>
-                    <?= isset($_SESSION['rem_certificate']) ? $_SESSION['rem_certificate'] : ''?>
-                </tr>
-            </table>
             <input type="file" name="certificate-file" class="inputfile" data-multiple-caption="{count} files selected" multiple>
             <label>Choose a file</label>
         </div>
         </div>
         <div class="form-row">
-        <label for="lm-file">Cover Letter</label> <!-- TODO nie miał być cover letter dopiero przy aplikowaniu?-->
+        <label for="lm-file">Cover Letter</label>
         <div class="upload">
-            <table>
-                <tr>
-                    <?= isset($_SESSION['rem_course']) ? $_SESSION['rem_course'] : ''?>
-                </tr>
-            </table>
             <input type="file" name="lm-file" class="inputfile" data-multiple-caption="{count} files selected" multiple>
             <label>Choose a file</label>
         </div>

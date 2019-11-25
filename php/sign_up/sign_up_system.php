@@ -497,6 +497,13 @@ if (isset($_POST['cv-file']))
         echo 'Server error! Try signing up later';
     }
 }
+$addcounter = $_GET['a'];
+for ($i=0; $i<$addcounter;$i++)
+{
+    $schol = 'school-'.$i;
+    funckcjafakna($schol)
+}
+
 
 
 // TODO unset insert values
