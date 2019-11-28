@@ -32,6 +32,41 @@
             Application status
         </div>
         <div class="list-row">
+
+            <?php
+            require_once "php/connect.php";
+            $connection = new mysqli($host, $db_user, $db_pass, $db_name);
+            try
+            {
+                if ($connection->connect_errno != 0)
+                {
+                    throw new Exception(mysqli_connect_errno());
+                }
+                else
+                {
+                    $application_name = $connection->query("SELECT  FROM Applications");
+                    if (!$application_name)
+                    {
+                        // TODO wypisac liste zlozonych aplikacji i ich statusy
+                        throw new Exception($connection->error);
+                    }
+                    else
+                    {
+                        $pos_name = $application_name;
+                    }
+                }
+            }
+            catch (Exception $e)
+            {
+                echo 'Server error! Try signing up later';
+            }
+            $connection->close();
+            foreach ($pos_name as $key=>$value)
+            {
+                echo '<option value="'.$value.'">'.$value.' </option>';
+            }
+            ?>
+
             <div class="position first-text">Front-end Developer</div>
             <div class="app-status-sent last-text">Application sent</div>
         </div>
