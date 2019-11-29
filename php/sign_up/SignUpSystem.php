@@ -346,6 +346,8 @@ function validateForm5($cv, $cert, $cover_letter, $course, $host, $db_user, $db_
     $_SESSION['rem_cover_letter'] = $cover_letter;
     $_SESSION['rem_course'] = $course;
 
+    // ło ja jebe jka tu duszo roboty
+    // TODO safely upload files
     try
     {
         $connection = new mysqli($host, $db_user, $db_pass, $db_name);

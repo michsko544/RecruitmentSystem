@@ -300,7 +300,7 @@ $sign_up_class = new SignUpSystem(true);
 
     <div class="page-title cyan-color">CV & Additional references</div>
     <div id="sign-up-5" class="sign-up-wrapper">
-        <form id="sform-5" action="php/sign_up/sign_up_system.php" method="post">
+        <form id="sform-5" action="php/sign_up/sign_up_system.php" method="post" enctype="multipart/form-data">
         <div class="form-row">
         <label for="cv-file">Curriculum vitae</label>
         <div class="upload">
