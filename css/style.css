@@ -353,17 +353,19 @@ a {
   margin-right: auto;
   max-width: 500px;
 }
-.sign-up-wrapper label {
+
+label {
   font-size: 13px;
   color: #95A5A6B3;
 }
-.sign-up-wrapper input[type=text],
-.sign-up-wrapper input[type=password],
-.sign-up-wrapper input[type=email],
-.sign-up-wrapper input[type=tel],
-.sign-up-wrapper input[type=date],
-.sign-up-wrapper input[type=number],
-.sign-up-wrapper textarea {
+
+input[type=text],
+input[type=password],
+input[type=email],
+input[type=tel],
+input[type=date],
+input[type=number],
+textarea {
   font-family: "avenirregular";
   width: 100%;
   outline: none;
@@ -375,58 +377,65 @@ a {
   padding: 5px 0 12px;
   resize: none;
 }
-.sign-up-wrapper input[type=password] {
+
+input[type=password] {
   font: large Verdana, sans-serif;
 }
-.sign-up-wrapper input[type=password]::placeholder {
+input[type=password]::placeholder {
   color: #95A5A6;
   font: large Verdana, sans-serif;
   font-size: 16px;
 }
-.sign-up-wrapper input[type=password]:-ms-input-placeholder {
+input[type=password]:-ms-input-placeholder {
   /* Internet Explorer 10-11 */
   color: #95A5A6;
   font: large Verdana, sans-serif;
   font-size: 16px;
 }
-.sign-up-wrapper input[type=password]::-ms-input-placeholder {
+input[type=password]::-ms-input-placeholder {
   /* Microsoft Edge */
   color: #95A5A6;
   font: large Verdana, sans-serif;
   font-size: 16px;
 }
-.sign-up-wrapper input[type=checkbox] {
+
+input[type=checkbox] {
   border: #95A5A6;
   width: 20px;
   height: 20px;
   margin-right: 10px;
 }
-.sign-up-wrapper .checkbox {
+
+.checkbox {
   color: #95A5A6;
   font-size: 14px;
   padding: 5px 0 12px;
   display: flex;
   align-items: center;
 }
-.sign-up-wrapper .checkbox a {
+.checkbox a {
   color: #464650;
   cursor: pointer;
 }
-.sign-up-wrapper input[type=date] {
+
+input[type=date] {
   width: 46%;
 }
-.sign-up-wrapper .date {
+
+.date {
   width: 100%;
   display: flex;
   justify-content: space-between;
 }
-.sign-up-wrapper .date input[type=text] {
+.date input[type=text] {
   width: 46%;
 }
-.sign-up-wrapper .relative {
+
+.relative {
   position: relative;
 }
-.sign-up-wrapper .degree {
+
+.degree {
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -436,18 +445,19 @@ a {
   color: #95A5A6;
   bottom: 14px;
 }
-.sign-up-wrapper .degree input[type=number] {
+.degree input[type=number] {
   position: relative;
   right: 0;
   border: none;
   padding: 0;
   text-align: right;
 }
-.sign-up-wrapper .degree .limit {
+.degree .limit {
   position: relative;
   right: 0;
 }
-.sign-up-wrapper .upload {
+
+.upload {
   position: relative;
   overflow: hidden;
   width: 100%;
@@ -458,7 +468,7 @@ a {
   cursor: pointer;
   margin-top: 5px;
 }
-.sign-up-wrapper .upload input[type=file] {
+.upload input[type=file] {
   position: absolute;
   top: 0;
   right: 0;
@@ -469,37 +479,42 @@ a {
   cursor: pointer;
   opacity: 0;
 }
-.sign-up-wrapper .upload label {
+.upload label {
   color: #36C3D9;
   font-size: 16px;
   cursor: pointer;
   font-family: "avenirregular";
 }
-.sign-up-wrapper .upload label:before {
+.upload label:before {
   content: "⇪";
   margin-right: 5px;
 }
-.sign-up-wrapper ::placeholder {
+
+::placeholder {
   color: #95A5A6;
   font-family: "avenirregular";
   font-size: 16px;
 }
-.sign-up-wrapper :-ms-input-placeholder {
+
+:-ms-input-placeholder {
   /* Internet Explorer 10-11 */
   color: #95A5A6;
   font-family: "avenirregular";
   font-size: 16px;
 }
-.sign-up-wrapper ::-ms-input-placeholder {
+
+::-ms-input-placeholder {
   /* Microsoft Edge */
   color: #95A5A6;
   font-family: "avenirregular";
   font-size: 16px;
 }
-.sign-up-wrapper input[type=submit] {
+
+input[type=submit] {
   height: 35px;
 }
-.sign-up-wrapper .step {
+
+.step {
   margin-top: 17px;
   width: 100%;
   color: #36C3D9;
@@ -601,11 +616,37 @@ a {
 .btn-element .btn-unwrap {
   width: 16px;
   height: 10px;
-  background-color: red;
+  position: relative;
+  opacity: 70%;
+}
+.btn-element .btn-unwrap div {
+  position: absolute;
+  height: 3px;
+  width: 10px;
+  background-color: #95A5A6;
+  top: 3px;
+}
+.btn-element .btn-unwrap .line1 {
+  left: 0;
+  transform: rotate(-45deg);
+}
+.btn-element .btn-unwrap .line2 {
+  right: 0;
+  transform: rotate(45deg);
 }
 
 .element-wrapper {
   width: 75%;
   color: #95A5A6;
   margin: 32px auto;
+}
+.element-wrapper .form-row label {
+  font-size: 13px;
+  color: #95A5A6B3;
+}
+.element-wrapper .btn-add {
+  color: #95A5A6;
+}
+.element-wrapper .btn-border {
+  border: 2px solid #95A5A6;
 }

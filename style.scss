@@ -391,171 +391,171 @@ a{
     margin-left:auto;
     margin-right: auto;
     max-width: 500px;
+}
+label{
+    font-size: 13px;
+    color: $color-label;
+}
 
-    label{
-        font-size: 13px;
-        color: $color-label;
-    }
+input[type=text],
+input[type=password],
+input[type=email],
+input[type=tel],
+input[type=date],
+input[type=number],
+textarea
+{
+    font-family: 'avenirregular';
+    width:100%;
+    outline: none;
+    border: none;
+    font-size:16px;
+    color: $color-seagrey;
+    border-bottom: 2px $color-seagrey solid;
+    background-color: #ffffff00;
+    padding: 5px 0 12px;
+    resize: none;
+}
+input[type=password]{
+    font: large Verdana,sans-serif;
 
-    input[type=text],
-    input[type=password],
-    input[type=email],
-    input[type=tel],
-    input[type=date],
-    input[type=number],
-    textarea
-    {
-        font-family: 'avenirregular';
-        width:100%;
-        outline: none;
-        border: none;
-        font-size:16px;
+    &::placeholder{
         color: $color-seagrey;
-        border-bottom: 2px $color-seagrey solid;
-        background-color: #ffffff00;
-        padding: 5px 0 12px;
-        resize: none;
-    }
-    input[type=password]{
         font: large Verdana,sans-serif;
-
-        &::placeholder{
-            color: $color-seagrey;
-            font: large Verdana,sans-serif;
-            font-size:16px;
-        }
-        &:-ms-input-placeholder { /* Internet Explorer 10-11 */ 
-            color: $color-seagrey;
-            font: large Verdana,sans-serif;
-            font-size:16px;
-        }
-        &::-ms-input-placeholder { /* Microsoft Edge */ 
-            color: $color-seagrey;
-            font: large Verdana,sans-serif;
-            font-size:16px;
-        }
-    }
-    input[type=checkbox]{
-        border: $color-seagrey;
-        width: 20px;
-        height: 20px;
-        margin-right: 10px;
-    }
-    .checkbox{
-        color: $color-seagrey;
-        font-size: 14px;
-        padding: 5px 0 12px;
-        display:flex;
-        align-items: center;
-        
-        a{
-            color: $color-darkgrey;
-            cursor: pointer;
-        }
-    }
-    input[type=date]{
-        width: 46%;
-    }
-    .date{
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-
-        input[type=text]{
-            width: 46%;
-        }
-    }
-
-    .relative{
-        position: relative;
-    }
-
-    .degree{
-        display:flex;
-        align-items: center;
-        justify-content: flex-end;
-        position: absolute;
-        right:0;
-        font-size: 16px;
-        color: $color-seagrey;
-        bottom: 14px;
-        input[type=number]{
-            position: relative;
-            right:0;
-            border:none;
-            padding: 0;
-            text-align: right;
-        }
-        .limit{
-            position: relative;
-            right:0;
-        }
-    }
-
-    .upload{
-        position: relative;
-        overflow: hidden;
-	    width: 100%;
-	    padding: 8px 0 7px;
-	    text-align: center;
-        background: #ffffff00;
-        border: 2px $color-cyan solid;
-        cursor: pointer;
-        margin-top: 5px;
-
-        input[type=file] {
-            position: absolute;
-            top: 0;
-            right: 0;
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            cursor: pointer;
-            opacity: 0;
-        }
-
-        label {
-            color: $color-cyan;
-            font-size: 16px;
-            cursor: pointer;
-            font-family: 'avenirregular';
-        }
-
-        label:before {
-            content: "\21EA";
-            margin-right: 5px;
-        }
-    }
-
-    ::placeholder{
-        color: $color-seagrey;
-        font-family: 'avenirregular';
         font-size:16px;
     }
-    :-ms-input-placeholder { /* Internet Explorer 10-11 */ 
+    &:-ms-input-placeholder { /* Internet Explorer 10-11 */ 
         color: $color-seagrey;
-        font-family: 'avenirregular';
+        font: large Verdana,sans-serif;
         font-size:16px;
     }
-    ::-ms-input-placeholder { /* Microsoft Edge */ 
+    &::-ms-input-placeholder { /* Microsoft Edge */ 
         color: $color-seagrey;
-        font-family: 'avenirregular';
+        font: large Verdana,sans-serif;
         font-size:16px;
-    }
-
-    input[type=submit]{
-        height:35px;
-    }
-
-    .step{
-        margin-top: 17px;
-        width:100%;
-        color: $color-cyan;
-        text-align: right;
-        font-size: 13px;
     }
 }
+input[type=checkbox]{
+    border: $color-seagrey;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+.checkbox{
+    color: $color-seagrey;
+    font-size: 14px;
+    padding: 5px 0 12px;
+    display:flex;
+    align-items: center;
+    
+    a{
+        color: $color-darkgrey;
+        cursor: pointer;
+    }
+}
+input[type=date]{
+    width: 46%;
+}
+.date{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    input[type=text]{
+        width: 46%;
+    }
+}
+
+.relative{
+    position: relative;
+}
+
+.degree{
+    display:flex;
+    align-items: center;
+    justify-content: flex-end;
+    position: absolute;
+    right:0;
+    font-size: 16px;
+    color: $color-seagrey;
+    bottom: 14px;
+    input[type=number]{
+        position: relative;
+        right:0;
+        border:none;
+        padding: 0;
+        text-align: right;
+    }
+    .limit{
+        position: relative;
+        right:0;
+    }
+}
+
+.upload{
+    position: relative;
+    overflow: hidden;
+	 width: 100%;
+	 padding: 8px 0 7px;
+	 text-align: center;
+    background: #ffffff00;
+    border: 2px $color-cyan solid;
+    cursor: pointer;
+    margin-top: 5px;
+
+    input[type=file] {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+        opacity: 0;
+    }
+
+    label {
+        color: $color-cyan;
+        font-size: 16px;
+        cursor: pointer;
+        font-family: 'avenirregular';
+    }
+
+    label:before {
+        content: "\21EA";
+        margin-right: 5px;
+    }
+}
+
+::placeholder{
+    color: $color-seagrey;
+    font-family: 'avenirregular';
+    font-size:16px;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */ 
+    color: $color-seagrey;
+    font-family: 'avenirregular';
+    font-size:16px;
+}
+::-ms-input-placeholder { /* Microsoft Edge */ 
+    color: $color-seagrey;
+    font-family: 'avenirregular';
+    font-size:16px;
+}
+
+input[type=submit]{
+    height:35px;
+}
+
+.step{
+    margin-top: 17px;
+    width:100%;
+    color: $color-cyan;
+    text-align: right;
+    font-size: 13px;
+}
+
 
 .page-title{
     font-size: 22px;
@@ -665,8 +665,28 @@ a{
     .btn-unwrap{
         width: 16px;
         height: 10px;
-        background-color: red;
+        position: relative;
+        opacity: 70%;
+
+        div{
+            position: absolute;
+            height: 3px;
+            width: 10px;
+            background-color: $color-seagrey;
+            top:3px;
+        }
+        
+        .line1{
+            left:0;
+            transform: rotate(-45deg);
+        }
+
+        .line2{
+            right:0;
+            transform: rotate(45deg);
+        }
     }
+
 }
 
 .element-wrapper{
@@ -674,8 +694,20 @@ a{
     color: $color-seagrey;
     margin: 32px auto;
 
-    label{
+    .form-row{
 
+        label{
+            font-size: 13px;
+            color: $color-label;
+        }
+    }
+    
+    .btn-add{
+        color: $color-seagrey;
+    }
+    
+    .btn-border{
+        border: 2px solid $color-seagrey;
     }
 }
 
