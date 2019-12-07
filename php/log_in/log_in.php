@@ -20,12 +20,12 @@ try
     {
         $login = $_POST['username'];
         $password = $_POST['password'];
-
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
         $login = htmlentities($login, ENT_QUOTES, "UTF-8");
         // $password = htmlentities($password, ENT_QUOTES, "UTF-8");
 
         if ($result_login = $connection->query(
-            sprintf("SELECT * FROM Users WHERE username='%s'",
+            sprintf("SELECT * FROM users WHERE login='%s'",
                 mysqli_real_escape_string($connection, $login))))
         {
             $user_count = $result_login->num_rows;
@@ -33,11 +33,10 @@ try
             {
                 $row_users = $result_login->fetch_assoc();
 
-                if (password_verify($password, $row_users['password']))
+                if (password_verify($hashed_password, $row_users['password']))
                 {
 
                     $_SESSION['logged_in'] = true;
-
                     $_SESSION['user_id'] = $row_users['user_id'];
                     $_SESSION['role_id'] = $row_users['role_id'];
                     $_SESSION['first_name'] = $row_users['first_name'];
@@ -52,7 +51,7 @@ try
                     // redirect to user's account considering role
                     $user_role = $row_users['role_id'];
                     if ($result_role = $connection->query(
-                        sprintf("SELECT * FROM Roles WHERE role_id='%s'",
+                        sprintf("SELECT * FROM roles WHERE role_id='%s'",
                             $user_role))) {
                         // which role
                         $row_roles = $result_role->fetch_assoc();

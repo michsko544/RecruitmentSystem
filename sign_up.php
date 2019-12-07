@@ -60,6 +60,7 @@ $sign_up_class = new SignUpSystem(true);
                     <!-- chyba dziala -- potrzebna baza danych -->
                     <?php
                     // Pick data from DB
+                    $pos_name = array('foo', 'boo');
                     $connection = new mysqli($host, $db_user, $db_pass, $db_name);
                     try
                     {
@@ -69,7 +70,7 @@ $sign_up_class = new SignUpSystem(true);
                         }
                         else
                         {
-                            $position_name = $connection->query("SELECT position FROM Positions");
+                            $position_name = $connection->query("SELECT position FROM positions");
                             if (!$position_name)
                             {
                                 throw new Exception($connection->error);
@@ -85,6 +86,7 @@ $sign_up_class = new SignUpSystem(true);
                         echo 'Server error! Try signing up later';
                     }
                     $connection->close();
+
                     foreach ($pos_name as $key=>$value)
                     {
                         echo '<option value="'.$value.'">'.$value.' </option>';

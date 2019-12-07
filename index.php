@@ -43,6 +43,12 @@ if ((isset($_SESSION['logged_in'])) && ($_SESSION['logged_in'] == true))
     <div id="sign-in--hidden">
         <div class="nav-bar">
             <div class="logo-nav">myCompany</div>
+            <?php
+            if(isset($_SESSION['error']))
+            {
+                echo $_SESSION['error'];
+            }
+            ?>
             <div id="btn-exit" class="btn-nav">
                 <div class="line1"></div>
                 <div class="line2"></div>
