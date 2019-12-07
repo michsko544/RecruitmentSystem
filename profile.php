@@ -40,7 +40,7 @@
                 </div>
             </div>
         </div>
-        <div class="list-row" id="personal-data">
+        <div class="list-row hide" id="personal-data">
             <div class="element-wrapper">
                 <div class="form-row">
                     <label for="first-name">First name</label>
@@ -73,7 +73,7 @@
                 </div>
             </div>
         </div>
-        <div class="list-row" id="experience">
+        <div class="list-row hide" id="experience">
             <div class="element-wrapper">
                 <div class="form-row">
                     <div class="checkbox">
@@ -124,7 +124,7 @@
                 </div>
             </div>
         </div>
-        <div class="list-row" id="education">
+        <div class="list-row hide" id="education">
             <div class="element-wrapper">
                 <div class="form-row">
                     <label for="school">School</label>
@@ -170,7 +170,7 @@
                 </div>
             </div>
         </div>
-        <div class="list-row" id="skills">
+        <div class="list-row hide" id="skills">
             <div class="element-wrapper">
                 <div class="form-row relative">
                     <label for="languages">Languages</label>
@@ -219,7 +219,7 @@
                 </div>
             </div>
         </div>
-        <div class="list-row" id="addition">
+        <div class="list-row hide" id="addition">
             <div class="element-wrapper">
                 <div class="form-row">
                     <label for="cv-file">Curriculum vitae</label>
@@ -268,4 +268,5 @@
 <script src="script/burger.js"></script>
 <script src="script/calendar.js"></script>
 <script src="script/sign-up.js"></script>
+<script src="script/profile.js"></script>
 </html>

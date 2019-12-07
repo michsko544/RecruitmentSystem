@@ -628,15 +628,16 @@ input[type=submit] {
 }
 .btn-element .btn-unwrap .line1 {
   left: 0;
-  transform: rotate(-45deg);
+  transform: rotate(45deg);
 }
 .btn-element .btn-unwrap .line2 {
   right: 0;
-  transform: rotate(45deg);
+  transform: rotate(-45deg);
 }
 
 .element-wrapper {
   width: 75%;
+  max-width: 500px;
   color: #95A5A6;
   margin: 32px auto;
 }
@@ -649,4 +650,33 @@ input[type=submit] {
 }
 .element-wrapper .btn-border {
   border: 2px solid #95A5A6;
+}
+
+.hide {
+  display: none;
+}
+
+@keyframes line1Rotate {
+  from {
+    -ms-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+  to {
+    -ms-transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+  }
+}
+@keyframes line2Rotate {
+  from {
+    -ms-transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+  }
+  to {
+    -ms-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
 }
