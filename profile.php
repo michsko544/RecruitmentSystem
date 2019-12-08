@@ -7,6 +7,7 @@
     <title>Recruitment System - Profile</title>
     <link rel="stylesheet" href="/css/style.css" type="text/css">
     <link rel="stylesheet" href="/font/stylesheet.css" type="text/css" charset="utf-8" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
 <body>
     <nav>
@@ -45,22 +46,27 @@
                 <div class="form-row">
                     <label for="first-name">First name</label>
                     <input type="text" name="first-name">
+                    <div class="underline"></div>
                 </div>
                 <div class="form-row">
                     <label for="last-name">Last name</label>
                     <input type="text" name="last-name">
+                    <div class="underline"></div>
                 </div>
                 <div class="form-row">
                     <label for="phone-num">Phone number</label>
                     <input type="tel" name="phone-num">
+                    <div class="underline"></div>
                 </div>
                 <div class="form-row">
                     <label for="residence-country">Your country</label>
                     <input type="text" name="residence-country">
+                    <div class="underline"></div>
                 </div>
                 <div class="form-row">
                     <label for="residence-city">Your city</label>
                     <input type="text" name="residence-city">
+                    <div class="underline"></div>
                 </div>
             </div>
         </div>
@@ -83,25 +89,31 @@
                 <div class="form-row">
                     <label for="job-title">Job title</label>
                     <input type="text" name="job-title-0">
+                    <div class="underline"></div>
                 </div>
                 <div class="form-row">
                     <label for="employer">Employer</label>
                     <input type="text" name="employer-0">
+                    <div class="underline"></div>
                 </div>
                 <div class="form-row">
                     <label for="start-end-date">Start & End date</label>
                     <div class="date">
                         <input type="text" id="datej1" class="start-date" name="start-date-0">
+                        
                         <input type="text" id="datej2" class="end-date" name="end-date-0">
+                        
                     </div>
                 </div>
                 <div class="form-row">
                     <label for="job-city">City</label>
                     <input type="text" name="job-city-0">
+                    <div class="underline"></div>
                 </div>
                 <div class="form-row">
                     <label for="job-description">Description</label>
                     <textarea name="job-description-0" cols="35" rows="4"></textarea>
+                    <div class="underlineTA"></div>
                 </div>
                 <div class="btn-add" id="btn-experiance">
                     <div class="btn-text">
@@ -129,10 +141,12 @@
                 <div class="form-row">
                     <label for="school">School</label>
                     <input type="text" name="school-0" required>
+                    <div class="underline"></div>
                 </div>
                 <div class="form-row">
                     <label for="specialization">Specialization</label>
                     <input type="text" name="specialization-0" required>
+                    <div class="underline"></div>
                 </div>
                 <div class="form-row">
                     <label for="start-end-date">Start & End date</label>
@@ -144,10 +158,12 @@
                 <div class="form-row">
                     <label for="school-city">City</label>
                     <input type="text" name="school-city-0" required>
+                    <div class="underline"></div>
                 </div>
                 <div class="form-row">
                     <label for="school-description">Description</label>
                     <textarea name="school-description-0" cols="35" rows="4"></textarea>
+                    <div class="underlineTA"></div>
                 </div>
                 <div class="btn-add" id="btn-school">
                     <div class="btn-text">
@@ -175,6 +191,7 @@
                 <div class="form-row relative">
                     <label for="languages">Languages</label>
                     <input type="text" name="languages-0" placeholder="German" required>
+                    <div class="underline"></div>
                 <div class="degree">
                     <input type="number" name="language-level-0" min=1 max=5 placeholder=1>
                         <div class="limit">/5</div>
@@ -193,6 +210,7 @@
                 <div class="form-row relative">
                     <label for="skills">Skills</label>
                     <input type="text" name="skills-0" placeholder="Marketing" required>
+                    <div class="underline"></div>
                     <div class="degree">
                         <input type="number" name="skill-level-0" min=1 max=5 placeholder=1>
                         <div class="limit">/5</div>
@@ -245,6 +263,7 @@
                 <div class="form-row">
                     <label for="course">Courses</label>
                     <input type="text" name="course-0" placeholder="e.g. Google Internet Revolutions">
+                    <div class="underline"></div>
                 </div>
                 <div class="btn-add" id="btn-course">
                     <div class="btn-text">

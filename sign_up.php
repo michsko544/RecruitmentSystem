@@ -28,6 +28,7 @@ $sign_up_class = new SignUpSystem(true);
         <div class="form-row">
             <label for="login">Login</label>
             <input type="text" name="login" value="<?php $sign_up_class->rememberValue('rem_username'); ?>" placeholder="Username" required>
+            <div class="underline"></div>
             <?php
             $sign_up_class->setError('err_username');
             ?>
@@ -35,6 +36,7 @@ $sign_up_class = new SignUpSystem(true);
         <div class="form-row">
             <label for="e-mail">E-mail</label>
             <input type="email" name="e-mail" value="<?php $sign_up_class->rememberValue('rem_email'); ?>" placeholder="john.smith@example.com" required>
+            <div class="underline"></div>
             <?php
             $sign_up_class->setError('err_email');
             ?>
@@ -42,6 +44,7 @@ $sign_up_class = new SignUpSystem(true);
         <div class="form-row">
             <label for="password-one">Password</label>
             <input type="password" name="password-one" value="<?php $sign_up_class->rememberValue('rem_password_one'); ?>" placeholder="●●●●●●●●●●" required>
+            <div class="underline"></div>
             <?php
             $sign_up_class->setError('err_password');
             ?>
@@ -49,51 +52,50 @@ $sign_up_class = new SignUpSystem(true);
         <div class="form-row">
             <label for="password-two">Password</label>
             <input type="password" name="password-two" value="<?php $sign_up_class->rememberValue('rem_password_two'); ?>" placeholder="●●●●●●●●●●" required>
+            <div class="underline"></div>
             <?php
             $sign_up_class->setError('err_password');
             ?>
         </div>
         <div class="form-row">
             <label for="position">Position</label>
-            <div class="position">
-                <select name="position">
-                    <!-- chyba dziala -- potrzebna baza danych -->
-                    <?php
-                    // Pick data from DB
-                    $pos_name = array('foo', 'boo');
-                    $connection = new mysqli($host, $db_user, $db_pass, $db_name);
-                    try
+            <select name="position">
+                <!-- chyba dziala -- potrzebna baza danych -->
+                <?php
+                // Pick data from DB
+                $pos_name = array('foo', 'boo');
+                $connection = new mysqli($host, $db_user, $db_pass, $db_name);
+                try
+                {
+                    if ($connection->connect_errno != 0)
                     {
-                        if ($connection->connect_errno != 0)
+                        throw new Exception(mysqli_connect_errno());
+                    }
+                    else
+                    {
+                        $position_name = $connection->query("SELECT position FROM positions");
+                        if (!$position_name)
                         {
-                            throw new Exception(mysqli_connect_errno());
+                            throw new Exception($connection->error);
                         }
                         else
                         {
-                            $position_name = $connection->query("SELECT position FROM positions");
-                            if (!$position_name)
-                            {
-                                throw new Exception($connection->error);
-                            }
-                            else
-                            {
-                                $pos_name = $position_name;
-                            }
+                            $pos_name = $position_name;
                         }
                     }
-                    catch (Exception $e)
-                    {
-                        echo 'Server error! Try signing up later';
-                    }
-                    $connection->close();
+                }
+                catch (Exception $e)
+                {
+                    echo 'Server error! Try signing up later';
+                }
+                $connection->close();
 
-                    foreach ($pos_name as $key=>$value)
-                    {
-                        echo '<option value="'.$value.'">'.$value.' </option>';
-                    }
-                    ?>
-                </select>
-            </div>
+                foreach ($pos_name as $key=>$value)
+                {
+                    echo '<option value="'.$value.'">'.$value.' </option>';
+                }
+                ?>
+            </select>
         </div>
         <div class="form-row">
             <label for="terms-of-use">Terms and Privacy Policy</label>
@@ -123,25 +125,29 @@ $sign_up_class = new SignUpSystem(true);
         <form id="sform-2" action="php/sign_up/sign_up_system.php" method="post">
        
         <div class="form-row">
-        <label for="first-name">First name</label>
-        <input type="text" name="first-name" placeholder="John" required>
+            <label for="first-name">First name</label>
+            <input type="text" name="first-name" placeholder="John" required>
+            <div class="underline"></div>
         </div>
         <div class="form-row">
-        <label for="last-name">Last name</label>
-        <input type="text" name="last-name" placeholder="Smith" required>
+            <label for="last-name">Last name</label>
+            <input type="text" name="last-name" placeholder="Smith" required>
+            <div class="underline"></div>
         </div>
         <div class="form-row">
-        <label for="phone-num">Phone number</label>
-        <input type="tel" name="phone-num" placeholder="600 700 800"
-        pattern="[0-9]{3}[0-9]{3}[0-9]{3}" required>
+            <label for="phone-num">Phone number</label>
+            <input type="tel" name="phone-num" placeholder="600 700 800" pattern="[0-9]{3}[0-9]{3}[0-9]{3}" required>
+            <div class="underline"></div>
         </div>
         <div class="form-row">
             <label for="residence-country">Your country</label>
             <input type="text" name="residence-country" placeholder="UK" required>
+            <div class="underline"></div>
         </div>
         <div class="form-row">
-        <label for="residence-city">Your city</label>
-        <input type="text" name="residence-city" placeholder="London" required>
+            <label for="residence-city">Your city</label>
+            <input type="text" name="residence-city" placeholder="London" required>
+            <div class="underline"></div>
         </div>
         <?php
         if(isset($_SESSION['error']))
@@ -165,27 +171,31 @@ $sign_up_class = new SignUpSystem(true);
             </div>
         </div>
         <div class="form-row">
-        <label for="job-title">Job title</label>
-        <input type="text" name="job-title-0" placeholder="Waiter" required>
+            <label for="job-title">Job title</label>
+            <input type="text" name="job-title-0" placeholder="Waiter" required>
+            <div class="underline"></div>
         </div>
         <div class="form-row">
-        <label for="employer">Employer</label>
-        <input type="text" name="employer-0" placeholder="Italian Restaurant London" required>
+            <label for="employer">Employer</label>
+            <input type="text" name="employer-0" placeholder="Italian Restaurant London" required>
+            <div class="underline"></div>
         </div>
         <div class="form-row">
-        <label for="start-end-date">Start & End date</label>
-        <div class="date">
-            <input type="text" id="datej1" class="start-date" name="start-date-0" placeholder="Oct, 2019" required>
-            <input type="text" id="datej2" class="end-date" name="end-date-0" placeholder="Nov, 2019" required>
-        </div>
-        </div>
-        <div class="form-row">
-        <label for="job-city">City</label>
-        <input type="text" name="job-city-0" placeholder="London" required>
+            <label for="start-end-date">Start & End date</label>
+            <div class="date">
+                <input type="text" id="datej1" class="start-date" name="start-date-0" placeholder="Oct, 2019" required>
+                <input type="text" id="datej2" class="end-date" name="end-date-0" placeholder="Nov, 2019" required>
+            </div>
         </div>
         <div class="form-row">
-        <label for="job-description">Description</label>
-        <textarea name="job-description-0" cols="35" rows="4" placeholder="e.g. waitressing,preparing venue for events, taking care of restaurant clarity, making basic drinks, brewing coffee" required></textarea>
+            <label for="job-city">City</label>
+            <input type="text" name="job-city-0" placeholder="London" required>
+            <div class="underline"></div>
+        </div>
+        <div class="form-row">
+            <label for="job-description">Description</label>
+            <textarea name="job-description-0" cols="35" rows="4" placeholder="e.g. waitressing,preparing venue for events, taking care of restaurant clarity, making basic drinks, brewing coffee" required></textarea>
+            <div class="underlineTA"></div>
         </div>
         <?php
         if(isset($_SESSION['error']))
@@ -213,9 +223,10 @@ $sign_up_class = new SignUpSystem(true);
     <div id="sign-up-4" class="sign-up-wrapper">
         <div class="step">Step 3/3</div>
         <form id="sform-4" action="php/sign_up/sign_up_system.php" method="post">
-        <div class="form-row relative">
-        <label for="languages">Languages</label>
-        <input type="text" name="languages-0" placeholder="German" required>
+        <div class="form-row">
+            <label for="languages">Languages</label>
+            <input type="text" name="languages-0" placeholder="German" required>
+            <div class="underline"></div>
         <div class="degree">
             <input type="number" name="language-level-0" min=1 max=5 placeholder=1>
             <div class="limit">/5</div>
@@ -231,9 +242,10 @@ $sign_up_class = new SignUpSystem(true);
                 </div>
             </div>
         </div>
-        <div class="form-row relative">
-        <label for="skills">Skills</label>
-        <input type="text" name="skills-0" placeholder="Marketing" required>
+        <div class="form-row">
+            <label for="skills">Skills</label>
+            <input type="text" name="skills-0" placeholder="Marketing" required>
+            <div class="underline"></div>
         <div class="degree">
             <input type="number" name="skill-level-0" min=1 max=5 placeholder=1>
             <div class="limit">/5</div>
@@ -256,27 +268,31 @@ $sign_up_class = new SignUpSystem(true);
             </div>
         </div>
         <div class="form-row">
-        <label for="school">School</label>
-        <input type="text" name="school-0" placeholder="Silesian University of Technology" required>
+            <label for="school">School</label>
+            <input type="text" name="school-0" placeholder="Silesian University of Technology" required>
+            <div class="underline"></div>
         </div>
         <div class="form-row">
-        <label for="specialization">Specialization</label>
-        <input type="text" name="specialization-0" placeholder="Teleinformatics" required>
+            <label for="specialization">Specialization</label>
+            <input type="text" name="specialization-0" placeholder="Teleinformatics" required>
+            <div class="underline"></div>
         </div>
         <div class="form-row">
-        <label for="start-end-date">Start & End date</label>
-        <div class="date">
-            <input type="text" class="start-date" name="school-start-date-0" placeholder="Oct, 2019" required>
-            <input type="text" class="end-date" name="school-end-date-0" placeholder="Nov, 2019" required>
-        </div>
-        </div>
-        <div class="form-row">
-        <label for="school-city">City</label>
-        <input type="text" name="school-city-0" placeholder="Gliwice" required>
+            <label for="start-end-date">Start & End date</label>
+            <div class="date">
+                <input type="text" class="start-date" name="school-start-date-0" placeholder="Oct, 2019" required>
+                <input type="text" class="end-date" name="school-end-date-0" placeholder="Nov, 2019" required>
+            </div>
         </div>
         <div class="form-row">
-        <label for="school-description">Description</label>
-        <textarea name="school-description-0" cols="35" rows="4" placeholder="e.g. programming, data analysing, network designing, microprocessors coding"></textarea>
+            <label for="school-city">City</label>
+            <input type="text" name="school-city-0" placeholder="Gliwice" required>
+            <div class="underline"></div>
+        </div>
+        <div class="form-row">
+            <label for="school-description">Description</label>
+            <textarea name="school-description-0" cols="35" rows="4" placeholder="e.g. programming, data analysing, network designing, microprocessors coding"></textarea>
+            <div class="underlineTA"></div>
         </div>
         <?php
         if(isset($_SESSION['error']))
@@ -325,8 +341,9 @@ $sign_up_class = new SignUpSystem(true);
         </div>
         </div>
         <div class="form-row">
-        <label for="course">Courses</label>
-        <input type="text" name="course-0" placeholder="e.g. Google Internet Revolutions">
+            <label for="course">Courses</label>
+            <input type="text" name="course-0" placeholder="e.g. Google Internet Revolutions">
+            <div class="underline"></div>
         </div>
         <?php
         if(isset($_SESSION['error']))

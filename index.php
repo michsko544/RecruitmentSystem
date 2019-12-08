@@ -60,10 +60,12 @@ if ((isset($_SESSION['logged_in'])) && ($_SESSION['logged_in'] == true))
                 <div class="sign-in-row">
                     <label for="login">Login</label>
                     <input type="text" name="login" placeholder="Username">
+                    <div class="underline"></div>
                 </div>
                 <div class="sign-in-row">
                     <label for="password">Password</label>
                     <input type="password" name="password" placeholder="●●●●●●●●●●">
+                    <div class="underline"></div>
                     <?php
                     if(isset($_SESSION['error']))
                     {

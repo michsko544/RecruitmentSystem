@@ -52,10 +52,12 @@ const addExperience = () => {
         </br>
         <label for="job-title">Job title</label>
         <input type="text" name="job-title" placeholder="Waiter" required>
+        <div class="underline"></div>
         </div>
         <div class="form-row">
         <label for="employer">Employer</label>
         <input type="text" name="employer" placeholder="Italian Restaurant London" required>
+        <div class="underline"></div>
         </div>
         <div class="form-row">
         <label for="start-end-date">Start & End date</label>
@@ -67,10 +69,12 @@ const addExperience = () => {
         <div class="form-row">
         <label for="job-city">City</label>
         <input type="text" name="job-city" placeholder="London" required>
+        <div class="underline"></div>
         </div>
         <div class="form-row">
         <label for="job-description">Description</label>
         <textarea name="job-description" cols="35" rows="4" placeholder="e.g. waitressing,preparing venue for events, taking care of restaurant clarity, making basic drinks, brewing coffee" required></textarea>
+        <div class="underlineTA"></div>
     </div>`);
 
     btn.parentNode.insertBefore(newDiv, btn);
@@ -81,8 +85,9 @@ document.getElementById("btn-experiance").addEventListener("click", addExperienc
 const addLanguage = () => {
     let btn = document.getElementById("btn-language");
     let newDiv = document.createRange().createContextualFragment(
-    `<div class="form-row relative">
+    `<div class="form-row">
         <input type="text" name="languages" placeholder="German" required>
+        <div class="underline"></div>
         <div class="degree">
             <input type="number" name="language_level" min=1 max=5 placeholder=1>
             <div class="limit">/5</div>
@@ -96,8 +101,9 @@ document.getElementById("btn-language").addEventListener("click", addLanguage);
 const addSkill = () => {
     let btn = document.getElementById("btn-skill");
     let newDiv = document.createRange().createContextualFragment(
-    `<div class="form-row relative">
+    `<div class="form-row">
         <input type="text" name="skills" placeholder="Marketing" required>
+        <div class="underline"></div>
         <div class="degree">
             <input type="number" name="skill_level" min=1 max=5 placeholder=1>
             <div class="limit">/5</div>
@@ -116,10 +122,12 @@ const addSchool = () => {
     <div class="form-row">
     <label for="school">School</label>
     <input type="text" name="school" placeholder="Silesian University of Technology" required>
+    <div class="underline"></div>
     </div>
     <div class="form-row">
     <label for="specialization">Specialization</label>
     <input type="text" name="specialization" placeholder="Teleinformatics" required>
+    <div class="underline"></div>
     </div>
     <div class="form-row">
     <label for="start-end-date">Start & End date</label>
@@ -131,10 +139,12 @@ const addSchool = () => {
     <div class="form-row">
     <label for="school-city">City</label>
     <input type="text" name="school-city" placeholder="Gliwice" required>
+    <div class="underline"></div>
     </div>
     <div class="form-row">
     <label for="school-description">Description</label>
     <textarea name="school-description" cols="35" rows="4" placeholder="e.g. programming, data analysing, network designing, microprocessors coding"></textarea>
+    <div class="underlineTA"></div>
     </div>`);
     btn.parentNode.insertBefore(newDiv, btn);
 }
@@ -147,6 +157,7 @@ const addCourse = () => {
     let newDiv = document.createRange().createContextualFragment(
     `<div class="form-row">
         <input type="text" name="course" placeholder="e.g. Google Internet Revolutions">
+        <div class="underline"></div>
     </div>`);
     btn.parentNode.insertBefore(newDiv, btn);
 }
