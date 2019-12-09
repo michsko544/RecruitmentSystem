@@ -38,7 +38,7 @@ try
                 {
 
                     $_SESSION['logged_in'] = true;
-                    $_SESSION['user_id'] = $row_users['user_id'];
+                    $_SESSION['id_user'] = $row_users['id_user'];
                     $_SESSION['role_id'] = $row_users['role_id'];
                     $_SESSION['first_name'] = $row_users['first_name'];
                     $_SESSION['last_name'] = $row_users['last_name'];
