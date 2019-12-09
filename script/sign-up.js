@@ -1,34 +1,7 @@
 var buttons=document.getElementsByClassName("btn");
 
-for(let i=0; i<buttons.length-1; ++i){
-    // $(`sform-${i+1}`).submit(function(e) {
-    //     // tasks to do 
-    //     e.preventDefault();
-    //     if(!$(this).valid()){
-            
-    //         console.log("Poprawnie wypelniony");
-    //         hideDiv(document.getElementById(`sign-up-${i+1}`).id);
-    //         console.log(`chowam ${i+1}`);
-    //         showDiv(document.getElementById(`sign-up-${i+2}--hidden`).id);
-    //         console.log(`pokazuje ${i+2}`);
-    //     }
-    // });
-    // $(`#sform-${i+1}`).submit(function(e){
-    //     e.preventDefault();
-    //     $.ajax({
-    //         url:'',
-    //         type:'post',
-    //         data:$(`#sform-${i+1}`).serialize(),
-    //         success:function(){
-    //             console.log("Poprawnie wypelniony");
-    //             hideDiv(document.getElementById(`sign-up-${i+1}`).id);
-    //             console.log(`chowam ${i+1}`);
-    //             showDiv(document.getElementById(`sign-up-${i+2}--hidden`).id);
-    //             console.log(`pokazuje ${i+2}`);
-    //         }
-    //     });
-    // });
-}
+calendar("exp-0");
+calendar("school-0");
 
 document.getElementById("no-experience").addEventListener("click", function(){
     if(this.checked===true){
@@ -43,7 +16,7 @@ document.getElementById("no-experience").addEventListener("click", function(){
 });
 
 
-
+let countE = 1;
 const addExperience = () => {
     let btn = document.getElementById("btn-experiance");
     let newDiv = document.createRange().createContextualFragment(
@@ -51,42 +24,45 @@ const addExperience = () => {
         </br>
         </br>
         <label for="job-title">Job title</label>
-        <input type="text" name="job-title" placeholder="Waiter" required>
+        <input type="text" name="job-title-${countE}" placeholder="Waiter" required>
         <div class="underline"></div>
         </div>
         <div class="form-row">
         <label for="employer">Employer</label>
-        <input type="text" name="employer" placeholder="Italian Restaurant London" required>
+        <input type="text" name="employer-${countE}" placeholder="Italian Restaurant London" required>
         <div class="underline"></div>
         </div>
         <div class="form-row">
         <label for="start-end-date">Start & End date</label>
         <div class="date">
-            <input type="text" id="datej" class="start-date" name="start-date" placeholder="Oct, 2019" required>
-            <input type="text" id="datej" class="end-date" name="end-date" placeholder="Nov, 2019" required>
+            <input type="text" id="start-exp-${countE}" class="start-date" name="start-date-${countE}" placeholder="Oct, 2019" required>
+            <input type="text" id="end-exp-${countE}" class="end-date" name="end-date-${countE}" placeholder="Nov, 2019" required>
         </div>
         </div>
         <div class="form-row">
         <label for="job-city">City</label>
-        <input type="text" name="job-city" placeholder="London" required>
+        <input type="text" name="job-city-${countE}" placeholder="London" required>
         <div class="underline"></div>
         </div>
         <div class="form-row">
         <label for="job-description">Description</label>
-        <textarea name="job-description" cols="35" rows="4" placeholder="e.g. waitressing,preparing venue for events, taking care of restaurant clarity, making basic drinks, brewing coffee" required></textarea>
+        <textarea name="job-description-${countE}" cols="35" rows="4" placeholder="e.g. waitressing,preparing venue for events, taking care of restaurant clarity, making basic drinks, brewing coffee" required></textarea>
         <div class="underlineTA"></div>
     </div>`);
 
     btn.parentNode.insertBefore(newDiv, btn);
+    calendar(`exp-${countE}`);
+    ++countE;
 }
 
 document.getElementById("btn-experiance").addEventListener("click", addExperience);
 
+let countL = 1;
 const addLanguage = () => {
     let btn = document.getElementById("btn-language");
     let newDiv = document.createRange().createContextualFragment(
     `<div class="form-row">
-        <input type="text" name="languages" placeholder="German" required>
+        <input type="text" name="languages-${countL}" placeholder="German" required>
         <div class="underline"></div>
         <div class="degree">
             <input type="number" name="language_level" min=1 max=5 placeholder=1>
@@ -94,26 +70,30 @@ const addLanguage = () => {
         </div>
     </div>`);
     btn.parentNode.insertBefore(newDiv, btn);
+    ++countL;
 }
 
 document.getElementById("btn-language").addEventListener("click", addLanguage);
 
+let countSk = 1;
 const addSkill = () => {
     let btn = document.getElementById("btn-skill");
     let newDiv = document.createRange().createContextualFragment(
     `<div class="form-row">
-        <input type="text" name="skills" placeholder="Marketing" required>
+        <input type="text" name="skills-${countSk}" placeholder="Marketing" required>
         <div class="underline"></div>
         <div class="degree">
-            <input type="number" name="skill_level" min=1 max=5 placeholder=1>
+            <input type="number" name="skill-level-${countSk}" min=1 max=5 placeholder=1>
             <div class="limit">/5</div>
         </div>
     </div>`);
     btn.parentNode.insertBefore(newDiv, btn);
+    ++countSk;
 }
 
 document.getElementById("btn-skill").addEventListener("click", addSkill);
 
+let countS = 1;
 const addSchool = () => {
     let btn = document.getElementById("btn-school");
     let newDiv = document.createRange().createContextualFragment(
@@ -121,42 +101,44 @@ const addSchool = () => {
     </br>
     <div class="form-row">
     <label for="school">School</label>
-    <input type="text" name="school" placeholder="Silesian University of Technology" required>
+    <input type="text" name="school-${countS}" placeholder="Silesian University of Technology" required>
     <div class="underline"></div>
     </div>
     <div class="form-row">
     <label for="specialization">Specialization</label>
-    <input type="text" name="specialization" placeholder="Teleinformatics" required>
+    <input type="text" name="specialization-${countS}" placeholder="Teleinformatics" required>
     <div class="underline"></div>
     </div>
     <div class="form-row">
     <label for="start-end-date">Start & End date</label>
     <div class="date">
-        <input type="text" class="start-date" name="start-date" placeholder="Oct, 2019" required>
-        <input type="text" class="end-date" name="end-date" placeholder="Nov, 2019" required>
+        <input type="text" id="start-school-${countS}" class="start-date" name="school-start-date-${countS}" placeholder="Oct, 2019" required>
+        <input type="text" id="end-school-${countS}" class="end-date" name="school-end-date-${countS}" placeholder="Nov, 2019" required>
     </div>
     </div>
     <div class="form-row">
     <label for="school-city">City</label>
-    <input type="text" name="school-city" placeholder="Gliwice" required>
+    <input type="text" name="school-city-${countS}" placeholder="Gliwice" required>
     <div class="underline"></div>
     </div>
     <div class="form-row">
     <label for="school-description">Description</label>
-    <textarea name="school-description" cols="35" rows="4" placeholder="e.g. programming, data analysing, network designing, microprocessors coding"></textarea>
+    <textarea name="school-description-${countS}" cols="35" rows="4" placeholder="e.g. programming, data analysing, network designing, microprocessors coding"></textarea>
     <div class="underlineTA"></div>
     </div>`);
     btn.parentNode.insertBefore(newDiv, btn);
+    calendar(`school-${countS}`);
+    ++countS;
 }
 
 document.getElementById("btn-school").addEventListener("click", addSchool);
 
-
+let CountC = 1;
 const addCourse = () => {
     let btn = document.getElementById("btn-course");
     let newDiv = document.createRange().createContextualFragment(
     `<div class="form-row">
-        <input type="text" name="course" placeholder="e.g. Google Internet Revolutions">
+        <input type="text" name="course-${countC}" placeholder="e.g. Google Internet Revolutions">
         <div class="underline"></div>
     </div>`);
     btn.parentNode.insertBefore(newDiv, btn);
