@@ -7,7 +7,10 @@
     <title>Recruitment System - Profile</title>
     <link rel="stylesheet" href="/css/style.css" type="text/css">
     <link rel="stylesheet" href="/font/stylesheet.css" type="text/css" charset="utf-8" />
+    <!--<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">-->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 </head>
 <body>
     <nav>
@@ -99,9 +102,9 @@
                 <div class="form-row">
                     <label for="start-end-date">Start & End date</label>
                     <div class="date">
-                        <input type="text" id="datej1" class="start-date" name="start-date-0">
+                        <input type="text" id="start-exp-0" class="start-date" name="start-date-0">
                         
-                        <input type="text" id="datej2" class="end-date" name="end-date-0">
+                        <input type="text" id="end-exp-0" class="end-date" name="end-date-0">
                         
                     </div>
                 </div>
@@ -151,8 +154,8 @@
                 <div class="form-row">
                     <label for="start-end-date">Start & End date</label>
                     <div class="date">
-                        <input type="text" class="start-date" name="school-start-date-0" required>
-                        <input type="text" class="end-date" name="school-end-date-0" required>
+                        <input type="text" id="start-school-0" class="start-date" name="school-start-date-0" required>
+                        <input type="text" id="end-school-0" class="end-date" name="school-end-date-0" required>
                     </div>
                 </div>
                 <div class="form-row">
@@ -249,7 +252,7 @@
                 <div class="form-row ">
                     <label for="certificate-file">Certificates</label>
                     <div class="upload">
-                        <input type="file" name="certificate-file-0" class="inputfile"      accept="application/pdf" data-multiple-caption="{count} files selected"     multiple>
+                        <input type="file" name="certificate-file-0" class="inputfile" accept="application/pdf" data-multiple-caption="{count} files selected"     multiple>
                         <label>Choose a file</label>
                     </div>
                 </div>
@@ -280,9 +283,9 @@
     </div>
 </body>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
 <script src="script/main.js"></script>
 <script src="script/burger.js"></script>
 <script src="script/calendar.js"></script>
