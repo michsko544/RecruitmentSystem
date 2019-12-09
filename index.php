@@ -1,30 +1,7 @@
 ﻿<?php
 if ((isset($_SESSION['logged_in'])) && ($_SESSION['logged_in'] == true))
 {
-    if ($_SESSION['role_name'] == 'recruit')
-    {
-        header('Location: accounts/recruit_account.php');
-    }
-    elseif ($_SESSION['role_name'] == 'manager')
-    {
-        header('Location: accounts/manager_account.php');
-    }
-    elseif ($_SESSION['role_name'] == 'assistant')
-    {
-        header('Location: accounts/assistant_account.php');
-    }
-    elseif ($_SESSION['role_name'] == 'recruiter')
-    {
-        header('Location: accounts/recruiter_account.php');
-    }
-    elseif ($_SESSION['role_name'] == 'admin')
-    {
-        header('Location: accounts/admin_panel.php');
-    }
-    else
-    {
-        $_SESSION['error'] = '<span> Internal error </span>';
-    }
+    header('Location: profile.php');
     exit();
 }
 ?>

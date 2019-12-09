@@ -1,3 +1,12 @@
+<?php
+   session_start();
+   //if ((!isset($_SESSION['logged_in'])) || ($_SESSION['logged_in'] == false))
+   {
+      // header('Location: index.php');
+      // exit();
+   }
+   ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,7 +53,18 @@
                 }
                 else
                 {
-                    $application_name = $connection->query("SELECT  FROM Applications");
+                    $user_app_join = $connection->query("SELECT id_applicants FROM applicants WHERE id_user = {$_SESSION['id_user']}");
+                    if (!$user_app_join)
+                    {
+                        throw new Exception($connection->error);
+                    }
+                    else
+                    {
+                        $id_from_user = $user_app_join->fetch_assoc();
+                    }
+
+
+                    $application_name = $connection->query("SELECT * FROM applications WHERE id_applicants = {$id_from_user}");
                     if (!$application_name)
                     {
                         // TODO wypisac liste zlozonych aplikacji i ich statusy
@@ -53,6 +73,9 @@
                     else
                     {
                         $pos_name = $application_name;
+
+                        // free mem
+                        $application_name->free();
                     }
                 }
             }
