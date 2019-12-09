@@ -44,6 +44,7 @@
 
             <?php
             require_once "php/connect.php";
+            $pos_name = "";
             $connection = new mysqli($host, $db_user, $db_pass, $db_name);
             try
             {
@@ -61,10 +62,11 @@
                     else
                     {
                         $id_from_user = $user_app_join->fetch_assoc();
+                        $user_id_select = $id_from_user['id_applicants'];
                     }
 
 
-                    $application_name = $connection->query("SELECT * FROM applications WHERE id_applicants = {$id_from_user}");
+                    $application_name = $connection->query("SELECT * FROM applications WHERE id_applicants = {$user_id_select}");
                     if (!$application_name)
                     {
                         // TODO wypisac liste zlozonych aplikacji i ich statusy
