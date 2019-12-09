@@ -183,8 +183,8 @@ $sign_up_class = new SignUpSystem(true);
         <div class="form-row">
             <label for="start-end-date">Start & End date</label>
             <div class="date">
-                <input type="text" id="datej1" class="start-date" name="start-date-0" placeholder="Oct, 2019" required>
-                <input type="text" id="datej2" class="end-date" name="end-date-0" placeholder="Nov, 2019" required>
+                <input type="text" id="start-exp-0" class="start-date" name="start-date-0" placeholder="Oct, 2019" required>
+                <input type="text" id="end-exp-0" class="end-date" name="end-date-0" placeholder="Nov, 2019" required>
             </div>
         </div>
         <div class="form-row">
@@ -280,8 +280,8 @@ $sign_up_class = new SignUpSystem(true);
         <div class="form-row">
             <label for="start-end-date">Start & End date</label>
             <div class="date">
-                <input type="text" class="start-date" name="school-start-date-0" placeholder="Oct, 2019" required>
-                <input type="text" class="end-date" name="school-end-date-0" placeholder="Nov, 2019" required>
+                <input type="text" id="start-school-0" class="start-date" name="school-start-date-0" placeholder="Oct, 2019" required>
+                <input type="text" id="end-school-0" class="end-date" name="school-end-date-0" placeholder="Nov, 2019" required>
             </div>
         </div>
         <div class="form-row">

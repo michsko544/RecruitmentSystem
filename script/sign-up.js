@@ -1,7 +1,61 @@
 var buttons=document.getElementsByClassName("btn");
 
+const convertDateDisplay = () => {
+    let date = this.value;
+    let year = `${date[6]}${date[7]}${date[8]}${date[9]}`;
+    let month = `${date[0]}${date[1]}`;
+    switch (month) {
+        case "01": 
+            month = "Jan";
+            break;
+        case "02": 
+            month = "Feb";
+            break;
+        case "03": 
+            month = "Mar";
+            break;
+        case "04": 
+            month = "Apr";
+            break;
+        case "05": 
+            month = "May";
+            break;
+        case "06": 
+            month = "Jun";  
+            break;
+        case "07": 
+            month = "Jul";
+            break;
+        case "08": 
+            month = "Aug";
+            break;
+        case "09": 
+            month = "Sep";
+            break;
+        case "10": 
+            month = "Oct";
+            break;
+        case "11": 
+            month = "Nov";
+            break;
+        case "12": 
+            month = "Dec";
+            break;
+        default:
+            month = "Jan";
+    }
+    this.value = `${month},${year}`;
+}
+const updateDisplayOnchange = (id) => {
+    document.getElementById(id).addEventListener("change", convertDateDisplay.bind(this));
+}
+
 calendar("exp-0");
+//updateDisplayOnchange("start-exp-0");
+//updateDisplayOnchange("end-exp-0");
 calendar("school-0");
+//updateDisplayOnchange("start-school-0");
+//updateDisplayOnchange("end-school-0");
 
 document.getElementById("no-experience").addEventListener("click", function(){
     if(this.checked===true){
@@ -52,6 +106,8 @@ const addExperience = () => {
 
     btn.parentNode.insertBefore(newDiv, btn);
     calendar(`exp-${countE}`);
+    updateDisplayOnchange(`start-exp-${countE}`);
+    updateDisplayOnchange(`end-exp-${countE}`);
     ++countE;
 }
 
@@ -128,6 +184,8 @@ const addSchool = () => {
     </div>`);
     btn.parentNode.insertBefore(newDiv, btn);
     calendar(`school-${countS}`);
+    updateDisplayOnchange(`start-school-${countS}`);
+    updateDisplayOnchange(`end-school-${countS}`);
     ++countS;
 }
 
