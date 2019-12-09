@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if ((!isset($_POST['username'])) || (!isset($_POST['password'])))
+if ((!isset($_POST['login'])) || (!isset($_POST['password'])))
 {
    // header('Location: /index.php');
    // exit();
@@ -18,10 +18,9 @@ try
     }
     else
     {
-        $login = $_POST['username'];
+        $login = $_POST['login'];
         $password = $_POST['password'];
-        echo "dziala";
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
         $login = htmlentities($login, ENT_QUOTES, "UTF-8");
         // $password = htmlentities($password, ENT_QUOTES, "UTF-8");
 
@@ -34,62 +33,32 @@ try
             {
                 $row_users = $result_login->fetch_assoc();
 
-                if (password_verify($hashed_password, $row_users['password']))
+                if (password_verify($password, $row_users['pass']))
                 {
-
                     $_SESSION['logged_in'] = true;
                     $_SESSION['id_user'] = $row_users['id_user'];
-                    $_SESSION['role_id'] = $row_users['role_id'];
-                    $_SESSION['first_name'] = $row_users['first_name'];
-                    $_SESSION['last_name'] = $row_users['last_name'];
-                    $_SESSION['username'] = $row_users['username'];
-                    $_SESSION['recruit_id'] = $row_users['recruit_id'];
+                    $_SESSION['role_id'] = $row_users['id_role'];
+                    $_SESSION['first_name'] = $row_users['name'];
+                    $_SESSION['last_name'] = $row_users['surname'];
+                    $_SESSION['username'] = $row_users['login'];
+                    $_SESSION['id_conv'] = $row_users['id_conv'];
 
                     // clear memory
                     unset($_SESSION['error']);
                     $result_login->free();
 
-                    // redirect to user's account considering role
-                    $user_role = $row_users['role_id'];
-                    if ($result_role = $connection->query(
-                        sprintf("SELECT * FROM roles WHERE role_id='%s'",
-                            $user_role))) {
-                        // which role
-                        $row_roles = $result_role->fetch_assoc();
-                        $_SESSION['role_name'] = $row_roles['role_name'];
-                        if ($row_roles['role_name'] == 'recruit') {
-                            $result_role->free(); // clear memory
-                            header('Location: /accounts/recruit_account.php');
-                        } elseif ($row_roles['role_name'] == 'manager') {
-                            $result_role->free(); // clear memory
-                            header('Location: /accounts/manager_account.php');
-                        } elseif ($row_roles['role_name'] == 'assistant') {
-                            $result_role->free(); // clear memory
-                            header('Location: /accounts/assistant_account.php');
-                        } elseif ($row_roles['role_name'] == 'recruiter') {
-                            $result_role->free(); // clear memory
-                            header('Location: /accounts/recruiter_account.php');
-                        } elseif ($row_roles['role_name'] == 'admin') {
-                            $result_role->free(); // clear memory
-                            header('Location: /accounts/admin_panel.php');
-                        } else {
-                            $_SESSION['error'] = '<span> Internal error </span>';
-                        }
-                    }
-                    else{
-                        throw new Exception($connection->error);
-                    }
+                    header('Location: /profile.php');
                 }
                 else
                 {
                     $_SESSION['error'] = '<span> Incorrect username or password </span>';
-                    header('Location: /index.php');
+                    header('Location: /index.php?var_l=login');
                 }
             }
             else
             {
                 $_SESSION['error'] = '<span> Incorrect username or password </span>';
-                header('Location: /index.php');
+                header('Location: /index.php?var_l=login');
             }
         }
         else
@@ -104,4 +73,3 @@ catch (Exception $e)
     echo 'Server error! Try again later';
 }
 
-?>

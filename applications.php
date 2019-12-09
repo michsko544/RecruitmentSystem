@@ -1,9 +1,9 @@
 <?php
    session_start();
-   //if ((!isset($_SESSION['logged_in'])) || ($_SESSION['logged_in'] == false))
+   if ((!isset($_SESSION['logged_in'])) || ($_SESSION['logged_in'] == false))
    {
-      // header('Location: index.php');
-      // exit();
+        header('Location: index.php');
+        exit();
    }
    ?>
 
@@ -54,7 +54,7 @@
                 }
                 else
                 {
-                    $user_app_join = $connection->query("SELECT id_applicants FROM applicants WHERE id_user = {$_SESSION['id_user']}");
+                    $user_app_join = $connection->query("SELECT id_applicants FROM applicants WHERE id_user = '{$_SESSION['id_user']}'");
                     if (!$user_app_join)
                     {
                         throw new Exception($connection->error);
@@ -66,7 +66,7 @@
                     }
 
 
-                    $application_name = $connection->query("SELECT * FROM applications WHERE id_applicants = {$user_id_select}");
+                    $application_name = $connection->query("SELECT * FROM applications WHERE id_applicants = '$user_id_select'");
                     if (!$application_name)
                     {
                         // TODO wypisac liste zlozonych aplikacji i ich statusy
