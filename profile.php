@@ -127,11 +127,11 @@
                 <div class="form-row">
                     <label for="start-end-date">Start & End date</label>
                     <div class="date">
-                        <input type="text" id="start-exp-0" class="start-date" name="start-date-0" value="<?php
+                        <input type="text" id="start-exp-0" class="start-date" name="start-date-0" onchange="this.value=convertDateDisplay(this.id)" value="<?php
 
                         ?>">
                         
-                        <input type="text" id="end-exp-0" class="end-date" name="end-date-0" value="<?php
+                        <input type="text" id="end-exp-0" class="end-date" name="end-date-0"  onchange="this.value=convertDateDisplay(this.id)" value="<?php
 
                         ?>">
                         
