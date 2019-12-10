@@ -1,7 +1,8 @@
 var buttons=document.getElementsByClassName("btn");
 
-const convertDateDisplay = () => {
-    let date = this.value;
+const convertDateDisplay = function(id) {
+    let date = document.getElementById(id).value;
+    console.log(date);
     let year = `${date[6]}${date[7]}${date[8]}${date[9]}`;
     let month = `${date[0]}${date[1]}`;
     switch (month) {
@@ -44,10 +45,13 @@ const convertDateDisplay = () => {
         default:
             month = "Jan";
     }
-    this.value = `${month},${year}`;
+    return `${month},${year}`;
 }
+
 const updateDisplayOnchange = (id) => {
-    document.getElementById(id).addEventListener("change", convertDateDisplay.bind(this));
+    document.getElementById(id).onchange = function(){
+        convertDateDisplay(id);
+    };
 }
 
 calendar("exp-0");
