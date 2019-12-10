@@ -1,11 +1,35 @@
 <?php
-    session_start();
-   /* if ((!isset($_SESSION['logged_in'])) || ($_SESSION['logged_in'] == false))
-    {
-        header('Location: index.php');
-        exit();
-    }*/
+session_start();
+/* if ((!isset($_SESSION['logged_in'])) || ($_SESSION['logged_in'] == false))
+{
+    header('Location: index.php');
+    exit();
+}*/
 
+// set connection with db
+require_once "php/connect.php";
+mysqli_report(MYSQLI_REPORT_STRICT);
+try
+{
+    $connection = new mysqli($host, $db_user, $db_pass, $db_name);
+    if ($connection->connect_errno != 0)
+    {
+        throw new Exception(mysqli_connect_errno());
+    } else
+    {
+        $table = $connection->query(/*TODO add query*/"WHERE id_user = '{$_SESSION['id_user']}'");
+        if (!$table)
+        {
+            throw new Exception($connection->error);
+        }
+        $assoc_t = $table->fetch_assoc();
+    }
+    $connection->close();
+}
+catch (Exception $e)
+{
+
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -58,35 +82,35 @@
                 <div class="form-row">
                     <label for="first-name">First name</label>
                     <input type="text" name="first-name" value="<?php
-
+                    echo $assoc_t['name'];
                     ?>">
                     <div class="underline"></div>
                 </div>
                 <div class="form-row">
                     <label for="last-name">Last name</label>
                     <input type="text" name="last-name" value="<?php
-
+                    echo $assoc_t['surname'];
                     ?>">
                     <div class="underline"></div>
                 </div>
                 <div class="form-row">
                     <label for="phone-num">Phone number</label>
                     <input type="tel" name="phone-num" value="<?php
-
+                    echo $assoc_t['phone'];
                     ?>">
                     <div class="underline"></div>
                 </div>
                 <div class="form-row">
                     <label for="residence-country">Your country</label>
                     <input type="text" name="residence-country" value="<?php
-
+                    echo $assoc_t['country'];
                     ?>">
                     <div class="underline"></div>
                 </div>
                 <div class="form-row">
                     <label for="residence-city">Your city</label>
                     <input type="text" name="residence-city" value="<?php
-
+                    echo $assoc_t['city'];
                     ?>">
                     <div class="underline"></div>
                 </div>
@@ -106,7 +130,10 @@
                 <div class="form-row">
                     <div class="checkbox">
                         <input type="checkbox" name="no-experience"  value="<?php
-
+                        if (!$assoc_t['employer'])
+                        {
+                            echo "checked";
+                        }
                         ?>" id="no-experience">I don't  have any experience
                     </div>
                 </div>

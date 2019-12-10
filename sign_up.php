@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once "php/sign_up/SignUpSystem.php";
+require_once "php/connect.php";
 $sign_up_class = new SignUpSystem(true);
 ?>
 
@@ -63,24 +64,25 @@ $sign_up_class = new SignUpSystem(true);
                 <!-- chyba dziala -- potrzebna baza danych -->
                 <?php
                 // Pick data from DB
-                $pos_name = array('foo', 'boo');
-                $connection = new mysqli($host, $db_user, $db_pass, $db_name);
+                //$pos_name = array('postion'=>array("foo", "bar"));
+                mysqli_report(MYSQLI_REPORT_STRICT);
                 try
                 {
+                    $connection = new mysqli($host, $db_user, $db_pass, $db_name);
                     if ($connection->connect_errno != 0)
                     {
                         throw new Exception(mysqli_connect_errno());
                     }
                     else
                     {
-                        $position_name = $connection->query("SELECT position FROM positions");
-                        if (!$position_name)
+                        if ($position_name = $connection->query("SELECT postion FROM positions"))
                         {
-                            throw new Exception($connection->error);
+                            $num_rows = $position_name->num_rows;
+                            $pos_name = $position_name->fetch_assoc();
                         }
                         else
                         {
-                            $pos_name = $position_name;
+                            throw new Exception($connection->error);
                         }
                     }
                 }
@@ -88,12 +90,11 @@ $sign_up_class = new SignUpSystem(true);
                 {
                     echo 'Server error! Try signing up later';
                 }
-                $connection->close();
-
                 foreach ($pos_name as $key=>$value)
                 {
                     echo '<option value="'.$value.'">'.$value.' </option>';
                 }
+                $connection->close();
                 ?>
             </select>
         </div>

@@ -9,9 +9,8 @@ mysqli_report(MYSQLI_REPORT_STRICT);
 //Form 1
 if (isset($_POST['e-mail']))
 {
+
     $sign_up_class = new SignUpSystem(true);
-
-
     // Validate username
     $username = $_POST['login'];
     if ((strlen($username) < 3) || (strlen($username) > 20))
