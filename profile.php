@@ -1,10 +1,10 @@
 <?php
     session_start();
-    if ((!isset($_SESSION['logged_in'])) || ($_SESSION['logged_in'] == false))
+   /* if ((!isset($_SESSION['logged_in'])) || ($_SESSION['logged_in'] == false))
     {
         header('Location: index.php');
         exit();
-    }
+    }*/
 
 ?>
 <!DOCTYPE html>
