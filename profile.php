@@ -30,6 +30,7 @@ try
         {
             throw new Exception($connection->error);
         }
+        $count_tx = $table_experience->num_rows;
         $assoc_tx = $table_experience->fetch_assoc();
 
     }
@@ -150,42 +151,49 @@ catch (Exception $e)
                 <div class="form-row">
                     <label for="job-title">Job title</label>
                     <input type="text" name="job-title-0" value="<?php
-
+                        if ($count_tx == 0)
+                        {
+                            echo "";
+                        }
+                        elseif ($count_tx == 1)
+                        {
+                            echo $assoc_tx['job'];
+                        }
+                        else
+                        {
+                            /*  TODO display multiple experience values
+                                set varGet to $count_tx - 1
+                                do magic
+                                make it work
+                                create loop with echo with whole form and fill it
+                                with data according to $i value
+                            */
+                        }
                     ?>">
                     <div class="underline"></div>
                 </div>
                 <div class="form-row">
                     <label for="employer">Employer</label>
-                    <input type="text" name="employer-0" value="<?php
-
-                    ?>">
+                    <input type="text" name="employer-0" value="">
                     <div class="underline"></div>
                 </div>
                 <div class="form-row">
                     <label for="start-end-date">Start & End date</label>
                     <div class="date">
-                        <input type="text" id="start-exp-0" class="start-date" name="start-date-0" onchange="this.value=convertDateDisplay(this.id)" value="<?php
-
-                        ?>">
+                        <input type="text" id="start-exp-0" class="start-date" name="start-date-0" onchange="this.value=convertDateDisplay(this.id)" value="">
                         
-                        <input type="text" id="end-exp-0" class="end-date" name="end-date-0"  onchange="this.value=convertDateDisplay(this.id)" value="<?php
-
-                        ?>">
+                        <input type="text" id="end-exp-0" class="end-date" name="end-date-0"  onchange="this.value=convertDateDisplay(this.id)" value="">
                         
                     </div>
                 </div>
                 <div class="form-row">
                     <label for="job-city">City</label>
-                    <input type="text" name="job-city-0" value="<?php
-
-                    ?>">
+                    <input type="text" name="job-city-0" value="">
                     <div class="underline"></div>
                 </div>
                 <div class="form-row">
                     <label for="job-description">Description</label>
-                    <textarea name="job-description-0" cols="35" rows="4" value="<?php
-
-                    ?>"></textarea>
+                    <textarea name="job-description-0" cols="35" rows="4" value=""></textarea>
                     <div class="underlineTA"></div>
                 </div>
                 <div class="btn-add" id="btn-experiance">
@@ -213,41 +221,29 @@ catch (Exception $e)
             <div class="element-wrapper">
                 <div class="form-row">
                     <label for="school">School</label>
-                    <input type="text" name="school-0" value="<?php
-
-                    ?>" required>
+                    <input type="text" name="school-0" value="" required>
                     <div class="underline"></div>
                 </div>
                 <div class="form-row">
                     <label for="specialization">Specialization</label>
-                    <input type="text" name="specialization-0" value="<?php
-
-                    ?>" required>
+                    <input type="text" name="specialization-0" value="" required>
                     <div class="underline"></div>
                 </div>
                 <div class="form-row">
                     <label for="start-end-date">Start & End date</label>
                     <div class="date">
-                        <input type="text" id="start-school-0" class="start-date" name="school-start-date-0" value="<?php
-
-                        ?>" required>
-                        <input type="text" id="end-school-0" class="end-date" name="school-end-date-0" value="<?php
-
-                        ?>" required>
+                        <input type="text" id="start-school-0" class="start-date" name="school-start-date-0" value="" required>
+                        <input type="text" id="end-school-0" class="end-date" name="school-end-date-0" value="" required>
                     </div>
                 </div>
                 <div class="form-row">
                     <label for="school-city">City</label>
-                    <input type="text" name="school-city-0" value="<?php
-
-                    ?>" required>
+                    <input type="text" name="school-city-0" value="" required>
                     <div class="underline"></div>
                 </div>
                 <div class="form-row">
                     <label for="school-description">Description</label>
-                    <textarea name="school-description-0" cols="35" rows="4" value="<?php
-
-                    ?>"></textarea>
+                    <textarea name="school-description-0" cols="35" rows="4" value=""></textarea>
                     <div class="underlineTA"></div>
                 </div>
                 <div class="btn-add" id="btn-school">
@@ -275,14 +271,10 @@ catch (Exception $e)
             <div class="element-wrapper">
                 <div class="form-row relative">
                     <label for="languages">Languages</label>
-                    <input type="text" name="languages-0" placeholder="German" value="<?php
-
-                    ?>" required>
+                    <input type="text" name="languages-0" placeholder="German" value="" required>
                     <div class="underline"></div>
                 <div class="degree">
-                    <input type="number" name="language-level-0" min=1 max=5 placeholder=1 value="<?php
-
-                    ?>">
+                    <input type="number" name="language-level-0" min=1 max=5 placeholder=1 value="">
                         <div class="limit">/5</div>
                     </div>
                 </div>
@@ -298,14 +290,10 @@ catch (Exception $e)
                 </div>
                 <div class="form-row relative">
                     <label for="skills">Skills</label>
-                    <input type="text" name="skills-0" placeholder="Marketing" value="<?php
-
-                    ?>" required>
+                    <input type="text" name="skills-0" placeholder="Marketing" value="" required>
                     <div class="underline"></div>
                     <div class="degree">
-                        <input type="number" name="skill-level-0" min=1 max=5 placeholder=1 value="<?php
-
-                        ?>">
+                        <input type="number" name="skill-level-0" min=1 max=5 placeholder=1 value="">
                         <div class="limit">/5</div>
                     </div>
                 </div>
@@ -335,35 +323,27 @@ catch (Exception $e)
                 <div class="form-row">
                     <label for="cv-file">Curriculum vitae</label>
                     <div class="upload">
-                        <input type="file" name="cv-file" class="inputfile"  value="<?php
-
-                        ?>" accept="application/pdf">
+                        <input type="file" name="cv-file" class="inputfile"  value="" accept="application/pdf">
                         <label for="cv-file">Choose a file</label>
                     </div>
                 </div>
                 <div class="form-row ">
                     <label for="certificate-file">Certificates</label>
                     <div class="upload">
-                        <input type="file" name="certificate-file-0" class="inputfile" value="<?php
-
-                        ?>" accept="application/pdf" data-multiple-caption="{count} files selected"     multiple>
+                        <input type="file" name="certificate-file-0" class="inputfile" value="" accept="application/pdf" data-multiple-caption="{count} files selected"     multiple>
                         <label>Choose a file</label>
                     </div>
                 </div>
                 <div class="form-row">
                     <label for="lm-file">Cover Letter</label>
                         <div class="upload">
-                        <input type="file" name="lm-file" class="inputfile" value="<?php
-
-                        ?>" accept="application/pdf" data-multiple-caption="{count} files selected" multiple>
+                        <input type="file" name="lm-file" class="inputfile" value="" accept="application/pdf" data-multiple-caption="{count} files selected" multiple>
                         <label>Choose a file</label>
                     </div>
                 </div>
                 <div class="form-row">
                     <label for="course">Courses</label>
-                    <input type="text" name="course-0" placeholder="e.g. Google Internet Revolutions" value="<?php
-
-                    ?>">
+                    <input type="text" name="course-0" placeholder="e.g. Google Internet Revolutions" value="">
                     <div class="underline"></div>
                 </div>
                 <div class="btn-add" id="btn-course">
