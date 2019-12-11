@@ -17,18 +17,28 @@ try
         throw new Exception(mysqli_connect_errno());
     } else
     {
-        $table_personal_data = $connection->query("SELECT u.name, u.surname, a.phone, c.locality As residence_city from users u join applicants a on u.id_user=a.id_user join cities c on a.id_city=c.id_city where id_user = '{$_SESSION['id_user']}'");
+        // table 1
+        $table_personal_data = $connection->query("SELECT u.name, u.surname, a.phone, c.locality As residence_city from users u join applicants a on u.id_user=a.id_user join cities c on a.id_city=c.id_city where u.id_user = '{$_SESSION['id_user']}'");
         if (!$table_personal_data)
         {
             throw new Exception($connection->error);
         }
         $assoc_tpd = $table_personal_data->fetch_assoc();
+        // table 2
+        $table_experience = $connection->query("SELECT e.job, e.employer, e.start_job, e.end_job, c.locality As job_city, e.description As job_description from users u join applicants a on u.id_user=a.id_user join cities c on a.id_city=c.id_city join experiences e on a.id_applicants = e.id_applicants where u.id_user='{$_SESSION['id_user']}'");
+        if (!$table_experience)
+        {
+            throw new Exception($connection->error);
+        }
+        $assoc_tx = $table_experience->fetch_assoc();
+
     }
+
     $connection->close();
 }
 catch (Exception $e)
 {
-    echo "Server error! Please try again later";
+    echo "Server error! Please try again later. Err: ".$e;
 }
 ?>
 <!DOCTYPE html>
@@ -82,35 +92,35 @@ catch (Exception $e)
                 <div class="form-row">
                     <label for="first-name">First name</label>
                     <input type="text" name="first-name" value="<?php
-                    echo $assoc_t['name'];
+                    echo $assoc_tpd['name'];
                     ?>">
                     <div class="underline"></div>
                 </div>
                 <div class="form-row">
                     <label for="last-name">Last name</label>
                     <input type="text" name="last-name" value="<?php
-                    echo $assoc_t['surname'];
+                    echo $assoc_tpd['surname'];
                     ?>">
                     <div class="underline"></div>
                 </div>
                 <div class="form-row">
                     <label for="phone-num">Phone number</label>
                     <input type="tel" name="phone-num" value="<?php
-                    echo $assoc_t['phone'];
+                    echo $assoc_tpd['phone'];
                     ?>">
                     <div class="underline"></div>
                 </div>
                 <div class="form-row">
                     <label for="residence-country">Your country</label>
                     <input type="text" name="residence-country" value="<?php
-                    echo $assoc_t['country'];
+                    //echo $assoc_tpd['country'];
                     ?>">
                     <div class="underline"></div>
                 </div>
                 <div class="form-row">
                     <label for="residence-city">Your city</label>
                     <input type="text" name="residence-city" value="<?php
-                    echo $assoc_t['city'];
+                    echo $assoc_tpd['residence_city'];
                     ?>">
                     <div class="underline"></div>
                 </div>
@@ -130,7 +140,7 @@ catch (Exception $e)
                 <div class="form-row">
                     <div class="checkbox">
                         <input type="checkbox" name="no-experience"  value="<?php
-                        if (!$assoc_t['employer'])
+                        if (!$assoc_tx['employer'])
                         {
                             echo "checked";
                         }

@@ -77,7 +77,6 @@ $sign_up_class = new SignUpSystem(true);
                     {
                         if ($position_name = $connection->query("SELECT postion FROM positions"))
                         {
-                            $num_rows = $position_name->num_rows;
                             while($pos_name = $position_name->fetch_assoc())
                             {
                                 foreach ($pos_name as $key=>$value)
