@@ -17,18 +17,18 @@ try
         throw new Exception(mysqli_connect_errno());
     } else
     {
-        $table = $connection->query(/*TODO add query*/"WHERE id_user = '{$_SESSION['id_user']}'");
-        if (!$table)
+        $table_personal_data = $connection->query("SELECT u.name, u.surname, a.phone, c.locality As residence_city from users u join applicants a on u.id_user=a.id_user join cities c on a.id_city=c.id_city where id_user = '{$_SESSION['id_user']}'");
+        if (!$table_personal_data)
         {
             throw new Exception($connection->error);
         }
-        $assoc_t = $table->fetch_assoc();
+        $assoc_tpd = $table_personal_data->fetch_assoc();
     }
     $connection->close();
 }
 catch (Exception $e)
 {
-
+    echo "Server error! Please try again later";
 }
 ?>
 <!DOCTYPE html>
