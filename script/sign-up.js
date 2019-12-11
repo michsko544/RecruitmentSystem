@@ -54,6 +54,12 @@ const updateDisplayOnchange = (id) => {
     };
 }
 
+const highlightLabel = (id) => { //id inputa
+    document.getElementById(id).addEventListener("focus", ()=>{
+        this.parentNode.parentNode.children[0].style.color = blue; //dla daty dwa parentNode
+    });
+}
+
 calendar("exp-0");
 //updateDisplayOnchange("start-exp-0");
 //updateDisplayOnchange("end-exp-0");
