@@ -241,13 +241,13 @@ class Profile
     {
         echo $this->education_form_p1;
     }
-    function displaySkills($getVarLang, $getVarSkill)
+    function displaySkills($getVarLang, $getVarSkill, $lang_table, $skills_table)
     {
         for ($i=0;$i <= $getVarLang;$i++)
         {
             for ($j=0; $j <= $getVarSkill; $j++)
             {
-                $this->skills_form = $this->skills_form_p1. $i .$this->skills_form_p2. $i .$this->skills_form_p3. $j .$this->skills_form_p4. $j .$this->skills_form_p5;
+                $this->skills_form = $this->skills_form_p1. $lang_table .$this->skills_form_p2. $lang_table .$this->skills_form_p3. $skills_table .$this->skills_form_p4. $skills_table .$this->skills_form_p5;
             }
         }
         echo $this->skills_form;
