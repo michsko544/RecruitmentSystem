@@ -114,7 +114,7 @@ a {
 }
 
 .cyan-color {
-  color: #36C3D9;
+  color: #36C3D9 !important;
 }
 
 .dark-color {
@@ -274,7 +274,7 @@ a {
   position: absolute;
   width: 100%;
   height: 100%;
-  bottom: 3px;
+  bottom: 0px;
   left: 0;
   border-bottom: 3px #36C3D9 solid;
   transform: translateX(-101%);

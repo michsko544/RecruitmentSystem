@@ -39,9 +39,9 @@ class Profile
                 <div class=\"form-row\">
                     <label for=\"start-end-date\">Start & End date</label>
                     <div class=\"date\">
-                        <input type=\"text\" id=\"start-exp-0\" class=\"start-date\" name=\"start-date-0\" onchange=\"this.value=convertDateDisplay(this.id)\" value=\"\">
+                        <input type=\"text\" id=\"start-exp-0\" class=\"start-date\" name=\"start-date-0\">
 
-                        <input type=\"text\" id=\"end-exp-0\" class=\"end-date\" name=\"end-date-0\"  onchange=\"this.value=convertDateDisplay(this.id)\" value=\"\">
+                        <input type=\"text\" id=\"end-exp-0\" class=\"end-date\" name=\"end-date-0\">
 
                     </div>
                 </div>
@@ -128,7 +128,7 @@ class Profile
         </div>
         <div class=\"list-row hide\" id=\"skills\">
             <div class=\"element-wrapper\">";
-    private $skills_form_mux1 = "<div class=\"form-row relative\">
+    private $skills_form_mux1 = "<div class=\"form-row\">
                     <label for=\"languages\">Languages</label>
                     <input type=\"text\" name=\"languages-0\" placeholder=\"German\" value='";
 
