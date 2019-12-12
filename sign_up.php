@@ -75,7 +75,7 @@ $sign_up_class = new SignUpSystem(true);
                     }
                     else
                     {
-                        if ($position_name = $connection->query("SELECT postion FROM positions"))
+                        if ($position_name = $connection->query("SELECT position FROM positions"))
                         {
                             while($pos_name = $position_name->fetch_assoc())
                             {

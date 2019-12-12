@@ -127,8 +127,8 @@ class Profile
             </div>
         </div>
         <div class=\"list-row hide\" id=\"skills\">
-            <div class=\"element-wrapper\">
-                <div class=\"form-row relative\">
+            <div class=\"element-wrapper\">";
+    private $skills_form_mux1 = "<div class=\"form-row relative\">
                     <label for=\"languages\">Languages</label>
                     <input type=\"text\" name=\"languages-0\" placeholder=\"German\" value='";
 
@@ -140,8 +140,8 @@ class Profile
     private $skills_form_p3 = "'>
                         <div class=\"limit\">/5</div>
                     </div>
-                </div>
-                <div class=\"btn-add\" id=\"btn-language\">
+                </div>";
+    private $skills_form_mux2 = "<div class=\"btn-add\" id=\"btn-language\">
                     <div class=\"btn-text\">
                         Add language
                     </div>
@@ -150,8 +150,8 @@ class Profile
                         +
                         </div>
                     </div>
-                </div>
-                <div class=\"form-row relative\">
+                </div>";
+    private $skills_form_mux3 = "<div class=\"form-row relative\">
                     <label for=\"skills\">Skills</label>
                     <input type=\"text\" name=\"skills-0\" placeholder=\"Marketing\" value='";
 
@@ -163,8 +163,8 @@ class Profile
     private $skills_form_p5 = "'>
                         <div class=\"limit\">/5</div>
                     </div>
-                </div>
-                <div class=\"btn-add\" id=\"btn-skill\">
+                </div>";
+    private $skills_form_mux4 = "<div class=\"btn-add\" id=\"btn-skill\">
                     <div class=\"btn-text\">
                         Add skill
                     </div>
@@ -241,13 +241,19 @@ class Profile
     {
         echo $this->education_form_p1;
     }
+    private $tmp = "";
     function displaySkills($getVarLang, $getVarSkill, $lang_table, $skills_table)
     {
+        foreach ($lang_table as $key=>$value)
+        {
+            $this->tmp = $this->skills_form_mux1. $value .$this->skills_form_p2. $key .$this->skills_form_p3;
+        }
+
         for ($i=0;$i <= $getVarLang;$i++)
         {
             for ($j=0; $j <= $getVarSkill; $j++)
-            {
-                $this->skills_form = $this->skills_form_p1. $lang_table .$this->skills_form_p2. $lang_table .$this->skills_form_p3. $skills_table .$this->skills_form_p4. $skills_table .$this->skills_form_p5;
+            { // TODO display multiple skills
+                $this->skills_form = $this->skills_form_p1. $this->tmp . $this->skills_form_mux2  .$this->skills_form_p4.$this->skills_form_p5;
             }
         }
         echo $this->skills_form;
