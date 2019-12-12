@@ -8,6 +8,10 @@ session_start();
 
 // set connection with db
 require_once "php/connect.php";
+require_once "php/Profile.php";
+
+$profileInstance = new Profile();
+
 mysqli_report(MYSQLI_REPORT_STRICT);
 try
 {
@@ -127,87 +131,15 @@ catch (Exception $e)
                 </div>
             </div>
         </div>
-        <div class="list-row">
-            <div class="title-element">Experience</div>
-            <div class="btn-element">
-                <div class="btn-unwrap">
-                    <div class="line1"></div>
-                    <div class="line2"></div>
-                </div>
-            </div>
-        </div>
-        <div class="list-row hide" id="experience">
-            <div class="element-wrapper">
-                <div class="form-row">
-                    <div class="checkbox">
-                        <input type="checkbox" name="no-experience"  value="<?php
-                        if (!$assoc_tx['employer'])
-                        {
-                            echo "checked";
-                        }
-                        ?>" id="no-experience">I don't  have any experience
-                    </div>
-                </div>
-                <div class="form-row">
-                    <label for="job-title">Job title</label>
-                    <input type="text" name="job-title-0" value="<?php
-                        if ($count_tx == 0)
-                        {
-                            echo "";
-                        }
-                        elseif ($count_tx == 1)
-                        {
-                            echo $assoc_tx['job'];
-                        }
-                        else
-                        {
-                            /*  TODO display multiple experience values
-                                set varGet to $count_tx - 1
-                                do magic
-                                make it work
-                                create loop with echo with whole form and fill it
-                                with data according to $i value
-                            */
-                        }
-                    ?>">
-                    <div class="underline"></div>
-                </div>
-                <div class="form-row">
-                    <label for="employer">Employer</label>
-                    <input type="text" name="employer-0" value="">
-                    <div class="underline"></div>
-                </div>
-                <div class="form-row">
-                    <label for="start-end-date">Start & End date</label>
-                    <div class="date">
-                        <input type="text" id="start-exp-0" class="start-date" name="start-date-0" onchange="this.value=convertDateDisplay(this.id)" value="">
-                        
-                        <input type="text" id="end-exp-0" class="end-date" name="end-date-0"  onchange="this.value=convertDateDisplay(this.id)" value="">
-                        
-                    </div>
-                </div>
-                <div class="form-row">
-                    <label for="job-city">City</label>
-                    <input type="text" name="job-city-0" value="">
-                    <div class="underline"></div>
-                </div>
-                <div class="form-row">
-                    <label for="job-description">Description</label>
-                    <textarea name="job-description-0" cols="35" rows="4" value=""></textarea>
-                    <div class="underlineTA"></div>
-                </div>
-                <div class="btn-add" id="btn-experiance">
-                    <div class="btn-text">
-                        Add employment <!--TODO var exp-count -->
-                    </div>
-                    <div class="btn-border">
-                        <div class="btn-icon">
-                        +
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <?php
+        $profileInstance->displayExperience();
+        $profileInstance->displayEducation();
+        $profileInstance->displaySkills(1,1);
+        $profileInstance->displayAdditional();
+        // Porwałem twoje divy
+        // i nie oddam
+        ?>
+
         <div class="list-row">
             <div class="title-element">Education</div>
             <div class="btn-element">
@@ -310,7 +242,7 @@ catch (Exception $e)
             </div>
         </div>
         <div class="list-row">
-            <div class="title-element">Addition</div>
+            <div class="title-element">Additional</div>
             <div class="btn-element">
                 <div class="btn-unwrap">
                     <div class="line1"></div>
