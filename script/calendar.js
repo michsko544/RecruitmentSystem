@@ -1,6 +1,6 @@
-$( function calendar(){
+function calendar(id){
     var dateFormat = "mm/dd/yy",
-      from = $( ".start-date" )
+      from = $( `#start-${id}` )
         .datepicker({
           defaultDate: "+1w",
           changeMonth: true,
@@ -9,7 +9,7 @@ $( function calendar(){
         .on( "change", function() {
           to.datepicker( "option", "minDate", getDate( this ) );
         }),
-      to = $( ".end-date" ).datepicker({
+      to = $( `#end-${id}` ).datepicker({
         defaultDate: "+1w",
         changeMonth: true,
         numberOfMonths: 1,
@@ -29,5 +29,5 @@ $( function calendar(){
  
       return date;
     }
-  } );
+  }
 

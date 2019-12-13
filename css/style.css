@@ -114,7 +114,7 @@ a {
 }
 
 .cyan-color {
-  color: #36C3D9;
+  color: #36C3D9 !important;
 }
 
 .dark-color {
@@ -269,6 +269,46 @@ a {
     transform: translateX(0);
   }
 }
+.underlineTA::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  bottom: 0px;
+  left: 0;
+  border-bottom: 3px #36C3D9 solid;
+  transform: translateX(-101%);
+  -ms-transform: translateX(-101%);
+  -webkit-transform: translateX(-101%);
+  transition: transform 0.5s ease-in-out;
+}
+
+.underline::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  bottom: -1px;
+  left: 0;
+  border-bottom: 3px #36C3D9 solid;
+  transform: translateX(-101%);
+  -ms-transform: translateX(-101%);
+  -webkit-transform: translateX(-101%);
+  transition: transform 0.5s ease-in-out;
+}
+
+input:focus + .underline::after {
+  transform: translateX(0%);
+  -ms-transform: translateX(0%);
+  -webkit-transform: translateX(0%);
+}
+
+textarea:focus + .underlineTA::after {
+  transform: translateX(0%);
+  -ms-transform: translateX(0%);
+  -webkit-transform: translateX(0%);
+}
+
 #sign-in {
   position: fixed;
   width: 100%;
@@ -282,13 +322,16 @@ a {
   margin-left: auto;
   margin-right: auto;
   max-width: 400px;
+  overflow: hidden;
 }
 #sign-in form .sign-in-row {
   margin-top: 15%;
+  position: relative;
 }
 #sign-in form label {
   font-size: 13px;
   color: #464650;
+  pointer-events: none;
 }
 #sign-in form input[type=text],
 #sign-in form input[type=password] {
@@ -333,6 +376,7 @@ a {
 
 .form-row {
   margin-top: 25.5px;
+  position: relative;
 }
 
 .form-btn-wrapper {
@@ -352,6 +396,7 @@ a {
   margin-left: auto;
   margin-right: auto;
   max-width: 500px;
+  overflow: hidden;
 }
 
 label {
@@ -365,7 +410,8 @@ input[type=email],
 input[type=tel],
 input[type=date],
 input[type=number],
-textarea {
+textarea,
+select {
   font-family: "avenirregular";
   width: 100%;
   outline: none;
@@ -460,8 +506,8 @@ input[type=date] {
 .upload {
   position: relative;
   overflow: hidden;
-  width: 100%;
-  padding: 8px 0 7px;
+  width: 99%;
+  padding: 8px 0 6px;
   text-align: center;
   background: #ffffff00;
   border: 2px #36C3D9 solid;
@@ -639,7 +685,8 @@ input[type=submit] {
   width: 75%;
   max-width: 500px;
   color: #95A5A6;
-  margin: 32px auto;
+  margin: 32px auto 50px;
+  overflow: hidden;
 }
 .element-wrapper .form-row label {
   font-size: 13px;
@@ -654,6 +701,14 @@ input[type=submit] {
 
 .hide {
   display: none;
+}
+
+.server-error /* TODO dodalem diva do wyswietlania errorów. Wystylizuj go jakos ładnie.
+ Jak chcesz sprawdzic jak dziala to mozesz w php/connect.php zmienic jakąkolwiek wartość */
+{
+  height: 100vh;
+  font-size: 20px;
+  color: #de1a04;
 }
 
 @keyframes line1Rotate {

@@ -9,9 +9,8 @@ mysqli_report(MYSQLI_REPORT_STRICT);
 //Form 1
 if (isset($_POST['e-mail']))
 {
+
     $sign_up_class = new SignUpSystem(true);
-
-
     // Validate username
     $username = $_POST['login'];
     if ((strlen($username) < 3) || (strlen($username) > 20))
@@ -76,7 +75,7 @@ if (isset($_POST['e-mail']))
         else
         {
             // Validate email uniqueness
-            $result_email = $connection->query("SELECT id_user FROM Users WHERE email='$email'");
+            $result_email = $connection->query("SELECT id_user FROM applicants WHERE email='$email'");
             if (!$result_email)
             {
                 throw new Exception($connection->error);
@@ -87,7 +86,7 @@ if (isset($_POST['e-mail']))
                 $sign_up_class->notGood('err_email', 'Unavailable e-mail address');
             }
             // Validate username uniqueness
-            $result_username = $connection->query("SELECT id_user FROM Users WHERE username='$username'");
+            $result_username = $connection->query("SELECT id_user FROM users WHERE login='$username'");
             if (!$result_username)
             {
                 throw new Exception($connection->error);
@@ -106,17 +105,19 @@ if (isset($_POST['e-mail']))
                // $_SESSION['insert_password'] = $hashed_password;
 
                 // Add to array and wait
+                echo 'dzialato';
                 $sign_up_class->setInsertValue('username', $username);
                 $sign_up_class->setInsertValue('email', $email);
                 $sign_up_class->setInsertValue('password', $hashed_password);
             }
             $connection->close();
+            exit();
 
         }
     }
     catch(Exception $e)
     {
-        echo 'Server error! Try signing up later';
+        echo 'Server error! Try signing up later </br>'.$e;
     }
     // Unset remembered values
     if (isset($_SESSION['rem_username'])) unset($_SESSION['rem_username']);
@@ -561,7 +562,7 @@ if (isset($_POST['cv-file']))
     }
     catch(Exception $e)
     {
-        echo 'Server error! Try signing up later';
+        echo "<div class='server-error'>Server error! Please try again later. Err: ".$e."</div>";
     }
 }
 */

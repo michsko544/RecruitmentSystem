@@ -1,30 +1,7 @@
 ﻿<?php
 if ((isset($_SESSION['logged_in'])) && ($_SESSION['logged_in'] == true))
 {
-    if ($_SESSION['role_name'] == 'recruit')
-    {
-        header('Location: accounts/recruit_account.php');
-    }
-    elseif ($_SESSION['role_name'] == 'manager')
-    {
-        header('Location: accounts/manager_account.php');
-    }
-    elseif ($_SESSION['role_name'] == 'assistant')
-    {
-        header('Location: accounts/assistant_account.php');
-    }
-    elseif ($_SESSION['role_name'] == 'recruiter')
-    {
-        header('Location: accounts/recruiter_account.php');
-    }
-    elseif ($_SESSION['role_name'] == 'admin')
-    {
-        header('Location: accounts/admin_panel.php');
-    }
-    else
-    {
-        $_SESSION['error'] = '<span> Internal error </span>';
-    }
+    header('Location: profile.php');
     exit();
 }
 ?>
@@ -43,12 +20,6 @@ if ((isset($_SESSION['logged_in'])) && ($_SESSION['logged_in'] == true))
     <div id="sign-in--hidden">
         <div class="nav-bar">
             <div class="logo-nav">myCompany</div>
-            <?php
-            if(isset($_SESSION['error']))
-            {
-                echo $_SESSION['error'];
-            }
-            ?>
             <div id="btn-exit" class="btn-nav">
                 <div class="line1"></div>
                 <div class="line2"></div>
@@ -60,10 +31,12 @@ if ((isset($_SESSION['logged_in'])) && ($_SESSION['logged_in'] == true))
                 <div class="sign-in-row">
                     <label for="login">Login</label>
                     <input type="text" name="login" placeholder="Username">
+                    <div class="underline"></div>
                 </div>
                 <div class="sign-in-row">
                     <label for="password">Password</label>
                     <input type="password" name="password" placeholder="●●●●●●●●●●">
+                    <div class="underline"></div>
                     <?php
                     if(isset($_SESSION['error']))
                     {

@@ -175,7 +175,7 @@ function validateForm3($job_title, $no_experience, $employer, $job_city, $job_de
         }
         catch(Exception $e)
         {
-            echo 'Server error! Try signing up later';
+            echo "<div class='server-error'>Server error! Please try again later. Err: ".$e."</div>";
         }
 
         // Unset remembered values
@@ -281,7 +281,7 @@ function validateForm4($language, $language_level, $skill, $skill_level, $school
     }
     catch(Exception $e)
     {
-        echo 'Server error! Try signing up later';
+        echo "<div class='server-error'>Server error! Please try again later. Err: ".$e."</div>";
     }
 
     // Unset remembered values
@@ -370,7 +370,7 @@ function validateForm5($cv, $cert, $cover_letter, $course, $host, $db_user, $db_
     }
     catch(Exception $e)
     {
-        echo 'Server error! Try signing up later';
+        echo "<div class='server-error'>Server error! Please try again later. Err: ".$e."</div>";
     }
 }
 
