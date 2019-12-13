@@ -7,13 +7,11 @@ session_start();
 }*/
 require_once "php/connect.php";
 
-$fp = fopen('profile_data.json', 'w');
-fclose($fp);
 // "php/Profile.php";
 //$profileInstance = new Profile();
 
 // array from DB
-$json_array[] = array(
+$json_array = array(
         "personal-data" => array(
             "first-name" => "",
             "last-name" => "",
@@ -56,6 +54,7 @@ $json_array[] = array(
         ),
 );
 
+// tmp
 $data_push_tpd = array();
 $data_push_tx = array();
 $data_push_te = array();
@@ -64,6 +63,37 @@ $data_push_tll = array();
 $data_push_ts = array();
 $data_push_tsl = array();
 $data_push_a = array();
+
+// queries
+$query_tpd = "SELECT u.name, u.surname, a.phone, co.country,  c.locality As residence_city from users u join applicants a on u.id_user=a.id_user join cities c on a.id_city=c.id_city join countries co on a.id_country=co.id_country where u.id_user = '{$_SESSION['id_user']}'";
+$query_tx = "SELECT e.job, e.employer, e.start_job, e.end_job, c.locality As job_city, e.description As job_description from users u join applicants a on u.id_user=a.id_user join cities c on a.id_city=c.id_city join experiences e on a.id_applicants = e.id_applicants where u.id_user='{$_SESSION['id_user']}'";
+$query_te = "SELECT s.name_school, s.specialization, s.start_learning, s.end_learning, c.locality As school_city, s.description As school_description from users u join applicants a on u.id_user=a.id_user join cities c on a.id_city=c.id_city join schools s on a.id_applicants=s.id_applicants where u.id_user='{$_SESSION['id_user']}'";
+$query_tl = "SELECT la.language FROM users u join applicants a on u.id_user=a.id_user join knowledge k on a.id_applicants=k.id_applicants join languages la on k.id_language=la.id_language where u.id_user = '{$_SESSION['id_user']}'";
+$query_tll = "SELECT le.id_level FROM users u join applicants a on u.id_user=a.id_user join knowledge k on a.id_applicants=k.id_applicants join levels le on k.id_level=le.id_level join languages la on k.id_language=la.id_language where u.id_user = '{$_SESSION['id_user']}'";
+$query_ts = "SELECT s.sience FROM users u join applicants a on u.id_user=a.id_user join holders k on a.id_applicants=k.id_applicants join skills s on s.id_skill=k.id_skill where u.id_user = '{$_SESSION['id_user']}'";
+$query_tsl = "SELECT le.id_level FROM users u join applicants a on u.id_user=a.id_user join holders k on a.id_applicants=k.id_applicants join levels le on k.id_level=le.id_level join holders h on le.id_level=h.id_level join skills s on s.id_skill=h.id_skill where u.id_user = '{$_SESSION['id_user']}'";
+$query_ta = "SELECT cv.description As cv_description, cl.description As cl_description, certifications.descriptions As cert_descriptions, t.training, t.description As course_description from users u join applicants a on u.id_user=a.id_user join cv on a.id_applicants=cv.id_applicants join certifications on a.id_applicants=certifications.id_applicants join training t on a.id_applicants=t.id_applicants join applications ap on a.id_applicants=ap.id_applicants join cl on ap.id_application=cl.id_application where u.id_user='{$_SESSION['id_user']}'";
+
+// fetch data and add it to .json file
+function fetchData($connection, $query, $data_push, $array)
+{
+    $table = $connection->query($query);
+    if (!$table)
+    {
+        throw new Exception($connection->error);
+    }
+
+    while ($assoc = $table->fetch_assoc())
+    {
+        foreach ($assoc as $key=>$value)
+        {
+            @array_push($data_push, $value);
+            $array = $data_push;
+        }
+    }
+    return $table->num_rows;
+}
+
 
 // connect with db
 mysqli_report(MYSQLI_REPORT_STRICT);
@@ -76,15 +106,17 @@ try
     }
     else
     {
+        $count_tx = fetchData($connection, $query_tx, $data_push_tx, $json_array);
+        echo $count_tx;
         // table 1
-        $table_personal_data = $connection->query("SELECT u.name, u.surname, a.phone, co.country,  c.locality As residence_city from users u join applicants a on u.id_user=a.id_user join cities c on a.id_city=c.id_city join countries co on a.id_country=co.id_country where u.id_user = '{$_SESSION['id_user']}'");
+        $table_personal_data = $connection->query($query_tpd);
         if (!$table_personal_data)
             {
                 throw new Exception($connection->error);
             }
         $assoc_tpd = $table_personal_data->fetch_assoc();
         // table 2
-        $table_experience = $connection->query("SELECT e.job, e.employer, e.start_job, e.end_job, c.locality As job_city, e.description As job_description from users u join applicants a on u.id_user=a.id_user join cities c on a.id_city=c.id_city join experiences e on a.id_applicants = e.id_applicants where u.id_user='{$_SESSION['id_user']}'");
+        $table_experience = $connection->query($query_tx);
         if (!$table_experience)
         {
             throw new Exception($connection->error);
@@ -93,7 +125,7 @@ try
         $assoc_tx = $table_experience->fetch_assoc();
 
         // table 3
-        $table_education = $connection->query("SELECT s.name_school, s.specialization, s.start_learning, s.end_learning, c.locality As school_city, s.description As school_description from users u join applicants a on u.id_user=a.id_user join cities c on a.id_city=c.id_city join schools s on a.id_applicants=s.id_applicants where u.id_user='{$_SESSION['id_user']}'");
+        $table_education = $connection->query($query_te);
         if (!$table_education)
         {
             throw new Exception($connection->error);
@@ -104,13 +136,13 @@ try
             foreach ($assoc_te as $key=>$value)
             {
                 array_push($data_push_te, $value);
-                $json_array['education']= $data_push_te;
+                $json_array['education'] = $data_push_te;
             }
         }
 
         // table 4.1
-        $table_lang = $connection->query("SELECT la.language FROM users u join applicants a on u.id_user=a.id_user join knowledge k on a.id_applicants=k.id_applicants join languages la on k.id_language=la.id_language where u.id_user = '{$_SESSION['id_user']}'");
-        $table_lang_level = $connection->query("SELECT le.id_level FROM users u join applicants a on u.id_user=a.id_user join knowledge k on a.id_applicants=k.id_applicants join levels le on k.id_level=le.id_level join languages la on k.id_language=la.id_language where u.id_user = '{$_SESSION['id_user']}'");
+        $table_lang = $connection->query($query_tl);
+        $table_lang_level = $connection->query($query_tll);
         if (!$table_lang || !$table_lang_level)
         {
             throw new Exception($connection->error);
@@ -137,8 +169,8 @@ try
         }
 
         // table 4.2
-        $table_skills = $connection->query("SELECT s.sience FROM users u join applicants a on u.id_user=a.id_user join holders k on a.id_applicants=k.id_applicants join skills s on s.id_skill=k.id_skill where u.id_user = '{$_SESSION['id_user']}'");
-        $table_skills_level = $connection->query("SELECT le.id_level FROM users u join applicants a on u.id_user=a.id_user join holders k on a.id_applicants=k.id_applicants join levels le on k.id_level=le.id_level join holders h on le.id_level=h.id_level join skills s on s.id_skill=h.id_skill where u.id_user = '{$_SESSION['id_user']}'");
+        $table_skills = $connection->query($query_ts);
+        $table_skills_level = $connection->query($query_tsl);
         if (!$table_skills || !$table_skills_level)
         {
             throw new Exception($connection->error);
@@ -166,7 +198,7 @@ try
         }
 
         // table 5
-        $table_additional = $connection->query("SELECT cv.description As cv_description, cl.description As cl_description, certifications.descriptions As cert_descriptions, t.training, t.description As course_description from users u join applicants a on u.id_user=a.id_user join cv on a.id_applicants=cv.id_applicants join certifications on a.id_applicants=certifications.id_applicants join training t on a.id_applicants=t.id_applicants join applications ap on a.id_applicants=ap.id_applicants join cl on ap.id_application=cl.id_application where u.id_user='{$_SESSION['id_user']}'");
+        $table_additional = $connection->query($query_ta);
         if (!$table_additional)
         {
             throw new Exception($connection->error);
