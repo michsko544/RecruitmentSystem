@@ -7,9 +7,6 @@ session_start();
 }*/
 require_once "php/connect.php";
 
-// "php/Profile.php";
-//$profileInstance = new Profile();
-
 // array from DB
 $json_array = array(/*
         "personal-data" => array(
@@ -54,7 +51,7 @@ $json_array = array(/*
         ),*/
 );
 
-// tmp
+// tmp array
 $data_push_tpd = array();
 $data_push_tx = array();
 $data_push_te = array();
@@ -62,24 +59,30 @@ $data_push_tl = array();
 $data_push_tll = array();
 $data_push_ts = array();
 $data_push_tsl = array();
-$data_push_a = array();
+$data_push_tcv = array();
+$data_push_tcl = array();
+$data_push_tce = array();
+$data_push_tco = array();
 
-// queries
+// queries TODO divide selects into smaller
 $query_tpd = "SELECT u.name, u.surname, a.phone, co.country,  c.locality As residence_city from users u join applicants a on u.id_user=a.id_user join cities c on a.id_city=c.id_city join countries co on a.id_country=co.id_country where u.id_user = '{$_SESSION['id_user']}'";
-$query_tx = "SELECT e.job, e.employer, e.start_job, e.end_job, c.locality As job_city, e.description As job_description from users u join applicants a on u.id_user=a.id_user join cities c on a.id_city=c.id_city join experiences e on a.id_applicants = e.id_applicants where u.id_user='{$_SESSION['id_user']}'";
-$query_te = "SELECT s.name_school, s.specialization, s.start_learning, s.end_learning, c.locality As school_city, s.description As school_description from users u join applicants a on u.id_user=a.id_user join cities c on a.id_city=c.id_city join schools s on a.id_applicants=s.id_applicants where u.id_user='{$_SESSION['id_user']}'";
-$query_tl = "SELECT la.language FROM users u join applicants a on u.id_user=a.id_user join knowledge k on a.id_applicants=k.id_applicants join languages la on k.id_language=la.id_language where u.id_user = '{$_SESSION['id_user']}'";
-$query_tll = "SELECT le.id_level FROM users u join applicants a on u.id_user=a.id_user join knowledge k on a.id_applicants=k.id_applicants join levels le on k.id_level=le.id_level join languages la on k.id_language=la.id_language where u.id_user = '{$_SESSION['id_user']}'";
-$query_ts = "SELECT s.sience FROM users u join applicants a on u.id_user=a.id_user join holders k on a.id_applicants=k.id_applicants join skills s on s.id_skill=k.id_skill where u.id_user = '{$_SESSION['id_user']}'";
-$query_tsl = "SELECT le.id_level FROM users u join applicants a on u.id_user=a.id_user join holders k on a.id_applicants=k.id_applicants join levels le on k.id_level=le.id_level join holders h on le.id_level=h.id_level join skills s on s.id_skill=h.id_skill where u.id_user = '{$_SESSION['id_user']}'";
-$query_ta = "SELECT cv.description As cv_description, cl.description As cl_description, certifications.descriptions As cert_descriptions, t.training, t.description As course_description from users u join applicants a on u.id_user=a.id_user join cv on a.id_applicants=cv.id_applicants join certifications on a.id_applicants=certifications.id_applicants join training t on a.id_applicants=t.id_applicants join applications ap on a.id_applicants=ap.id_applicants join cl on ap.id_application=cl.id_application where u.id_user='{$_SESSION['id_user']}'";
+$query_tx = "SELECT e.job, e.employer, e.start_job, e.end_job, c.locality As job_city, e.description As job_description from users u join applicants a on u.id_user=a.id_user join experiences e on a.id_applicants = e.id_applicants join cities c on e.id_city=c.id_city where u.id_user='{$_SESSION['id_user']}'";
+$query_te = "SELECT s.name_school, s.specialization, s.start_learning, s.end_learning, c.locality As school_city, s.description As school_description from users u join applicants a on u.id_user=a.id_user join schools s on a.id_applicants=s.id_applicants join cities c on s.id_city=c.id_city where u.id_user='{$_SESSION['id_user']}'";
+$query_tl = "SELECT la.language from users u join applicants a on u.id_user=a.id_user join knowledge k on a.id_applicants=k.id_applicants join languages la on k.id_language=la.id_language where u.id_user = '{$_SESSION['id_user']}'";
+$query_tll = "SELECT le.id_level from users u join applicants a on u.id_user=a.id_user join knowledge k on a.id_applicants=k.id_applicants join levels le on k.id_level=le.id_level join languages la on k.id_language=la.id_language where u.id_user = '{$_SESSION['id_user']}'";
+$query_ts = "SELECT s.sience from users u join applicants a on u.id_user=a.id_user join holders k on a.id_applicants=k.id_applicants join skills s on s.id_skill=k.id_skill where u.id_user = '{$_SESSION['id_user']}'";
+$query_tsl = "SELECT le.id_level from users u join applicants a on u.id_user=a.id_user join holders k on a.id_applicants=k.id_applicants join levels le on k.id_level=le.id_level join skills s on s.id_skill=k.id_skill where u.id_user = '{$_SESSION['id_user']}'";
+$query_tcv = "SELECT cv.description As cv_description from users u join applicants a on u.id_user=a.id_user join cv on a.id_applicants=cv.id_applicants join certifications on a.id_applicants=certifications.id_applicants join training t on a.id_applicants=t.id_applicants join applications ap on a.id_applicants=ap.id_applicants join cl on ap.id_application=cl.id_application where u.id_user='{$_SESSION['id_user']}'";
+$query_tcl = "SELECT cl.description As cl_description from users u join applicants a on u.id_user=a.id_user join cv on a.id_applicants=cv.id_applicants join certifications on a.id_applicants=certifications.id_applicants join training t on a.id_applicants=t.id_applicants join applications ap on a.id_applicants=ap.id_applicants join cl on ap.id_application=cl.id_application where u.id_user='{$_SESSION['id_user']}'";
+$query_tce = "SELECT certifications.descriptions As cert_descriptions from users u join applicants a on u.id_user=a.id_user join cv on a.id_applicants=cv.id_applicants join certifications on a.id_applicants=certifications.id_applicants join training t on a.id_applicants=t.id_applicants join applications ap on a.id_applicants=ap.id_applicants join cl on ap.id_application=cl.id_application where u.id_user='{$_SESSION['id_user']}'";
+$query_tco = "SELECT t.description As course_description from users u join applicants a on u.id_user=a.id_user join cv on a.id_applicants=cv.id_applicants join certifications on a.id_applicants=certifications.id_applicants join training t on a.id_applicants=t.id_applicants join applications ap on a.id_applicants=ap.id_applicants join cl on ap.id_application=cl.id_application where u.id_user='{$_SESSION['id_user']}'";
 
-// fetch data and add it to .json file TODO abort or fix fetchData
-function fetchData($query, $data_push, $row, $host, $db_user, $db_pass, $db_name)
-{
+// fetch data and add it to .json file
+function fetchData($query, &$data_push, &$array, $host, $db_user, $db_pass, $db_name) {
+
     $connection = new mysqli($host, $db_user, $db_pass, $db_name);
-    if ($connection->connect_errno != 0)
-    {
+    if ($connection->connect_errno != 0) {
+        $connection->close();
         throw new Exception(mysqli_connect_errno());
     }
     else {
@@ -87,13 +90,13 @@ function fetchData($query, $data_push, $row, $host, $db_user, $db_pass, $db_name
         if (!$table) {
             throw new Exception($connection->error);
         }
-
         while ($assoc = $table->fetch_assoc()) {
             foreach ($assoc as $key => $value) {
                 @array_push($data_push, $value);
-                $json_array[$row] = $data_push;
+                $array = $data_push;
             }
         }
+        $connection->close();
         return $table->num_rows;
     }
 
@@ -104,16 +107,25 @@ function fetchData($query, $data_push, $row, $host, $db_user, $db_pass, $db_name
 mysqli_report(MYSQLI_REPORT_STRICT);
 try
 {
-    $count_tx = fetchData($query_tx, $data_push_tx, 'experience', $host, $db_user, $db_pass, $db_name);
-
-    $connection = new mysqli($host, $db_user, $db_pass, $db_name);
+    $count_tpd = fetchData($query_tpd, $data_push_tpd, $json_array['personal-data'], $host, $db_user, $db_pass, $db_name);
+    $count_tx = fetchData($query_tx, $data_push_tx, $json_array['experience'], $host, $db_user, $db_pass, $db_name);
+    $count_te = fetchData($query_te, $data_push_te, $json_array['education'], $host, $db_user, $db_pass, $db_name);
+    $count_tl = fetchData($query_tl, $data_push_tl, $json_array['skills']['languages']['lang'], $host, $db_user, $db_pass, $db_name);
+    $count_tll = fetchData($query_tll, $data_push_tll, $json_array['skills']['languages']['level'], $host, $db_user, $db_pass, $db_name);
+    $count_ts = fetchData($query_ts, $data_push_ts, $json_array['skills']['skills']['skill'], $host, $db_user, $db_pass, $db_name);
+    $count_tsl = fetchData($query_tsl, $data_push_tsl, $json_array['skills']['skills']['level'], $host, $db_user, $db_pass, $db_name);
+    $count_tcv = fetchData($query_tcv, $data_push_tcv, $json_array['additional']['cv'], $host, $db_user, $db_pass, $db_name);
+    $count_tcl = fetchData($query_tcl, $data_push_tcl, $json_array['additional']['cover-letter'], $host, $db_user, $db_pass, $db_name);
+    $count_tce = fetchData($query_tce, $data_push_tce, $json_array['additional']['certificates'], $host, $db_user, $db_pass, $db_name);
+    $count_tco = fetchData($query_tco, $data_push_tco, $json_array['additional']['courses'], $host, $db_user, $db_pass, $db_name);
+    /*$connection = new mysqli($host, $db_user, $db_pass, $db_name);
     if ($connection->connect_errno != 0)
     {
         throw new Exception(mysqli_connect_errno());
     }
     else
     {
-        echo $count_tx;
+        //echo $count_tx;
         // table 1
         $table_personal_data = $connection->query($query_tpd);
         if (!$table_personal_data)
@@ -214,28 +226,74 @@ try
             }
         }
 
-        // table 5
-        $table_additional = $connection->query($query_ta);
-        if (!$table_additional)
+        // table 5.1
+        $table_cv = $connection->query($query_tcv);
+        if (!$table_cv)
         {
             throw new Exception($connection->error);
         }
-        $count_ta = $table_additional->num_rows;
-        while ($assoc_ta = $table_additional->fetch_assoc()) // TODO se wariat mysli że moze nie dzialać
+        $count_tcv = $table_cv->num_rows;
+        while ($assoc_tcv = $table_cv->fetch_assoc())
         {
-            foreach ($assoc_ta as $key=>$value)
+            foreach ($assoc_tcv as $key=>$value)
             {
-                array_push($data_push_ta, $value);
-                $json_array['additional'] = $data_push_ta;
+                array_push($data_push_tcv, $value);
+                $json_array['additional']['cv'] = $data_push_tcv;
+            }
+        }
+        // table 5.2
+        $table_cl = $connection->query($query_tcl);
+        if (!$table_cl)
+        {
+            throw new Exception($connection->error);
+        }
+        $count_tcl = $table_cl->num_rows;
+        while ($assoc_tcl = $table_cl->fetch_assoc())
+        {
+            foreach ($assoc_tcl as $key=>$value)
+            {
+                array_push($data_push_tcl, $value);
+                $json_array['additional']['cover-letter'] = $data_push_tcl;
+            }
+        }
+        // table 5.3
+        $table_ce = $connection->query($query_tce);
+        if (!$table_ce)
+        {
+            throw new Exception($connection->error);
+        }
+        $count_tce = $table_ce->num_rows;
+        while ($assoc_tce = $table_ce->fetch_assoc())
+        {
+            foreach ($assoc_tce as $key=>$value)
+            {
+                array_push($data_push_tce, $value);
+                $json_array['additional']['certificates'] = $data_push_tce;
+            }
+        }
+        // table 5.4
+        $table_co = $connection->query($query_tco);
+        if (!$table_co)
+        {
+            throw new Exception($connection->error);
+        }
+        $count_tco = $table_co->num_rows;
+        while ($assoc_tco = $table_co->fetch_assoc())
+        {
+            foreach ($assoc_tco as $key=>$value)
+            {
+                array_push($data_push_tco, $value);
+                $json_array['additional']['courses'] = $data_push_tco;
             }
         }
 
-        //fill .json file with data from db
-        $fp = fopen('profile_data.json', 'w');
-        fwrite($fp, json_encode($json_array));
-        fclose($fp);
-    }
-    $connection->close();
+
+    }*/
+    //fill .json file with data from db
+    $fp = fopen('profile_data.json', 'w');
+    fwrite($fp, json_encode($json_array));
+    fclose($fp);
+
 }
 catch (Exception $e)
 {
