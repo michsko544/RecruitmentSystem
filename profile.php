@@ -11,7 +11,7 @@ require_once "php/connect.php";
 //$profileInstance = new Profile();
 
 // array from DB
-$json_array = array(
+$json_array = array(/*
         "personal-data" => array(
             "first-name" => "",
             "last-name" => "",
@@ -51,7 +51,7 @@ $json_array = array(
             "certificates" => array(),
             "cover-letter" => array(),
             "courses" => array(),
-        ),
+        ),*/
 );
 
 // tmp
@@ -74,24 +74,29 @@ $query_ts = "SELECT s.sience FROM users u join applicants a on u.id_user=a.id_us
 $query_tsl = "SELECT le.id_level FROM users u join applicants a on u.id_user=a.id_user join holders k on a.id_applicants=k.id_applicants join levels le on k.id_level=le.id_level join holders h on le.id_level=h.id_level join skills s on s.id_skill=h.id_skill where u.id_user = '{$_SESSION['id_user']}'";
 $query_ta = "SELECT cv.description As cv_description, cl.description As cl_description, certifications.descriptions As cert_descriptions, t.training, t.description As course_description from users u join applicants a on u.id_user=a.id_user join cv on a.id_applicants=cv.id_applicants join certifications on a.id_applicants=certifications.id_applicants join training t on a.id_applicants=t.id_applicants join applications ap on a.id_applicants=ap.id_applicants join cl on ap.id_application=cl.id_application where u.id_user='{$_SESSION['id_user']}'";
 
-// fetch data and add it to .json file
-function fetchData($connection, $query, $data_push, $array)
+// fetch data and add it to .json file TODO abort or fix fetchData
+function fetchData($query, $data_push, $row, $host, $db_user, $db_pass, $db_name)
 {
-    $table = $connection->query($query);
-    if (!$table)
+    $connection = new mysqli($host, $db_user, $db_pass, $db_name);
+    if ($connection->connect_errno != 0)
     {
-        throw new Exception($connection->error);
+        throw new Exception(mysqli_connect_errno());
+    }
+    else {
+        $table = $connection->query($query);
+        if (!$table) {
+            throw new Exception($connection->error);
+        }
+
+        while ($assoc = $table->fetch_assoc()) {
+            foreach ($assoc as $key => $value) {
+                @array_push($data_push, $value);
+                $json_array[$row] = $data_push;
+            }
+        }
+        return $table->num_rows;
     }
 
-    while ($assoc = $table->fetch_assoc())
-    {
-        foreach ($assoc as $key=>$value)
-        {
-            @array_push($data_push, $value);
-            $array = $data_push;
-        }
-    }
-    return $table->num_rows;
 }
 
 
@@ -99,6 +104,8 @@ function fetchData($connection, $query, $data_push, $array)
 mysqli_report(MYSQLI_REPORT_STRICT);
 try
 {
+    $count_tx = fetchData($query_tx, $data_push_tx, 'experience', $host, $db_user, $db_pass, $db_name);
+
     $connection = new mysqli($host, $db_user, $db_pass, $db_name);
     if ($connection->connect_errno != 0)
     {
@@ -106,7 +113,6 @@ try
     }
     else
     {
-        $count_tx = fetchData($connection, $query_tx, $data_push_tx, $json_array);
         echo $count_tx;
         // table 1
         $table_personal_data = $connection->query($query_tpd);
@@ -114,7 +120,14 @@ try
             {
                 throw new Exception($connection->error);
             }
-        $assoc_tpd = $table_personal_data->fetch_assoc();
+        while ($assoc_tpd = $table_personal_data->fetch_assoc())
+        {
+            foreach ($assoc_tpd as $key=>$value)
+            {
+                array_push($data_push_tpd, $value);
+                $json_array['personal-data'] = $data_push_tpd;
+            }
+        }
         // table 2
         $table_experience = $connection->query($query_tx);
         if (!$table_experience)
@@ -122,7 +135,14 @@ try
             throw new Exception($connection->error);
         }
         $count_tx = $table_experience->num_rows;
-        $assoc_tx = $table_experience->fetch_assoc();
+        while ($assoc_tx = $table_experience->fetch_assoc())
+        {
+            foreach ($assoc_tx as $key=>$value)
+            {
+                array_push($data_push_tx, $value);
+                $json_array['experience'] = $data_push_tx;
+            }
+        }
 
         // table 3
         $table_education = $connection->query($query_te);
@@ -183,9 +203,6 @@ try
                 {
                     array_push($data_push_ts, $value);
                     $json_array['skills']['skills']['skill'] = $data_push_ts;
-                    //$fp = fopen('profile_data.json', 'w');
-                    //fwrite($fp, json_encode($json_array));
-                    //fclose($fp);
                 }
         }
         while ($assoc_tsl = $table_skills_level->fetch_assoc()) // TODO incorrect query
@@ -204,7 +221,14 @@ try
             throw new Exception($connection->error);
         }
         $count_ta = $table_additional->num_rows;
-        $assoc_ta = $table_additional->fetch_assoc();
+        while ($assoc_ta = $table_additional->fetch_assoc()) // TODO se wariat mysli że moze nie dzialać
+        {
+            foreach ($assoc_ta as $key=>$value)
+            {
+                array_push($data_push_ta, $value);
+                $json_array['additional'] = $data_push_ta;
+            }
+        }
 
         //fill .json file with data from db
         $fp = fopen('profile_data.json', 'w');
@@ -270,37 +294,27 @@ catch (Exception $e)
             <div class="element-wrapper">
                 <div class="form-row">
                     <label for="first-name">First name</label>
-                    <input type="text" name="first-name" value="<?php
-                    echo $assoc_tpd['name'];
-                    ?>">
+                    <input type="text" name="first-name" value="">
                     <div class="underline"></div>
                 </div>
                 <div class="form-row">
                     <label for="last-name">Last name</label>
-                    <input type="text" name="last-name" value="<?php
-                    echo $assoc_tpd['surname'];
-                    ?>">
+                    <input type="text" name="last-name" value="">
                     <div class="underline"></div>
                 </div>
                 <div class="form-row">
                     <label for="phone-num">Phone number</label>
-                    <input type="tel" name="phone-num" value="<?php
-                    echo $assoc_tpd['phone'];
-                    ?>">
+                    <input type="tel" name="phone-num" value="">
                     <div class="underline"></div>
                 </div>
                 <div class="form-row">
                     <label for="residence-country">Your country</label>
-                    <input type="text" name="residence-country" value="<?php
-                    echo $assoc_tpd['country'];
-                    ?>">
+                    <input type="text" name="residence-country" value="">
                     <div class="underline"></div>
                 </div>
                 <div class="form-row">
                     <label for="residence-city">Your city</label>
-                    <input type="text" name="residence-city" value="<?php
-                    echo $assoc_tpd['residence_city'];
-                    ?>">
+                    <input type="text" name="residence-city" value="">
                     <div class="underline"></div>
                 </div>
             </div>
