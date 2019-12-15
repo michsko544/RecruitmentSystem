@@ -311,10 +311,9 @@ catch (Exception $e)
     <title>Recruitment System - Profile</title>
     <link rel="stylesheet" href="/css/style.css" type="text/css">
     <link rel="stylesheet" href="/font/stylesheet.css" type="text/css" charset="utf-8" />
-    <!--<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">-->
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script src="//code.jquery.com/jquery.min.js"></script>
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <link href="css/jquery-ui.css" rel="stylesheet" />
+    <script src="script/jquery-1.11.1.js"></script>
+    <script src="script/jquery-ui.js"></script>
 </head>
 <body>
     <nav>
@@ -596,9 +595,6 @@ catch (Exception $e)
     </div>
 </body>
 
-<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
 <script src="script/main.js"></script>
 <script src="script/burger.js"></script>
 <script src="script/calendar.js"></script>

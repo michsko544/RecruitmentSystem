@@ -14,7 +14,9 @@ $sign_up_class = new SignUpSystem(true);
     <title>Recruitment System</title>
     <link rel="stylesheet" href="/css/style.css" type="text/css">
     <link rel="stylesheet" href="/font/stylesheet.css" type="text/css" charset="utf-8" />
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link href="css/jquery-ui.css" rel="stylesheet" />
+    <script src="script/jquery-1.11.1.js"></script>
+    <script src="script/jquery-ui.js"></script>
 </head>
 <body>
 <div class="nav-bar">
@@ -371,9 +373,7 @@ $sign_up_class = new SignUpSystem(true);
     </div>
 </div>
 </body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <script src="script/main.js"></script>
 <script src="script/calendar.js"></script>
 <script src="script/sign-up.js"></script>
