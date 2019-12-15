@@ -71,12 +71,19 @@ function fetchData($query, &$data_push, &$array, $host, $db_user, $db_pass, $db_
     $connection->close();
     return $counter;
 }
-
+// add counters
+// $counters = array();
+function addCounters(&$array, $value)
+{
+    // array_push($counters, $value);
+    $array = $value;
+}
 
 // connect with db
 mysqli_report(MYSQLI_REPORT_STRICT);
 try
 {
+    // add db results to array
     $count_tpd = fetchData($query_tpdn, $data_push_tpdn, $json_array['personal-data']['first-name'], $host, $db_user, $db_pass, $db_name);
     $count_tpd = fetchData($query_tpds, $data_push_tpds, $json_array['personal-data']['last-name'], $host, $db_user, $db_pass, $db_name);
     $count_tpd = fetchData($query_tpdp, $data_push_tpdp, $json_array['personal-data']['phone'], $host, $db_user, $db_pass, $db_name);
@@ -103,17 +110,25 @@ try
     $count_tce = fetchData($query_tce, $data_push_tce, $json_array['additional']['certificates'], $host, $db_user, $db_pass, $db_name);
     $count_tco = fetchData($query_tco, $data_push_tco, $json_array['additional']['courses'], $host, $db_user, $db_pass, $db_name);
 
+    addCounters($json_array['counters']['personal-data'], $count_tpd);
+    addCounters($json_array['counters']['experience'], $count_tx);
+    addCounters($json_array['counters']['education'], $count_te);
+    addCounters($json_array['counters']['language'], $count_tl);
+    addCounters($json_array['counters']['skill'], $count_ts);
+    addCounters($json_array['counters']['cv'], $count_tcv);
+    addCounters($json_array['counters']['cover-letter'], $count_tcl);
+    addCounters($json_array['counters']['certificate'], $count_tce);
+    addCounters($json_array['counters']['course'], $count_tco);
+
     //fill .json file with data from db
     $fp = fopen('profile_data.json', 'w');
     fwrite($fp, json_encode($json_array));
     fclose($fp);
-
 }
 catch (Exception $e)
 {
     echo "<div class='server-error'>Server error! Please try again later. Err: ".$e."</div>";
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
