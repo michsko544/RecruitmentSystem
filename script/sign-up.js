@@ -58,8 +58,9 @@ const updateDisplayOnchange = (id) => {
     return true;
 }*/
 
-const highlightLabel = (id) => { //id inputa
-    document.getElementById(id).addEventListener("focus", function(){
+const highlightLabel = function() { //id inputa
+    console.log(this);
+    this.addEventListener("focus", function(){
         console.log(this.parentNode.parentNode.children[0]);
         this.parentNode.className==="form-row" 
         ?
@@ -67,7 +68,7 @@ const highlightLabel = (id) => { //id inputa
             :
             this.parentNode.parentNode.children[0].classList.toggle("cyan-color");
     });
-    document.getElementById(id).addEventListener("focusout", function(){
+    this.addEventListener("focusout", function(){
         console.log(this.parentNode.parentNode.children[0]);
         this.parentNode.className==="form-row" 
         ?
@@ -75,8 +76,23 @@ const highlightLabel = (id) => { //id inputa
             :
             this.parentNode.parentNode.children[0].classList.toggle("cyan-color");
     });
-
 }
+
+const addHighlightEvents = () => {
+    const inputs = document.querySelectorAll("input");
+    console.dir(inputs);
+    inputs.forEach( elem => {
+        console.dir(elem);
+        highlightLabel.bind(elem);
+
+        highlightLabel();
+        return true;
+    });
+    return true;
+}
+
+addHighlightEvents();
+console.log("loadEvents");
 
 calendar("exp-0");
 //updateDisplayOnchange("start-exp-0");

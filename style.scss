@@ -518,6 +518,10 @@ input[type=date]{
     }
 }
 
+select{
+    text-overflow: ellipsis;
+}
+
 .relative{
     position: relative;
 }
@@ -677,10 +681,6 @@ input[type=submit]{
         font-size: 16px;
         bottom:10px;
         left: 21px;
-    }
-
-    .position{
-
     }
 
     .app-status-sent{

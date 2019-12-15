@@ -477,6 +477,10 @@ input[type=date] {
   width: 46%;
 }
 
+select {
+  text-overflow: ellipsis;
+}
+
 .relative {
   position: relative;
 }
@@ -701,14 +705,6 @@ input[type=submit] {
 
 .hide {
   display: none;
-}
-
-.server-error /* TODO dodalem diva do wyswietlania errorów. Wystylizuj go jakos ładnie.
- Jak chcesz sprawdzic jak dziala to mozesz w php/connect.php zmienic jakąkolwiek wartość */
-{
-  height: 100vh;
-  font-size: 20px;
-  color: #de1a04;
 }
 
 @keyframes line1Rotate {

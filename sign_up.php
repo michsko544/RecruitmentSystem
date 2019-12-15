@@ -17,6 +17,7 @@ $sign_up_class = new SignUpSystem(true);
     <link href="css/jquery-ui.css" rel="stylesheet" />
     <script src="script/jquery-1.11.1.js"></script>
     <script src="script/jquery-ui.js"></script>
+    
 </head>
 <body>
 <div class="nav-bar">
@@ -102,6 +103,7 @@ $sign_up_class = new SignUpSystem(true);
                 ?>
             </select>
         </div>
+        
         <div class="form-row">
             <label for="terms-of-use">Terms and Privacy Policy</label>
             <div class="checkbox"><input type="checkbox" required <?php
