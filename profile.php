@@ -64,8 +64,17 @@ $data_push_tcl = array();
 $data_push_tce = array();
 $data_push_tco = array();
 
-// queries TODO divide selects into smaller
-$query_tpd = "SELECT u.name, u.surname, a.phone, co.country,  c.locality As residence_city from users u join applicants a on u.id_user=a.id_user join cities c on a.id_city=c.id_city join countries co on a.id_country=co.id_country where u.id_user = '{$_SESSION['id_user']}'";
+// queries TODO ja jebe jak tu duzo roboty
+$query_tpdn = "SELECT u.name from users u join applicants a on u.id_user=a.id_user join cities c on a.id_city=c.id_city join countries co on a.id_country=co.id_country where u.id_user = '{$_SESSION['id_user']}'";
+$query_tpds = "SELECT u.surname from users u join applicants a on u.id_user=a.id_user join cities c on a.id_city=c.id_city join countries co on a.id_country=co.id_country where u.id_user = '{$_SESSION['id_user']}'";
+$query_tpdp = "SELECT a.phone from users u join applicants a on u.id_user=a.id_user join cities c on a.id_city=c.id_city join countries co on a.id_country=co.id_country where u.id_user = '{$_SESSION['id_user']}'";
+$query_tpdc = "SELECT co.country from users u join applicants a on u.id_user=a.id_user join cities c on a.id_city=c.id_city join countries co on a.id_country=co.id_country where u.id_user = '{$_SESSION['id_user']}'";
+$query_tpdl = "SELECT c.locality As residence_city from users u join applicants a on u.id_user=a.id_user join cities c on a.id_city=c.id_city join countries co on a.id_country=co.id_country where u.id_user = '{$_SESSION['id_user']}'";
+$query_tx = "SELECT e.job, e.employer, e.start_job, e.end_job, c.locality As job_city, e.description As job_description from users u join applicants a on u.id_user=a.id_user join experiences e on a.id_applicants = e.id_applicants join cities c on e.id_city=c.id_city where u.id_user='{$_SESSION['id_user']}'";
+$query_tx = "SELECT e.job, e.employer, e.start_job, e.end_job, c.locality As job_city, e.description As job_description from users u join applicants a on u.id_user=a.id_user join experiences e on a.id_applicants = e.id_applicants join cities c on e.id_city=c.id_city where u.id_user='{$_SESSION['id_user']}'";
+$query_tx = "SELECT e.job, e.employer, e.start_job, e.end_job, c.locality As job_city, e.description As job_description from users u join applicants a on u.id_user=a.id_user join experiences e on a.id_applicants = e.id_applicants join cities c on e.id_city=c.id_city where u.id_user='{$_SESSION['id_user']}'";
+$query_tx = "SELECT e.job, e.employer, e.start_job, e.end_job, c.locality As job_city, e.description As job_description from users u join applicants a on u.id_user=a.id_user join experiences e on a.id_applicants = e.id_applicants join cities c on e.id_city=c.id_city where u.id_user='{$_SESSION['id_user']}'";
+$query_tx = "SELECT e.job, e.employer, e.start_job, e.end_job, c.locality As job_city, e.description As job_description from users u join applicants a on u.id_user=a.id_user join experiences e on a.id_applicants = e.id_applicants join cities c on e.id_city=c.id_city where u.id_user='{$_SESSION['id_user']}'";
 $query_tx = "SELECT e.job, e.employer, e.start_job, e.end_job, c.locality As job_city, e.description As job_description from users u join applicants a on u.id_user=a.id_user join experiences e on a.id_applicants = e.id_applicants join cities c on e.id_city=c.id_city where u.id_user='{$_SESSION['id_user']}'";
 $query_te = "SELECT s.name_school, s.specialization, s.start_learning, s.end_learning, c.locality As school_city, s.description As school_description from users u join applicants a on u.id_user=a.id_user join schools s on a.id_applicants=s.id_applicants join cities c on s.id_city=c.id_city where u.id_user='{$_SESSION['id_user']}'";
 $query_tl = "SELECT la.language from users u join applicants a on u.id_user=a.id_user join knowledge k on a.id_applicants=k.id_applicants join languages la on k.id_language=la.id_language where u.id_user = '{$_SESSION['id_user']}'";
@@ -107,7 +116,7 @@ function fetchData($query, &$data_push, &$array, $host, $db_user, $db_pass, $db_
 mysqli_report(MYSQLI_REPORT_STRICT);
 try
 {
-    $count_tpd = fetchData($query_tpd, $data_push_tpd, $json_array['personal-data'], $host, $db_user, $db_pass, $db_name);
+    $count_tpd = fetchData($query_tpdn, $data_push_tpd, $json_array['personal-data'], $host, $db_user, $db_pass, $db_name);
     $count_tx = fetchData($query_tx, $data_push_tx, $json_array['experience'], $host, $db_user, $db_pass, $db_name);
     $count_te = fetchData($query_te, $data_push_te, $json_array['education'], $host, $db_user, $db_pass, $db_name);
     $count_tl = fetchData($query_tl, $data_push_tl, $json_array['skills']['languages']['lang'], $host, $db_user, $db_pass, $db_name);
