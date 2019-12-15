@@ -6,6 +6,7 @@ session_start();
     exit();
 }*/
 require_once "php/connect.php";
+require_once "php/HandleJson.php";
 
 // array from DB
 $json_array = array();
@@ -48,82 +49,51 @@ $query_tcl = "SELECT cl.description As cl_description from users u join applican
 $query_tce = "SELECT certifications.descriptions As cert_descriptions from users u join applicants a on u.id_user=a.id_user join cv on a.id_applicants=cv.id_applicants join certifications on a.id_applicants=certifications.id_applicants join training t on a.id_applicants=t.id_applicants join applications ap on a.id_applicants=ap.id_applicants join cl on ap.id_application=cl.id_application where u.id_user='{$_SESSION['id_user']}'";
 $query_tco = "SELECT t.description As course_description from users u join applicants a on u.id_user=a.id_user join cv on a.id_applicants=cv.id_applicants join certifications on a.id_applicants=certifications.id_applicants join training t on a.id_applicants=t.id_applicants join applications ap on a.id_applicants=ap.id_applicants join cl on ap.id_application=cl.id_application where u.id_user='{$_SESSION['id_user']}'";
 
-// fetch data and add it to .json file
-function fetchData($query, &$data_push, &$array, $host, $db_user, $db_pass, $db_name) {
-    $counter = 0;
-    $connection = new mysqli($host, $db_user, $db_pass, $db_name);
-    if ($connection->connect_errno != 0) {
-        throw new Exception(mysqli_connect_errno());
-    }
-    else {
-        $table = $connection->query($query);
-        if (!$table) {
-            throw new Exception($connection->error);
-        }
-        $counter = $table->num_rows;
-        while ($assoc = $table->fetch_assoc()) {
-            foreach ($assoc as $key => $value) {
-                @array_push($data_push, $value);
-                $array = $data_push;
-            }
-        }
-    }
-    $connection->close();
-    return $counter;
-}
-// add counters
-// $counters = array();
-function addCounters(&$array, $value)
-{
-    // array_push($counters, $value);
-    $array = $value;
-}
+$new_json = new HandleJson();
 
 // connect with db
 mysqli_report(MYSQLI_REPORT_STRICT);
 try
 {
     // add db results to array
-    $count_tpd = fetchData($query_tpdn, $data_push_tpdn, $json_array['personal-data']['first-name'], $host, $db_user, $db_pass, $db_name);
-    $count_tpd = fetchData($query_tpds, $data_push_tpds, $json_array['personal-data']['last-name'], $host, $db_user, $db_pass, $db_name);
-    $count_tpd = fetchData($query_tpdp, $data_push_tpdp, $json_array['personal-data']['phone'], $host, $db_user, $db_pass, $db_name);
-    $count_tpd = fetchData($query_tpdc, $data_push_tpdc, $json_array['personal-data']['country'], $host, $db_user, $db_pass, $db_name);
-    $count_tpd = fetchData($query_tpdl, $data_push_tpdl, $json_array['personal-data']['city'], $host, $db_user, $db_pass, $db_name);
-    $count_tx = fetchData($query_txj, $data_push_txj, $json_array['experience']['job-title'], $host, $db_user, $db_pass, $db_name);
-    $count_tx = fetchData($query_txe, $data_push_txe, $json_array['experience']['employer'], $host, $db_user, $db_pass, $db_name);
-    $count_tx = fetchData($query_txsj, $data_push_txsj, $json_array['experience']['start-date'], $host, $db_user, $db_pass, $db_name);
-    $count_tx = fetchData($query_txej, $data_push_txej, $json_array['experience']['end-date'], $host, $db_user, $db_pass, $db_name);
-    $count_tx = fetchData($query_txc, $data_push_txc, $json_array['experience']['city'], $host, $db_user, $db_pass, $db_name);
-    $count_tx = fetchData($query_txd, $data_push_txd, $json_array['experience']['description'], $host, $db_user, $db_pass, $db_name);
-    $count_te = fetchData($query_ten, $data_push_ten, $json_array['education']['school-name'], $host, $db_user, $db_pass, $db_name);
-    $count_te = fetchData($query_tes, $data_push_tes, $json_array['education']['specialization'], $host, $db_user, $db_pass, $db_name);
-    $count_te = fetchData($query_tesl, $data_push_tesl, $json_array['education']['start-date'], $host, $db_user, $db_pass, $db_name);
-    $count_te = fetchData($query_teel, $data_push_teel, $json_array['education']['end-date'], $host, $db_user, $db_pass, $db_name);
-    $count_te = fetchData($query_tec, $data_push_tec, $json_array['education']['city'], $host, $db_user, $db_pass, $db_name);
-    $count_te = fetchData($query_ted, $data_push_ted, $json_array['education']['description'], $host, $db_user, $db_pass, $db_name);
-    $count_tl = fetchData($query_tl, $data_push_tl, $json_array['skills']['languages']['lang'], $host, $db_user, $db_pass, $db_name);
-    $count_tll = fetchData($query_tll, $data_push_tll, $json_array['skills']['languages']['level'], $host, $db_user, $db_pass, $db_name);
-    $count_ts = fetchData($query_ts, $data_push_ts, $json_array['skills']['skills']['skill'], $host, $db_user, $db_pass, $db_name);
-    $count_tsl = fetchData($query_tsl, $data_push_tsl, $json_array['skills']['skills']['level'], $host, $db_user, $db_pass, $db_name);
-    $count_tcv = fetchData($query_tcv, $data_push_tcv, $json_array['additional']['cv'], $host, $db_user, $db_pass, $db_name);
-    $count_tcl = fetchData($query_tcl, $data_push_tcl, $json_array['additional']['cover-letter'], $host, $db_user, $db_pass, $db_name);
-    $count_tce = fetchData($query_tce, $data_push_tce, $json_array['additional']['certificates'], $host, $db_user, $db_pass, $db_name);
-    $count_tco = fetchData($query_tco, $data_push_tco, $json_array['additional']['courses'], $host, $db_user, $db_pass, $db_name);
+    $count_tpd = $new_json->fetchData($query_tpdn, $data_push_tpdn, $json_array['personal-data']['first-name'], $host, $db_user, $db_pass, $db_name);
+    $count_tpd = $new_json->fetchData($query_tpds, $data_push_tpds, $json_array['personal-data']['last-name'], $host, $db_user, $db_pass, $db_name);
+    $count_tpd = $new_json->fetchData($query_tpdp, $data_push_tpdp, $json_array['personal-data']['phone'], $host, $db_user, $db_pass, $db_name);
+    $count_tpd = $new_json->fetchData($query_tpdc, $data_push_tpdc, $json_array['personal-data']['country'], $host, $db_user, $db_pass, $db_name);
+    $count_tpd = $new_json->fetchData($query_tpdl, $data_push_tpdl, $json_array['personal-data']['city'], $host, $db_user, $db_pass, $db_name);
+    $count_tx = $new_json->fetchData($query_txj, $data_push_txj, $json_array['experience']['job-title'], $host, $db_user, $db_pass, $db_name);
+    $count_tx = $new_json->fetchData($query_txe, $data_push_txe, $json_array['experience']['employer'], $host, $db_user, $db_pass, $db_name);
+    $count_tx = $new_json->fetchData($query_txsj, $data_push_txsj, $json_array['experience']['start-date'], $host, $db_user, $db_pass, $db_name);
+    $count_tx = $new_json->fetchData($query_txej, $data_push_txej, $json_array['experience']['end-date'], $host, $db_user, $db_pass, $db_name);
+    $count_tx = $new_json->fetchData($query_txc, $data_push_txc, $json_array['experience']['city'], $host, $db_user, $db_pass, $db_name);
+    $count_tx = $new_json->fetchData($query_txd, $data_push_txd, $json_array['experience']['description'], $host, $db_user, $db_pass, $db_name);
+    $count_te = $new_json->fetchData($query_ten, $data_push_ten, $json_array['education']['school-name'], $host, $db_user, $db_pass, $db_name);
+    $count_te = $new_json->fetchData($query_tes, $data_push_tes, $json_array['education']['specialization'], $host, $db_user, $db_pass, $db_name);
+    $count_te = $new_json->fetchData($query_tesl, $data_push_tesl, $json_array['education']['start-date'], $host, $db_user, $db_pass, $db_name);
+    $count_te = $new_json->fetchData($query_teel, $data_push_teel, $json_array['education']['end-date'], $host, $db_user, $db_pass, $db_name);
+    $count_te = $new_json->fetchData($query_tec, $data_push_tec, $json_array['education']['city'], $host, $db_user, $db_pass, $db_name);
+    $count_te = $new_json->fetchData($query_ted, $data_push_ted, $json_array['education']['description'], $host, $db_user, $db_pass, $db_name);
+    $count_tl = $new_json->fetchData($query_tl, $data_push_tl, $json_array['skills']['languages']['lang'], $host, $db_user, $db_pass, $db_name);
+    $count_tll = $new_json->fetchData($query_tll, $data_push_tll, $json_array['skills']['languages']['level'], $host, $db_user, $db_pass, $db_name);
+    $count_ts = $new_json->fetchData($query_ts, $data_push_ts, $json_array['skills']['skills']['skill'], $host, $db_user, $db_pass, $db_name);
+    $count_tsl = $new_json->fetchData($query_tsl, $data_push_tsl, $json_array['skills']['skills']['level'], $host, $db_user, $db_pass, $db_name);
+    $count_tcv = $new_json->fetchData($query_tcv, $data_push_tcv, $json_array['additional']['cv'], $host, $db_user, $db_pass, $db_name);
+    $count_tcl = $new_json->fetchData($query_tcl, $data_push_tcl, $json_array['additional']['cover-letter'], $host, $db_user, $db_pass, $db_name);
+    $count_tce = $new_json->fetchData($query_tce, $data_push_tce, $json_array['additional']['certificates'], $host, $db_user, $db_pass, $db_name);
+    $count_tco = $new_json->fetchData($query_tco, $data_push_tco, $json_array['additional']['courses'], $host, $db_user, $db_pass, $db_name);
 
-    addCounters($json_array['counters']['personal-data'], $count_tpd);
-    addCounters($json_array['counters']['experience'], $count_tx);
-    addCounters($json_array['counters']['education'], $count_te);
-    addCounters($json_array['counters']['language'], $count_tl);
-    addCounters($json_array['counters']['skill'], $count_ts);
-    addCounters($json_array['counters']['cv'], $count_tcv);
-    addCounters($json_array['counters']['cover-letter'], $count_tcl);
-    addCounters($json_array['counters']['certificate'], $count_tce);
-    addCounters($json_array['counters']['course'], $count_tco);
+    $new_json->addCounters($json_array['counters']['personal-data'], $count_tpd);
+    $new_json->addCounters($json_array['counters']['experience'], $count_tx);
+    $new_json->addCounters($json_array['counters']['education'], $count_te);
+    $new_json->addCounters($json_array['counters']['language'], $count_tl);
+    $new_json->addCounters($json_array['counters']['skill'], $count_ts);
+    $new_json->addCounters($json_array['counters']['cv'], $count_tcv);
+    $new_json->addCounters($json_array['counters']['cover-letter'], $count_tcl);
+    $new_json->addCounters($json_array['counters']['certificate'], $count_tce);
+    $new_json->addCounters($json_array['counters']['course'], $count_tco);
 
     //fill .json file with data from db
-    $fp = fopen('profile_data.json', 'w');
-    fwrite($fp, json_encode($json_array));
-    fclose($fp);
+    $new_json->createJsonFile('json/profile.json', $json_array);
 }
 catch (Exception $e)
 {
@@ -171,7 +141,7 @@ catch (Exception $e)
             <div class="btn-element">
                 <div class="btn-unwrap">
                     <div class="line1"></div>
-                    <div class="line2"></div> <!-- Operacja plastyczna zakonczona niepowodzeniem. Na szczescie chirurgowi udało sie przywrócic pierwotną forme pacjenta-->
+                    <div class="line2"></div>
                 </div>
             </div>
         </div>
@@ -411,15 +381,6 @@ catch (Exception $e)
     </div>
     </div>
     </div>
-        <?php
-        //$profileInstance->fetchData($host, $db_user, $db_pass, $db_name);
-        //$profileInstance->displayExperience();
-        //$profileInstance->displayEducation();
-       // $profileInstance->displaySkills();
-        //$profileInstance->displayAdditional();
-        // Porwałem twoje divy
-        // i nie oddam
-        ?>
     </div>
 </body>
 

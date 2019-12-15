@@ -44,51 +44,37 @@
 
             <?php
             require_once "php/connect.php";
-            $pos_name = "";
-            $connection = new mysqli($host, $db_user, $db_pass, $db_name);
+            require_once "php/HandleJson.php";
+
+            $query_n = "SELECT u.name from users u join applicants a on u.id_user=a.id_user join applications ap on a.id_applicants=ap.id_applicants join statuses s on ap.id_status=s.id_status join positions p on ap.id_position=p.id_position join messages m on u.id_user=u.id_user join conv c on m.id_conv=c.id_conv WHERE u.id_user = '{$_SESSION['id_user']}'";
+            $query_p = "SELECT p.position from users u join applicants a on u.id_user=a.id_user join applications ap on a.id_applicants=ap.id_applicants join statuses s on ap.id_status=s.id_status join positions p on ap.id_position=p.id_position join messages m on u.id_user=u.id_user join conv c on m.id_conv=c.id_conv WHERE u.id_user = '{$_SESSION['id_user']}'";
+            $query_d = "SELECT p.description from users u join applicants a on u.id_user=a.id_user join applications ap on a.id_applicants=ap.id_applicants join statuses s on ap.id_status=s.id_status join positions p on ap.id_position=p.id_position join messages m on u.id_user=u.id_user join conv c on m.id_conv=c.id_conv WHERE u.id_user = '{$_SESSION['id_user']}'";
+            $query_ns = "SELECT s.name_status from users u join applicants a on u.id_user=a.id_user join applications ap on a.id_applicants=ap.id_applicants join statuses s on ap.id_status=s.id_status join positions p on ap.id_position=p.id_position join messages m on u.id_user=u.id_user join conv c on m.id_conv=c.id_conv WHERE u.id_user = '{$_SESSION['id_user']}'";
+            $query_idc = "SELECT c.id_conv from users u join applicants a on u.id_user=a.id_user join applications ap on a.id_applicants=ap.id_applicants join statuses s on ap.id_status=s.id_status join positions p on ap.id_position=p.id_position join messages m on u.id_user=u.id_user join conv c on m.id_conv=c.id_conv WHERE u.id_user = '{$_SESSION['id_user']}'";
+            $query_t = "SELECT c.topic from users u join applicants a on u.id_user=a.id_user join applications ap on a.id_applicants=ap.id_applicants join statuses s on ap.id_status=s.id_status join positions p on ap.id_position=p.id_position join messages m on u.id_user=u.id_user join conv c on m.id_conv=c.id_conv WHERE u.id_user = '{$_SESSION['id_user']}'";
+            $data_push_n = array(); $data_push_p = array(); $data_push_d = array(); $data_push_ns = array(); $data_push_idc = array(); $data_push_t = array();
+            $json_array = array();
+
+            $new_json = new HandleJson();
             try
             {
-                if ($connection->connect_errno != 0)
-                {
-                    throw new Exception(mysqli_connect_errno());
-                }
-                else
-                {
-                    $user_app_join = $connection->query("SELECT id_applicants FROM applicants WHERE id_user = '{$_SESSION['id_user']}'");
-                    if (!$user_app_join)
-                    {
-                        throw new Exception($connection->error);
-                    }
-                    else
-                    {
-                        $id_from_user = $user_app_join->fetch_assoc();
-                        $user_id_select = $id_from_user['id_applicants'];
-                    }
-
-
-                    $application_name = $connection->query("SELECT * FROM applications WHERE id_applicants = '$user_id_select'");
-                    if (!$application_name)
-                    {
-                        // TODO wypisac liste zlozonych aplikacji i ich statusy
-                        throw new Exception($connection->error);
-                    }
-                    else
-                    {
-                        $pos_name = $application_name;
-
-                        // free mem
-                        $application_name->free();
-                    }
-                }
+                $count_results_n = $new_json->fetchData($query_n, $data_push_n, $json_array['applications']['name'], $host, $db_user, $db_pass, $db_name);
+                $count_results_p = $new_json->fetchData($query_p, $data_push_p, $json_array['applications']['position'], $host, $db_user, $db_pass, $db_name);
+                $count_results_d = $new_json->fetchData($query_d, $data_push_d, $json_array['applications']['description'], $host, $db_user, $db_pass, $db_name);
+                $count_results_ns = $new_json->fetchData($query_ns, $data_push_ns, $json_array['applications']['status'], $host, $db_user, $db_pass, $db_name);
+                $count_results_idc = $new_json->fetchData($query_idc, $data_push_idc, $json_array['applications']['id_conv'], $host, $db_user, $db_pass, $db_name);
+                $count_results_t = $new_json->fetchData($query_t, $data_push_t, $json_array['applications']['conv_topic'], $host, $db_user, $db_pass, $db_name);
+                $new_json->addCounters($json_array['counters']['name'], $count_results_n);
+                $new_json->addCounters($json_array['counters']['position'], $count_results_p);
+                $new_json->addCounters($json_array['counters']['description'], $count_results_d);
+                $new_json->addCounters($json_array['counters']['status'], $count_results_ns);
+                $new_json->addCounters($json_array['counters']['id-conv'], $count_results_idc);
+                $new_json->addCounters($json_array['counters']['conv-topic'], $count_results_t);
+                $new_json->createJsonFile('json/applications.json', $json_array);
             }
             catch (Exception $e)
             {
                 echo "<div class='server-error'>Server error! Please try again later. Err: ".$e."</div>";
-            }
-            $connection->close();
-            foreach ($pos_name as $key=>$value)
-            {
-                echo '<option value="'.$value.'">'.$value.' </option>';
             }
             ?>
 

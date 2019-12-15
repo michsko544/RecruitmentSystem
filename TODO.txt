@@ -1,5 +1,0 @@
-Trzeba dodać position przy rejestracji
-
-Zrobilem rejestracje css
-
-do inputow ze stopniem zaawansowania dodac name'y
