@@ -64,41 +64,32 @@ $sign_up_class = new SignUpSystem(true);
         <div class="form-row">
             <label for="position">Position</label>
             <select name="position">
-                <!-- chyba dziala -- potrzebna baza danych -->
                 <?php
                 // Pick data from DB
-                // $pos_name = array('postion'=>array("foo", "bar"));
                 mysqli_report(MYSQLI_REPORT_STRICT);
-                try
-                {
+                try {
                     $connection = new mysqli($host, $db_user, $db_pass, $db_name);
-                    if ($connection->connect_errno != 0)
-                    {
+                    if ($connection->connect_errno != 0) {
                         throw new Exception(mysqli_connect_errno());
-                    }
-                    else
-                    {
-                        if ($position_name = $connection->query("SELECT position FROM positions"))
-                        {
-                            while($pos_name = $position_name->fetch_assoc())
-                            {
-                                foreach ($pos_name as $key=>$value)
-                                {
+                    } else {
+                        if ($position_name = $connection->query("SELECT position FROM positions")) {
+                            while($pos_name = $position_name->fetch_assoc()) {
+                                foreach ($pos_name as $key=>$value) {
+                                    if(isset($_SESSION['rem_position'])){
+                                        echo '<option selected="'. $_SESSION['rem_position']  .'" value="'.$value.'"> '.$value.' </option>';
+                                    } else {
                                     echo '<option value="'.$value.'"> '.$value.' </option>';
+                                    }
                                 }
                             }
-                        }
-                        else
-                        {
+                        } else {
                             throw new Exception($connection->error);
                         }
                     }
                 }
-                catch (Exception $e)
-                {
-                    echo 'Server error! Try signing up later';
+                catch (Exception $e) {
+                    echo "<div class='server-error'>Server error! Please try again later. Err: ".$e."</div>";
                 }
-
                 $connection->close();
                 ?>
             </select>
@@ -112,7 +103,7 @@ $sign_up_class = new SignUpSystem(true);
                 unset($_SESSION['rem_terms']);}
                 ?>>I agree to&nbsp;<a href="documents/terms-of-use-contents.html">Terms&nbsp;</a> and&nbsp;<a href="documents/privacy-policy-contents.html">Privacy Policy</a>.</div>
             <?php
-            $sign_up_class->setError('err_terms');
+            //$sign_up_class->setError('err_terms');
             ?>
         </div>
         <?php

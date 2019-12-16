@@ -9,6 +9,7 @@ private $insert_values = array(
     'first_name' => '',
     'last_name' => '',
     'phone' => '',
+    'position' => '',
     'residence_country' => '',
     'residence_city' => '',
     'cv_file' => '',

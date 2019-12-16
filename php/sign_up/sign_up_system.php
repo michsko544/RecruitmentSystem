@@ -44,6 +44,8 @@ if (isset($_POST['e-mail']))
     $hashed_password = password_hash($password_one, PASSWORD_DEFAULT);
 
     // Validate position TODO get position
+    $position = $_POST['position'];
+
 
     // Validate terms of use
     if (!isset($_POST['terms-of-use']))
@@ -60,8 +62,8 @@ if (isset($_POST['e-mail']))
     $_SESSION['rem_email'] = $email;
     $_SESSION['rem_password_one'] = $password_one;
     $_SESSION['rem_password_two'] = $password_two;
-    if (isset($_POST['terms-of-use']))
-    {
+    $_SESSION['rem_position'] = $position;
+    if (isset($_POST['terms-of-use'])) {
         $_SESSION['rem_terms'] = true;
     }
 
@@ -96,28 +98,35 @@ if (isset($_POST['e-mail']))
             {
                 $sign_up_class->notGood('err_username', 'Unavailable username');
             }
+            // Validate position with db
+            $result_position = $connection->query("SELECT id_position FROM positions WHERE position = '{$position}'");
+            if (!$result_position)
+            {
+                throw new Exception($connection->error);
+            }
+            $count_input = $result_position->num_rows;
+            if ($count_input == 0)
+            {
+                $sign_up_class->notGood('err_position', 'Position currently unavailable');
+            }
 
             if ($sign_up_class->checkFlag() == true)
             {
-                // Add to session variables and wait for other steps
-               // $_SESSION['insert_username'] = $username;
-               // $_SESSION['insert_email'] = $email;
-               // $_SESSION['insert_password'] = $hashed_password;
-
                 // Add to array and wait
                 echo 'dzialato';
                 $sign_up_class->setInsertValue('username', $username);
                 $sign_up_class->setInsertValue('email', $email);
                 $sign_up_class->setInsertValue('password', $hashed_password);
+                $sign_up_class->setInsertValue('position', $position);
             }
             $connection->close();
-            exit();
+            //exit();
 
         }
     }
     catch(Exception $e)
     {
-        echo 'Server error! Try signing up later </br>'.$e;
+        echo "<div class='server-error'>Server error! Please try again later. Err: ".$e."</div>";
     }
     // Unset remembered values
     if (isset($_SESSION['rem_username'])) unset($_SESSION['rem_username']);
@@ -213,7 +222,7 @@ if (isset($_POST['first-name']))
     }
     catch(Exception $e)
     {
-        echo 'Server error! Try signing up later';
+        echo "<div class='server-error'>Server error! Please try again later. Err: ".$e."</div>";
     }
 
     // Unset remembered values
@@ -230,8 +239,8 @@ if (isset($_POST['first-name']))
     if (isset($_SESSION['err_residence_city'])) unset($_SESSION['err_residence_city']);
 }
 
-//Form 3 TODO uncomment
-/* $experience_count = $_GET['exp-count'];
+//Form 3
+ $experience_count = $_GET['exp-count'];
 if (isset($_POST['job-title-0']))
 {
     for($i=0; $i<$experience_count; $i++)
@@ -243,7 +252,7 @@ if (isset($_POST['job-title-0']))
         $job_description = $_POST['job-description-' . $i];
         $sign_up_class->validateForm3($job_title, $no_experience, $employer, $job_city, $job_description, $host, $db_user, $db_pass, $db_name);
     }
-}*/
+}
 
 /*
 if (isset($_POST['job-title']))
@@ -349,8 +358,8 @@ if (isset($_POST['job-title']))
 }
 */
 
-// Form 4 TODO uncomment
-/* $school_count = $_GET['school-count'];
+// Form 4
+$school_count = $_GET['school-count'];
 if (isset($_POST['languages-0']))
 {
     for($i=0; $i<$school_count; $i++)
@@ -367,7 +376,7 @@ if (isset($_POST['languages-0']))
         $school_description = $_POST['school-description-' . $i];
         $sign_up_class->validateForm4($language, $language_level, $skill, $skill_level, $school, $specialization, $school_start_date, $school_end_date, $school_city, $school_description, $host, $db_user, $db_pass, $db_name);
     }
-}*/
+}
 /*
 if (isset($_POST['languages']))
 {
@@ -483,8 +492,8 @@ if (isset($_POST['languages']))
     if (isset($_SESSION['err_school_description'])) unset($_SESSION['err_school_description']);
 }*/
 
-// Form 5 TODO uncomment
-/* $docs_count = $_GET['docs-count'];
+// Form 5
+$docs_count = $_GET['docs-count'];
 if (isset($_POST['cv-file']))
 {
     for($i=0; $i<$docs_count; $i++)
@@ -495,7 +504,7 @@ if (isset($_POST['cv-file']))
         $course = $_POST['course-' . $i];
         $sign_up_class->validateForm5($cv, $cert, $cover_letter, $course, $host, $db_user, $db_pass, $db_name);
     }
-}*/
+}
 
 /*
 if (isset($_POST['cv-file']))
