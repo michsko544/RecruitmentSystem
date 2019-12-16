@@ -493,16 +493,35 @@ if (isset($_POST['languages']))
 }*/
 
 // Form 5
-$docs_count = $_GET['docs-count'];
+
+$cert_count = $_GET['cert-count'];
+$course_count = $_GET['course-count'];
 if (isset($_POST['cv-file']))
 {
-    for($i=0; $i<$docs_count; $i++)
+    $cv = $_POST['cv'];
+    $cover_letter = $_POST['cover-letter'];
+    // Validate cv
+    $file_format = pathinfo($cv);
+    if ($file_format['extension'] != "pdf")
     {
-        $cv = $_POST['cv-file'];
-        $cert = $_POST['cert-' . $i];
-        $cover_letter = $_POST['cover-letter'];
-        $course = $_POST['course-' . $i];
-        $sign_up_class->validateForm5($cv, $cert, $cover_letter, $course, $host, $db_user, $db_pass, $db_name);
+        $this->notGood('err_cover_letter_file', 'File must have .pdf extension');
+    }
+    // Validate cover letter
+    $file_format = pathinfo($cover_letter);
+    if ($file_format['extension'] != "pdf")
+    {
+        $this->notGood('err_cover_letter_file', 'File must have .pdf extension');
+    }
+
+    for($i=0; $i<$cert_count; $i++)
+    {
+        $cert = $_POST['cert-' . strval($i)];
+        $sign_up_class->validateFile($cert, $host, $db_user, $db_pass, $db_name);
+    }
+    for($i=0; $i<$course_count; $i++)
+    {
+        $course = $_POST['course-' . strval($i)];
+        $sign_up_class->validateForm5Co($course, $host, $db_user, $db_pass, $db_name);
     }
 }
 

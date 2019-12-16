@@ -37,9 +37,9 @@ private $insert_school = array(
     'city'=>array(),
     'description'=>array(),
 );
-private $insert_cert_course = array( // TODO what type is file / how to add it
+private $insert_cert_course = array(
     'certificate' => array(),
-    'cover-letter' => array(),
+    'course' => array(),
 );
 
 function __construct($flag_status)
@@ -309,46 +309,15 @@ function validateForm4($language, $language_level, $skill, $skill_level, $school
     if (isset($_SESSION['err_school_description'])) unset($_SESSION['err_school_description']);
 }
 
-function validateForm5($cv, $cert, $cover_letter, $course, $host, $db_user, $db_pass, $db_name)
+function validateFile($filename, $host, $db_user, $db_pass, $db_name)
 {
-    // Validate cv
-    $file_format = pathinfo($cv);
-    if ($file_format['extension'] != "pdf")
-    {
-        $this->notGood('err_cv_file', 'File must have .pdf extension');
-    }
     // Validate certificate
-    $file_format = pathinfo($cert);
+    $file_format = pathinfo($filename);
     if ($file_format['extension'] != "pdf")
     {
-        $this->notGood('err_certificate_file', 'File must have .pdf extension');
+        $this->notGood('err_file', 'Files must have .pdf extension');
     }
 
-    // Validate cover letter
-    $file_format = pathinfo($cover_letter);
-    if ($file_format['extension'] != "pdf")
-    {
-        $this->notGood('err_cover_letter_file', 'File must have .pdf extension');
-    }
-
-    // Validate course
-    if (ctype_alnum($course) == false)
-    {
-        $this->notGood('err_course', 'Course name may contain only letters and numbers');
-    }
-    if (strlen($course) > 30)
-    {
-        $this->notGood('err_course', 'Course name must have less than 30 characters');
-    }
-
-    // Remember values
-    $_SESSION['rem_cv'] = $cv;
-    $_SESSION['rem_certificate'] = $cert;
-    $_SESSION['rem_cover_letter'] = $cover_letter;
-    $_SESSION['rem_course'] = $course;
-
-    // ło ja jebe jka tu duszo roboty
-    // TODO safely upload files
     try
     {
         $connection = new mysqli($host, $db_user, $db_pass, $db_name);
@@ -364,6 +333,43 @@ function validateForm5($cv, $cert, $cover_letter, $course, $host, $db_user, $db_
                 $this->setInsertValue('cv_file', $cv);
                 $this->setInsertCertSkillValues('certificate', $cert);
                 $this->setInsertValue('cover_letter', $cover_letter);
+                $this->setInsertCertSkillValues('course', $course);
+            }
+            $connection->close();
+        }
+    }
+    catch(Exception $e)
+    {
+        echo "<div class='server-error'>Server error! Please try again later. Err: ".$e."</div>";
+    }
+}
+
+function validateForm5Co($course, $host, $db_user, $db_pass, $db_name)
+{
+    // Validate course
+    if (ctype_alnum($course) == false)
+    {
+        $this->notGood('err_course', 'Course name may contain only letters and numbers');
+    }
+    if (strlen($course) > 50)
+    {
+        $this->notGood('err_course', 'Course name must have less than 50 characters');
+    }
+
+    // Remember values
+    $_SESSION['rem_course'] = $course;
+    try
+    {
+        $connection = new mysqli($host, $db_user, $db_pass, $db_name);
+        if ($connection->connect_errno != 0)
+        {
+            throw new Exception(mysqli_connect_errno());
+        }
+        else
+        {
+            if ($this->checkFlag() == true)
+            {
+                //Add to array and wait
                 $this->setInsertCertSkillValues('course', $course);
             }
             $connection->close();
