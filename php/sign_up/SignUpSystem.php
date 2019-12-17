@@ -1,50 +1,86 @@
 <?php
 class SignUpSystem
 {
-private $correct_data = true;
-private $insert_values = array(
-    'username' => '',
-    'email' => '',
-    'password' => '',
-    'first_name' => '',
-    'last_name' => '',
-    'phone' => '',
-    'position' => '',
-    'residence_country' => '',
-    'residence_city' => '',
-    'cv_file' => '',
-    'cover_letter'=> '',
-);
-private $insert_employment = array(
-    'job_title'=>array(),
-    'employer'=>array(),
-    'start_date'=>array(),
-    'end_date'=>array(),
-    'city'=>array(),
-    'description'=>array(),
-);
-private $insert_skill_language = array(
-    'language'=>array(),
-    'language_level'=>array(),
-    'skill'=>array(),
-    'skill_level'=>array(),
-);
-private $insert_school = array(
-    'school'=>array(),
-    'specialization'=>array(),
-    'start_date'=>array(),
-    'end_date'=>array(),
-    'city'=>array(),
-    'description'=>array(),
-);
-private $insert_cert_course = array(
-    'certificate' => array(),
-    'course' => array(),
-);
+    private $correct_data = true;
+    private $insert_values = array(
+        'username' => '',
+        'email' => '',
+        'password' => '',
+        'first_name' => '',
+        'last_name' => '',
+        'phone' => '',
+        'position' => '',
+        'residence_country' => '',
+        'residence_city' => '',
+        'cv_file' => '',
+        'cover_letter' => '',
+    );
+    private $insert_employment = array(
+        'job_title' => array(),
+        'employer' => array(),
+        'start_date' => array(),
+        'end_date' => array(),
+        'city' => array(),
+        'description' => array(),
+    );
+    private $insert_skill_language = array(
+        'language' => array(),
+        'language_level' => array(),
+        'skill' => array(),
+        'skill_level' => array(),
+    );
+    private $insert_school = array(
+        'school' => array(),
+        'specialization' => array(),
+        'start_date' => array(),
+        'end_date' => array(),
+        'city' => array(),
+        'description' => array(),
+    );
+    private $insert_cert_course = array(
+        'certificate' => array(),
+        'course' => array(),
+    );
 
-function __construct($flag_status)
+    function __construct($flag_status)
+    {
+        $this->correct_data = $flag_status;
+    }
+
+
+    // Pick data from DB
+function pickDataFromDB($query, $host, $db_user, $db_pass, $db_name)
 {
-    $this->correct_data = $flag_status;
+    mysqli_report(MYSQLI_REPORT_STRICT);
+    try
+    {
+    $connection = new mysqli($host, $db_user, $db_pass, $db_name);
+    if ($connection->connect_errno != 0)
+    {
+    throw new Exception(mysqli_connect_errno());
+    }
+
+    else {
+        if ($position_name = $connection->query($query)) {
+            while ($pos_name = $position_name->fetch_assoc()) {
+                foreach ($pos_name as $key=>$value) {
+                    if(isset($_SESSION['rem_position'])){
+                        echo '<option selected="'. $_SESSION['rem_position']  .'" value="'.$value.'"> '.$value.' </option>';
+                    } else {
+                        echo '<option value="'.$value.'"> '.$value.' </option>';
+                    }
+                }
+            }
+        } else {
+            throw new Exception($connection->error);
+        }
+    }
+    }
+    catch
+    (Exception $e) {
+        echo "<div class='server-error'>Server error! Please try again later. Err: " . $e . "</div>";
+    }
+    $connection->close();
 }
 
 function setInsertValue($column, $value)

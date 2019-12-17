@@ -66,31 +66,8 @@ $sign_up_class = new SignUpSystem(true);
             <select name="position">
                 <?php
                 // Pick data from DB
-                mysqli_report(MYSQLI_REPORT_STRICT);
-                try {
-                    $connection = new mysqli($host, $db_user, $db_pass, $db_name);
-                    if ($connection->connect_errno != 0) {
-                        throw new Exception(mysqli_connect_errno());
-                    } else {
-                        if ($position_name = $connection->query("SELECT position FROM positions")) {
-                            while($pos_name = $position_name->fetch_assoc()) {
-                                foreach ($pos_name as $key=>$value) {
-                                    if(isset($_SESSION['rem_position'])){
-                                        echo '<option selected="'. $_SESSION['rem_position']  .'" value="'.$value.'"> '.$value.' </option>';
-                                    } else {
-                                    echo '<option value="'.$value.'"> '.$value.' </option>';
-                                    }
-                                }
-                            }
-                        } else {
-                            throw new Exception($connection->error);
-                        }
-                    }
-                }
-                catch (Exception $e) {
-                    echo "<div class='server-error'>Server error! Please try again later. Err: ".$e."</div>";
-                }
-                $connection->close();
+                $query = "SELECT position FROM positions";
+                $sign_up_class->pickDataFromDB($query, $host, $db_user, $db_pass, $db_name);
                 ?>
             </select>
         </div>
@@ -139,7 +116,13 @@ $sign_up_class = new SignUpSystem(true);
         </div>
         <div class="form-row">
             <label for="residence-country">Your country</label>
-            <input type="text" name="residence-country" placeholder="UK" required>
+            <select name="position">
+                <?php
+                // Pick data from DB
+                $query = "SELECT country FROM countries";
+                $sign_up_class->pickDataFromDB($query, $host, $db_user, $db_pass, $db_name);
+                ?>
+            </select>
             <div class="underline"></div>
         </div>
         <div class="form-row">
@@ -326,7 +309,7 @@ $sign_up_class = new SignUpSystem(true);
         </div>
         <div class="form-row ">
         <label for="certificate-file">Certificates</label>
-        <div class="upload">
+        <div class="upload"> <!-- TODO var cert-count -->
             <input type="file" name="certificate-file-0" class="inputfile" accept="application/pdf" data-multiple-caption="{count} files selected" multiple>
             <label>Choose a file</label>
         </div>
@@ -351,7 +334,7 @@ $sign_up_class = new SignUpSystem(true);
         ?>
         <div class="btn-add" id="btn-course">
             <div class="btn-text">
-                Add Course <!-- TODO var docs-count -->
+                Add Course <!-- TODO var course-count -->
             </div>
             <div class="btn-border">
                 <div class="btn-icon">
