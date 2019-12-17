@@ -113,16 +113,57 @@ document.getElementById("no-experience").addEventListener("click", function(){
     }
 });
 
+const readJSON = (filePath) => {
+    let file;
+    $.getJSON(filePath, function(json) {
+        file = json; // this will show the info it in firebug console
+        console.log(file);
+    });
+    console.log(file);
+    return file;
+}
+
+var profileJSON = readJSON("json/profile.json");
+console.log(profileJSON);
+
+const fromJsonToHtml = (json) => {
+    const pD = json.personal-data;
+    const exp = json.experience;
+    const sql = json.education;
+    const skl = json.skills.skills;
+    const lang = json.skills.languages;
+    const add = json.additional;
+    const n = json.counters;
+
+    addPersonalData();
+    for(let i = 0; i<n.experience; ++i)
+        addExperience(exp.job-title[i],exp.employer[i],exp.start-date[i],exp.end-date[i],exp.city[i],exp.description[i]);
+    for(let i = 0; i<n.education; ++i)
+        addSchool();
+    for(let i = 0; i<n.skill; ++i)
+        addSkill();
+    for(let i = 0; i<n.language; ++i)
+        addLanguage();
+    for(let i = 0; i<n.cover-letter; ++i)
+        addCL();
+    for(let i = 0; i<n.certificate; ++i)
+        addCertificate();
+    for(let i = 0; i<n.course; ++i)
+        addCourse()
+    addCV();
+}
+
+fromJsonToHtml(json);
 
 let countE = 1;
-const addExperience = () => {
+const addExperience = (...arg) => {
     let btn = document.getElementById("btn-experiance");
     let newDiv = document.createRange().createContextualFragment(
         `<div class="form-row">
             </br>
             </br>
             <label for="job-title">Job title</label>
-            <input type="text" name="job-title-${countE}" placeholder="Waiter" required>
+            <input type="text" name="job-title-${countE}" placeholder="Waiter" value="${arg[0] || ""}" required>
             <div class="underline"></div>
         </div>
         <div class="form-row">
