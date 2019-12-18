@@ -116,7 +116,7 @@ $sign_up_class = new SignUpSystem(true);
         </div>
         <div class="form-row">
             <label for="residence-country">Your country</label>
-            <select name="position">
+            <select name="residence-country">
                 <?php
                 // Pick data from DB
                 $query = "SELECT country FROM countries";

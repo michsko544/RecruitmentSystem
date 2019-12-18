@@ -12,7 +12,7 @@ class SignUpSystem
         'position' => '',
         'residence_country' => '',
         'residence_city' => '',
-        'cv_file' => '',
+        'cv' => '',
         'cover_letter' => '',
     );
     private $insert_employment = array(
@@ -345,14 +345,20 @@ function validateForm4($language, $language_level, $skill, $skill_level, $school
     if (isset($_SESSION['err_school_description'])) unset($_SESSION['err_school_description']);
 }
 
-function validateFile($filename, $host, $db_user, $db_pass, $db_name)
+function validateFile($filename, $host, $db_user, $db_pass, $db_name, $multi_file, $col_name)
 {
-    // Validate certificate
-    $file_format = pathinfo($filename);
-    if ($file_format['extension'] != "pdf")
+    $whitelist = array("pdf");
+    // Get filename
+    $file_info = pathinfo($_FILES[$filename]['name']);
+    $name = $file_info['filename'];
+    $ext = $file_info['extension'];
+    // Validate file's extension
+    if (!in_array($ext, $whitelist))
     {
         $this->notGood('err_file', 'Files must have .pdf extension');
     }
+
+
 
     try
     {
@@ -366,10 +372,11 @@ function validateFile($filename, $host, $db_user, $db_pass, $db_name)
             if ($this->checkFlag() == true)
             {
                 //Add to array and wait
-                $this->setInsertValue('cv_file', $cv);
-                $this->setInsertCertSkillValues('certificate', $cert);
-                $this->setInsertValue('cover_letter', $cover_letter);
-                $this->setInsertCertSkillValues('course', $course);
+                if ($multi_file == true) {
+                    $this->setInsertCertSkillValues($col_name, $filename);
+                } else{
+                    $this->setInsertValue($col_name, $filename);
+                }
             }
             $connection->close();
         }
@@ -448,5 +455,12 @@ function insertData()
 }
 
 // TODO add insert function
+
+function itWorks($p)
+{
+    echo "<div style='height: 100vh'> It works! ". $p . " </div>";
+}
+
+
 }
 

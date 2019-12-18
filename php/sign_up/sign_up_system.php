@@ -4,13 +4,11 @@ require_once "SignUpSystem.php";
 // DB connection
 require_once "../connect.php";
 mysqli_report(MYSQLI_REPORT_STRICT);
-
+$sign_up_class = new SignUpSystem(true);
 
 //Form 1
 if (isset($_POST['e-mail']))
 {
-
-    $sign_up_class = new SignUpSystem(true);
     // Validate username
     $username = $_POST['login'];
     if ((strlen($username) < 3) || (strlen($username) > 20))
@@ -43,9 +41,8 @@ if (isset($_POST['e-mail']))
     }
     $hashed_password = password_hash($password_one, PASSWORD_DEFAULT);
 
-    // Validate position TODO get position
+    // Validate position
     $position = $_POST['position'];
-
 
     // Validate terms of use
     if (!isset($_POST['terms-of-use']))
@@ -113,11 +110,11 @@ if (isset($_POST['e-mail']))
             if ($sign_up_class->checkFlag() == true)
             {
                 // Add to array and wait
-                echo 'dzialato';
                 $sign_up_class->setInsertValue('username', $username);
                 $sign_up_class->setInsertValue('email', $email);
                 $sign_up_class->setInsertValue('password', $hashed_password);
                 $sign_up_class->setInsertValue('position', $position);
+                $sign_up_class->itWorks("form1");
             }
             $connection->close();
             //exit();
@@ -172,18 +169,14 @@ if (isset($_POST['first-name']))
 
     //Validate country
     $residence_country = $_POST['residence-country'];
-    if (ctype_alpha($residence_country) == false)
+    if ($residence_country != "Choose")
     {
-        $sign_up_class->notGood('err_residence_country', 'Country name may contain only letters');
+        $sign_up_class->notGood('err_residence_country', 'Choose our country');
     }
     //TODO add country list (from db)
 
     //Validate city
     $residence_city = $_POST['residence-city'];
-    if (ctype_alpha($residence_city) == false)
-    {
-        $sign_up_class->notGood('err_residence_city', 'City name may contain only letters');
-    }
     
     // Remember value
     $_SESSION['rem_first_name'] = $first_name;
@@ -240,9 +233,10 @@ if (isset($_POST['first-name']))
 }
 
 //Form 3
- $experience_count = $_GET['exp-count'];
+
 if (isset($_POST['job-title-0']))
 {
+    $experience_count = $_GET['exp-count'];
     for($i=0; $i<$experience_count; $i++)
     {
         $job_title = $_POST['job-title-' . $i];
@@ -282,7 +276,6 @@ if (isset($_POST['job-title']))
         }
 
         // Validate date
-        // TODO czy end jest po start
 
         //Validate city
         $job_city = $_POST['job-city'];
@@ -304,8 +297,7 @@ if (isset($_POST['job-title']))
         // Remember value
         $_SESSION['rem_job_title'] = $job_title;
         $_SESSION['rem_employer'] = $employer;
-       // TODO $_SESSION['rem_start_date'] = ;
-       // TODO $_SESSION['rem_end_date'] = ;
+
         $_SESSION['rem_job_city'] = $job_city;
         $_SESSION['rem_description'] = $job_description;
 
@@ -323,8 +315,7 @@ if (isset($_POST['job-title']))
                     //Add to array and wait
                     $sign_up_class->setInsertEmploymentValues('job_title', $job_title);
                     $sign_up_class->setInsertEmploymentValues('employer', $employer);
-                    // TODO $sign_up_class->setInsertEmploymentValues('star_date', $);
-                    // TODO $sign_up_class->setInsertEmploymentValues('end_date', $);
+
                     $sign_up_class->setInsertEmploymentValues('job_city', $job_city);
                     $sign_up_class->setInsertEmploymentValues('description', $job_description);
                 }
@@ -339,29 +330,28 @@ if (isset($_POST['job-title']))
         // Unset remembered values
         if (isset($_SESSION['rem_job_title'])) unset($_SESSION['rem_job_title']);
         if (isset($_SESSION['rem_employer'])) unset($_SESSION['rem_employer']);
-        // TODO if (isset($_SESSION['rem_start_date'])) unset($_SESSION['rem_start_date']);
-        // TODO if (isset($_SESSION['rem_end_date'])) unset($_SESSION['rem_end_date']);
+
         if (isset($_SESSION['rem_job_city'])) unset($_SESSION['rem_job_city']);
         if (isset($_SESSION['rem_description'])) unset($_SESSION['rem_description']);
         // Unset error values
         if (isset($_SESSION['err_job_title'])) unset($_SESSION['err_job_title']);
         if (isset($_SESSION['err_employer'])) unset($_SESSION['err_employer']);
-        // TODO if (isset($_SESSION['err_start_date'])) unset($_SESSION['err_start_date']);
-        // TODO if (isset($_SESSION['err_end_date'])) unset($_SESSION['err_end_date']);
+
         if (isset($_SESSION['err_job_city'])) unset($_SESSION['err_job_city']);
         if (isset($_SESSION['err_description'])) unset($_SESSION['err_description']);
     }
     else
     {
-        // TODO co robic gdy nie ma doswiadczenia -- chyba nic
+
     }
 }
 */
 
 // Form 4
-$school_count = $_GET['school-count'];
+
 if (isset($_POST['languages-0']))
 {
+    $school_count = $_GET['school-count'];
     for($i=0; $i<$school_count; $i++)
     {
         $language = $_POST['languages-' . $i];
@@ -382,7 +372,7 @@ if (isset($_POST['languages']))
 {
     // Validate language
     $language = $_POST['languages'];
-    // TODO validate
+
     $language_level = $_POST['language_level'];
     if (($language_level < 1) && ($language_level > 5))
     {
@@ -390,13 +380,13 @@ if (isset($_POST['languages']))
     }
     // Validate skills
     $skill = $_POST['skills'];
-    // TODO validate
+
     $skill_level = $_POST['skill_level'];
     if (($skill_level < 1) && ($skill_level > 5))
     {
         $sign_up_class->notGood('err_skill_level', 'Skill level must be between 1 and 5');
     }
-    // TODO add insert etc.
+
 
     $school = $_POST['school'];
     if (ctype_alnum($school) == false)
@@ -409,9 +399,9 @@ if (isset($_POST['languages']))
         $sign_up_class->notGood('err_specialization', 'Specialization name may only contain letters and numbers');
     }
     $school_start_date = $_POST['start-date'];
-    // TODO add validation
+
     $school_end_date = $_POST['end-date'];
-    // TODO add validation
+
     $school_city = $_POST['school-city'];
     if (ctype_alpha($school_city) == false)
     {
@@ -426,7 +416,7 @@ if (isset($_POST['languages']))
     {
         $sign_up_class->notGood('err_school_description', 'Description must have less than 500 characters');
     }
-    // Remember value TODO change to skills and school
+    // Remember value
     $_SESSION['rem_language'] = $language;
     $_SESSION['rem_language_level'] = $language_level;
     $_SESSION['rem_skill'] = $skill;
@@ -475,8 +465,7 @@ if (isset($_POST['languages']))
     if (isset($_SESSION['rem_skill_level'])) unset($_SESSION['rem_skill_level']);
     if (isset($_SESSION['rem_school'])) unset($_SESSION['rem_school']);
     if (isset($_SESSION['rem_specialization'])) unset($_SESSION['rem_specialization']);
-    // TODO if (isset($_SESSION['rem_school_start_date'])) unset($_SESSION['rem_school_start_date']);
-    // TODO if (isset($_SESSION['rem_school_end_date'])) unset($_SESSION['rem_school_end_date']);
+
     if (isset($_SESSION['rem_school_city'])) unset($_SESSION['rem_school_city']);
     if (isset($_SESSION['rem_school_description'])) unset($_SESSION['rem_school_description']);
     // Unset error values
@@ -486,37 +475,29 @@ if (isset($_POST['languages']))
     if (isset($_SESSION['err_skill_level'])) unset($_SESSION['err_skill_level']);
     if (isset($_SESSION['err_school'])) unset($_SESSION['err_school']);
     if (isset($_SESSION['err_specialization'])) unset($_SESSION['err_specialization']);
-    // TODO if (isset($_SESSION['err_school_start_date'])) unset($_SESSION['err_school_start_date']);
-    // TODO if (isset($_SESSION['err_school_end_date'])) unset($_SESSION['err_school_end_date']);
+
     if (isset($_SESSION['err_school_city'])) unset($_SESSION['err_school_city']);
     if (isset($_SESSION['err_school_description'])) unset($_SESSION['err_school_description']);
 }*/
 
 // Form 5
 
-$cert_count = $_GET['cert-count'];
-$course_count = $_GET['course-count'];
+
 if (isset($_POST['cv-file']))
 {
+    $cert_count = $_GET['cert-count'];
+    $course_count = $_GET['course-count'];
     $cv = $_POST['cv'];
     $cover_letter = $_POST['cover-letter'];
     // Validate cv
-    $file_format = pathinfo($cv);
-    if ($file_format['extension'] != "pdf")
-    {
-        $this->notGood('err_cover_letter_file', 'File must have .pdf extension');
-    }
+    $sign_up_class->validateFile($cv, $host, $db_user, $db_pass, $db_name, false, 'cv');
     // Validate cover letter
-    $file_format = pathinfo($cover_letter);
-    if ($file_format['extension'] != "pdf")
-    {
-        $this->notGood('err_cover_letter_file', 'File must have .pdf extension');
-    }
+    $sign_up_class->validateFile($cover_letter, $host, $db_user, $db_pass, $db_name, false, 'cover_letter');
 
     for($i=0; $i<$cert_count; $i++)
     {
         $cert = $_POST['cert-' . strval($i)];
-        $sign_up_class->validateFile($cert, $host, $db_user, $db_pass, $db_name);
+        $sign_up_class->validateFile($cert, $host, $db_user, $db_pass, $db_name, true, 'certificate');
     }
     for($i=0; $i<$course_count; $i++)
     {
