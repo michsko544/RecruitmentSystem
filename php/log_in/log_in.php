@@ -3,8 +3,8 @@ session_start();
 
 if ((!isset($_POST['login'])) || (!isset($_POST['password'])))
 {
-   // header('Location: /index.php');
-   // exit();
+   header('Location: /index.php');
+   exit();
 }
 
 require_once "../connect.php";
@@ -22,7 +22,6 @@ try
         $password = $_POST['password'];
 
         $login = htmlentities($login, ENT_QUOTES, "UTF-8");
-        // $password = htmlentities($password, ENT_QUOTES, "UTF-8");
 
         if ($result_login = $connection->query(
             sprintf("SELECT * FROM users WHERE login='%s'",
@@ -43,7 +42,6 @@ try
                     $_SESSION['username'] = $row_users['login'];
                     $_SESSION['id_conv'] = $row_users['id_conv'];
 
-                    // clear memory
                     unset($_SESSION['error']);
                     $result_login->free();
 
@@ -52,13 +50,17 @@ try
                 else
                 {
                     $_SESSION['error'] = '<span> Incorrect username or password </span>';
-                    header('Location: /index.php?var_l=login');
+                    $_SESSION['wrong-input'] = true;
+                    header('Location: /index.php');
+                    //unset($_SESSION['wrong-input']);
                 }
             }
             else
             {
                 $_SESSION['error'] = '<span> Incorrect username or password </span>';
-                header('Location: /index.php?var_l=login');
+                $_SESSION['wrong-input'] = true;
+                header('Location: /index.php');
+                //unset($_SESSION['wrong-input']);
             }
         }
         else

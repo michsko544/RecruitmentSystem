@@ -347,6 +347,7 @@ function validateForm4($language, $language_level, $skill, $skill_level, $school
 
 function validateFile($filename, $host, $db_user, $db_pass, $db_name, $multi_file, $col_name)
 {
+    // TODO check if works for multifiles
     $whitelist = array("pdf");
     // Get filename
     $file_info = pathinfo($_FILES[$filename]['name']);
@@ -358,32 +359,21 @@ function validateFile($filename, $host, $db_user, $db_pass, $db_name, $multi_fil
         $this->notGood('err_file', 'Files must have .pdf extension');
     }
 
+    $upload_dir = '/uploades/' . $col_name;
+    $file_to_upload = $upload_dir . basename($_FILES[$filename]['name']);
+    // TODO wypierdolic prawie wszystkie wyjątki bo są kurwa zbędne JAJEBE
 
-
-    try
-    {
-        $connection = new mysqli($host, $db_user, $db_pass, $db_name);
-        if ($connection->connect_errno != 0)
-        {
-            throw new Exception(mysqli_connect_errno());
-        }
-        else
-        {
-            if ($this->checkFlag() == true)
-            {
-                //Add to array and wait
-                if ($multi_file == true) {
-                    $this->setInsertCertSkillValues($col_name, $filename);
-                } else{
-                    $this->setInsertValue($col_name, $filename);
-                }
+    //Add to array and wait
+    if ($this->checkFlag() == true) {
+        if (move_uploaded_file($_FILES[$filename]['name'], $file_to_upload)) {
+            if ($multi_file == true) {
+                $this->setInsertCertSkillValues($col_name, $filename);
+            } else{
+                $this->setInsertValue($col_name, $filename);
             }
-            $connection->close();
+        } else {
+            $this->notGood('err_file', 'Uploading files failed');
         }
-    }
-    catch(Exception $e)
-    {
-        echo "<div class='server-error'>Server error! Please try again later. Err: ".$e."</div>";
     }
 }
 
