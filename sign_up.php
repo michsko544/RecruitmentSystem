@@ -28,7 +28,7 @@ $sign_up_class = new SignUpSystem(true);
 <div class="page-title cyan-color">Find your job by joining us!</div>
     <div id="sign-up-1" class="sign-up-wrapper">
 
-        <form id="sform-1" action="/php/sign_up/sign_up_system.php" method="post">
+        <form id="sform-1" action="php/sign_up/sign_up_system.php" method="post">
         <div class="form-row">
             <label for="login">Login</label>
             <input type="text" name="login" value="<?php $sign_up_class->rememberValue('rem_username'); ?>" placeholder="Username" required>
@@ -74,7 +74,7 @@ $sign_up_class = new SignUpSystem(true);
         
         <div class="form-row">
             <label for="terms-of-use">Terms and Privacy Policy</label>
-            <div class="checkbox"><input type="checkbox" required <?php
+            <div class="checkbox"><input type="checkbox" name="terms-of-use" required <?php
                 if (isset($_SESSION['rem_terms']))
                 {echo "checked";
                 unset($_SESSION['rem_terms']);}
@@ -116,7 +116,7 @@ $sign_up_class = new SignUpSystem(true);
         </div>
         <div class="form-row">
             <label for="residence-country">Your country</label>
-            <select name="residence-country">
+            <select name="residence-country" placeholder="Choose">
                 <?php
                 // Pick data from DB
                 $query = "SELECT country FROM countries";
@@ -326,6 +326,9 @@ $sign_up_class = new SignUpSystem(true);
             <input type="text" name="course-0" placeholder="e.g. Google Internet Revolutions">
             <div class="underline"></div>
         </div>
+        <?php
+        $sign_up_class->setError('err_email');
+        ?>
         <?php
         if(isset($_SESSION['error']))
         {
