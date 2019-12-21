@@ -1,105 +1,51 @@
 var buttons=document.getElementsByClassName("btn");
 
-const colorCyan = "#36C3D9";
 
-/*const convertDateDisplay = function(id) {
-    let date = document.getElementById(id).value;
-    console.log(date);
-    let year = `${date[6]}${date[7]}${date[8]}${date[9]}`;
-    let month = `${date[0]}${date[1]}`;
-    switch (month) {
-        case "01": 
-            month = "Jan";
-            break;
-        case "02": 
-            month = "Feb";
-            break;
-        case "03": 
-            month = "Mar";
-            break;
-        case "04": 
-            month = "Apr";
-            break;
-        case "05": 
-            month = "May";
-            break;
-        case "06": 
-            month = "Jun";  
-            break;
-        case "07": 
-            month = "Jul";
-            break;
-        case "08": 
-            month = "Aug";
-            break;
-        case "09": 
-            month = "Sep";
-            break;
-        case "10": 
-            month = "Oct";
-            break;
-        case "11": 
-            month = "Nov";
-            break;
-        case "12": 
-            month = "Dec";
-            break;
-        default:
-            month = "Jan";
+const highlightLabel = function(elem) { //id inputa
+    
+    if(elem.className!=="inputfile") {
+        elem.addEventListener("focus", function(){
+            console.log(elem.parentNode.parentNode.children[0]);
+            elem.parentNode.className==="form-row" 
+            ?
+                elem.parentNode.children[0].classList.toggle("cyan-color") //dla daty dwa parentNode
+                :
+                elem.parentNode.parentNode.children[0].classList.toggle("cyan-color");
+        });
+        elem.addEventListener("focusout", function(){
+            console.log(elem.parentNode.parentNode.children[0]);
+            elem.parentNode.className==="form-row" 
+            ?
+                elem.parentNode.children[0].classList.toggle("cyan-color") //dla daty dwa parentNode
+                :
+                elem.parentNode.parentNode.children[0].classList.toggle("cyan-color");
+        });
     }
-    return `${month},${year}`;
-}
-
-const updateDisplayOnchange = (id) => {
-    document.getElementById(id).onchange = function(){
-        console.log(this);
-        this.setAttribute("value", convertDateDisplay(id));
-    };
-    return true;
-}*/
-
-const highlightLabel = function() { //id inputa
-    console.log(this);
-    this.addEventListener("focus", function(){
-        console.log(this.parentNode.parentNode.children[0]);
-        this.parentNode.className==="form-row" 
-        ?
-            this.parentNode.children[0].classList.toggle("cyan-color") //dla daty dwa parentNode
-            :
-            this.parentNode.parentNode.children[0].classList.toggle("cyan-color");
-    });
-    this.addEventListener("focusout", function(){
-        console.log(this.parentNode.parentNode.children[0]);
-        this.parentNode.className==="form-row" 
-        ?
-            this.parentNode.children[0].classList.toggle("cyan-color") //dla daty dwa parentNode
-            :
-            this.parentNode.parentNode.children[0].classList.toggle("cyan-color");
-    });
 }
 
 const addHighlightEvents = () => {
+    console.log("loading new events");
     const inputs = document.querySelectorAll("input");
-    console.dir(inputs);
+    const textareas = document.querySelectorAll("textarea");
     inputs.forEach( elem => {
         console.dir(elem);
-        highlightLabel.bind(elem);
-
-        highlightLabel();
+        highlightLabel(elem);
+        return true;
+    });
+    textareas.forEach( elem => {
+        highlightLabel(elem);
         return true;
     });
     return true;
 }
 
 addHighlightEvents();
-console.log("loadEvents");
+
 
 calendar("exp-0");
-//updateDisplayOnchange("start-exp-0");
-//updateDisplayOnchange("end-exp-0");
+
 calendar("school-0");
-//updateDisplayOnchange("start-school-0");
-//updateDisplayOnchange("end-school-0");
+
 
 document.getElementById("no-experience").addEventListener("click", function(){
     if(this.checked===true){
@@ -135,159 +81,201 @@ const fromJsonToHtml = (json) => {
     const add = json.additional;
     const n = json.counters;
 
-    addPersonalData();
-    for(let i = 0; i<n.experience; ++i)
-        addExperience(exp.job-title[i],exp.employer[i],exp.start-date[i],exp.end-date[i],exp.city[i],exp.description[i]);
-    for(let i = 0; i<n.education; ++i)
-        addSchool();
-    for(let i = 0; i<n.skill; ++i)
-        addSkill();
-    for(let i = 0; i<n.language; ++i)
-        addLanguage();
-    for(let i = 0; i<n.cover-letter; ++i)
+    let pDProps = {
+        firstName: pD.first-name,
+        lastName: pD.last-name,
+        phone: pD.phone,
+        country: pD.country,
+        city: pD.city
+    };
+    addPersonalData(pDProps);
+
+    for(let i = 0; i<n.experience; ++i){
+        let props = {
+            jobTitle: exp.job-title[i],
+            employer: exp.employer[i],
+            startDate: exp.start-date[i],
+            endDate: exp.end-date[i],
+            city: exp.city[i],
+            description: exp.description[i]
+        };
+        addExperience(props);
+    }
+
+    for(let i = 0; i<n.education; ++i){
+        let props = {
+            schoolName: sql.school-name[i],
+            specialization: sql.specialization[i],
+            startDate: sql.start-date[i],
+            endDate: sql.end-date[i],
+            city: sql.city[i],
+            description: sql.description[i]
+        };
+        addSchool(props);
+    }
+        
+    for(let i = 0; i<n.skill; ++i){
+        let props = {
+            skill: skl.skill[i],
+            level: skl.level[i]
+        };
+        addSkill(props);
+    }
+        
+    for(let i = 0; i<n.language; ++i){
+        let props = {
+            lang: lang.lang[i],
+            level: lang.level[i]
+        };
+        addLanguage(props);
+    }
+        
+    /*for(let i = 0; i<n.cover-letter; ++i)
         addCL();
     for(let i = 0; i<n.certificate; ++i)
         addCertificate();
     for(let i = 0; i<n.course; ++i)
         addCourse()
-    addCV();
+    addCV();*/
 }
 
-fromJsonToHtml(json);
+//fromJsonToHtml(json);
 
 let countE = 1;
-const addExperience = (...arg) => {
+const addExperience = ({jobTitle, employer, startDate, endDate, city, description}) => {
     let btn = document.getElementById("btn-experiance");
     let newDiv = document.createRange().createContextualFragment(
         `<div class="form-row">
             </br>
             </br>
             <label for="job-title">Job title</label>
-            <input type="text" name="job-title-${countE}" placeholder="Waiter" value="${arg[0] || ""}" required>
+            <input type="text" name="job-title-${countE}" placeholder="Waiter" value="${jobTitle || ""}" required>
             <div class="underline"></div>
         </div>
         <div class="form-row">
             <label for="employer">Employer</label>
-            <input type="text" name="employer-${countE}" placeholder="Italian Restaurant London" required>
+            <input type="text" name="employer-${countE}" placeholder="Italian Restaurant London" value="${employer || ""}" required>
             <div class="underline"></div>
         </div>
         <div class="form-row">
             <label for="start-end-date">Start & End date</label>
             <div class="date">
                 <input type="text" id="start-exp-${countE}" class="start-date"  name="start-date-${countE}" placeholder="Oct, 2019" required>
-                <input type="text" id="end-exp-${countE}" class="end-date" name="end-date-$ {countE}" placeholder="Nov, 2019" required>
+                <input type="text" id="end-exp-${countE}" class="end-date" name="end-date-${countE}" placeholder="Nov, 2019" required>
             </div>
         </div>
         <div class="form-row">
             <label for="job-city">City</label>
-            <input type="text" name="job-city-${countE}" placeholder="London" required>
+            <input type="text" name="job-city-${countE}" placeholder="London" value="${city || ""}" required>
             <div class="underline"></div>
         </div>
         <div class="form-row">
             <label for="job-description">Description</label>
-            <textarea name="job-description-${countE}" cols="35" rows="4" placeholder="e.g. waitressing,preparing venue for events, taking care of restaurant clarity, making basic drinks, brewing coffee" required></textarea>
+            <textarea name="job-description-${countE}" cols="35" rows="4" placeholder="e.g. waitressing,preparing venue for events, taking care of restaurant clarity, making basic drinks, brewing coffee" required>${description || ""}</textarea>
             <div class="underlineTA"></div>
         </div>`
     );
 
     btn.parentNode.insertBefore(newDiv, btn);
     calendar(`exp-${countE}`);
-    //updateDisplayOnchange(`start-exp-${countE}`);
-    //updateDisplayOnchange(`end-exp-${countE}`);
     ++countE;
+    addHighlightEvents();
 }
 
 document.getElementById("btn-experiance").addEventListener("click", addExperience);
 
 let countL = 1;
-const addLanguage = () => {
+const addLanguage = ({lang, level}) => {
     let btn = document.getElementById("btn-language");
     let newDiv = document.createRange().createContextualFragment(
     `<div class="form-row">
-        <input type="text" name="languages-${countL}" placeholder="German" required>
+        <input type="text" name="languages-${countL}" placeholder="German" value="${lang || ""}" required>
         <div class="underline"></div>
         <div class="degree">
-            <input type="number" name="language_level" min=1 max=5 placeholder=1>
+            <input type="number" name="language_level-${countL}" min=1 max=5 placeholder=1 value="${level || 1}">
             <div class="limit">/5</div>
         </div>
     </div>`);
     btn.parentNode.insertBefore(newDiv, btn);
     ++countL;
+    addHighlightEvents();
 }
 
 document.getElementById("btn-language").addEventListener("click", addLanguage);
 
 let countSk = 1;
-const addSkill = () => {
+const addSkill = ({skill, level}) => {
     let btn = document.getElementById("btn-skill");
     let newDiv = document.createRange().createContextualFragment(
     `<div class="form-row">
-        <input type="text" name="skills-${countSk}" placeholder="Marketing" required>
+        <input type="text" name="skills-${countSk}" placeholder="Marketing" value="${skill || ""}"required>
         <div class="underline"></div>
         <div class="degree">
-            <input type="number" name="skill-level-${countSk}" min=1 max=5 placeholder=1>
+            <input type="number" name="skill-level-${countSk}" min=1 max=5 placeholder=1 value="${level || 1}">
             <div class="limit">/5</div>
         </div>
     </div>`);
     btn.parentNode.insertBefore(newDiv, btn);
     ++countSk;
+    addHighlightEvents();
 }
 
 document.getElementById("btn-skill").addEventListener("click", addSkill);
 
 let countS = 1;
-const addSchool = () => {
+const addSchool = ({schoolName, specialization, startDate, endDate, city, description}) => {
     let btn = document.getElementById("btn-school");
     let newDiv = document.createRange().createContextualFragment(
         `</br>
         </br>
         <div class="form-row">
             <label for="school">School</label>
-            <input type="text" name="school-${countS}" placeholder="Silesian University of  Technology" required>
+            <input type="text" name="school-${countS}" placeholder="Silesian University of Technology" value="${schoolName || ""}"required>
             <div class="underline"></div>
         </div>
         <div class="form-row">
             <label for="specialization">Specialization</label>
-            <input type="text" name="specialization-${countS}" placeholder="Teleinformatics"    required>
+            <input type="text" name="specialization-${countS}" placeholder="Teleinformatics" value="${specialization || ""}" required>
             <div class="underline"></div>
         </div>
         <div class="form-row">
             <label for="start-end-date">Start & End date</label>
             <div class="date">
-                <input type="text" id="start-school-${countS}" class="start-date"       name="school-start-date-${countS}" placeholder="Oct, 2019" required>
-                <input type="text" id="end-school-${countS}" class="end-date"       name="school-end-date-${countS}" placeholder="Nov, 2019" required>
+                <input type="text" id="start-school-${countS}" class="start-date" name="school-start-date-${countS}" placeholder="Oct, 2019" required>
+                <input type="text" id="end-school-${countS}" class="end-date" name="school-end-date-${countS}" placeholder="Nov, 2019" required>
             </div>
         </div>
         <div class="form-row">
             <label for="school-city">City</label>
-            <input type="text" name="school-city-${countS}" placeholder="Gliwice" required>
+            <input type="text" name="school-city-${countS}" placeholder="Gliwice" value="${city || ""}" required>
             <div class="underline"></div>
         </div>
         <div class="form-row">
             <label for="school-description">Description</label>
-            <textarea name="school-description-${countS}" cols="35" rows="4" placeholder="e.g.  programming, data analysing, network designing, microprocessors coding"></textarea>
+            <textarea name="school-description-${countS}" cols="35" rows="4" placeholder="e.g.  programming, data analysing, network designing, microprocessors coding">${description || ""}</textarea>
             <div class="underlineTA"></div>
         </div>`
     );
     btn.parentNode.insertBefore(newDiv, btn);
     calendar(`school-${countS}`);
-    updateDisplayOnchange(`start-school-${countS}`);
-    updateDisplayOnchange(`end-school-${countS}`);
     ++countS;
+    addHighlightEvents();
 }
 
 document.getElementById("btn-school").addEventListener("click", addSchool);
 
-let CountC = 1;
-const addCourse = () => {
+let countC = 1;
+const addCourse = ({course}) => {
     let btn = document.getElementById("btn-course");
     let newDiv = document.createRange().createContextualFragment(
         `<div class="form-row">
-            <input type="text" name="course-${countC}" placeholder="e.g. Google Internet    Revolutions">
+            <input type="text" name="course-${countC}" placeholder="e.g. Google Internet Revolutions" value="${course || ""}">
             <div class="underline"></div>
         </div>`
     );
     btn.parentNode.insertBefore(newDiv, btn);
+    ++countC;
+    addHighlightEvents();
 }
 
 document.getElementById("btn-course").addEventListener("click", addCourse);
