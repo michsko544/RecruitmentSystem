@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Czas generowania: 12 Gru 2019, 14:34
--- Wersja serwera: 10.1.38-MariaDB
--- Wersja PHP: 7.3.3
+-- Host: localhost
+-- Czas generowania: 20 Gru 2019, 18:31
+-- Wersja serwera: 10.4.10-MariaDB
+-- Wersja PHP: 7.1.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -179,7 +179,252 @@ CREATE TABLE `countries` (
 --
 
 INSERT INTO `countries` (`id_country`, `country`) VALUES
-(1, 'Polska');
+(1, 'Afghanistan'),
+(2, 'Albania'),
+(3, 'Algeria'),
+(4, 'American Samoa'),
+(5, 'Andorra'),
+(6, 'Angola'),
+(7, 'Anguilla'),
+(8, 'Antarctica'),
+(9, 'Antigua and Barbuda'),
+(10, 'Argentina'),
+(11, 'Armenia'),
+(12, 'Aruba'),
+(13, 'Australia'),
+(14, 'Austria'),
+(15, 'Azerbaijan'),
+(16, 'Bahamas'),
+(17, 'Bahrain'),
+(18, 'Bangladesh'),
+(19, 'Barbados'),
+(20, 'Belarus'),
+(21, 'Belgium'),
+(22, 'Belize'),
+(23, 'Benin'),
+(24, 'Bermuda'),
+(25, 'Bhutan'),
+(26, 'Bolivia'),
+(27, 'Bosnia and Herzegovi'),
+(28, 'Botswana'),
+(29, 'Bouvet Island'),
+(30, 'Brazil'),
+(31, 'British Indian Ocean'),
+(32, 'Brunei Darussalam'),
+(33, 'Bulgaria'),
+(34, 'Burkina Faso'),
+(35, 'Burundi'),
+(36, 'Cambodia'),
+(37, 'Cameroon'),
+(38, 'Canada'),
+(39, 'Cape Verde'),
+(40, 'Cayman Islands'),
+(41, 'Central African Repu'),
+(42, 'Chad'),
+(43, 'Chile'),
+(44, 'China'),
+(45, 'Christmas Island'),
+(46, 'Cocos (Keeling) Isla'),
+(47, 'Colombia'),
+(48, 'Comoros'),
+(49, 'Democratic Republic '),
+(50, 'Republic of Congo'),
+(51, 'Cook Islands'),
+(52, 'Costa Rica'),
+(53, 'Croatia (Hrvatska)'),
+(54, 'Cuba'),
+(55, 'Cyprus'),
+(56, 'Czech Republic'),
+(57, 'Denmark'),
+(58, 'Djibouti'),
+(59, 'Dominica'),
+(60, 'Dominican Republic'),
+(61, 'East Timor'),
+(62, 'Ecuador'),
+(63, 'Egypt'),
+(64, 'El Salvador'),
+(65, 'Equatorial Guinea'),
+(66, 'Eritrea'),
+(67, 'Estonia'),
+(68, 'Ethiopia'),
+(69, 'Falkland Islands (Ma'),
+(70, 'Faroe Islands'),
+(71, 'Fiji'),
+(72, 'Finland'),
+(73, 'France'),
+(74, 'France, Metropolitan'),
+(75, 'French Guiana'),
+(76, 'French Polynesia'),
+(77, 'French Southern Terr'),
+(78, 'Gabon'),
+(79, 'Gambia'),
+(80, 'Georgia'),
+(81, 'Germany'),
+(82, 'Ghana'),
+(83, 'Gibraltar'),
+(84, 'Guernsey'),
+(85, 'Greece'),
+(86, 'Greenland'),
+(87, 'Grenada'),
+(88, 'Guadeloupe'),
+(89, 'Guam'),
+(90, 'Guatemala'),
+(91, 'Guinea'),
+(92, 'Guinea-Bissau'),
+(93, 'Guyana'),
+(94, 'Haiti'),
+(95, 'Heard and Mc Donald '),
+(96, 'Honduras'),
+(97, 'Hong Kong'),
+(98, 'Hungary'),
+(99, 'Iceland'),
+(100, 'India'),
+(101, 'Isle of Man'),
+(102, 'Indonesia'),
+(103, 'Iran (Islamic Republ'),
+(104, 'Iraq'),
+(105, 'Ireland'),
+(106, 'Israel'),
+(107, 'Italy'),
+(108, 'Ivory Coast'),
+(109, 'Jersey'),
+(110, 'Jamaica'),
+(111, 'Japan'),
+(112, 'Jordan'),
+(113, 'Kazakhstan'),
+(114, 'Kenya'),
+(115, 'Kiribati'),
+(116, 'Korea, Democratic Pe'),
+(117, 'Korea, Republic of'),
+(118, 'Kosovo'),
+(119, 'Kuwait'),
+(120, 'Kyrgyzstan'),
+(121, 'Lao People\'s Democra'),
+(122, 'Latvia'),
+(123, 'Lebanon'),
+(124, 'Lesotho'),
+(125, 'Liberia'),
+(126, 'Libyan Arab Jamahiri'),
+(127, 'Liechtenstein'),
+(128, 'Lithuania'),
+(129, 'Luxembourg'),
+(130, 'Macau'),
+(131, 'North Macedonia'),
+(132, 'Madagascar'),
+(133, 'Malawi'),
+(134, 'Malaysia'),
+(135, 'Maldives'),
+(136, 'Mali'),
+(137, 'Malta'),
+(138, 'Marshall Islands'),
+(139, 'Martinique'),
+(140, 'Mauritania'),
+(141, 'Mauritius'),
+(142, 'Mayotte'),
+(143, 'Mexico'),
+(144, 'Micronesia, Federate'),
+(145, 'Moldova, Republic of'),
+(146, 'Monaco'),
+(147, 'Mongolia'),
+(148, 'Montenegro'),
+(149, 'Montserrat'),
+(150, 'Morocco'),
+(151, 'Mozambique'),
+(152, 'Myanmar'),
+(153, 'Namibia'),
+(154, 'Nauru'),
+(155, 'Nepal'),
+(156, 'Netherlands'),
+(157, 'Netherlands Antilles'),
+(158, 'New Caledonia'),
+(159, 'New Zealand'),
+(160, 'Nicaragua'),
+(161, 'Niger'),
+(162, 'Nigeria'),
+(163, 'Niue'),
+(164, 'Norfolk Island'),
+(165, 'Northern Mariana Isl'),
+(166, 'Norway'),
+(167, 'Oman'),
+(168, 'Pakistan'),
+(169, 'Palau'),
+(170, 'Palestine'),
+(171, 'Panama'),
+(172, 'Papua New Guinea'),
+(173, 'Paraguay'),
+(174, 'Peru'),
+(175, 'Philippines'),
+(176, 'Pitcairn'),
+(177, 'Poland'),
+(178, 'Portugal'),
+(179, 'Puerto Rico'),
+(180, 'Qatar'),
+(181, 'Reunion'),
+(182, 'Romania'),
+(183, 'Russian Federation'),
+(184, 'Rwanda'),
+(185, 'Saint Kitts and Nevi'),
+(186, 'Saint Lucia'),
+(187, 'Saint Vincent and th'),
+(188, 'Samoa'),
+(189, 'San Marino'),
+(190, 'Sao Tome and Princip'),
+(191, 'Saudi Arabia'),
+(192, 'Senegal'),
+(193, 'Serbia'),
+(194, 'Seychelles'),
+(195, 'Sierra Leone'),
+(196, 'Singapore'),
+(197, 'Slovakia'),
+(198, 'Slovenia'),
+(199, 'Solomon Islands'),
+(200, 'Somalia'),
+(201, 'South Africa'),
+(202, 'South Georgia South '),
+(203, 'South Sudan'),
+(204, 'Spain'),
+(205, 'Sri Lanka'),
+(206, 'St. Helena'),
+(207, 'St. Pierre and Mique'),
+(208, 'Sudan'),
+(209, 'Suriname'),
+(210, 'Svalbard and Jan May'),
+(211, 'Swaziland'),
+(212, 'Sweden'),
+(213, 'Switzerland'),
+(214, 'Syrian Arab Republic'),
+(215, 'Taiwan'),
+(216, 'Tajikistan'),
+(217, 'Tanzania, United Rep'),
+(218, 'Thailand'),
+(219, 'Togo'),
+(220, 'Tokelau'),
+(221, 'Tonga'),
+(222, 'Trinidad and Tobago'),
+(223, 'Tunisia'),
+(224, 'Turkey'),
+(225, 'Turkmenistan'),
+(226, 'Turks and Caicos Isl'),
+(227, 'Tuvalu'),
+(228, 'Uganda'),
+(229, 'Ukraine'),
+(230, 'United Arab Emirates'),
+(231, 'United Kingdom'),
+(232, 'United States'),
+(233, 'United States minor '),
+(234, 'Uruguay'),
+(235, 'Uzbekistan'),
+(236, 'Vanuatu'),
+(237, 'Vatican City State'),
+(238, 'Venezuela'),
+(239, 'Vietnam'),
+(240, 'Virgin Islands (Brit'),
+(241, 'Virgin Islands (U.S.'),
+(242, 'Wallis and Futuna Is'),
+(243, 'Western Sahara'),
+(244, 'Yemen'),
+(245, 'Zambia'),
+(246, 'Zimbabwe');
 
 -- --------------------------------------------------------
 
@@ -262,7 +507,9 @@ CREATE TABLE `holders` (
 --
 
 INSERT INTO `holders` (`id_holder`, `id_level`, `id_applicants`, `id_skill`) VALUES
-(1, 2, 1, 1);
+(1, 2, 1, 1),
+(2, 3, 1, 2),
+(3, 2, 1, 3);
 
 -- --------------------------------------------------------
 
@@ -282,7 +529,8 @@ CREATE TABLE `knowledge` (
 --
 
 INSERT INTO `knowledge` (`id_knowledge`, `id_level`, `id_applicants`, `id_language`) VALUES
-(1, 2, 1, 2);
+(1, 2, 1, 2),
+(2, 1, 1, 3);
 
 -- --------------------------------------------------------
 
@@ -301,7 +549,8 @@ CREATE TABLE `languages` (
 
 INSERT INTO `languages` (`id_language`, `language`) VALUES
 (1, 'pl'),
-(2, 'eng');
+(2, 'eng'),
+(3, 'czeski');
 
 -- --------------------------------------------------------
 
@@ -319,8 +568,11 @@ CREATE TABLE `levels` (
 --
 
 INSERT INTO `levels` (`id_level`, `level`) VALUES
-(1, 'prosty'),
-(2, 'trudny');
+(1, 'get gud'),
+(2, 'weak boi'),
+(3, 'mid'),
+(4, 'almostGood'),
+(5, 'pro');
 
 -- --------------------------------------------------------
 
@@ -361,7 +613,9 @@ CREATE TABLE `positions` (
 --
 
 INSERT INTO `positions` (`id_position`, `position`, `description`) VALUES
-(1, 'pozycja', 'blablablapozycja');
+(1, 'pozycja', 'blablablapozycja'),
+(2, 'pozycja 2', 'allala'),
+(3, 'pozycja 3', 'hohoh oho');
 
 -- --------------------------------------------------------
 
@@ -407,7 +661,8 @@ CREATE TABLE `schools` (
 --
 
 INSERT INTO `schools` (`id_school`, `name_school`, `specialization`, `start_learning`, `end_learning`, `description`, `id_city`, `id_applicants`) VALUES
-(1, 'wypizdawka', 'jebanko', '2019-12-10', '2019-12-31', 'ja jebie co za smiech', 2, 1);
+(1, 'wypizdawka', 'jebanko', '2019-12-10', '2019-12-31', 'ja jebie co za smiech', 2, 1),
+(2, 'borobor', 'xd', '2019-12-03', '2019-12-26', 'oby dzialalo', 3, 1);
 
 -- --------------------------------------------------------
 
@@ -425,7 +680,9 @@ CREATE TABLE `skills` (
 --
 
 INSERT INTO `skills` (`id_skill`, `sience`) VALUES
-(1, 'bdbd');
+(1, 'bdbd'),
+(2, 'wazenie'),
+(3, 'krojenie');
 
 -- --------------------------------------------------------
 
@@ -686,7 +943,7 @@ ALTER TABLE `users`
   ADD KEY `id_role` (`id_role`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT dla tabel zrzutów
 --
 
 --
@@ -732,6 +989,12 @@ ALTER TABLE `conv_part`
   MODIFY `id_conv_part` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT dla tabeli `countries`
+--
+ALTER TABLE `countries`
+  MODIFY `id_country` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=247;
+
+--
 -- AUTO_INCREMENT dla tabeli `cv`
 --
 ALTER TABLE `cv`
@@ -753,25 +1016,25 @@ ALTER TABLE `experiences`
 -- AUTO_INCREMENT dla tabeli `holders`
 --
 ALTER TABLE `holders`
-  MODIFY `id_holder` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_holder` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT dla tabeli `knowledge`
 --
 ALTER TABLE `knowledge`
-  MODIFY `id_knowledge` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_knowledge` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT dla tabeli `languages`
 --
 ALTER TABLE `languages`
-  MODIFY `id_language` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_language` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT dla tabeli `levels`
 --
 ALTER TABLE `levels`
-  MODIFY `id_level` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_level` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT dla tabeli `messages`
@@ -783,7 +1046,7 @@ ALTER TABLE `messages`
 -- AUTO_INCREMENT dla tabeli `positions`
 --
 ALTER TABLE `positions`
-  MODIFY `id_position` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_position` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT dla tabeli `roles`
@@ -795,13 +1058,13 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT dla tabeli `schools`
 --
 ALTER TABLE `schools`
-  MODIFY `id_school` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_school` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT dla tabeli `skills`
 --
 ALTER TABLE `skills`
-  MODIFY `id_skill` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_skill` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT dla tabeli `sor`
