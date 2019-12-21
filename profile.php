@@ -360,7 +360,7 @@ catch (Exception $e)
     <div class="form-row">
         <label for="lm-file">Cover Letter</label>
         <div class="upload">
-            <input type="file" name="lm-file" class="inputfile" value="" accept="application/pdf" data-multiple-caption="{count} files selected" multiple>
+            <input type="file" name="lm-file" class="inputfile" accept="application/pdf" data-multiple-caption="{count} files selected" multiple>
             <label>Choose a file</label>
         </div>
     </div>
