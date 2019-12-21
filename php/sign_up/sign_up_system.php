@@ -481,8 +481,6 @@ if (isset($_POST['languages']))
 }*/
 
 // Form 5
-
-
 if (isset($_POST['cv-file']))
 {
     $cert_count = $_GET['cert-count'];
@@ -491,12 +489,14 @@ if (isset($_POST['cv-file']))
     $cover_letter = $_POST['cover-letter'];
     // Validate cv
     $sign_up_class->validateFile($cv, $host, $db_user, $db_pass, $db_name, false, 'cv');
+
+    $sign_up_class->itWorks("dziala");
     // Validate cover letter
     $sign_up_class->validateFile($cover_letter, $host, $db_user, $db_pass, $db_name, false, 'cover_letter');
 
     for($i=0; $i<$cert_count; $i++)
     {
-        $cert = $_POST['cert-' . strval($i)];
+        $cert = $_POST['certificate-' . strval($i)];
         $sign_up_class->validateFile($cert, $host, $db_user, $db_pass, $db_name, true, 'certificate');
     }
     for($i=0; $i<$course_count; $i++)

@@ -368,8 +368,10 @@ function validateFile($filename, $host, $db_user, $db_pass, $db_name, $multi_fil
         if (move_uploaded_file($_FILES[$filename]['name'], $file_to_upload)) {
             if ($multi_file == true) {
                 $this->setInsertCertSkillValues($col_name, $filename);
+                $this->itWorks("file");
             } else{
                 $this->setInsertValue($col_name, $filename);
+                $this->itWorks("file");
             }
         } else {
             $this->notGood('err_file', 'Uploading files failed');
