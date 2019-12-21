@@ -6,6 +6,7 @@ require_once "../connect.php";
 mysqli_report(MYSQLI_REPORT_STRICT);
 $sign_up_class = new SignUpSystem(true);
 
+
 //Form 1
 if (isset($_POST['e-mail']))
 {
@@ -47,7 +48,8 @@ if (isset($_POST['e-mail']))
     // Validate terms of use
     if (!isset($_POST['terms-of-use']))
     {
-        $sign_up_class->notGood('err_terms', 'You must accept our Terms of Use and Privacy Policy');
+       $correct_data = false;
+       $sign_up_class->notGood('err_terms', 'You must accept our Terms of Use and Privacy Policy');
     }
 
     // Validate CAPTCHA TODO add reCAPTCHA
@@ -101,10 +103,13 @@ if (isset($_POST['e-mail']))
             {
                 throw new Exception($connection->error);
             }
-            $count_input = $result_position->num_rows;
-            if ($count_input == 0)
+            else
             {
-                $sign_up_class->notGood('err_position', 'Position currently unavailable');
+                $count_input = $result_position->num_rows;
+                if ($count_input == 0)
+                {
+                    $sign_up_class->notGood('err_position', 'Position currently unavailable');
+                }
             }
 
             if ($sign_up_class->checkFlag() == true)
@@ -114,6 +119,7 @@ if (isset($_POST['e-mail']))
                 $sign_up_class->setInsertValue('email', $email);
                 $sign_up_class->setInsertValue('password', $hashed_password);
                 $sign_up_class->setInsertValue('position', $position);
+
                 $sign_up_class->itWorks("form1");
             }
             $connection->close();
@@ -169,11 +175,35 @@ if (isset($_POST['first-name']))
 
     //Validate country
     $residence_country = $_POST['residence-country'];
-    if ($residence_country != "Choose")
+    try
     {
-        $sign_up_class->notGood('err_residence_country', 'Choose our country');
+        $connection = new mysqli($host, $db_user, $db_pass, $db_name);
+        if ($connection->connect_errno != 0)
+        {
+            throw new Exception(mysqli_connect_errno());
+        }
+        else
+        {
+            $result_country = $connection->query("SELECT id_country FROM countries WHERE country = '{$residence_country}'");
+            if (!$result_country)
+            {
+                throw new Exception($connection->error);
+            }
+            else
+            {
+                $count_input = $result_country->num_rows;
+                if ($count_input == 0)
+                {
+                    $sign_up_class->notGood('err_residence_country', 'U crazy? Dis ain&apos;t no country');
+                }
+            }
+            $connection->close();
+        }
     }
-    //TODO add country list (from db)
+    catch (Exception $e)
+    {
+        echo "<div class='server-error'>Server error! Please try again later. Err: ".$e."</div>";
+    }
 
     //Validate city
     $residence_city = $_POST['residence-city'];
@@ -185,37 +215,22 @@ if (isset($_POST['first-name']))
     $_SESSION['rem_residence_country'] = $residence_country;
     $_SESSION['rem_residence_city'] = $residence_city;
 
-    try
+    if ($sign_up_class->checkFlag() == true)
     {
-        $connection = new mysqli($host, $db_user, $db_pass, $db_name);
-        if ($connection->connect_errno != 0)
-        {
-            throw new Exception(mysqli_connect_errno());
-        }
-        else
-        {
-            if ($sign_up_class->checkFlag() == true)
-            {
-                // Add to session variables and wait for other steps
-               // $_SESSION['insert_first_name'] = $first_name;
-               // $_SESSION['insert_last_name'] = $last_name;
-               // $_SESSION['insert_phone'] = $phone;
-               // $_SESSION['insert_residence_country'] = $residence_country;
-               // $_SESSION['insert_residence_city'] = $residence_city;
+        // Add to session variables and wait for other steps
+       // $_SESSION['insert_first_name'] = $first_name;
+       // $_SESSION['insert_last_name'] = $last_name;
+       // $_SESSION['insert_phone'] = $phone;
+       // $_SESSION['insert_residence_country'] = $residence_country;
+       // $_SESSION['insert_residence_city'] = $residence_city;
 
-                //Add to array and wait
-                $sign_up_class->setInsertValue('first_name', $first_name);
-                $sign_up_class->setInsertValue('last_name', $last_name);
-                $sign_up_class->setInsertValue('phone', $phone);
-                $sign_up_class->setInsertValue('residence_country', $residence_country);
-                $sign_up_class->setInsertValue('residence_city', $residence_city);
-            }
-            $connection->close();
-        }
-    }
-    catch(Exception $e)
-    {
-        echo "<div class='server-error'>Server error! Please try again later. Err: ".$e."</div>";
+        //Add to array and wait
+        $sign_up_class->setInsertValue('first_name', $first_name);
+        $sign_up_class->setInsertValue('last_name', $last_name);
+        $sign_up_class->setInsertValue('phone', $phone);
+        $sign_up_class->setInsertValue('residence_country', $residence_country);
+        $sign_up_class->setInsertValue('residence_city', $residence_city);
+        $sign_up_class->itWorks('form2');
     }
 
     // Unset remembered values
@@ -243,8 +258,10 @@ if (isset($_POST['job-title-0']))
         $no_experience = $_POST['no-experience'];
         $employer = $_POST['employer-' . $i];
         $job_city = $_POST['job-city-' . $i];
+        $start_date = $_POST['start-date-'. $i];
+        $end_date = $_POST['end-date-'. $i];
         $job_description = $_POST['job-description-' . $i];
-        $sign_up_class->validateForm3($job_title, $no_experience, $employer, $job_city, $job_description, $host, $db_user, $db_pass, $db_name);
+        $sign_up_class->validateForm3($job_title, $no_experience, $employer, $start_date, $end_date, $job_city, $job_description);
     }
 }
 
@@ -481,8 +498,9 @@ if (isset($_POST['languages']))
 }*/
 
 // Form 5
-if (isset($_POST['cv-file']))
+if (isset($_POST['cv']))
 {
+    $this->itWorks("file");
     $cert_count = $_GET['cert-count'];
     $course_count = $_GET['course-count'];
     $cv = $_POST['cv'];
@@ -490,7 +508,6 @@ if (isset($_POST['cv-file']))
     // Validate cv
     $sign_up_class->validateFile($cv, $host, $db_user, $db_pass, $db_name, false, 'cv');
 
-    $sign_up_class->itWorks("dziala");
     // Validate cover letter
     $sign_up_class->validateFile($cover_letter, $host, $db_user, $db_pass, $db_name, false, 'cover_letter');
 

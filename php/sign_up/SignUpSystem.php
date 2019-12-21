@@ -42,10 +42,10 @@ class SignUpSystem
         'course' => array(),
     );
 
-    function __construct($flag_status)
-    {
-        $this->correct_data = $flag_status;
-    }
+function __construct($flag_status)
+{
+    $this->correct_data = $flag_status;
+}
 
 
     // Pick data from DB
@@ -67,7 +67,7 @@ function pickDataFromDB($query, $host, $db_user, $db_pass, $db_name)
                     if(isset($_SESSION['rem_position'])){
                         echo '<option selected="'. $_SESSION['rem_position']  .'" value="'.$value.'"> '.$value.' </option>';
                     } else {
-                        echo '<option value="'.$value.'"> '.$value.' </option>';
+                        echo '<option value="'.$value.'" > '.$value.' </option>';
                     }
                 }
             }
@@ -110,8 +110,7 @@ function setInsertCertSkillValues($column, $value)
 
 function checkFlag()
 {
-    if ($this->correct_data == true) return true;
-    else return false;
+    return $this->correct_data;
 }
 
 function notGood($err_name, $err_message)
@@ -138,7 +137,7 @@ function setError($error_name)
     }
 }
 
-function validateForm3($job_title, $no_experience, $employer, $job_city, $job_description, $host, $db_user, $db_pass, $db_name)
+function validateForm3($job_title, $no_experience, $employer, $start_date, $end_date, $job_city, $job_description)
 {
     if ($no_experience == false)
     {
@@ -164,6 +163,7 @@ function validateForm3($job_title, $no_experience, $employer, $job_city, $job_de
 
         // Validate date
         // TODO czy end jest po start
+        
 
         //Validate city
         if (ctype_alpha($job_city) == false)
@@ -188,32 +188,19 @@ function validateForm3($job_title, $no_experience, $employer, $job_city, $job_de
         $_SESSION['rem_job_city'] = $job_city;
         $_SESSION['rem_description'] = $job_description;
 
-        try
+
+        if ($this->checkFlag() == true)
         {
-            $connection = new mysqli($host, $db_user, $db_pass, $db_name);
-            if ($connection->connect_errno != 0)
-            {
-                throw new Exception(mysqli_connect_errno());
-            }
-            else
-            {
-                if ($this->checkFlag() == true)
-                {
-                    //Add to array and wait
-                    $this->setInsertEmploymentValues('job_title', $job_title);
-                    $this->setInsertEmploymentValues('employer', $employer);
-                    // TODO $this->setInsertEmploymentValues('star_date', $);
-                    // TODO $this->setInsertEmploymentValues('end_date', $);
-                    $this->setInsertEmploymentValues('job_city', $job_city);
-                    $this->setInsertEmploymentValues('description', $job_description);
-                }
-                $connection->close();
-            }
+            //Add to array and wait
+            $this->setInsertEmploymentValues('job_title', $job_title);
+            $this->setInsertEmploymentValues('employer', $employer);
+            // TODO $this->setInsertEmploymentValues('star_date', $);
+            // TODO $this->setInsertEmploymentValues('end_date', $);
+            $this->setInsertEmploymentValues('job_city', $job_city);
+            $this->setInsertEmploymentValues('description', $job_description);
+            $this->itWorks('form3');
         }
-        catch(Exception $e)
-        {
-            echo "<div class='server-error'>Server error! Please try again later. Err: ".$e."</div>";
-        }
+
 
         // Unset remembered values
         if (isset($_SESSION['rem_job_title'])) unset($_SESSION['rem_job_title']);

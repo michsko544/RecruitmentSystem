@@ -8,6 +8,7 @@ session_start();
 require_once "php/connect.php";
 require_once "php/HandleJson.php";
 
+
 // array from DB
 $json_array = array();
 
