@@ -78,11 +78,11 @@ a {
 }
 
 .blur {
-  -webkit-filter: blur(6px);
-  -moz-filter: blur(6px);
-  -o-filter: blur(6px);
-  -ms-filter: blur(6px);
-  filter: blur(6px);
+  -webkit-filter: blur(7px);
+  -moz-filter: blur(7px);
+  -o-filter: blur(7px);
+  -ms-filter: blur(7px);
+  filter: blur(7px);
 }
 
 .index-btn-container {
@@ -730,4 +730,9 @@ input[type=submit] {
     -webkit-transform: rotate(45deg);
     transform: rotate(45deg);
   }
+}
+.error {
+  text-align: center;
+  color: #fff;
+  margin-top: 20px;
 }

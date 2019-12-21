@@ -1,6 +1,5 @@
 var buttons=document.getElementsByClassName("btn");
 
-
 const highlightLabel = function(elem) { //id inputa
     
     if(elem.className!=="inputfile") {

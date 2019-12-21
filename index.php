@@ -21,7 +21,7 @@ if ((isset($_SESSION['logged_in'])) && ($_SESSION['logged_in'] == true))
 <script> var login =
         <?php if (isset($_SESSION['wrong-input']) && $_SESSION['wrong-input'] == true)
         {
-            echo "wrong"; // TODO set var
+            echo "'wrong'"; // TODO set var
         } ?>; </script>
     <div id="sign-in--hidden">
         <div class="nav-bar">
@@ -43,13 +43,13 @@ if ((isset($_SESSION['logged_in'])) && ($_SESSION['logged_in'] == true))
                     <label for="password">Password</label>
                     <input type="password" name="password" placeholder="●●●●●●●●●●">
                     <div class="underline"></div>
-                    <?php
+                </div>
+                <?php
                     if(isset($_SESSION['error']))
                     {
                         echo $_SESSION['error'];
                     }
-                    ?>
-                </div>
+                ?>
 
                 <div class="form-btn-wrapper">
                     <input type="submit" value="Sign in">

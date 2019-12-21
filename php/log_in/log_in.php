@@ -49,7 +49,7 @@ try
                 }
                 else
                 {
-                    $_SESSION['error'] = '<span> Incorrect username or password </span>';
+                    $_SESSION['error'] = '<div class="error"> Incorrect username or password! </div>';
                     $_SESSION['wrong-input'] = true;
                     header('Location: /index.php');
                     //unset($_SESSION['wrong-input']);
@@ -57,7 +57,7 @@ try
             }
             else
             {
-                $_SESSION['error'] = '<span> Incorrect username or password </span>';
+                $_SESSION['error'] = '<div class="error"> Incorrect username or password! </div>';
                 $_SESSION['wrong-input'] = true;
                 header('Location: /index.php');
                 //unset($_SESSION['wrong-input']);
