@@ -274,7 +274,7 @@ a {
   position: absolute;
   width: 100%;
   height: 100%;
-  bottom: 0px;
+  bottom: 3px;
   left: 0;
   border-bottom: 3px #36C3D9 solid;
   transform: translateX(-101%);
@@ -477,10 +477,9 @@ input[type=date] {
   width: 46%;
 }
 
-select {
-  text-overflow: ellipsis;
-}
-
+/*select{
+    text-overflow: ellipsis;
+}*/
 .relative {
   position: relative;
 }
@@ -510,7 +509,7 @@ select {
 .upload {
   position: relative;
   overflow: hidden;
-  width: 99%;
+  width: 98%;
   padding: 8px 0 6px;
   text-align: center;
   background: #ffffff00;
@@ -624,6 +623,9 @@ input[type=submit] {
   border-bottom: 2px #95A5A659 solid;
   position: relative;
 }
+#container .list-row .upload {
+  border: 2px #95A5A6 solid;
+}
 #container .first-text {
   position: absolute;
   font-size: 16px;
@@ -689,7 +691,7 @@ input[type=submit] {
   width: 75%;
   max-width: 500px;
   color: #95A5A6;
-  margin: 32px auto 50px;
+  margin: 10px auto 50px;
   overflow: hidden;
 }
 .element-wrapper .form-row label {

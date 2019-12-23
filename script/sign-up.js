@@ -26,12 +26,17 @@ const addHighlightEvents = () => {
     console.log("loading new events");
     const inputs = document.querySelectorAll("input");
     const textareas = document.querySelectorAll("textarea");
+    const selects = document.querySelectorAll("select");
     inputs.forEach( elem => {
         console.dir(elem);
         highlightLabel(elem);
         return true;
     });
     textareas.forEach( elem => {
+        highlightLabel(elem);
+        return true;
+    });
+    selects.forEach( elem => {
         highlightLabel(elem);
         return true;
     });
@@ -47,12 +52,31 @@ calendar("school-0");
 
 
 document.getElementById("no-experience").addEventListener("click", function(){
+    const form = this.parentNode.parentNode.parentNode.id;
     if(this.checked===true){
-        document.getElementById('sform-3').querySelectorAll('div.form-row').forEach(element=>{element.children[1]!==undefined ? element.children[1].required=false : console.log(false)}); 
+        document.getElementById(form).querySelectorAll('div.form-row').forEach(element=>{
+            if(element.children[1]!==undefined){
+                if(element.children[1].className!=="date") {
+                    element.children[1].required=false;
+                } else {
+                    element.children[1].children[0].required=false;
+                    element.children[1].children[1].required=false;
+                }
+            }
+        }); 
 
         hideDiv("btn-experiance");
     } else {
-        document.getElementById('sform-3').querySelectorAll('div.form-row').forEach(element=>{element.children[1]!==undefined ? element.children[1].required=true : console.log(false)});
+        document.getElementById(form).querySelectorAll('div.form-row').forEach(element=>{
+            if(element.children[1]!==undefined){
+                if(element.children[1].className!=="date") {
+                    element.children[1].required=true;
+                } else {
+                    element.children[1].children[0].required=true;
+                    element.children[1].children[1].required=true;
+                }
+            } 
+        }); 
 
         showDiv("btn-experiance--hidden");
     }

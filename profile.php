@@ -147,7 +147,7 @@ catch (Exception $e)
             </div>
         </div>
         <div class="list-row hide" id="personal-data">
-            <div class="element-wrapper">
+            <form id="sform-1" action="" method="post" class="element-wrapper">
                 <div class="form-row">
                     <label for="first-name">First name</label>
                     <input type="text" name="first-name" value="">
@@ -173,7 +173,7 @@ catch (Exception $e)
                     <input type="text" name="residence-city" value="">
                     <div class="underline"></div>
                 </div>
-            </div>
+            </form>
         </div>
         <div class="list-row">
             <div class="title-element">Experience</div>
@@ -185,7 +185,7 @@ catch (Exception $e)
             </div>
         </div>
         <div class="list-row hide" id="experience">
-        <div class="element-wrapper">
+        <form id="sform-2" action="" method="post" class="element-wrapper">
             <div class="form-row">
                 <div class="checkbox">
                     <input type="checkbox" name="no-experience"  value="" id="no-experience">I don't  have any experience
@@ -230,7 +230,7 @@ catch (Exception $e)
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
     <div class="list-row">
         <div class="title-element">Education</div>
@@ -242,7 +242,7 @@ catch (Exception $e)
         </div>
     </div>
     <div class="list-row hide" id="education">
-    <div class="element-wrapper">
+    <form id="sform-3" action="" method="post" class="element-wrapper">
         <div class="form-row">
             <label for="school">School</label>
             <input type="text" name="school-0" value="" required>
@@ -280,7 +280,7 @@ catch (Exception $e)
                 </div>
             </div>
         </div>
-    </div>
+    </form>
     </div>
     <div class="list-row">
         <div class="title-element">Skills</div>
@@ -292,7 +292,7 @@ catch (Exception $e)
         </div>
     </div>
     <div class="list-row hide" id="skills">
-    <div class="element-wrapper">
+    <form id="sform-4" action="" method="post" class="element-wrapper">
         <div class="form-row">
             <label for="languages">Languages</label>
             <input type="text" name="languages-0" placeholder="German" value="" required>
@@ -312,7 +312,7 @@ catch (Exception $e)
                 </div>
             </div>
         </div>
-        <div class="form-row relative">
+        <div class="form-row">
         <label for="skills">Skills</label>
         <input type="text" name="skills-0" placeholder="Marketing" value="" required>
         <div class="underline"></div>
@@ -331,7 +331,7 @@ catch (Exception $e)
             </div>
         </div>
     </div>
-    </div>
+    </form>
     </div>
     <div class="list-row">
         <div class="title-element">Additional</div>
@@ -343,7 +343,7 @@ catch (Exception $e)
         </div>
     </div>
     <div class="list-row hide" id="addition">
-    <div class="element-wrapper">
+    <form id="sform-5" action="" method="post" class="element-wrapper">
         <div class="form-row">
             <label for="cv-file">Curriculum vitae</label>
             <div class="upload">
@@ -380,7 +380,7 @@ catch (Exception $e)
             </div>
         </div>
     </div>
-    </div>
+    </form>
     </div>
     </div>
 </body>

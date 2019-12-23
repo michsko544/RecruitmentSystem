@@ -1,3 +1,5 @@
+var login = "";
+
 document.getElementById("btn-exit").onclick = ()=>{
     hideDiv("sign-in");
     toggleBlur("index-container");

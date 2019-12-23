@@ -18,11 +18,16 @@ if ((isset($_SESSION['logged_in'])) && ($_SESSION['logged_in'] == true))
     <link rel="stylesheet" href="/font/stylesheet.css" type="text/css" charset="utf-8" />
 </head>
 <body>
-<script> var login =
+    <script> login =
         <?php if (isset($_SESSION['wrong-input']) && $_SESSION['wrong-input'] == true)
         {
             echo "'wrong'"; // TODO set var
-        } ?>; </script>
+        }
+        else
+        {
+            echo "''";
+        } ?>; 
+    </script>
     <div id="sign-in--hidden">
         <div class="nav-bar">
             <div class="logo-nav">myCompany</div>
@@ -36,12 +41,12 @@ if ((isset($_SESSION['logged_in'])) && ($_SESSION['logged_in'] == true))
             <form action="php/log_in/log_in.php" method="post">
                 <div class="sign-in-row">
                     <label for="login">Login</label>
-                    <input type="text" name="login" placeholder="Username">
+                    <input type="text" name="login" placeholder="Username" autocomplete="off">
                     <div class="underline"></div>
                 </div>
                 <div class="sign-in-row">
                     <label for="password">Password</label>
-                    <input type="password" name="password" placeholder="●●●●●●●●●●">
+                    <input type="password" name="password" placeholder="●●●●●●●●●●" autocomplete="off"> 
                     <div class="underline"></div>
                 </div>
                 <?php

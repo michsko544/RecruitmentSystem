@@ -308,7 +308,7 @@ a{
         position: absolute;
         width: 100%;
         height: 100%;
-        bottom: 0px;
+        bottom: 3px;
         left: 0;
         border-bottom: 3px $color-cyan solid;
         transform: translateX(-101%);
@@ -518,9 +518,9 @@ input[type=date]{
     }
 }
 
-select{
+/*select{
     text-overflow: ellipsis;
-}
+}*/
 
 .relative{
     position: relative;
@@ -551,7 +551,7 @@ select{
 .upload{
     position: relative;
     overflow: hidden;
-	width: 99%;
+	width: 98%;
 	padding: 8px 0 6px;
 	text-align: center;
     background: #ffffff00;
@@ -666,6 +666,10 @@ input[type=submit]{
         border-bottom: 2px $color-list-line solid;
         position:relative;
 
+        .upload{
+            border: 2px $color-seagrey solid;
+        }
+
     }
 
     .first-text{
@@ -745,7 +749,7 @@ input[type=submit]{
     width: 75%;
     max-width: 500px;
     color: $color-seagrey;
-    margin: 32px auto 50px;
+    margin: 10px auto 50px;
     overflow: hidden;
 
     .form-row{
