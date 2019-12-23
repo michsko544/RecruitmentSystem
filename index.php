@@ -18,16 +18,6 @@ if ((isset($_SESSION['logged_in'])) && ($_SESSION['logged_in'] == true))
     <link rel="stylesheet" href="/font/stylesheet.css" type="text/css" charset="utf-8" />
 </head>
 <body>
-    <script> login =
-        <?php if (isset($_SESSION['wrong-input']) && $_SESSION['wrong-input'] == true){
-            echo "'wrong'"; // TODO set var
-        }
-        else
-        {
-            echo "''";
-        } ?>; 
-    </script>
-
     <div id="sign-in--hidden">
         <div class="nav-bar">
             <div class="logo-nav">myCompany</div>
