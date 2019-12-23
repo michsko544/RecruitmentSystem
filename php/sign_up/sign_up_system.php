@@ -54,8 +54,6 @@ if (isset($_POST['e-mail']))
 
     // Validate CAPTCHA TODO add reCAPTCHA
 
-
-
     // Remember value
     $_SESSION['rem_username'] = $username;
     $_SESSION['rem_email'] = $email;
@@ -217,13 +215,6 @@ if (isset($_POST['first-name']))
 
     if ($sign_up_class->checkFlag() == true)
     {
-        // Add to session variables and wait for other steps
-       // $_SESSION['insert_first_name'] = $first_name;
-       // $_SESSION['insert_last_name'] = $last_name;
-       // $_SESSION['insert_phone'] = $phone;
-       // $_SESSION['insert_residence_country'] = $residence_country;
-       // $_SESSION['insert_residence_city'] = $residence_city;
-
         //Add to array and wait
         $sign_up_class->setInsertValue('first_name', $first_name);
         $sign_up_class->setInsertValue('last_name', $last_name);
@@ -265,105 +256,6 @@ if (isset($_POST['job-title-0']))
     }
 }
 
-/*
-if (isset($_POST['job-title']))
-{
-    if ($_POST['no-experience'] == false)
-    {
-        // Validate job title
-        $job_title = $_POST['job- title'];
-        if (ctype_alnum($job_title) == false)
-        {
-            $sign_up_class->notGood('err_job_title', 'Job title may only contain letters and numbers');
-        }
-        if (strlen($job_title) > 40)
-        {
-            $sign_up_class->notGood('err_job_title', 'Job title must have less than 40 characters');
-        }
-
-        // Validate employer
-        $employer = $_POST['employer'];
-        if (ctype_alnum($employer) == false)
-        {
-            $sign_up_class->notGood('err_employer', 'Employer name may only contain letters and numbers');
-        }
-        if (strlen($employer) > 40)
-        {
-            $sign_up_class->notGood('err_employer', 'Employer name must have less than 40 characters');
-        }
-
-        // Validate date
-
-        //Validate city
-        $job_city = $_POST['job-city'];
-        if (ctype_alpha($job_city) == false)
-        {
-            $sign_up_class->notGood('err_job_city', 'City name may contain only letters');
-        }
-
-        // Validate description
-        $job_description = $_POST['job-description'];
-        if (ctype_alnum($job_description) == false)
-        {
-            $sign_up_class->notGood('err_job_description', 'Description may only contain letters and numbers');
-        }
-        if (strlen($job_description) > 500)
-        {
-            $sign_up_class->notGood('err_job_description', 'Description must have less than 500 characters');
-        }
-        // Remember value
-        $_SESSION['rem_job_title'] = $job_title;
-        $_SESSION['rem_employer'] = $employer;
-
-        $_SESSION['rem_job_city'] = $job_city;
-        $_SESSION['rem_description'] = $job_description;
-
-        try
-        {
-            $connection = new mysqli($host, $db_user, $db_pass, $db_name);
-            if ($connection->connect_errno != 0)
-            {
-                throw new Exception(mysqli_connect_errno());
-            }
-            else
-            {
-                if ($sign_up_class->checkFlag() == true)
-                {
-                    //Add to array and wait
-                    $sign_up_class->setInsertEmploymentValues('job_title', $job_title);
-                    $sign_up_class->setInsertEmploymentValues('employer', $employer);
-
-                    $sign_up_class->setInsertEmploymentValues('job_city', $job_city);
-                    $sign_up_class->setInsertEmploymentValues('description', $job_description);
-                }
-                $connection->close();
-            }
-        }
-        catch(Exception $e)
-        {
-            echo 'Server error! Try signing up later';
-        }
-
-        // Unset remembered values
-        if (isset($_SESSION['rem_job_title'])) unset($_SESSION['rem_job_title']);
-        if (isset($_SESSION['rem_employer'])) unset($_SESSION['rem_employer']);
-
-        if (isset($_SESSION['rem_job_city'])) unset($_SESSION['rem_job_city']);
-        if (isset($_SESSION['rem_description'])) unset($_SESSION['rem_description']);
-        // Unset error values
-        if (isset($_SESSION['err_job_title'])) unset($_SESSION['err_job_title']);
-        if (isset($_SESSION['err_employer'])) unset($_SESSION['err_employer']);
-
-        if (isset($_SESSION['err_job_city'])) unset($_SESSION['err_job_city']);
-        if (isset($_SESSION['err_description'])) unset($_SESSION['err_description']);
-    }
-    else
-    {
-
-    }
-}
-*/
-
 // Form 4
 
 if (isset($_POST['languages-0']))
@@ -384,118 +276,6 @@ if (isset($_POST['languages-0']))
         $sign_up_class->validateForm4($language, $language_level, $skill, $skill_level, $school, $specialization, $school_start_date, $school_end_date, $school_city, $school_description, $host, $db_user, $db_pass, $db_name);
     }
 }
-/*
-if (isset($_POST['languages']))
-{
-    // Validate language
-    $language = $_POST['languages'];
-
-    $language_level = $_POST['language_level'];
-    if (($language_level < 1) && ($language_level > 5))
-    {
-        $sign_up_class->notGood('err_language_level', 'Language level must be between 1 and 5');
-    }
-    // Validate skills
-    $skill = $_POST['skills'];
-
-    $skill_level = $_POST['skill_level'];
-    if (($skill_level < 1) && ($skill_level > 5))
-    {
-        $sign_up_class->notGood('err_skill_level', 'Skill level must be between 1 and 5');
-    }
-
-
-    $school = $_POST['school'];
-    if (ctype_alnum($school) == false)
-    {
-        $sign_up_class->notGood('err_school', 'School name may only contain letters and numbers');
-    }
-    $specialization = $_POST['specialization'];
-    if (ctype_alnum($specialization) == false)
-    {
-        $sign_up_class->notGood('err_specialization', 'Specialization name may only contain letters and numbers');
-    }
-    $school_start_date = $_POST['start-date'];
-
-    $school_end_date = $_POST['end-date'];
-
-    $school_city = $_POST['school-city'];
-    if (ctype_alpha($school_city) == false)
-    {
-        $sign_up_class->notGood('err_school_city', 'City name may contain only letters');
-    }
-    $school_description = $_POST['school-description'];
-    if (ctype_alnum($school_description) == false)
-    {
-        $sign_up_class->notGood('err_school_description', 'Description may only contain letters and numbers');
-    }
-    if (strlen($school_description) > 500)
-    {
-        $sign_up_class->notGood('err_school_description', 'Description must have less than 500 characters');
-    }
-    // Remember value
-    $_SESSION['rem_language'] = $language;
-    $_SESSION['rem_language_level'] = $language_level;
-    $_SESSION['rem_skill'] = $skill;
-    $_SESSION['rem_skill_level'] = $skill_level;
-    $_SESSION['rem_school'] = $school;
-    $_SESSION['rem_specialization'] = $specialization;
-    $_SESSION['rem_school_start_date'] = $school_start_date;
-    $_SESSION['rem_school_end_date'] = $school_end_date;
-    $_SESSION['rem_school_city'] = $school_city;
-    $_SESSION['rem_school_description'] = $school_description;
-    try
-    {
-        $connection = new mysqli($host, $db_user, $db_pass, $db_name);
-        if ($connection->connect_errno != 0)
-        {
-            throw new Exception(mysqli_connect_errno());
-        }
-        else
-        {
-            if ($sign_up_class->checkFlag() == true)
-            {
-                //Add to array and wait
-                $sign_up_class->setInsertSkillLanguageValues('language', $language);
-                $sign_up_class->setInsertSkillLanguageValues('language_level', $language_level);
-                $sign_up_class->setInsertSkillLanguageValues('skill', $skill);
-                $sign_up_class->setInsertSkillLanguageValues('skill_level', $skill_level);
-                $sign_up_class->setInsertSchoolValues('school', $school);
-                $sign_up_class->setInsertSchoolValues('specialization', $specialization);
-                $sign_up_class->setInsertSchoolValues('start_date', $school_start_date);
-                $sign_up_class->setInsertSchoolValues('end_date', $school_end_date);
-                $sign_up_class->setInsertSchoolValues('city', $school_city);
-                $sign_up_class->setInsertSchoolValues('description', $school_description);
-            }
-            $connection->close();
-        }
-    }
-    catch(Exception $e)
-    {
-        echo 'Server error! Try signing up later';
-    }
-
-    // Unset remembered values
-    if (isset($_SESSION['rem_language'])) unset($_SESSION['rem_language']);
-    if (isset($_SESSION['rem_language_level'])) unset($_SESSION['rem_language_level']);
-    if (isset($_SESSION['rem_skill'])) unset($_SESSION['rem_skill']);
-    if (isset($_SESSION['rem_skill_level'])) unset($_SESSION['rem_skill_level']);
-    if (isset($_SESSION['rem_school'])) unset($_SESSION['rem_school']);
-    if (isset($_SESSION['rem_specialization'])) unset($_SESSION['rem_specialization']);
-
-    if (isset($_SESSION['rem_school_city'])) unset($_SESSION['rem_school_city']);
-    if (isset($_SESSION['rem_school_description'])) unset($_SESSION['rem_school_description']);
-    // Unset error values
-    if (isset($_SESSION['err_language'])) unset($_SESSION['err_language']);
-    if (isset($_SESSION['err_language_level'])) unset($_SESSION['err_language_level']);
-    if (isset($_SESSION['err_skill'])) unset($_SESSION['err_skill']);
-    if (isset($_SESSION['err_skill_level'])) unset($_SESSION['err_skill_level']);
-    if (isset($_SESSION['err_school'])) unset($_SESSION['err_school']);
-    if (isset($_SESSION['err_specialization'])) unset($_SESSION['err_specialization']);
-
-    if (isset($_SESSION['err_school_city'])) unset($_SESSION['err_school_city']);
-    if (isset($_SESSION['err_school_description'])) unset($_SESSION['err_school_description']);
-}*/
 
 // Form 5
 if (isset($_POST['cv']))
@@ -503,7 +283,7 @@ if (isset($_POST['cv']))
     $this->itWorks("file");
     $cert_count = $_GET['cert-count'];
     $course_count = $_GET['course-count'];
-    $cv = $_POST['cv'];
+    $cv = $_POST['cv']; // TODO probably requires $_FILE instead of $_POST
     $cover_letter = $_POST['cover-letter'];
     // Validate cv
     $sign_up_class->validateFile($cv, $host, $db_user, $db_pass, $db_name, false, 'cv');
@@ -519,79 +299,9 @@ if (isset($_POST['cv']))
     for($i=0; $i<$course_count; $i++)
     {
         $course = $_POST['course-' . strval($i)];
-        $sign_up_class->validateForm5Co($course, $host, $db_user, $db_pass, $db_name);
+        $sign_up_class->validateForm5Co($course);
     }
 }
-
-/*
-if (isset($_POST['cv-file']))
-{
-    // Validate cv
-    $cv = $_POST['cv-file'];
-    $file_format = pathinfo($cv);
-    if ($file_format['extension'] != "pdf")
-    {
-        $sign_up_class->notGood('err_cv_file', 'File must have .pdf extension');
-    }
-    // Validate certificate
-    $cert = $_POST['certificate-file'];
-    $file_format = pathinfo($cert);
-    if ($file_format['extension'] != "pdf")
-    {
-        $sign_up_class->notGood('err_certificate_file', 'File must have .pdf extension');
-    }
-
-    // Validate cover letter
-    $cover_letter = $_POST['lm-file'];
-    $file_format = pathinfo($cover_letter);
-    if ($file_format['extension'] != "pdf")
-    {
-        $sign_up_class->notGood('err_cover_letter_file', 'File must have .pdf extension');
-    }
-
-    // Validate course
-    $course = $_POST['course'];
-    if (ctype_alnum($course) == false)
-    {
-        $sign_up_class->notGood('err_course', 'Course name may contain only letters and numbers');
-    }
-    if (strlen($course) > 30)
-    {
-        $sign_up_class->notGood('err_course', 'Course name must have less than 30 characters');
-    }
-
-    // Remember values
-    $_SESSION['rem_cv'] = $cv;
-    $_SESSION['rem_certificate'] = $cert;
-    $_SESSION['rem_cover_letter'] = $cover_letter;
-    $_SESSION['rem_course'] = $course;
-
-    try
-    {
-        $connection = new mysqli($host, $db_user, $db_pass, $db_name);
-        if ($connection->connect_errno != 0)
-        {
-            throw new Exception(mysqli_connect_errno());
-        }
-        else
-        {
-            if ($sign_up_class->checkFlag() == true)
-            {
-                //Add to array and wait
-                $sign_up_class->setInsertValue('cv_file', $cv);
-                $sign_up_class->setInsertCertSkillValues('certificate', $cert);
-                $sign_up_class->setInsertValue('cover_letter', $cover_letter);
-                $sign_up_class->setInsertCertSkillValues('course', $course);
-            }
-            $connection->close();
-        }
-    }
-    catch(Exception $e)
-    {
-        echo "<div class='server-error'>Server error! Please try again later. Err: ".$e."</div>";
-    }
-}
-*/
 
 // TODO unset insert values
 

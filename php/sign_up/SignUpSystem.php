@@ -137,6 +137,43 @@ function setError($error_name)
     }
 }
 
+function checkDate($date)
+{
+    $day = date('d', $date);
+    $month = date('m', $date);
+    $year = date('Y', $date);
+    if (!checkdate($month, $day, $year))
+    {
+        $this->notGood('err_date', 'This is not a valid date');
+    }
+}
+
+function valiDate($start_date, $end_date)
+{
+    $curr_date = date("d-m-Y");
+    if ($end_date == "Present")
+    {
+        $f_start_date = strtotime($start_date);
+        if ($curr_date < $f_start_date)
+        {
+            $this->notGood('err_date', 'End date must be after start date');
+        }
+        $this->checkDate($f_start_date);
+    }
+    else
+    {
+        $f_start_date = strtotime($start_date);
+        $f_end_date = strtotime($end_date);
+        if ($f_end_date < $f_start_date || $curr_date < $f_start_date)
+        {
+            $this->notGood('err_date', 'End date must be after start date');
+        }
+        $this->checkDate($f_start_date);
+        $this->checkDate($f_end_date);
+    }
+}
+
+
 function validateForm3($job_title, $no_experience, $employer, $start_date, $end_date, $job_city, $job_description)
 {
     if ($no_experience == false)
@@ -162,8 +199,7 @@ function validateForm3($job_title, $no_experience, $employer, $start_date, $end_
         }
 
         // Validate date
-        // TODO czy end jest po start
-        
+        $this->valiDate($start_date, $end_date);
 
         //Validate city
         if (ctype_alpha($job_city) == false)
@@ -183,8 +219,8 @@ function validateForm3($job_title, $no_experience, $employer, $start_date, $end_
         // Remember value
         $_SESSION['rem_job_title'] = $job_title;
         $_SESSION['rem_employer'] = $employer;
-        // TODO $_SESSION['rem_start_date'] = ;
-        // TODO $_SESSION['rem_end_date'] = ;
+        $_SESSION['rem_start_date'] = $start_date;
+        $_SESSION['rem_end_date'] = $end_date;
         $_SESSION['rem_job_city'] = $job_city;
         $_SESSION['rem_description'] = $job_description;
 
@@ -194,8 +230,8 @@ function validateForm3($job_title, $no_experience, $employer, $start_date, $end_
             //Add to array and wait
             $this->setInsertEmploymentValues('job_title', $job_title);
             $this->setInsertEmploymentValues('employer', $employer);
-            // TODO $this->setInsertEmploymentValues('star_date', $);
-            // TODO $this->setInsertEmploymentValues('end_date', $);
+            $this->setInsertEmploymentValues('star_date', $start_date);
+            $this->setInsertEmploymentValues('end_date', $end_date);
             $this->setInsertEmploymentValues('job_city', $job_city);
             $this->setInsertEmploymentValues('description', $job_description);
             $this->itWorks('form3');
@@ -205,15 +241,15 @@ function validateForm3($job_title, $no_experience, $employer, $start_date, $end_
         // Unset remembered values
         if (isset($_SESSION['rem_job_title'])) unset($_SESSION['rem_job_title']);
         if (isset($_SESSION['rem_employer'])) unset($_SESSION['rem_employer']);
-        // TODO if (isset($_SESSION['rem_start_date'])) unset($_SESSION['rem_start_date']);
-        // TODO if (isset($_SESSION['rem_end_date'])) unset($_SESSION['rem_end_date']);
+        if (isset($_SESSION['rem_start_date'])) unset($_SESSION['rem_start_date']);
+        if (isset($_SESSION['rem_end_date'])) unset($_SESSION['rem_end_date']);
         if (isset($_SESSION['rem_job_city'])) unset($_SESSION['rem_job_city']);
         if (isset($_SESSION['rem_description'])) unset($_SESSION['rem_description']);
         // Unset error values
         if (isset($_SESSION['err_job_title'])) unset($_SESSION['err_job_title']);
         if (isset($_SESSION['err_employer'])) unset($_SESSION['err_employer']);
-        // TODO if (isset($_SESSION['err_start_date'])) unset($_SESSION['err_start_date']);
-        // TODO if (isset($_SESSION['err_end_date'])) unset($_SESSION['err_end_date']);
+        if (isset($_SESSION['err_start_date'])) unset($_SESSION['err_start_date']);
+        if (isset($_SESSION['err_end_date'])) unset($_SESSION['err_end_date']);
         if (isset($_SESSION['err_job_city'])) unset($_SESSION['err_job_city']);
         if (isset($_SESSION['err_description'])) unset($_SESSION['err_description']);
     }
@@ -226,18 +262,16 @@ function validateForm3($job_title, $no_experience, $employer, $start_date, $end_
 function validateForm4($language, $language_level, $skill, $skill_level, $school, $specialization, $school_start_date, $school_end_date, $school_city, $school_description, $host, $db_user, $db_pass, $db_name)
 {
     // Validate language
-    // TODO validate
     if (($language_level < 1) && ($language_level > 5))
     {
         $this->notGood('err_language_level', 'Language level must be between 1 and 5');
     }
+
     // Validate skills
-    // TODO validate
     if (($skill_level < 1) && ($skill_level > 5))
     {
         $this->notGood('err_skill_level', 'Skill level must be between 1 and 5');
     }
-    // TODO add insert etc.
 
     if (ctype_alnum($school) == false)
     {
@@ -248,10 +282,8 @@ function validateForm4($language, $language_level, $skill, $skill_level, $school
     {
         $this->notGood('err_specialization', 'Specialization name may only contain letters and numbers');
     }
-    $school_start_date = $_POST['start-date'];
-    // TODO add validation
-    $school_end_date = $_POST['end-date'];
-    // TODO add validation
+
+    $this->valiDate($school_start_date, $school_end_date);
 
     if (ctype_alpha($school_city) == false)
     {
@@ -277,36 +309,22 @@ function validateForm4($language, $language_level, $skill, $skill_level, $school
     $_SESSION['rem_school_end_date'] = $school_end_date;
     $_SESSION['rem_school_city'] = $school_city;
     $_SESSION['rem_school_description'] = $school_description;
-    try
+
+    if ($this->checkFlag() == true)
     {
-        $connection = new mysqli($host, $db_user, $db_pass, $db_name);
-        if ($connection->connect_errno != 0)
-        {
-            throw new Exception(mysqli_connect_errno());
-        }
-        else
-        {
-            if ($this->checkFlag() == true)
-            {
-                //Add to array and wait
-                $this->setInsertSkillLanguageValues('language', $language);
-                $this->setInsertSkillLanguageValues('language_level', $language_level);
-                $this->setInsertSkillLanguageValues('skill', $skill);
-                $this->setInsertSkillLanguageValues('skill_level', $skill_level);
-                $this->setInsertSchoolValues('school', $school);
-                $this->setInsertSchoolValues('specialization', $specialization);
-                $this->setInsertSchoolValues('start_date', $school_start_date);
-                $this->setInsertSchoolValues('end_date', $school_end_date);
-                $this->setInsertSchoolValues('city', $school_city);
-                $this->setInsertSchoolValues('description', $school_description);
-            }
-            $connection->close();
-        }
+        //Add to array and wait
+        $this->setInsertSkillLanguageValues('language', $language);
+        $this->setInsertSkillLanguageValues('language_level', $language_level);
+        $this->setInsertSkillLanguageValues('skill', $skill);
+        $this->setInsertSkillLanguageValues('skill_level', $skill_level);
+        $this->setInsertSchoolValues('school', $school);
+        $this->setInsertSchoolValues('specialization', $specialization);
+        $this->setInsertSchoolValues('start_date', $school_start_date);
+        $this->setInsertSchoolValues('end_date', $school_end_date);
+        $this->setInsertSchoolValues('city', $school_city);
+        $this->setInsertSchoolValues('description', $school_description);
     }
-    catch(Exception $e)
-    {
-        echo "<div class='server-error'>Server error! Please try again later. Err: ".$e."</div>";
-    }
+
 
     // Unset remembered values
     if (isset($_SESSION['rem_language'])) unset($_SESSION['rem_language']);
@@ -315,8 +333,8 @@ function validateForm4($language, $language_level, $skill, $skill_level, $school
     if (isset($_SESSION['rem_skill_level'])) unset($_SESSION['rem_skill_level']);
     if (isset($_SESSION['rem_school'])) unset($_SESSION['rem_school']);
     if (isset($_SESSION['rem_specialization'])) unset($_SESSION['rem_specialization']);
-    // TODO if (isset($_SESSION['rem_school_start_date'])) unset($_SESSION['rem_school_start_date']);
-    // TODO if (isset($_SESSION['rem_school_end_date'])) unset($_SESSION['rem_school_end_date']);
+    if (isset($_SESSION['rem_school_start_date'])) unset($_SESSION['rem_school_start_date']);
+    if (isset($_SESSION['rem_school_end_date'])) unset($_SESSION['rem_school_end_date']);
     if (isset($_SESSION['rem_school_city'])) unset($_SESSION['rem_school_city']);
     if (isset($_SESSION['rem_school_description'])) unset($_SESSION['rem_school_description']);
     // Unset error values
@@ -326,8 +344,8 @@ function validateForm4($language, $language_level, $skill, $skill_level, $school
     if (isset($_SESSION['err_skill_level'])) unset($_SESSION['err_skill_level']);
     if (isset($_SESSION['err_school'])) unset($_SESSION['err_school']);
     if (isset($_SESSION['err_specialization'])) unset($_SESSION['err_specialization']);
-    // TODO if (isset($_SESSION['err_school_start_date'])) unset($_SESSION['err_school_start_date']);
-    // TODO if (isset($_SESSION['err_school_end_date'])) unset($_SESSION['err_school_end_date']);
+    if (isset($_SESSION['err_school_start_date'])) unset($_SESSION['err_school_start_date']);
+    if (isset($_SESSION['err_school_end_date'])) unset($_SESSION['err_school_end_date']);
     if (isset($_SESSION['err_school_city'])) unset($_SESSION['err_school_city']);
     if (isset($_SESSION['err_school_description'])) unset($_SESSION['err_school_description']);
 }
@@ -348,7 +366,6 @@ function validateFile($filename, $host, $db_user, $db_pass, $db_name, $multi_fil
 
     $upload_dir = '/uploades/' . $col_name;
     $file_to_upload = $upload_dir . basename($_FILES[$filename]['name']);
-    // TODO wypierdolic prawie wszystkie wyjątki bo są kurwa zbędne JAJEBE
 
     //Add to array and wait
     if ($this->checkFlag() == true) {
@@ -362,11 +379,12 @@ function validateFile($filename, $host, $db_user, $db_pass, $db_name, $multi_fil
             }
         } else {
             $this->notGood('err_file', 'Uploading files failed');
+            $this->itWorks('exept it doesnt');
         }
     }
 }
 
-function validateForm5Co($course, $host, $db_user, $db_pass, $db_name)
+function validateForm5Co($course)
 {
     // Validate course
     if (ctype_alnum($course) == false)
@@ -380,26 +398,11 @@ function validateForm5Co($course, $host, $db_user, $db_pass, $db_name)
 
     // Remember values
     $_SESSION['rem_course'] = $course;
-    try
+
+    if ($this->checkFlag() == true)
     {
-        $connection = new mysqli($host, $db_user, $db_pass, $db_name);
-        if ($connection->connect_errno != 0)
-        {
-            throw new Exception(mysqli_connect_errno());
-        }
-        else
-        {
-            if ($this->checkFlag() == true)
-            {
-                //Add to array and wait
-                $this->setInsertCertSkillValues('course', $course);
-            }
-            $connection->close();
-        }
-    }
-    catch(Exception $e)
-    {
-        echo "<div class='server-error'>Server error! Please try again later. Err: ".$e."</div>";
+        //Add to array and wait
+        $this->setInsertCertSkillValues('course', $course);
     }
 }
 
