@@ -19,8 +19,7 @@ if ((isset($_SESSION['logged_in'])) && ($_SESSION['logged_in'] == true))
 </head>
 <body>
     <script> login =
-        <?php if (isset($_SESSION['wrong-input']) && $_SESSION['wrong-input'] == true)
-        {
+        <?php if (isset($_SESSION['wrong-input']) && $_SESSION['wrong-input'] == true){
             echo "'wrong'"; // TODO set var
         }
         else
@@ -28,6 +27,7 @@ if ((isset($_SESSION['logged_in'])) && ($_SESSION['logged_in'] == true))
             echo "''";
         } ?>; 
     </script>
+
     <div id="sign-in--hidden">
         <div class="nav-bar">
             <div class="logo-nav">myCompany</div>

@@ -350,12 +350,12 @@ function validateForm4($language, $language_level, $skill, $skill_level, $school
     if (isset($_SESSION['err_school_description'])) unset($_SESSION['err_school_description']);
 }
 
-function validateFile($filename, $host, $db_user, $db_pass, $db_name, $multi_file, $col_name)
+function validateFile($filename, $multi_file, $col_name)
 {
     // TODO check if works for multifiles
     $whitelist = array("pdf");
     // Get filename
-    $file_info = pathinfo($_FILES[$filename]['name']);
+    $file_info = pathinfo($_FILES["{$filename}"]['name']);
     $name = $file_info['filename'];
     $ext = $file_info['extension'];
     // Validate file's extension
@@ -365,11 +365,11 @@ function validateFile($filename, $host, $db_user, $db_pass, $db_name, $multi_fil
     }
 
     $upload_dir = '/uploades/' . $col_name;
-    $file_to_upload = $upload_dir . basename($_FILES[$filename]['name']);
+    $file_to_upload = $upload_dir . basename($_FILES["{$filename}"]['name']);
 
     //Add to array and wait
     if ($this->checkFlag() == true) {
-        if (move_uploaded_file($_FILES[$filename]['name'], $file_to_upload)) {
+        if (move_uploaded_file($_FILES["{$filename}"]['name'], $upload_dir)) {
             if ($multi_file == true) {
                 $this->setInsertCertSkillValues($col_name, $filename);
                 $this->itWorks("file");
@@ -379,7 +379,7 @@ function validateFile($filename, $host, $db_user, $db_pass, $db_name, $multi_fil
             }
         } else {
             $this->notGood('err_file', 'Uploading files failed');
-            $this->itWorks('exept it doesnt');
+            $this->itWorks('except it doesnt');
         }
     }
 }
