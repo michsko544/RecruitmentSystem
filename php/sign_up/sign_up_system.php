@@ -278,23 +278,22 @@ if (isset($_POST['languages-0']))
 }
 
 // Form 5
-if (isset($_POST['cv']))
+if (isset($_FILES['cv']))
 {
-    $this->itWorks("file");
-    $cert_count = $_GET['cert-count'];
-    $course_count = $_GET['course-count'];
-    $cv = $_POST['cv']; // TODO probably requires $_FILE instead of $_POST
-    $cover_letter = $_POST['cover-letter'];
+    $cert_count = $_GET['cert_count'];
+    $course_count = $_GET['course_count'];
+    $cv = 'cv'; // TODO probably requires $_FILE instead of $_POST
+    $cover_letter = 'cover-letter';
     // Validate cv
-    $sign_up_class->validateFile($cv, $host, $db_user, $db_pass, $db_name, false, 'cv');
+    $sign_up_class->validateFile($cv, false, 'cv');
 
     // Validate cover letter
-    $sign_up_class->validateFile($cover_letter, $host, $db_user, $db_pass, $db_name, false, 'cover_letter');
+    $sign_up_class->validateFile($cover_letter, false, 'cover_letter');
 
     for($i=0; $i<$cert_count; $i++)
     {
-        $cert = $_POST['certificate-' . strval($i)];
-        $sign_up_class->validateFile($cert, $host, $db_user, $db_pass, $db_name, true, 'certificate');
+        $cert = 'certificate-' . strval($i);
+        $sign_up_class->validateFile($cert, true, 'certificate');
     }
     for($i=0; $i<$course_count; $i++)
     {

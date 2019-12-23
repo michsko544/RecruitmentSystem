@@ -20,9 +20,9 @@ if ((isset($_SESSION['logged_in'])) && ($_SESSION['logged_in'] == true))
 <body>
 <script> var login =
         <?php if (isset($_SESSION['wrong-input']) && $_SESSION['wrong-input'] == true)
-        {
             echo "'wrong'"; // TODO set var
-        } ?>; </script>
+        else
+            echo "'correct'"; ?>; </script>
     <div id="sign-in--hidden">
         <div class="nav-bar">
             <div class="logo-nav">myCompany</div>
