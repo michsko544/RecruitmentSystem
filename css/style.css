@@ -375,7 +375,7 @@ textarea:focus + .underlineTA::after {
 }
 
 .form-row {
-  margin-top: 25.5px;
+  margin-top: 12.5px;
   position: relative;
 }
 
@@ -581,7 +581,7 @@ input[type=submit] {
 .btn-add {
   display: flex;
   justify-content: flex-end;
-  margin-top: 31.5px;
+  margin-top: 35px;
   align-items: center;
   color: #36C3D9;
   cursor: pointer;
@@ -619,7 +619,7 @@ input[type=submit] {
 }
 #container .list-row {
   width: 100%;
-  min-height: 63px;
+  min-height: 65px;
   border-bottom: 2px #95A5A659 solid;
   position: relative;
 }
@@ -639,6 +639,12 @@ input[type=submit] {
   bottom: 10px;
   left: 21px;
 }
+#container .right-info {
+  position: absolute;
+  right: 21px;
+  bottom: 10px;
+  font-size: 16px;
+}
 #container .app-status-sent {
   color: #95A5A6B3;
 }
@@ -650,6 +656,12 @@ input[type=submit] {
 }
 #container .app-status-replied a {
   color: #36C3D9;
+}
+#container .msg-topic {
+  color: #95A5A6B3;
+}
+#container .msg-date {
+  color: #95A5A680;
 }
 
 .title-element {
@@ -691,7 +703,7 @@ input[type=submit] {
   width: 75%;
   max-width: 500px;
   color: #95A5A6;
-  margin: 10px auto 50px;
+  margin: 22.5px auto 35px;
   overflow: hidden;
 }
 .element-wrapper .form-row label {

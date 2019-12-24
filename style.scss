@@ -420,7 +420,7 @@ textarea:focus + .underlineTA::after{
 }
 
 .form-row{
-    margin-top: 25.5px;
+    margin-top: 12.5px;
     position:relative;
 }
 
@@ -623,7 +623,7 @@ input[type=submit]{
 .btn-add{
     display:flex;
     justify-content: flex-end;
-    margin-top: 31.5px;
+    margin-top: 35px;
     align-items: center;
     color:$color-cyan;
     cursor:pointer;
@@ -662,7 +662,7 @@ input[type=submit]{
 
     .list-row{
         width:100%;
-        min-height:63px;
+        min-height:65px;
         border-bottom: 2px $color-list-line solid;
         position:relative;
 
@@ -687,6 +687,13 @@ input[type=submit]{
         left: 21px;
     }
 
+    .right-info{
+        position: absolute;
+        right: 21px;
+        bottom: 10px;
+        font-size: 16px;
+    }
+
     .app-status-sent{
         color: $color-label;
     }
@@ -701,6 +708,14 @@ input[type=submit]{
         a{
             color: $color-cyan
         }
+    }
+
+    .msg-topic{
+        color: $color-label;
+    }
+
+    .msg-date{
+        color: #95A5A680;
     }
 }
 
@@ -749,7 +764,7 @@ input[type=submit]{
     width: 75%;
     max-width: 500px;
     color: $color-seagrey;
-    margin: 10px auto 50px;
+    margin: 22.5px auto 35px;
     overflow: hidden;
 
     .form-row{

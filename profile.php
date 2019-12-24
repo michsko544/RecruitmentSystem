@@ -122,7 +122,7 @@ catch (Exception $e)
                 <li id="menu">Menu</li>
                 <li><a href="profile.php">My profile</a></li>
                 <li><a href="applications.php">Applications</a></li>
-                <li><a href="#">Replies</a></li>
+                <li><a href="replies.php">Replies</a></li>
                 <li><a href="php/log_in/log_out.php">Sign out</a></li>
             </ul>
             <div id="btn-burger" class="btn-nav">
