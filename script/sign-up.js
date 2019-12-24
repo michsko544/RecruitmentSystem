@@ -82,21 +82,10 @@ document.getElementById("no-experience").addEventListener("click", function(){
     }
 });
 
-const readJSON = (filePath) => {
-    let file;
-    $.getJSON(filePath, function(json) {
-        file = json; // this will show the info it in firebug console
-        console.log(file);
-    });
-    console.log(file);
-    return file;
-}
 
-var profileJSON = readJSON("json/profile.json");
-console.log(profileJSON);
 
 const fromJsonToHtml = (json) => {
-    const pD = json.personal-data;
+    //const pD = json.personal-data;
     const exp = json.experience;
     const sql = json.education;
     const skl = json.skills.skills;
@@ -104,14 +93,14 @@ const fromJsonToHtml = (json) => {
     const add = json.additional;
     const n = json.counters;
 
-    let pDProps = {
+    /*let pDProps = {
         firstName: pD.first-name,
         lastName: pD.last-name,
         phone: pD.phone,
         country: pD.country,
         city: pD.city
     };
-    addPersonalData(pDProps);
+    addPersonalData(pDProps);*/
 
     for(let i = 0; i<n.experience; ++i){
         let props = {
@@ -162,7 +151,15 @@ const fromJsonToHtml = (json) => {
     addCV();*/
 }
 
-//fromJsonToHtml(json);
+
+async function readJSON(path) {
+    var res = await fetch(path);
+    var data = await res.json();
+
+    fromJsonToHtml(data);
+ }
+
+ readJSON("json/profile.json");
 
 let countE = 1;
 const addExperience = ({jobTitle, employer, startDate, endDate, city, description}) => {
