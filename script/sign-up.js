@@ -161,6 +161,10 @@ async function readJSON(path) {
 
  readJSON("json/profile.json");
 
+ const addPersonalData = ({}) => {
+
+ }
+
 let countE = 1;
 const addExperience = ({jobTitle, employer, startDate, endDate, city, description}) => {
     let btn = document.getElementById("btn-experiance");
