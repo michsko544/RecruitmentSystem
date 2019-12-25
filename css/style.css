@@ -428,19 +428,19 @@ input[type=password] {
   font: large Verdana, sans-serif;
 }
 input[type=password]::placeholder {
-  color: #95A5A6;
+  color: #95A5A680;
   font: large Verdana, sans-serif;
   font-size: 16px;
 }
 input[type=password]:-ms-input-placeholder {
   /* Internet Explorer 10-11 */
-  color: #95A5A6;
+  color: #95A5A680;
   font: large Verdana, sans-serif;
   font-size: 16px;
 }
 input[type=password]::-ms-input-placeholder {
   /* Microsoft Edge */
-  color: #95A5A6;
+  color: #95A5A680;
   font: large Verdana, sans-serif;
   font-size: 16px;
 }
@@ -540,21 +540,21 @@ input[type=date] {
 }
 
 ::placeholder {
-  color: #95A5A6;
+  color: #95A5A680;
   font-family: "avenirregular";
   font-size: 16px;
 }
 
 :-ms-input-placeholder {
   /* Internet Explorer 10-11 */
-  color: #95A5A6;
+  color: #95A5A680;
   font-family: "avenirregular";
   font-size: 16px;
 }
 
 ::-ms-input-placeholder {
   /* Microsoft Edge */
-  color: #95A5A6;
+  color: #95A5A680;
   font-family: "avenirregular";
   font-size: 16px;
 }
@@ -581,7 +581,7 @@ input[type=submit] {
 .btn-add {
   display: flex;
   justify-content: flex-end;
-  margin-top: 35px;
+  margin-top: 30px;
   align-items: center;
   color: #36C3D9;
   cursor: pointer;
@@ -703,7 +703,7 @@ input[type=submit] {
   width: 75%;
   max-width: 500px;
   color: #95A5A6;
-  margin: 22.5px auto 35px;
+  margin: 22.5px auto 40px;
   overflow: hidden;
 }
 .element-wrapper .form-row label {
