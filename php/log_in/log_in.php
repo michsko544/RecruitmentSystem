@@ -36,7 +36,7 @@ try
                 {
                     $_SESSION['logged_in'] = true;
                     $_SESSION['id_user'] = $row_users['id_user'];
-                    $_SESSION['role_id'] = $row_users['id_role'];
+                    $_SESSION['id_role'] = $row_users['id_role'];
                     $_SESSION['first_name'] = $row_users['name'];
                     $_SESSION['last_name'] = $row_users['surname'];
                     $_SESSION['username'] = $row_users['login'];
@@ -44,8 +44,24 @@ try
 
                     unset($_SESSION['error']);
                     $result_login->free();
-
-                    header('Location: /profile.php');
+                    $role = $_SESSION['id_role'];
+                    switch ($role){
+                        case 1:
+                            header('Location: /admin_panel.php?role=admin'); // TODO create admin_panel
+                            break;
+                        case 2:
+                            header('Location: /profile.php?role=recruit');
+                            break;
+                        case 3:
+                            header('Location: /applications.php?role=recruiter');
+                            break;
+                        case 4:
+                            header('Location: /applications.php?role=manager');
+                            break;
+                        case 5:
+                            header('Location: /applications.php?role=assistant');
+                            break;
+                    }
                 }
                 else
                 {
