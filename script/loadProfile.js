@@ -14,7 +14,7 @@ const fromJsonToHtml = (json) => {
         country: pD.country,
         city: pD.city
     };
-    //addPersonalData(pDProps);
+    addPersonalData(pDProps);
 
     for(let i = 0; i<n.experience; ++i){
         let props = {
@@ -56,17 +56,31 @@ const fromJsonToHtml = (json) => {
         addLanguage(props);
     }
         
-    /*for(let i = 0; i<n.cover-letter; ++i)
-        addCL();
-    for(let i = 0; i<n.certificate; ++i)
-        addCertificate();*/
+    /*for(let i = 0; i<n.coverLetter; ++i){
+        let props = {
+            cl: add.coverLetter
+        }
+        addCL(props);
+    }*/
+        
+    for(let i = 0; i<n.certificate; ++i){
+        let props = {
+            cert: add.certificates
+        }
+        addCertificate(props);
+    }
+
     for(let i = 0; i<n.course; ++i){
         let props = {
             course: add.courses[i]
         }
         addCourse(props);
     }
-    //addCV();
+
+    let CVProps = {
+        cv: add.cv[0]
+    }
+    addCV(CVProps);
 }
 
 

@@ -75,31 +75,7 @@ switch ($role){
         </div>
         <div class="list-row hide" id="personal-data">
             <form id="sform-1" action="" method="post" class="element-wrapper">
-                <div class="form-row">
-                    <label for="first-name">First name</label>
-                    <input type="text" name="first-name" value="">
-                    <div class="underline"></div>
-                </div>
-                <div class="form-row">
-                    <label for="last-name">Last name</label>
-                    <input type="text" name="last-name" value="">
-                    <div class="underline"></div>
-                </div>
-                <div class="form-row">
-                    <label for="phone-num">Phone number</label>
-                    <input type="tel" name="phone-num" value="">
-                    <div class="underline"></div>
-                </div>
-                <div class="form-row">
-                    <label for="residence-country">Your country</label>
-                    <input type="text" name="residence-country" value="">
-                    <div class="underline"></div>
-                </div>
-                <div class="form-row">
-                    <label for="residence-city">Your city</label>
-                    <input type="text" name="residence-city" value="">
-                    <div class="underline"></div>
-                </div>
+                <div class="break" id="break-1"></div>
             </form>
         </div>
         <div class="list-row">
@@ -212,18 +188,13 @@ switch ($role){
                         <label>Choose a file</label>
                     </div>
                 </div>
-                <div class="form-row">
+                <!--<div class="form-row">
                     <label for="lm-file">Cover Letter</label>
                     <div class="upload">
                         <input type="file" name="lm-file" class="inputfile" accept="application/pdf" data-multiple-caption="{count} files selected" multiple>
                         <label>Choose a file</label>
                     </div>
-                </div>
-                <div class="form-row">
-                    <label for="course">Courses</label>
-                    <input type="text" name="course-0" placeholder="e.g. Google Internet Revolutions" value="">
-                    <div class="underline"></div>
-                </div>
+                </div>-->
                 <div class="btn-add" id="btn-course">
                     <div class="btn-text">
                         Add Course

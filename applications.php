@@ -54,7 +54,6 @@
             <div class="position first-text">C/C++ Controllers Programmer</div>
             <div class="app-status-replied last-text">Recruiter contacted you. <a href="replies.php">Check your replies!</a></div>
         </div>
-        
     </div>
 </body>
 

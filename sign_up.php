@@ -27,71 +27,70 @@ $sign_up_class = new SignUpSystem(true);
 <div class="sign-up-container">
 <div class="page-title cyan-color">Find your job by joining us!</div>
     <div id="sign-up-1" class="sign-up-wrapper">
-
         <form id="sform-1" action="php/sign_up/sign_up_system.php" method="post">
-        <div class="form-row">
-            <label for="login">Login</label>
-            <input type="text" name="login" value="<?php $sign_up_class->rememberValue('rem_username'); ?>" placeholder="Username" required>
-            <div class="underline"></div>
-            <?php
-            $sign_up_class->setError('err_username');
-            ?>
-        </div>
-        <div class="form-row">
-            <label for="e-mail">E-mail</label>
-            <input type="email" name="e-mail" value="<?php $sign_up_class->rememberValue('rem_email'); ?>" placeholder="john.smith@example.com" required>
-            <div class="underline"></div>
-            <?php
-            $sign_up_class->setError('err_email');
-            ?>
-        </div>
-        <div class="form-row">
-            <label for="password-one">Password</label>
-            <input type="password" name="password-one" value="<?php $sign_up_class->rememberValue('rem_password_one'); ?>" placeholder="●●●●●●●●●●" required>
-            <div class="underline"></div>
-            <?php
-            $sign_up_class->setError('err_password');
-            ?>
-        </div>
-        <div class="form-row">
-            <label for="password-two">Password</label>
-            <input type="password" name="password-two" value="<?php $sign_up_class->rememberValue('rem_password_two'); ?>" placeholder="●●●●●●●●●●" required>
-            <div class="underline"></div>
-            <?php
-            $sign_up_class->setError('err_password');
-            ?>
-        </div>
-        <div class="form-row">
-            <label for="position">Position</label>
-            <select name="position">
+            <div class="form-row">
+                <label for="login">Login</label>
+                <input type="text" name="login" value="<?php $sign_up_class->rememberValue('rem_username'); ?>" placeholder="Username" required>
+                <div class="underline"></div>
                 <?php
-                // Pick data from DB
-                $query = "SELECT position FROM positions";
-                $sign_up_class->pickDataFromDB($query, $host, $db_user, $db_pass, $db_name);
+                $sign_up_class->setError('err_username');
                 ?>
-            </select>
-        </div>
-        
-        <div class="form-row">
-            <label for="terms-of-use">Terms and Privacy Policy</label>
-            <div class="checkbox"><input type="checkbox" name="terms-of-use" required <?php
-                if (isset($_SESSION['rem_terms']))
-                {echo "checked";
-                unset($_SESSION['rem_terms']);}
-                ?>>I agree to&nbsp;<a href="documents/terms-of-use-contents.html">Terms&nbsp;</a> and&nbsp;<a href="documents/privacy-policy-contents.html">Privacy Policy</a>.</div>
+            </div>
+            <div class="form-row">
+                <label for="e-mail">E-mail</label>
+                <input type="email" name="e-mail" value="<?php $sign_up_class->rememberValue('rem_email'); ?>" placeholder="john.smith@example.com" required>
+                <div class="underline"></div>
+                <?php
+                $sign_up_class->setError('err_email');
+                ?>
+            </div>
+            <div class="form-row">
+                <label for="password-one">Password</label>
+                <input type="password" name="password-one" value="<?php $sign_up_class->rememberValue('rem_password_one'); ?>" placeholder="●●●●●●●●●●" required>
+                <div class="underline"></div>
+                <?php
+                $sign_up_class->setError('err_password');
+                ?>
+            </div>
+            <div class="form-row">
+                <label for="password-two">Password</label>
+                <input type="password" name="password-two" value="<?php $sign_up_class->rememberValue('rem_password_two'); ?>" placeholder="●●●●●●●●●●" required>
+                <div class="underline"></div>
+                <?php
+                $sign_up_class->setError('err_password');
+                ?>
+            </div>
+            <div class="form-row">
+                <label for="position">Position</label>
+                <select name="position">
+                    <?php
+                    // Pick data from DB
+                    $query = "SELECT position FROM positions";
+                    $sign_up_class->pickDataFromDB($query, $host, $db_user, $db_pass, $db_name);
+                    ?>
+                </select>
+            </div>
+            
+            <div class="form-row">
+                <label for="terms-of-use">Terms and Privacy Policy</label>
+                <div class="checkbox"><input type="checkbox" name="terms-of-use" required <?php
+                    if (isset($_SESSION['rem_terms']))
+                    {echo "checked";
+                    unset($_SESSION['rem_terms']);}
+                    ?>>I agree to&nbsp;<a href="documents/terms-of-use-contents.html">Terms&nbsp;</a> and&nbsp;<a href="documents/privacy-policy-contents.html">Privacy Policy</a>.</div>
+                <?php
+                //$sign_up_class->setError('err_terms');
+                ?>
+            </div>
             <?php
-            //$sign_up_class->setError('err_terms');
+            if(isset($_SESSION['error']))
+            {
+                echo $_SESSION['error'];
+            }
             ?>
-        </div>
-        <?php
-        if(isset($_SESSION['error']))
-        {
-            echo $_SESSION['error'];
-        }
-        ?>
-        <div class="form-btn-wrapper">
-            <input type="submit" value="Sign in" class="btn btn-cyan" id="btn-sign-up-1">
-        </div>
+            <div class="form-btn-wrapper">
+                <input type="submit" value="Sign in" class="btn btn-cyan" id="btn-sign-up-1">
+            </div>
         </form>
     </div>
     <div class="page-title dark-color">A few more things about you, employers need to know</div>

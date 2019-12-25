@@ -79,8 +79,36 @@ document.getElementById("no-experience").addEventListener("click", function(){
     }
 });
 
-const addPersonalData = ({}) => {
-
+const addPersonalData = ({firstName, lastName, phone, country, city}) => {
+    let br = document.querySelector("#break-1");
+    let newDiv = document.createRange().createContextualFragment(
+        `<div class="form-row">
+            <label for="first-name">First name</label>
+            <input type="text" name="first-name" value="${firstName}">
+            <div class="underline"></div>
+        </div>
+        <div class="form-row">
+            <label for="last-name">Last name</label>
+            <input type="text" name="last-name" value="${lastName}">
+            <div class="underline"></div>
+        </div>
+        <div class="form-row">
+            <label for="phone-num">Phone number</label>
+            <input type="tel" name="phone-num" value="${phone}">
+            <div class="underline"></div>
+        </div>
+        <div class="form-row">
+            <label for="residence-country">Your country</label>
+            <input type="text" name="residence-country" value="${country}">
+            <div class="underline"></div>
+        </div>
+        <div class="form-row">
+            <label for="residence-city">Your city</label>
+            <input type="text" name="residence-city" value="${city}">
+            <div class="underline"></div>
+        </div>`
+    );
+    br.parentNode.insertBefore(newDiv, br);
 }
 
 let countE = 0;
@@ -237,6 +265,46 @@ const addSchool = ({schoolName, specialization, startDate, endDate, city, descri
 }
 
 document.getElementById("btn-school").addEventListener("click", addSchool);
+
+const addCV = ({cv}) => {
+    let upload = document.querySelectorAll(".upload")
+    let newDiv = document.createRange().createContextualFragment(
+        `<div class="form-row">
+            <input type="text" name="cv" value="${cv || ""}" required>
+            <div class="underline"></div>
+            <div class="btn-x"></div>
+        </div>`
+    );
+    upload[0].parentNode.insertBefore(newDiv, upload[0]);
+}
+
+const addCertificate = ({cert}) => {
+    if(cert){
+        let upload = document.querySelectorAll(".upload")
+        let newDiv = document.createRange().createContextualFragment(
+            `<div class="form-row">
+                <input type="text" name="certificate" value="${cert}">
+                <div class="underline"></div>
+                <div class="btn-x"></div>
+            </div>`
+        );
+        upload[1].parentNode.insertBefore(newDiv, upload[1]);
+    }
+}
+
+/*const addCL = ({cl}) => {
+    if(cl){
+        let upload = document.querySelectorAll(".upload")
+        let newDiv = document.createRange().createContextualFragment(
+            `<div class="form-row">
+                <input type="text" name="cl" value="${cl}">
+                <div class="underline"></div>
+                <div class="btn-x"></div>
+            </div>`
+        );
+        upload[2].parentNode.insertBefore(newDiv, upload[2]);
+    }
+}*/
 
 let countC = 0;
 let firstCourse = true;
