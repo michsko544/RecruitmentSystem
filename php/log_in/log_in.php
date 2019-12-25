@@ -50,7 +50,7 @@ try
                             header('Location: /admin_panel.php?role=admin'); // TODO create admin_panel
                             break;
                         case 2:
-                            header('Location: /profile.php?role=recruit');
+                            header('Location: /profile.php?role=applicant');
                             break;
                         case 3:
                             header('Location: /applications.php?role=recruiter');

@@ -8,6 +8,7 @@ function getProfileData($user){
     $json_array = array();
 
 // tmp array
+    $data_push_temail = array();
     $data_push_tpdn = array(); $data_push_tpds = array(); $data_push_tpdp = array(); $data_push_tpdc = array(); $data_push_tpdl = array();
     $data_push_txj = array(); $data_push_txe = array(); $data_push_txsj = array(); $data_push_txej = array(); $data_push_txc = array(); $data_push_txd = array();
     $data_push_ten = array(); $data_push_tes = array(); $data_push_tesl = array(); $data_push_teel = array(); $data_push_tec = array(); $data_push_ted = array();
@@ -19,6 +20,7 @@ function getProfileData($user){
     $data_push_tco = array();
 
 // queries
+    $query_temail = "SELECT a.email from users u join applicants a on u.id_user=a.id_user join cities c on a.id_city=c.id_city join countries co on a.id_country=co.id_country where u.id_user = '{$user}'";
     $query_tpdn = "SELECT u.name from users u join applicants a on u.id_user=a.id_user join cities c on a.id_city=c.id_city join countries co on a.id_country=co.id_country where u.id_user = '{$user}'";
     $query_tpds = "SELECT u.surname from users u join applicants a on u.id_user=a.id_user join cities c on a.id_city=c.id_city join countries co on a.id_country=co.id_country where u.id_user = '{$user}'";
     $query_tpdp = "SELECT a.phone from users u join applicants a on u.id_user=a.id_user join cities c on a.id_city=c.id_city join countries co on a.id_country=co.id_country where u.id_user = '{$user}'";
@@ -52,6 +54,7 @@ function getProfileData($user){
     try
     {
         // add db results to array
+        $count_tpd = $new_json->fetchData($query_temail, $data_push_temail, $json_array['email'], $host, $db_user, $db_pass, $db_name);
         $count_tpd = $new_json->fetchData($query_tpdn, $data_push_tpdn, $json_array['personalData']['firstName'], $host, $db_user, $db_pass, $db_name);
         $count_tpd = $new_json->fetchData($query_tpds, $data_push_tpds, $json_array['personalData']['lastName'], $host, $db_user, $db_pass, $db_name);
         $count_tpd = $new_json->fetchData($query_tpdp, $data_push_tpdp, $json_array['personalData']['phone'], $host, $db_user, $db_pass, $db_name);

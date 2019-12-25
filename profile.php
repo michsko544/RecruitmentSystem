@@ -1,16 +1,16 @@
 <?php
 session_start();
-/* if ((!isset($_SESSION['logged_in'])) || ($_SESSION['logged_in'] == false))
+if ((!isset($_SESSION['logged_in'])) || ($_SESSION['logged_in'] == false))
 {
     header('Location: index.php');
     exit();
-}*/
+}
 
 require_once "php/profile.php";
 $role = $_SESSION['id_role'];
 switch ($role){
     case 1:
-        break;
+        break; // TODO admin - what shall be shown (maybe nothing)
     case 2:
         getProfileData($_SESSION['id_user']);
         break;

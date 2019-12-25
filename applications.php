@@ -1,11 +1,35 @@
 <?php
     session_start();
-   /*if ((!isset($_SESSION['logged_in'])) || ($_SESSION['logged_in'] == false))
+   if ((!isset($_SESSION['logged_in'])) || ($_SESSION['logged_in'] == false))
    {
         header('Location: index.php');
         exit();
-   }*/
+   }
 
+require_once "php/applications.php";
+$role = $_SESSION['id_role'];
+switch ($role) {
+    case 1:
+        $applications= '1=1';
+        getApplicationsData($applications);
+        break;
+    case 2:
+        $user_app = "u.id_user = '{$_SESSION['id_user']}'";
+        getApplicationsData($user_app);
+        break;
+    case 3:
+        $applications= '1=1';
+        getApplicationsData($applications);
+        break;
+    case 4:
+        $applications= '1=1';
+        getApplicationsData($applications);
+        break;
+    case 5:
+        $applications= '1=1';
+        getApplicationsData($applications);
+        break;
+}
 
 ?>
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Czas generowania: 20 Gru 2019, 18:31
+-- Czas generowania: 26 Gru 2019, 00:06
 -- Wersja serwera: 10.4.10-MariaDB
 -- Wersja PHP: 7.1.33
 
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `applicants` (
   `id_applicants` int(11) NOT NULL,
-  `phone` int(9) DEFAULT NULL,
+  `phone` varchar(9) DEFAULT NULL,
   `email` varchar(40) NOT NULL,
   `id_cv` int(11) NOT NULL,
   `id_city` int(11) NOT NULL,
@@ -44,7 +44,8 @@ CREATE TABLE `applicants` (
 --
 
 INSERT INTO `applicants` (`id_applicants`, `phone`, `email`, `id_cv`, `id_city`, `id_user`, `id_certificate`, `id_country`) VALUES
-(1, 123456789, 'jakis@.com', 1, 1, 1, 1, 1);
+(1, '000000000', 'jakis@.com', 1, 1, 1, 1, 1),
+(2, '123456789', 'rob@mail.com', 2, 3, 3, 2, 22);
 
 -- --------------------------------------------------------
 
@@ -66,7 +67,8 @@ CREATE TABLE `applications` (
 --
 
 INSERT INTO `applications` (`id_application`, `id_applicants`, `id_decision`, `id_position`, `id_status`, `id_cl`) VALUES
-(1, 1, 2, 1, 1, 1);
+(1, 1, 2, 1, 1, 1),
+(2, 2, 2, 3, 3, 2);
 
 -- --------------------------------------------------------
 
@@ -85,7 +87,8 @@ CREATE TABLE `certifications` (
 --
 
 INSERT INTO `certifications` (`id_certificate`, `descriptions`, `id_applicants`) VALUES
-(1, 'certyfikacik', 1);
+(1, 'certyfikacik.pdf', 1),
+(2, 'cert.pdf', 2);
 
 -- --------------------------------------------------------
 
@@ -124,7 +127,8 @@ CREATE TABLE `cl` (
 --
 
 INSERT INTO `cl` (`id_cl`, `description`, `id_application`) VALUES
-(1, 'liscikmot', 1);
+(1, 'liscikmot.pdf', 1),
+(2, 'cl.pdf', 2);
 
 -- --------------------------------------------------------
 
@@ -142,7 +146,7 @@ CREATE TABLE `conv` (
 --
 
 INSERT INTO `conv` (`id_conv`, `topic`) VALUES
-(1, 'jebanie');
+(1, 'welcome');
 
 -- --------------------------------------------------------
 
@@ -443,7 +447,8 @@ CREATE TABLE `cv` (
 --
 
 INSERT INTO `cv` (`id_cv`, `description`, `id_applicants`) VALUES
-(1, 'ciwi', 1);
+(1, 'ciwi.pdf', 1),
+(2, 'cv.pdf', 2);
 
 -- --------------------------------------------------------
 
@@ -461,8 +466,8 @@ CREATE TABLE `decisions` (
 --
 
 INSERT INTO `decisions` (`id_decision`, `name_decision`) VALUES
-(1, 'przyj'),
-(2, 'nieprzyj');
+(1, 'rejected'),
+(2, 'accepted');
 
 -- --------------------------------------------------------
 
@@ -474,8 +479,8 @@ CREATE TABLE `experiences` (
   `id_experience` int(11) NOT NULL,
   `job` varchar(30) NOT NULL,
   `employer` varchar(30) NOT NULL,
-  `start_job` date NOT NULL,
-  `end_job` date NOT NULL,
+  `start_job` varchar(10) NOT NULL,
+  `end_job` varchar(10) NOT NULL,
   `description` varchar(150) NOT NULL,
   `id_city` int(11) NOT NULL,
   `id_applicants` int(11) NOT NULL
@@ -486,8 +491,8 @@ CREATE TABLE `experiences` (
 --
 
 INSERT INTO `experiences` (`id_experience`, `job`, `employer`, `start_job`, `end_job`, `description`, `id_city`, `id_applicants`) VALUES
-(1, 'praca', 'kierwonik', '2019-12-11', '2019-12-13', 'balakdjaojdexpirience', 3, 1),
-(2, 'praca2', 'kierownik2', '2019-12-01', '2019-12-09', 'egegegegeeg', 2, 1);
+(1, 'devOps', 'google', '2019-12-11', '2019-12-13', 'very good i was', 3, 1),
+(2, 'flight attendant', 'british airlines', '2019-12-01', '2019-12-09', 'made best drinks midair', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -509,7 +514,8 @@ CREATE TABLE `holders` (
 INSERT INTO `holders` (`id_holder`, `id_level`, `id_applicants`, `id_skill`) VALUES
 (1, 2, 1, 1),
 (2, 3, 1, 2),
-(3, 2, 1, 3);
+(3, 2, 1, 3),
+(4, 1, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -530,7 +536,8 @@ CREATE TABLE `knowledge` (
 
 INSERT INTO `knowledge` (`id_knowledge`, `id_level`, `id_applicants`, `id_language`) VALUES
 (1, 2, 1, 2),
-(2, 1, 1, 3);
+(2, 1, 1, 3),
+(3, 5, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -594,7 +601,7 @@ CREATE TABLE `messages` (
 --
 
 INSERT INTO `messages` (`id_message`, `id_sender`, `message`, `time`, `id_conv`, `id_user`) VALUES
-(1, 2, 'jebaj sie', '2019-12-16', 1, 1);
+(1, 2, 'hello there', '2019-12-16', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -613,9 +620,9 @@ CREATE TABLE `positions` (
 --
 
 INSERT INTO `positions` (`id_position`, `position`, `description`) VALUES
-(1, 'pozycja', 'blablablapozycja'),
-(2, 'pozycja 2', 'allala'),
-(3, 'pozycja 3', 'hohoh oho');
+(1, 'front-end', 'front-end developer'),
+(2, 'full-stack', 'full-stack developer'),
+(3, 'junior C#', 'junior C# developer ');
 
 -- --------------------------------------------------------
 
@@ -634,7 +641,7 @@ CREATE TABLE `roles` (
 
 INSERT INTO `roles` (`id_role`, `name_role`) VALUES
 (1, 'admin'),
-(2, 'recruit'),
+(2, 'applicant'),
 (3, 'recruiter'),
 (4, 'manager'),
 (5, 'assistant');
@@ -649,8 +656,8 @@ CREATE TABLE `schools` (
   `id_school` int(11) NOT NULL,
   `name_school` varchar(20) NOT NULL,
   `specialization` varchar(25) NOT NULL,
-  `start_learning` date NOT NULL,
-  `end_learning` date NOT NULL,
+  `start_learning` varchar(10) NOT NULL,
+  `end_learning` varchar(10) NOT NULL,
   `description` varchar(150) NOT NULL,
   `id_city` int(11) NOT NULL,
   `id_applicants` int(11) NOT NULL
@@ -661,8 +668,9 @@ CREATE TABLE `schools` (
 --
 
 INSERT INTO `schools` (`id_school`, `name_school`, `specialization`, `start_learning`, `end_learning`, `description`, `id_city`, `id_applicants`) VALUES
-(1, 'wypizdawka', 'jebanko', '2019-12-10', '2019-12-31', 'ja jebie co za smiech', 2, 1),
-(2, 'borobor', 'xd', '2019-12-03', '2019-12-26', 'oby dzialalo', 3, 1);
+(1, 'polsl', 'ICT', '2019-12-10', '2019-12-31', 'master\'s degree', 2, 1),
+(2, 'oxford', 'philosophy', '2019-12-03', '2019-12-26', 'bachelor\'s degree', 3, 1),
+(3, 'stanford', 'butcher', '2017-12-12', '2019-01-29', 'PhD', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -680,9 +688,9 @@ CREATE TABLE `skills` (
 --
 
 INSERT INTO `skills` (`id_skill`, `sience`) VALUES
-(1, 'bdbd'),
-(2, 'wazenie'),
-(3, 'krojenie');
+(1, 'version control'),
+(2, 'soft skills'),
+(3, 'dancing');
 
 -- --------------------------------------------------------
 
@@ -702,7 +710,7 @@ CREATE TABLE `sor` (
 --
 
 INSERT INTO `sor` (`id_stage`, `name_stage`, `description`, `id_application`) VALUES
-(1, 'stejdz', 'bababbbababa', NULL);
+(1, 'interview', 'ask about applicant\'s university', NULL);
 
 -- --------------------------------------------------------
 
@@ -720,7 +728,9 @@ CREATE TABLE `statuses` (
 --
 
 INSERT INTO `statuses` (`id_status`, `name_status`) VALUES
-(1, 'statua');
+(1, 'sent'),
+(2, 'opened'),
+(3, 'chat');
 
 -- --------------------------------------------------------
 
@@ -740,7 +750,7 @@ CREATE TABLE `training` (
 --
 
 INSERT INTO `training` (`id_training`, `training`, `description`, `id_applicants`) VALUES
-(1, 'trening', 'treninge', 1);
+(1, 'RESTful API in nutshell', 'creating state of the art REST API', 1);
 
 -- --------------------------------------------------------
 
@@ -762,7 +772,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id_user`, `login`, `name`, `surname`, `pass`, `id_role`) VALUES
-(1, 'bob', 'name', 'surname', '$2y$10$9HJ5bdPQELb3XWV7gPJHueOVEUyBLdxZzOPrWZMRyJx/zDm3VP5zy', 2);
+(1, 'bob', 'john', 'surname', '$2y$10$9HJ5bdPQELb3XWV7gPJHueOVEUyBLdxZzOPrWZMRyJx/zDm3VP5zy', 2),
+(2, 'jerry', 'Jerry', 'Snow', '$2y$10$B2yosZmaSdLv.RcTTvnIg.dNBr6UTkvsSIgo5TzXNDSzbRd0k9wv.', 4),
+(3, 'rob', 'Robert', 'Barszcz', '$2y$10$URdbJa9Ha2zAO8YfFj0mguwUwhCEeGU4o.xUK4YLmv8WLLd5/Y6Gm', 2);
 
 --
 -- Indeksy dla zrzutów tabel
@@ -950,19 +962,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT dla tabeli `applicants`
 --
 ALTER TABLE `applicants`
-  MODIFY `id_applicants` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_applicants` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT dla tabeli `applications`
 --
 ALTER TABLE `applications`
-  MODIFY `id_application` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_application` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT dla tabeli `certifications`
 --
 ALTER TABLE `certifications`
-  MODIFY `id_certificate` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_certificate` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT dla tabeli `cities`
@@ -974,7 +986,7 @@ ALTER TABLE `cities`
 -- AUTO_INCREMENT dla tabeli `cl`
 --
 ALTER TABLE `cl`
-  MODIFY `id_cl` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_cl` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT dla tabeli `conv`
@@ -992,13 +1004,13 @@ ALTER TABLE `conv_part`
 -- AUTO_INCREMENT dla tabeli `countries`
 --
 ALTER TABLE `countries`
-  MODIFY `id_country` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=247;
+  MODIFY `id_country` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=248;
 
 --
 -- AUTO_INCREMENT dla tabeli `cv`
 --
 ALTER TABLE `cv`
-  MODIFY `id_cv` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_cv` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT dla tabeli `decisions`
@@ -1016,13 +1028,13 @@ ALTER TABLE `experiences`
 -- AUTO_INCREMENT dla tabeli `holders`
 --
 ALTER TABLE `holders`
-  MODIFY `id_holder` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_holder` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT dla tabeli `knowledge`
 --
 ALTER TABLE `knowledge`
-  MODIFY `id_knowledge` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_knowledge` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT dla tabeli `languages`
@@ -1058,7 +1070,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT dla tabeli `schools`
 --
 ALTER TABLE `schools`
-  MODIFY `id_school` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_school` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT dla tabeli `skills`
@@ -1076,7 +1088,7 @@ ALTER TABLE `sor`
 -- AUTO_INCREMENT dla tabeli `statuses`
 --
 ALTER TABLE `statuses`
-  MODIFY `id_status` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_status` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT dla tabeli `training`
@@ -1088,7 +1100,7 @@ ALTER TABLE `training`
 -- AUTO_INCREMENT dla tabeli `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Ograniczenia dla zrzutów tabel

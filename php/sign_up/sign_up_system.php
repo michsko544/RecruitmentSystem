@@ -41,7 +41,6 @@ if (isset($_POST['e-mail']))
         $sign_up_class->notGood('err_password', 'Passwords are not identical');
     }
     $hashed_password = password_hash($password_one, PASSWORD_DEFAULT);
-
     // Validate position
     $position = $_POST['position'];
 

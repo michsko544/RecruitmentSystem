@@ -33,7 +33,7 @@
         </div>
         <a href="#">
             <div class="list-row">
-                <div class="first-text">Welcome myCompany recruitment system!</div>
+                <div class="first-text">Welcome in myCompany recruitment system!</div>
                 <div class="msg-topic last-text">System Greeter</div>
                 <div class="msg-date right-info">07-11-2019</div>
             </div>
