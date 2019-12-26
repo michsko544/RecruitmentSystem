@@ -94,7 +94,7 @@ switch ($role){
                         <input type="checkbox" name="no-experience"  value="" id="no-experience">I don't  have any experience
                     </div>
                 </div>
-                <div class="btn-add" id="btn-experiance">
+                <div class="btn-add" id="btn-experience">
                     <div class="btn-text">
                         Add employment
                     </div>
