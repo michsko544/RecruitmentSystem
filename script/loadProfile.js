@@ -1,4 +1,4 @@
-const fromJsonToHtml = (json) => {
+const fromJsonToProfile = (json) => {
     const pD = json.personalData;
     const exp = json.experience;
     const sql = json.education;
@@ -87,8 +87,7 @@ const fromJsonToHtml = (json) => {
 async function readJSON(path) {
     var res = await fetch(path);
     var data = await res.json();
-    console.log(data);
-    fromJsonToHtml(data);
+    fromJsonToProfile(data);
 }
 
 readJSON("json/profile.json");

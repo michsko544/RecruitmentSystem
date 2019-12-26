@@ -65,18 +65,6 @@ switch ($role) {
     <div id="container">
         <div class="small-title">
             Application status
-        </div>        
-        <div class="list-row">
-            <div class="position first-text">Front-end Developer</div>
-            <div class="app-status-sent last-text">Application sent</div>
-        </div>
-        <div class="list-row" id="personal-data">
-            <div class="position first-text">.NET C# Developer</div>
-            <div class="app-status-opened last-text">Application has been opened</div>
-        </div>
-        <div class="list-row">
-            <div class="position first-text">C/C++ Controllers Programmer</div>
-            <div class="app-status-replied last-text">Recruiter contacted you. <a href="replies.php">Check your replies!</a></div>
         </div>
     </div>
 </body>
@@ -84,5 +72,6 @@ switch ($role) {
 <script src="script/main.js"></script>
 <script src="script/burger.js"></script>
 <script src="script/applications.js"></script>
+<script src="script/loadApplications.js"></script>
 
 </html>

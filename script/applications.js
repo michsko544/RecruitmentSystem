@@ -1,22 +1,23 @@
 const addApplication = ({position,status}) => {
     let lastApp = document.querySelector(".list-row");
+    let container = document.querySelector("#container");
     let newDiv;
 
-    if(status===0){
+    if(status==="sent"){
         newDiv = document.createRange().createContextualFragment(
         `<div class="list-row">
             <div class="position first-text">${position}</div>
             <div class="app-status-sent last-text">Application sent</div>
         </div>`);
     }
-    else if(status===1){
+    else if(status==="opened"){
         newDiv = document.createRange().createContextualFragment(
             `<div class="list-row">
                 <div class="position first-text">${position}</div>
                 <div class="app-status-opened last-text">Application has been opened</div>
             </div>`);
     }
-    else if(status===2){
+    else if(status==="chat"){
         newDiv = document.createRange().createContextualFragment(
             `<div class="list-row">
                 <div class="position first-text">${position}</div>
@@ -24,5 +25,5 @@ const addApplication = ({position,status}) => {
             </div>`);
     }
 
-    lastApp.parentNode.insertBefore(newDiv, lastApp);
+    !lastApp ? container.appendChild(newDiv) : container.insertBefore(newDiv, lastApp);
 }
