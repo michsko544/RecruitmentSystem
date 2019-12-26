@@ -4,7 +4,7 @@ const highlightLabel = function(elem) { //id inputa
     
     if(elem.className!=="inputfile") {
         elem.addEventListener("focus", function(){
-            console.log(elem.parentNode.parentNode.children[0]);
+            //console.log(elem.parentNode.parentNode.children[0]);
             elem.parentNode.className==="form-row" 
             ?
                 elem.parentNode.children[0].classList.toggle("cyan-color") //dla daty dwa parentNode
@@ -12,7 +12,7 @@ const highlightLabel = function(elem) { //id inputa
                 elem.parentNode.parentNode.children[0].classList.toggle("cyan-color");
         });
         elem.addEventListener("focusout", function(){
-            console.log(elem.parentNode.parentNode.children[0]);
+            //console.log(elem.parentNode.parentNode.children[0]);
             elem.parentNode.className==="form-row" 
             ?
                 elem.parentNode.children[0].classList.toggle("cyan-color") //dla daty dwa parentNode
@@ -28,7 +28,7 @@ const addHighlightEvents = () => {
     const textareas = document.querySelectorAll("textarea");
     const selects = document.querySelectorAll("select");
     inputs.forEach( elem => {
-        console.dir(elem);
+        //console.dir(elem);
         highlightLabel(elem);
         return true;
     });
@@ -62,7 +62,7 @@ document.getElementById("no-experience").addEventListener("click", function(){
             }
         }); 
 
-        hideDiv("btn-experiance");
+        hideDiv("btn-experience");
     } else {
         document.getElementById(form).querySelectorAll('div.form-row').forEach(element=>{
             if(element.children[1]!==undefined){
@@ -75,7 +75,7 @@ document.getElementById("no-experience").addEventListener("click", function(){
             } 
         }); 
 
-        showDiv("btn-experiance--hidden");
+        showDiv("btn-experience--hidden");
     }
 });
 
@@ -113,7 +113,7 @@ const addPersonalData = ({firstName, lastName, phone, country, city}) => {
 
 let countE = 0;
 const addExperience = ({jobTitle, employer, startDate, endDate, city, description}) => {
-    let btn = document.getElementById("btn-experiance");
+    let btn = document.getElementById("btn-experience");
     let newDiv = document.createRange().createContextualFragment(
         `<div class="form-row">
             <label for="job-title">Job title</label>
@@ -150,7 +150,7 @@ const addExperience = ({jobTitle, employer, startDate, endDate, city, descriptio
     addHighlightEvents();
 }
 
-document.getElementById("btn-experiance").addEventListener("click", addExperience);
+document.getElementById("btn-experience").addEventListener("click", addExperience);
 
 let countL = 0;
 let firstLanguage = true;

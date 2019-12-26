@@ -155,7 +155,7 @@ $sign_up_class = new SignUpSystem(true);
                 echo $_SESSION['error'];
             }
             ?>
-            <div class="btn-add" id="btn-experiance">
+            <div class="btn-add" id="btn-experience">
                 <div class="btn-text">
                     Add employment <!--TODO var exp-count -->
                 </div>
