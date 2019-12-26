@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Czas generowania: 26 Gru 2019, 00:06
+-- Czas generowania: 26 Gru 2019, 21:14
 -- Wersja serwera: 10.4.10-MariaDB
 -- Wersja PHP: 7.1.33
 
@@ -710,7 +710,7 @@ CREATE TABLE `sor` (
 --
 
 INSERT INTO `sor` (`id_stage`, `name_stage`, `description`, `id_application`) VALUES
-(1, 'interview', 'ask about applicant\'s university', NULL);
+(1, 'interview', 'ask about applicant\'s university', 2);
 
 -- --------------------------------------------------------
 
@@ -774,7 +774,9 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id_user`, `login`, `name`, `surname`, `pass`, `id_role`) VALUES
 (1, 'bob', 'john', 'surname', '$2y$10$9HJ5bdPQELb3XWV7gPJHueOVEUyBLdxZzOPrWZMRyJx/zDm3VP5zy', 2),
 (2, 'jerry', 'Jerry', 'Snow', '$2y$10$B2yosZmaSdLv.RcTTvnIg.dNBr6UTkvsSIgo5TzXNDSzbRd0k9wv.', 4),
-(3, 'rob', 'Robert', 'Barszcz', '$2y$10$URdbJa9Ha2zAO8YfFj0mguwUwhCEeGU4o.xUK4YLmv8WLLd5/Y6Gm', 2);
+(3, 'rob', 'Robert', 'Barszcz', '$2y$10$URdbJa9Ha2zAO8YfFj0mguwUwhCEeGU4o.xUK4YLmv8WLLd5/Y6Gm', 2),
+(4, 'kate', 'Katrina', 'Novowolska', '$2y$10$MLhaUSCJTgpvqx4YRN64tucmJhCQ8lEu9tLo9OKixxHhpZFrLNi12', 5),
+(5, 'jack', 'Jack', 'Theripper', '$2y$10$4C/OeoDIIpVMchjEsggxSOR3u4.idHM9oHD5NwxQajEG8BYP9ib52', 3);
 
 --
 -- Indeksy dla zrzutów tabel
@@ -1100,7 +1102,7 @@ ALTER TABLE `training`
 -- AUTO_INCREMENT dla tabeli `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Ograniczenia dla zrzutów tabel
