@@ -117,6 +117,7 @@ function notGood($err_name, $err_message)
 {
     $this->correct_data = false;
     $_SESSION["$err_name"] = $err_message;
+    echo "<div style='height: 20vh'> $err_message </div>";
 }
 
 function rememberValue($value_name)
@@ -163,8 +164,10 @@ function valiDate($start_date, $end_date)
     else
     {
         $f_start_date = strtotime($start_date);
+        $ff_sd = date("d-m-Y", $f_start_date);
         $f_end_date = strtotime($end_date);
-        if ($f_end_date < $f_start_date || $curr_date < $f_start_date)
+        $ff_ed = date("d-m-Y", $f_end_date);
+        if ($ff_ed < $ff_sd || $curr_date < $ff_sd)
         {
             $this->notGood('err_date', 'End date must be after start date');
         }

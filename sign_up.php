@@ -143,8 +143,11 @@ $sign_up_class = new SignUpSystem(true);
     <div class="page-title dark-color">What's your experience?</div>
     <div id="sign-up-3" class="sign-up-wrapper">
         <div class="step">Step 2/3</div>
-
-        <form id="sform-3" action="php/sign_up/sign_up_system.php?countE=1" method="post">
+        <?php
+        $rand = rand(1,100);
+        echo '<form id="sform-3" action="php/sign_up/sign_up_system.php?countE=' . $rand . '" method="post">'
+        ?>
+        <!--<form id="sform-3" action="php/sign_up/sign_up_system.php?countE=1" method="post">-->
             <div class="form-row">
                 <div class="checkbox">
                 <input type="checkbox" name="no-experience" id="no-experience">I don't have any experience

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Czas generowania: 26 Gru 2019, 00:06
+-- Czas generowania: 27 Gru 2019, 17:19
 -- Wersja serwera: 10.4.10-MariaDB
 -- Wersja PHP: 7.1.33
 
@@ -146,7 +146,8 @@ CREATE TABLE `conv` (
 --
 
 INSERT INTO `conv` (`id_conv`, `topic`) VALUES
-(1, 'welcome');
+(1, 'welcome'),
+(2, 'howdy');
 
 -- --------------------------------------------------------
 
@@ -165,7 +166,8 @@ CREATE TABLE `conv_part` (
 --
 
 INSERT INTO `conv_part` (`id_conv_part`, `id_conv`, `id_user`) VALUES
-(1, 1, 1);
+(1, 1, 1),
+(2, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -592,16 +594,16 @@ CREATE TABLE `messages` (
   `id_sender` int(11) NOT NULL,
   `message` varchar(150) DEFAULT NULL,
   `time` date NOT NULL,
-  `id_conv` int(11) NOT NULL,
-  `id_user` int(11) NOT NULL
+  `id_conv` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Zrzut danych tabeli `messages`
 --
 
-INSERT INTO `messages` (`id_message`, `id_sender`, `message`, `time`, `id_conv`, `id_user`) VALUES
-(1, 2, 'hello there', '2019-12-16', 1, 1);
+INSERT INTO `messages` (`id_message`, `id_sender`, `message`, `time`, `id_conv`) VALUES
+(1, 2, 'hello there', '2019-12-16', 1),
+(2, 4, 'how ya doin', '2019-08-06', 2);
 
 -- --------------------------------------------------------
 
@@ -710,7 +712,7 @@ CREATE TABLE `sor` (
 --
 
 INSERT INTO `sor` (`id_stage`, `name_stage`, `description`, `id_application`) VALUES
-(1, 'interview', 'ask about applicant\'s university', NULL);
+(1, 'interview', 'ask about applicant\'s university', 2);
 
 -- --------------------------------------------------------
 
@@ -774,7 +776,9 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id_user`, `login`, `name`, `surname`, `pass`, `id_role`) VALUES
 (1, 'bob', 'john', 'surname', '$2y$10$9HJ5bdPQELb3XWV7gPJHueOVEUyBLdxZzOPrWZMRyJx/zDm3VP5zy', 2),
 (2, 'jerry', 'Jerry', 'Snow', '$2y$10$B2yosZmaSdLv.RcTTvnIg.dNBr6UTkvsSIgo5TzXNDSzbRd0k9wv.', 4),
-(3, 'rob', 'Robert', 'Barszcz', '$2y$10$URdbJa9Ha2zAO8YfFj0mguwUwhCEeGU4o.xUK4YLmv8WLLd5/Y6Gm', 2);
+(3, 'rob', 'Robert', 'Barszcz', '$2y$10$URdbJa9Ha2zAO8YfFj0mguwUwhCEeGU4o.xUK4YLmv8WLLd5/Y6Gm', 2),
+(4, 'kate', 'Katrina', 'Novowolska', '$2y$10$MLhaUSCJTgpvqx4YRN64tucmJhCQ8lEu9tLo9OKixxHhpZFrLNi12', 5),
+(5, 'jack', 'Jack', 'Theripper', '$2y$10$4C/OeoDIIpVMchjEsggxSOR3u4.idHM9oHD5NwxQajEG8BYP9ib52', 3);
 
 --
 -- Indeksy dla zrzutów tabel
@@ -899,7 +903,7 @@ ALTER TABLE `levels`
 ALTER TABLE `messages`
   ADD PRIMARY KEY (`id_message`),
   ADD KEY `id_conv` (`id_conv`),
-  ADD KEY `id_user` (`id_user`);
+  ADD KEY `id_sender` (`id_sender`);
 
 --
 -- Indeksy dla tabeli `positions`
@@ -992,13 +996,13 @@ ALTER TABLE `cl`
 -- AUTO_INCREMENT dla tabeli `conv`
 --
 ALTER TABLE `conv`
-  MODIFY `id_conv` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_conv` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT dla tabeli `conv_part`
 --
 ALTER TABLE `conv_part`
-  MODIFY `id_conv_part` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_conv_part` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT dla tabeli `countries`
@@ -1052,7 +1056,7 @@ ALTER TABLE `levels`
 -- AUTO_INCREMENT dla tabeli `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id_message` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_message` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT dla tabeli `positions`
@@ -1100,7 +1104,7 @@ ALTER TABLE `training`
 -- AUTO_INCREMENT dla tabeli `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Ograniczenia dla zrzutów tabel
@@ -1177,7 +1181,7 @@ ALTER TABLE `knowledge`
 --
 ALTER TABLE `messages`
   ADD CONSTRAINT `messages_ibfk_1` FOREIGN KEY (`id_conv`) REFERENCES `conv` (`id_conv`),
-  ADD CONSTRAINT `messages_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`);
+  ADD CONSTRAINT `messages_ibfk_3` FOREIGN KEY (`id_sender`) REFERENCES `users` (`id_user`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Ograniczenia dla tabeli `schools`

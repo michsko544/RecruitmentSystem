@@ -242,11 +242,12 @@ if (isset($_POST['first-name']))
 if (isset($_POST['job-title-0']))
 {
     $experience_count = $_GET['countE'];
+    echo $experience_count;
     for($i=0; $i<$experience_count; $i++)
     {
         $job_title = $_POST['job-title-' . $i];
         if (isset($_POST['no-experience']))
-            $no_experience = $_POST['no-experience'];
+            $no_experience = true;
         else
             $no_experience = false;
         $employer = $_POST['employer-' . $i];
