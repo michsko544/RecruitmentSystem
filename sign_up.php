@@ -143,7 +143,8 @@ $sign_up_class = new SignUpSystem(true);
     <div class="page-title dark-color">What's your experience?</div>
     <div id="sign-up-3" class="sign-up-wrapper">
         <div class="step">Step 2/3</div>
-        <form id="sform-3" action="php/sign_up/sign_up_system.php" method="post">
+
+        <form id="sform-3" action="php/sign_up/sign_up_system.php?countE=1" method="post">
             <div class="form-row">
                 <div class="checkbox">
                 <input type="checkbox" name="no-experience" id="no-experience">I don't have any experience
@@ -225,7 +226,7 @@ $sign_up_class = new SignUpSystem(true);
 
     <div class="page-title cyan-color">CV & Additional references</div>
     <div id="sign-up-5" class="sign-up-wrapper">
-        <form id="sform-5" action="php/sign_up/sign_up_system.php?cert_count=1&course_count=1" method="post" enctype="multipart/form-data">
+        <form id="sform-5" action="php/sign_up/sign_up_system.php" method="post" enctype="multipart/form-data">
         <div class="form-row">
         <label for="cv-file">Curriculum vitae</label>
         <div class="upload">

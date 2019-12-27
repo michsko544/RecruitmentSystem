@@ -1,3 +1,17 @@
+<?php
+session_start();
+if ((!isset($_SESSION['logged_in'])) || ($_SESSION['logged_in'] == false))
+{
+    header('Location: index.php');
+    exit();
+}
+
+require_once "php/replies.php";
+$user_rep = $_SESSION['id_user'];
+getRepliesData($user_rep);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -41,6 +41,7 @@ if (isset($_POST['e-mail']))
         $sign_up_class->notGood('err_password', 'Passwords are not identical');
     }
     $hashed_password = password_hash($password_one, PASSWORD_DEFAULT);
+
     // Validate position
     $position = $_POST['position'];
 
@@ -238,14 +239,16 @@ if (isset($_POST['first-name']))
 }
 
 //Form 3
-
 if (isset($_POST['job-title-0']))
 {
-    $experience_count = $_GET['exp-count'];
+    $experience_count = $_GET['countE'];
     for($i=0; $i<$experience_count; $i++)
     {
         $job_title = $_POST['job-title-' . $i];
-        $no_experience = $_POST['no-experience'];
+        if (isset($_POST['no-experience']))
+            $no_experience = $_POST['no-experience'];
+        else
+            $no_experience = false;
         $employer = $_POST['employer-' . $i];
         $job_city = $_POST['job-city-' . $i];
         $start_date = $_POST['start-date-'. $i];
@@ -259,20 +262,30 @@ if (isset($_POST['job-title-0']))
 
 if (isset($_POST['languages-0']))
 {
-    $school_count = $_GET['school-count'];
-    for($i=0; $i<$school_count; $i++)
+    $lang_count = $_GET['countL'];
+    $skill_count = $_GET['countSk'];
+    $school_count = $_GET['countS'];
+    for($i=0; $i<$lang_count; $i++)
     {
         $language = $_POST['languages-' . $i];
         $language_level = $_POST['language-level-' . $i];
+        $sign_up_class->validateForm4L($language, $language_level);
+    }
+    for($i=0; $i<$skill_count; $i++)
+    {
         $skill = $_POST['skill-' . $i];
         $skill_level = $_POST['skill-level-' . $i];
+        $sign_up_class->validateForm4Sk($skill, $skill_level);
+    }
+    for($i=0; $i<$school_count; $i++)
+    {
         $school = $_POST['school-' . $i];
         $specialization = $_POST['specialization-' . $i];
         $school_start_date = $_POST['school-start-date-' . $i];
         $school_end_date = $_POST['school-end-date-' . $i];
         $school_city = $_POST['school-city-' . $i];
         $school_description = $_POST['school-description-' . $i];
-        $sign_up_class->validateForm4($language, $language_level, $skill, $skill_level, $school, $specialization, $school_start_date, $school_end_date, $school_city, $school_description, $host, $db_user, $db_pass, $db_name);
+        $sign_up_class->validateForm4S($school, $specialization, $school_start_date, $school_end_date, $school_city, $school_description);
     }
 }
 
@@ -280,8 +293,8 @@ if (isset($_POST['languages-0']))
 if (isset($_FILES['cv']))
 {
     $cert_count = $_GET['cert_count'];
-    $course_count = $_GET['course_count'];
-    $cv = 'cv'; // TODO probably requires $_FILE instead of $_POST
+    $course_count = $_GET['countC'];
+    $cv = 'cv';
     $cover_letter = 'cover-letter';
     // Validate cv
     $sign_up_class->validateFile($cv, false, 'cv');

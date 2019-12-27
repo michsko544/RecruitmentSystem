@@ -16,6 +16,7 @@ function getApplicationsData($condition){
     $json_array = array();
 
     $new_json = new HandleJson();
+    mysqli_report(MYSQLI_REPORT_STRICT);
     try
     {
         $count_results_e = $new_json->fetchData($query_e, $data_push_e, $json_array['applications']['personalData']['email'], $host, $db_user, $db_pass, $db_name);

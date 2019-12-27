@@ -259,20 +259,82 @@ function validateForm3($job_title, $no_experience, $employer, $start_date, $end_
     }
 }
 
-function validateForm4($language, $language_level, $skill, $skill_level, $school, $specialization, $school_start_date, $school_end_date, $school_city, $school_description, $host, $db_user, $db_pass, $db_name)
+// **********************************************************
+// ******************** FORM 4 ******************************
+// **********************************************************
+
+
+    function validateForm4L($language, $language_level)
+    {
+        // Validate language
+        if (($language_level < 1) && ($language_level > 5))
+        {
+            $this->notGood('err_language_level', 'Language level must be between 1 and 5');
+        }
+
+        if (ctype_alnum($language) == false)
+        {
+            $this->notGood('err_language', 'Language name may only contain letters and numbers');
+        }
+
+        // Remember value TODO change to skills and school
+        $_SESSION['rem_language'] = $language;
+        $_SESSION['rem_language_level'] = $language_level;
+
+        if ($this->checkFlag() == true)
+        {
+            //Add to array and wait
+            $this->setInsertSkillLanguageValues('language', $language);
+            $this->setInsertSkillLanguageValues('language_level', $language_level);
+            $this->itWorks('holy shit');
+        }
+
+
+        // Unset remembered values
+        if (isset($_SESSION['rem_language'])) unset($_SESSION['rem_language']);
+        if (isset($_SESSION['rem_language_level'])) unset($_SESSION['rem_language_level']);
+
+        // Unset error values
+        if (isset($_SESSION['err_language'])) unset($_SESSION['err_language']);
+        if (isset($_SESSION['err_language_level'])) unset($_SESSION['err_language_level']);
+    }
+    function validateForm4Sk($skill, $skill_level)
+    {
+        // Validate skills
+        if (($skill_level < 1) && ($skill_level > 5))
+        {
+            $this->notGood('err_skill_level', 'Skill level must be between 1 and 5');
+        }
+
+        if (ctype_alnum($skill) == false)
+        {
+            $this->notGood('err_skill', 'Skill name may only contain letters and numbers');
+        }
+
+
+        // Remember value TODO change to skills and school
+        $_SESSION['rem_skill'] = $skill;
+        $_SESSION['rem_skill_level'] = $skill_level;
+
+        if ($this->checkFlag() == true)
+        {
+            //Add to array and wait
+            $this->setInsertSkillLanguageValues('skill', $skill);
+            $this->setInsertSkillLanguageValues('skill_level', $skill_level);
+            $this->itWorks('it is ( i think)');
+        }
+
+
+        // Unset remembered values
+        if (isset($_SESSION['rem_skill'])) unset($_SESSION['rem_skill']);
+        if (isset($_SESSION['rem_skill_level'])) unset($_SESSION['rem_skill_level']);
+        // Unset error values
+        if (isset($_SESSION['err_skill'])) unset($_SESSION['err_skill']);
+        if (isset($_SESSION['err_skill_level'])) unset($_SESSION['err_skill_level']);
+    }
+
+function validateForm4S($school, $specialization, $school_start_date, $school_end_date, $school_city, $school_description)
 {
-    // Validate language
-    if (($language_level < 1) && ($language_level > 5))
-    {
-        $this->notGood('err_language_level', 'Language level must be between 1 and 5');
-    }
-
-    // Validate skills
-    if (($skill_level < 1) && ($skill_level > 5))
-    {
-        $this->notGood('err_skill_level', 'Skill level must be between 1 and 5');
-    }
-
     if (ctype_alnum($school) == false)
     {
         $this->notGood('err_school', 'School name may only contain letters and numbers');
@@ -299,10 +361,6 @@ function validateForm4($language, $language_level, $skill, $skill_level, $school
         $this->notGood('err_school_description', 'Description must have less than 500 characters');
     }
     // Remember value TODO change to skills and school
-    $_SESSION['rem_language'] = $language;
-    $_SESSION['rem_language_level'] = $language_level;
-    $_SESSION['rem_skill'] = $skill;
-    $_SESSION['rem_skill_level'] = $skill_level;
     $_SESSION['rem_school'] = $school;
     $_SESSION['rem_specialization'] = $specialization;
     $_SESSION['rem_school_start_date'] = $school_start_date;
@@ -313,24 +371,17 @@ function validateForm4($language, $language_level, $skill, $skill_level, $school
     if ($this->checkFlag() == true)
     {
         //Add to array and wait
-        $this->setInsertSkillLanguageValues('language', $language);
-        $this->setInsertSkillLanguageValues('language_level', $language_level);
-        $this->setInsertSkillLanguageValues('skill', $skill);
-        $this->setInsertSkillLanguageValues('skill_level', $skill_level);
         $this->setInsertSchoolValues('school', $school);
         $this->setInsertSchoolValues('specialization', $specialization);
         $this->setInsertSchoolValues('start_date', $school_start_date);
         $this->setInsertSchoolValues('end_date', $school_end_date);
         $this->setInsertSchoolValues('city', $school_city);
         $this->setInsertSchoolValues('description', $school_description);
+        $this->itWorks('working');
     }
 
 
     // Unset remembered values
-    if (isset($_SESSION['rem_language'])) unset($_SESSION['rem_language']);
-    if (isset($_SESSION['rem_language_level'])) unset($_SESSION['rem_language_level']);
-    if (isset($_SESSION['rem_skill'])) unset($_SESSION['rem_skill']);
-    if (isset($_SESSION['rem_skill_level'])) unset($_SESSION['rem_skill_level']);
     if (isset($_SESSION['rem_school'])) unset($_SESSION['rem_school']);
     if (isset($_SESSION['rem_specialization'])) unset($_SESSION['rem_specialization']);
     if (isset($_SESSION['rem_school_start_date'])) unset($_SESSION['rem_school_start_date']);
@@ -338,10 +389,6 @@ function validateForm4($language, $language_level, $skill, $skill_level, $school
     if (isset($_SESSION['rem_school_city'])) unset($_SESSION['rem_school_city']);
     if (isset($_SESSION['rem_school_description'])) unset($_SESSION['rem_school_description']);
     // Unset error values
-    if (isset($_SESSION['err_language'])) unset($_SESSION['err_language']);
-    if (isset($_SESSION['err_language_level'])) unset($_SESSION['err_language_level']);
-    if (isset($_SESSION['err_skill'])) unset($_SESSION['err_skill']);
-    if (isset($_SESSION['err_skill_level'])) unset($_SESSION['err_skill_level']);
     if (isset($_SESSION['err_school'])) unset($_SESSION['err_school']);
     if (isset($_SESSION['err_specialization'])) unset($_SESSION['err_specialization']);
     if (isset($_SESSION['err_school_start_date'])) unset($_SESSION['err_school_start_date']);
