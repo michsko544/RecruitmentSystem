@@ -152,6 +152,24 @@ const addExperience = ({jobTitle, employer, startDate, endDate, city, descriptio
 
 document.getElementById("btn-experience").addEventListener("click", addExperience);
 
+// *******************************
+
+const addForm3 = ({}) => {
+    let btn = document.getElementById("form3-open-tag");
+    let newDiv = document.createRange().createContextualFragment(
+        ` <form id="sform-3" action="php/sign_up/sign_up_system.php?countE=${countE}" method="post">`
+    );
+
+    btn.parentNode.insertBefore(newDiv, btn);
+    addHighlightEvents();
+}
+
+document.getElementById("btn-experience").addEventListener("click", addForm3);
+
+
+
+// *******************************
+
 let countL = 0;
 let firstLanguage = true;
 const addLanguage = ({lang, level}) => {
