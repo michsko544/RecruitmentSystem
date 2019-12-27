@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Czas generowania: 27 Gru 2019, 17:19
+-- Czas generowania: 27 Gru 2019, 23:34
 -- Wersja serwera: 10.4.10-MariaDB
 -- Wersja PHP: 7.1.33
 
@@ -147,7 +147,9 @@ CREATE TABLE `conv` (
 
 INSERT INTO `conv` (`id_conv`, `topic`) VALUES
 (1, 'welcome'),
-(2, 'howdy');
+(2, 'very IMPORTANT'),
+(3, 'dO NoT rEaD tHiS mEsSaGe'),
+(4, 'welcome');
 
 -- --------------------------------------------------------
 
@@ -167,7 +169,9 @@ CREATE TABLE `conv_part` (
 
 INSERT INTO `conv_part` (`id_conv_part`, `id_conv`, `id_user`) VALUES
 (1, 1, 1),
-(2, 2, 1);
+(2, 2, 3),
+(3, 3, 3),
+(4, 4, 1);
 
 -- --------------------------------------------------------
 
@@ -594,16 +598,19 @@ CREATE TABLE `messages` (
   `id_sender` int(11) NOT NULL,
   `message` varchar(150) DEFAULT NULL,
   `time` date NOT NULL,
-  `id_conv` int(11) NOT NULL
+  `id_conv` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Zrzut danych tabeli `messages`
 --
 
-INSERT INTO `messages` (`id_message`, `id_sender`, `message`, `time`, `id_conv`) VALUES
-(1, 2, 'hello there', '2019-12-16', 1),
-(2, 4, 'how ya doin', '2019-08-06', 2);
+INSERT INTO `messages` (`id_message`, `id_sender`, `message`, `time`, `id_conv`, `id_user`) VALUES
+(1, 2, 'hello there', '2019-12-16', 1, 1),
+(2, 4, 'hi how u doin', '2019-12-03', 2, 3),
+(3, 4, 'idk', '2019-12-31', 3, 3),
+(4, 5, 'welcome to myCompany system', '2019-12-11', 4, 1);
 
 -- --------------------------------------------------------
 
@@ -712,7 +719,7 @@ CREATE TABLE `sor` (
 --
 
 INSERT INTO `sor` (`id_stage`, `name_stage`, `description`, `id_application`) VALUES
-(1, 'interview', 'ask about applicant\'s university', 2);
+(1, 'interview', 'ask about applicant\'s university', NULL);
 
 -- --------------------------------------------------------
 
@@ -903,6 +910,7 @@ ALTER TABLE `levels`
 ALTER TABLE `messages`
   ADD PRIMARY KEY (`id_message`),
   ADD KEY `id_conv` (`id_conv`),
+  ADD KEY `id_user` (`id_user`),
   ADD KEY `id_sender` (`id_sender`);
 
 --
@@ -996,13 +1004,13 @@ ALTER TABLE `cl`
 -- AUTO_INCREMENT dla tabeli `conv`
 --
 ALTER TABLE `conv`
-  MODIFY `id_conv` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_conv` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT dla tabeli `conv_part`
 --
 ALTER TABLE `conv_part`
-  MODIFY `id_conv_part` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_conv_part` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT dla tabeli `countries`
@@ -1056,7 +1064,7 @@ ALTER TABLE `levels`
 -- AUTO_INCREMENT dla tabeli `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id_message` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_message` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT dla tabeli `positions`
@@ -1181,7 +1189,8 @@ ALTER TABLE `knowledge`
 --
 ALTER TABLE `messages`
   ADD CONSTRAINT `messages_ibfk_1` FOREIGN KEY (`id_conv`) REFERENCES `conv` (`id_conv`),
-  ADD CONSTRAINT `messages_ibfk_3` FOREIGN KEY (`id_sender`) REFERENCES `users` (`id_user`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `messages_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`),
+  ADD CONSTRAINT `messages_ibfk_3` FOREIGN KEY (`id_sender`) REFERENCES `users` (`id_user`);
 
 --
 -- Ograniczenia dla tabeli `schools`
