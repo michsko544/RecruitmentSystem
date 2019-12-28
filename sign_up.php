@@ -231,7 +231,7 @@ $sign_up_class = new SignUpSystem(true);
         <div class="form-row ">
         <label for="certificate-file">Certificates</label>
         <div class="upload"> <!-- TODO var cert-count -->
-            <input type="file" name="certificate-0" class="inputfile" accept="application/pdf" data-multiple-caption="{count} files selected" multiple>
+            <input type="file" name="certificate[]" class="inputfile" accept="application/pdf" data-multiple-caption="{count} files selected" multiple>
             <label>Choose a file</label>
         </div>
         </div>

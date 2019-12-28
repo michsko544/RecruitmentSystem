@@ -55,12 +55,9 @@ function pickDataFromDB($query, $host, $db_user, $db_pass, $db_name)
     try
     {
     $connection = new mysqli($host, $db_user, $db_pass, $db_name);
-    if ($connection->connect_errno != 0)
-    {
-    throw new Exception(mysqli_connect_errno());
-    }
-
-    else {
+    if ($connection->connect_errno != 0) {
+        throw new Exception(mysqli_connect_errno());
+    } else {
         if ($position_name = $connection->query($query)) {
             while ($pos_name = $position_name->fetch_assoc()) {
                 foreach ($pos_name as $key=>$value) {
@@ -74,13 +71,13 @@ function pickDataFromDB($query, $host, $db_user, $db_pass, $db_name)
         } else {
             throw new Exception($connection->error);
         }
+        $connection->close();
     }
     }
     catch
     (Exception $e) {
         echo "<div class='server-error'>Server error! Please try again later. Err: " . $e . "</div>";
     }
-    $connection->close();
 }
 
 function setInsertValue($column, $value)
@@ -233,9 +230,9 @@ function validateForm3($job_title, $no_experience, $employer, $start_date, $end_
             //Add to array and wait
             $this->setInsertEmploymentValues('job_title', $job_title);
             $this->setInsertEmploymentValues('employer', $employer);
-            $this->setInsertEmploymentValues('star_date', $start_date);
+            $this->setInsertEmploymentValues('start_date', $start_date);
             $this->setInsertEmploymentValues('end_date', $end_date);
-            $this->setInsertEmploymentValues('job_city', $job_city);
+            $this->setInsertEmploymentValues('city', $job_city);
             $this->setInsertEmploymentValues('description', $job_description);
             $this->itWorks('form3');
         }
@@ -402,34 +399,48 @@ function validateForm4S($school, $specialization, $school_start_date, $school_en
 
 function validateFile($filename, $multi_file, $col_name)
 {
-    // TODO check if works for multifiles
-    $whitelist = array("pdf");
-    // Get filename
-    $file_info = pathinfo($_FILES["{$filename}"]['name']);
-    $name = $file_info['filename'];
-    $ext = $file_info['extension'];
-    // Validate file's extension
-    if (!in_array($ext, $whitelist))
-    {
-        $this->notGood('err_file', 'Files must have .pdf extension');
-    }
+    // TODO check if works for multi files
+    if ($multi_file == false){
+        $whitelist = array("pdf");
+        // Get filename
+        $file_info = pathinfo($_FILES[$filename]['name']);
+        $name = $file_info['filename'];
+        $ext = $file_info['extension'];
+        // Validate file's extension
+        if (!in_array($ext, $whitelist)) {
+            $this->notGood('err_file', 'Files must have .pdf extension');
+        }
 
-    $upload_dir = '/uploades/' . $col_name;
-    $file_to_upload = $upload_dir . basename($_FILES["{$filename}"]['name']);
+        $upload_dir = '/uploads/';
+        $file_to_upload = $upload_dir . basename($_FILES[$filename]['name']);
 
-    //Add to array and wait
-    if ($this->checkFlag() == true) {
-        if (move_uploaded_file($_FILES["{$filename}"]['name'], $upload_dir)) {
-            if ($multi_file == true) {
-                $this->setInsertCertSkillValues($col_name, $filename);
-                $this->itWorks("file");
-            } else{
+        //Add to array and wait
+        if ($this->checkFlag() == true) {
+            if (move_uploaded_file($_FILES[$filename]['name'], $file_to_upload)) {
                 $this->setInsertValue($col_name, $filename);
-                $this->itWorks("file");
+                $this->itWorks("file is up");
+            } else {
+                $this->notGood('err_file', 'Uploading files failed');
+                $this->itWorks('except it doesnt');
             }
-        } else {
-            $this->notGood('err_file', 'Uploading files failed');
-            $this->itWorks('except it doesnt');
+        }
+    } else {
+        $target_dir = "/uploads/";
+        if( isset($_FILES[$filename]['name'])) {
+
+            $total_files = count($_FILES[$filename]['name']);
+
+            for($key = 0; $key < $total_files; $key++) {
+
+                // Check if file is selected
+                if(isset($_FILES[$filename]['name'][$key]) && $_FILES[$filename]['size'][$key] > 0) {
+                    $original_filename = $_FILES[$filename]['name'][$key];
+                    $target = $target_dir . basename($original_filename);
+                    $tmp  = $_FILES[$filename]['tmp_name'][$key];
+                    move_uploaded_file($tmp, $target);
+                    $this->setInsertCertSkillValues($col_name, $filename);
+                }
+            }
         }
     }
 }
@@ -490,8 +501,24 @@ function insertData()
 
 function itWorks($p)
 {
-    echo "<div style='height: 100vh'> It works! ". $p . " </div>";
+    echo "<div style='height: 100vh'> It works! " . $p . " </div>";
 }
+
+function dispInJson()
+{
+    require_once "../HandleJson.php";
+
+    $arr = array(
+        $this->insert_values,
+        $this->insert_employment,
+        $this->insert_skill_language,
+        $this->insert_school,
+        $this->insert_cert_course
+    );
+    $inst = new HandleJson();
+    $inst->createJsonFile('signup.json',$arr);
+}
+
 
 
 }

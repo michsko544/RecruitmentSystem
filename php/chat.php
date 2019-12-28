@@ -23,7 +23,7 @@ function getChatData($user){
         $count_na = $new_json->fetchData($query_na, $data_push_na, $json_array['fromUser']['name'], $host, $db_user, $db_pass, $db_name);
         $count_su = $new_json->fetchData($query_su, $data_push_su, $json_array['fromUser']['surname'], $host, $db_user, $db_pass, $db_name);
 
-        $new_json->addCounters($json_array['counters']['message'], $count_to);
+        $new_json->addCounters($json_array['counters']['messages'], $count_to);
 
 
         //fill .json file with data from db

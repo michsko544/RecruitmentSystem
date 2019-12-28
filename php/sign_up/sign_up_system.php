@@ -303,30 +303,54 @@ if (isset($_POST['languages-0']))
 }
 
 // Form 5
-if (isset($_FILES['cv']))
+if (isset($_FILES['cv']) || isset($_FILES['certificate[]']))
 {
     //$cert_count = $_GET['cert_count'];
     //$course_count = $_GET['countC'];
+    /*
     $cv = 'cv';
     $cover_letter = 'cover-letter';
     // Validate cv
-    $sign_up_class->validateFile($cv, false, 'cv');
+    if (isset($_FILES['cv']))
+        $sign_up_class->validateFile($cv, false, 'cv');
 
     // Validate cover letter
-    $sign_up_class->validateFile($cover_letter, false, 'cover_letter');
+    if (isset($_FILES['cover-letter']))
+        $sign_up_class->validateFile($cover_letter, false, 'cover_letter');
 
-    for($i=0; $i<$cert_count; $i++)
-    {
-        $cert = 'certificate-' . strval($i);
+    // Validate certificate
+    $cert = 'certificate[]';
+    if (isset($_FILES['certificate[]']))
         $sign_up_class->validateFile($cert, true, 'certificate');
-    }
-    for($i=0; $i<$course_count; $i++)
+
+    $j = 0;
+    while (isset($_FILES['course-' . $j]))
     {
-        $course = $_POST['course-' . strval($i)];
+        $course = $_POST['course-' . $j];
         $sign_up_class->validateForm5Co($course);
+        $j++;
+    }*/
+    $target_dir = "/uploads/";
+    if( isset($_FILES['certificate[]']['name'])) {
+
+        $total_files = count($_FILES['certificate[]']['name']);
+
+        for($key = 0; $key < $total_files; $key++) {
+
+            // Check if file is selected
+            if(isset($_FILES['certificate[]']['name'][$key]) && $_FILES['certificate[]']['size'][$key] > 0) {
+                $original_filename = $_FILES['certificate[]']['name'][$key];
+                $target = $target_dir . basename($original_filename);
+                $tmp  = $_FILES['certificate[]']['tmp_name'][$key];
+                move_uploaded_file($tmp, $target);
+                $sign_up_class->setInsertCertSkillValues('certificate', 'certificate[]');
+                $sign_up_class->itWorks('heas');
+            }
+        }
     }
 }
 
 // TODO unset insert values
+$sign_up_class->dispInJson();
 
 unset($sign_up_class);
