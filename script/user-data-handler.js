@@ -154,7 +154,7 @@ document.getElementById("btn-experience").addEventListener("click", addExperienc
 
 // *******************************
 
-const addForm3 = ({}) => {
+/*const addForm3 = () => {
     let btn = document.getElementById("form3-open-tag");
     let newDiv = document.createRange().createContextualFragment(
         ` <form id="sform-3" action="php/sign_up/sign_up_system.php?countE=${countE}" method="post">`
@@ -165,7 +165,7 @@ const addForm3 = ({}) => {
 }
 
 document.getElementById("btn-experience").addEventListener("click", addForm3);
-
+*/
 
 
 // *******************************

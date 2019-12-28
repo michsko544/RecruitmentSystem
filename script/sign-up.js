@@ -8,7 +8,7 @@ const initEmptySignUpInputs = () => {
 
 initEmptySignUpInputs();
 
-const passCountersToUrl = () => {
+/*const passCountersToUrl = () => {
     let btns = document.querySelectorAll(".btn-add");
     var url_string = window.location.href;
     var url = new URL(url_string);
@@ -47,4 +47,4 @@ const passCountersToUrl = () => {
     })
 }
 
-passCountersToUrl();
+passCountersToUrl();*/
