@@ -241,10 +241,12 @@ if (isset($_POST['first-name']))
 //Form 3
 if (isset($_POST['job-title-0']))
 {
-    $experience_count = $_GET['countE'];
-    echo $experience_count;
-    for($i=0; $i<$experience_count; $i++)
+    // $experience_count = $_GET['countE'];
+    //for($i=0; $i<$experience_count; $i++)
+    $i = 0;
+    while (isset($_POST['job-title-' . $i])) // TODO kurwa ja jestem deklem
     {
+        echo "while i=" . $i;
         $job_title = $_POST['job-title-' . $i];
         if (isset($_POST['no-experience']))
             $no_experience = true;
@@ -256,6 +258,7 @@ if (isset($_POST['job-title-0']))
         $end_date = $_POST['end-date-'. $i];
         $job_description = $_POST['job-description-' . $i];
         $sign_up_class->validateForm3($job_title, $no_experience, $employer, $start_date, $end_date, $job_city, $job_description);
+        $i++;
     }
 }
 
@@ -263,38 +266,47 @@ if (isset($_POST['job-title-0']))
 
 if (isset($_POST['languages-0']))
 {
-    $lang_count = $_GET['countL'];
-    $skill_count = $_GET['countSk'];
-    $school_count = $_GET['countS'];
-    for($i=0; $i<$lang_count; $i++)
+    // $lang_count = $_GET['countL'];
+    // $skill_count = $_GET['countSk'];
+    // $school_count = $_GET['countS'];
+    // for($i=0; $i<$lang_count; $i++)
+    $i = 0;
+    while (isset($_POST['languages-'.$i]))
     {
         $language = $_POST['languages-' . $i];
         $language_level = $_POST['language-level-' . $i];
         $sign_up_class->validateForm4L($language, $language_level);
+        $i++;
     }
-    for($i=0; $i<$skill_count; $i++)
+    // for($i=0; $i<$skill_count; $i++)
+    $j = 0;
+    while (isset($_POST['skills-'.$j]))
     {
-        $skill = $_POST['skill-' . $i];
-        $skill_level = $_POST['skill-level-' . $i];
+        $skill = $_POST['skills-' . $j];
+        $skill_level = $_POST['skill-level-' . $j];
         $sign_up_class->validateForm4Sk($skill, $skill_level);
+        $j++;
     }
-    for($i=0; $i<$school_count; $i++)
+    // for($i=0; $i<$school_count; $i++)
+    $k = 0;
+    while (isset($_POST['school-'.$k]))
     {
-        $school = $_POST['school-' . $i];
-        $specialization = $_POST['specialization-' . $i];
-        $school_start_date = $_POST['school-start-date-' . $i];
-        $school_end_date = $_POST['school-end-date-' . $i];
-        $school_city = $_POST['school-city-' . $i];
-        $school_description = $_POST['school-description-' . $i];
+        $school = $_POST['school-' . $k];
+        $specialization = $_POST['specialization-' . $k];
+        $school_start_date = $_POST['school-start-date-' . $k];
+        $school_end_date = $_POST['school-end-date-' . $k];
+        $school_city = $_POST['school-city-' . $k];
+        $school_description = $_POST['school-description-' . $k];
         $sign_up_class->validateForm4S($school, $specialization, $school_start_date, $school_end_date, $school_city, $school_description);
+        $k++;
     }
 }
 
 // Form 5
 if (isset($_FILES['cv']))
 {
-    $cert_count = $_GET['cert_count'];
-    $course_count = $_GET['countC'];
+    //$cert_count = $_GET['cert_count'];
+    //$course_count = $_GET['countC'];
     $cv = 'cv';
     $cover_letter = 'cover-letter';
     // Validate cv

@@ -153,8 +153,8 @@ const addExperience = ({jobTitle, employer, startDate, endDate, city, descriptio
 document.getElementById("btn-experience").addEventListener("click", addExperience);
 
 // *******************************
-
-/*const addForm3 = () => {
+/*
+const addForm3 = ({}) => {
     let btn = document.getElementById("form3-open-tag");
     let newDiv = document.createRange().createContextualFragment(
         ` <form id="sform-3" action="php/sign_up/sign_up_system.php?countE=${countE}" method="post">`
@@ -165,8 +165,8 @@ document.getElementById("btn-experience").addEventListener("click", addExperienc
 }
 
 document.getElementById("btn-experience").addEventListener("click", addForm3);
-*/
 
+*/
 
 // *******************************
 
@@ -182,7 +182,7 @@ const addLanguage = ({lang, level}) => {
                 <input type="text" name="languages-${countL}" placeholder="German" value="${lang || ""}" required>
                 <div class="underline"></div>
                 <div class="degree">
-                    <input type="number" name="language_level-${countL}" min=1 max=5 placeholder=1 value="${level || 1}">
+                    <input type="number" name="language-level-${countL}" min=1 max=5 placeholder=1 value="${level || 1}">
                     <div class="limit">/5</div>
                 </div>
             </div>`
@@ -194,7 +194,7 @@ const addLanguage = ({lang, level}) => {
                 <input type="text" name="languages-${countL}" placeholder="German" value="${lang || ""}" required>
                 <div class="underline"></div>
                 <div class="degree">
-                    <input type="number" name="language_level-${countL}" min=1 max=5 placeholder=1 value="${level || 1}">
+                    <input type="number" name="language-level-${countL}" min=1 max=5 placeholder=1 value="${level || 1}">
                     <div class="limit">/5</div>
                 </div>
             </div>`
