@@ -224,7 +224,7 @@ $sign_up_class = new SignUpSystem(true);
         <div class="form-row">
         <label for="cv-file">Curriculum vitae</label>
         <div class="upload">
-            <input type="file" name="cv" class="inputfile" accept="application/pdf">
+            <input type="file" name="cv[]" class="inputfile" accept="application/pdf">
             <label for="cv-file">Choose a file</label>
         </div>
         </div>

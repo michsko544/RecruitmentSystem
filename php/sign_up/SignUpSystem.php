@@ -399,33 +399,34 @@ function validateForm4S($school, $specialization, $school_start_date, $school_en
 
 function validateFile($filename, $multi_file, $col_name)
 {
-    // TODO check if works for multi files
     if ($multi_file == false){
         $whitelist = array("pdf");
         // Get filename
         $file_info = pathinfo($_FILES[$filename]['name']);
-        $name = $file_info['filename'];
         $ext = $file_info['extension'];
         // Validate file's extension
         if (!in_array($ext, $whitelist)) {
             $this->notGood('err_file', 'Files must have .pdf extension');
         }
 
-        $upload_dir = '/uploads/';
+        $upload_dir = 'uploads/';
         $file_to_upload = $upload_dir . basename($_FILES[$filename]['name']);
 
+        $tmp_name = $_FILES[$filename]["tmp_name"];
         //Add to array and wait
         if ($this->checkFlag() == true) {
-            if (move_uploaded_file($_FILES[$filename]['name'], $file_to_upload)) {
+            if (move_uploaded_file($tmp_name, "$file_to_upload")) {
                 $this->setInsertValue($col_name, $filename);
                 $this->itWorks("file is up");
             } else {
                 $this->notGood('err_file', 'Uploading files failed');
+                echo $upload_dir;
+                echo $_FILES[$filename]['name'];
                 $this->itWorks('except it doesnt');
             }
         }
     } else {
-        $target_dir = "/uploads/";
+        $target_dir = "uploads/";
         if( isset($_FILES[$filename]['name'])) {
 
             $total_files = count($_FILES[$filename]['name']);
@@ -439,6 +440,7 @@ function validateFile($filename, $multi_file, $col_name)
                     $tmp  = $_FILES[$filename]['tmp_name'][$key];
                     move_uploaded_file($tmp, $target);
                     $this->setInsertCertSkillValues($col_name, $filename);
+                    $this->itWorks('here we go again');
                 }
             }
         }
@@ -464,6 +466,7 @@ function validateForm5Co($course)
     {
         //Add to array and wait
         $this->setInsertCertSkillValues('course', $course);
+        $this->itWorks('course is good');
     }
 }
 
@@ -501,7 +504,7 @@ function insertData()
 
 function itWorks($p)
 {
-    echo "<div style='height: 100vh'> It works! " . $p . " </div>";
+    echo "<div style='height: 20vh'> It works! " . $p . " </div>";
 }
 
 function dispInJson()
