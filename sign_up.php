@@ -1,8 +1,8 @@
 <?php
 session_start();
-require_once "php/sign_up/SignUpSystem.php";
+require_once "php/FormsValidation.php";
 require_once "php/connect.php";
-$sign_up_class = new SignUpSystem(true);
+$sign_up_class = new FormsValidation(true);
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +27,7 @@ $sign_up_class = new SignUpSystem(true);
 <div class="sign-up-container">
 <div class="page-title cyan-color">Find your job by joining us!</div>
     <div id="sign-up-1" class="sign-up-wrapper">
-        <form id="sform-1" action="php/sign_up/sign_up_system.php" method="post">
+        <form id="sform-1" action="php/sign_up.php" method="post">
             <div class="form-row">
                 <label for="login">Login</label>
                 <input type="text" name="login" value="<?php $sign_up_class->rememberValue('rem_username'); ?>" placeholder="Username" required>
@@ -96,7 +96,7 @@ $sign_up_class = new SignUpSystem(true);
     <div class="page-title dark-color">A few more things about you, employers need to know</div>
     <div id="sign-up-2" class="sign-up-wrapper">
         <div class="step">Step 1/3</div>
-        <form id="sform-2" action="php/sign_up/sign_up_system.php" method="post">
+        <form id="sform-2" action="php/sign_up.php" method="post">
             <div class="form-row">
                 <label for="first-name">First name</label>
                 <input type="text" name="first-name" placeholder="John" required>
@@ -143,7 +143,7 @@ $sign_up_class = new SignUpSystem(true);
     <div class="page-title dark-color">What's your experience?</div>
     <div id="sign-up-3" class="sign-up-wrapper">
         <div class="step">Step 2/3</div>
-        <form id="sform-3" action="php/sign_up/sign_up_system.php" method="post">
+        <form id="sform-3" action="php/sign_up.php" method="post">
             <div id="form3-open-tag"></div>
             <div class="form-row">
                 <div class="checkbox">
@@ -169,7 +169,7 @@ $sign_up_class = new SignUpSystem(true);
     <div class="page-title dark-color">Skills & Education</div>
     <div id="sign-up-4" class="sign-up-wrapper">
         <div class="step">Step 3/3</div>
-        <form id="sform-4" action="php/sign_up/sign_up_system.php" method="post">
+        <form id="sform-4" action="php/sign_up.php" method="post">
             <div class="btn-add" id="btn-language">
                 <div class="btn-text">
                     Add language
@@ -220,11 +220,11 @@ $sign_up_class = new SignUpSystem(true);
 
     <div class="page-title cyan-color">CV & Additional references</div>
     <div id="sign-up-5" class="sign-up-wrapper">
-        <form id="sform-5" action="php/sign_up/sign_up_system.php" method="post" enctype="multipart/form-data">
+        <form id="sform-5" action="php/sign_up.php" method="post" enctype="multipart/form-data">
         <div class="form-row">
         <label for="cv-file">Curriculum vitae</label>
         <div class="upload">
-            <input type="file" name="cv[]" class="inputfile" accept="application/pdf">
+            <input type="file" name="cv" class="inputfile" accept="application/pdf">
             <label for="cv-file">Choose a file</label>
         </div>
         </div>
