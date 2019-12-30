@@ -304,18 +304,7 @@ function validateForm1 ($username, $email, $password_one, $password_two, $positi
     {
         echo "<div class='server-error'>Server error! Please try again later. Err: ".$e."</div>";
     }
-    // Unset remembered values
-    if (isset($_SESSION['rem_username'])) unset($_SESSION['rem_username']);
-    if (isset($_SESSION['rem_email'])) unset($_SESSION['rem_email']);
-    if (isset($_SESSION['rem_password_one'])) unset($_SESSION['rem_password_one']);
-    if (isset($_SESSION['rem_password_two'])) unset($_SESSION['rem_password_two']);
-    if (isset($_SESSION['rem_terms'])) unset($_SESSION['rem_terms']);
-    // Unset error values
-    if (isset($_SESSION['err_username'])) unset($_SESSION['err_username']);
-    if (isset($_SESSION['err_email'])) unset($_SESSION['err_email']);
-    if (isset($_SESSION['err_password_one'])) unset($_SESSION['err_password_one']);
-    if (isset($_SESSION['err_password_two'])) unset($_SESSION['err_password_two']);
-    if (isset($_SESSION['err_terms'])) unset($_SESSION['err_terms']);
+
 }
 
 function validateForm2 ($first_name, $last_name, $phone, $residence_country, $residence_city, $host, $db_user, $db_pass, $db_name)
@@ -399,19 +388,6 @@ function validateForm2 ($first_name, $last_name, $phone, $residence_country, $re
         $this->setInsertPersonalData('residence_city', $residence_city);
         $this->itWorks('form2');
     }
-
-    // Unset remembered values
-    if (isset($_SESSION['rem_first_name'])) unset($_SESSION['rem_first_name']);
-    if (isset($_SESSION['rem_last_name'])) unset($_SESSION['rem_last_name']);
-    if (isset($_SESSION['rem_phone'])) unset($_SESSION['rem_phone']);
-    if (isset($_SESSION['rem_residence_country'])) unset($_SESSION['rem_residence_country']);
-    if (isset($_SESSION['rem_residence_city'])) unset($_SESSION['rem_residence_city']);
-    // Unset error values
-    if (isset($_SESSION['err_first_name'])) unset($_SESSION['err_first_name']);
-    if (isset($_SESSION['err_last_name'])) unset($_SESSION['err_last_name']);
-    if (isset($_SESSION['err_phone'])) unset($_SESSION['err_phone']);
-    if (isset($_SESSION['err_residence_country'])) unset($_SESSION['err_residence_country']);
-    if (isset($_SESSION['err_residence_city'])) unset($_SESSION['err_residence_city']);
 }
 
 function validateForm3($job_title, $no_experience, $employer, $start_date, $end_date, $job_city, $job_description)
@@ -476,22 +452,6 @@ function validateForm3($job_title, $no_experience, $employer, $start_date, $end_
             $this->setInsertEmploymentValues('description', $job_description);
             $this->itWorks('form3');
         }
-
-
-        // Unset remembered values
-        if (isset($_SESSION['rem_job_title'])) unset($_SESSION['rem_job_title']);
-        if (isset($_SESSION['rem_employer'])) unset($_SESSION['rem_employer']);
-        if (isset($_SESSION['rem_start_date'])) unset($_SESSION['rem_start_date']);
-        if (isset($_SESSION['rem_end_date'])) unset($_SESSION['rem_end_date']);
-        if (isset($_SESSION['rem_job_city'])) unset($_SESSION['rem_job_city']);
-        if (isset($_SESSION['rem_description'])) unset($_SESSION['rem_description']);
-        // Unset error values
-        if (isset($_SESSION['err_job_title'])) unset($_SESSION['err_job_title']);
-        if (isset($_SESSION['err_employer'])) unset($_SESSION['err_employer']);
-        if (isset($_SESSION['err_start_date'])) unset($_SESSION['err_start_date']);
-        if (isset($_SESSION['err_end_date'])) unset($_SESSION['err_end_date']);
-        if (isset($_SESSION['err_job_city'])) unset($_SESSION['err_job_city']);
-        if (isset($_SESSION['err_description'])) unset($_SESSION['err_description']);
     }
     else
     {
@@ -558,14 +518,6 @@ function validateForm4Sk($skill, $skill_level)
         $this->setInsertSkillLanguageValues('skill_level', $skill_level);
         $this->itWorks('form4sk');
     }
-
-
-    // Unset remembered values
-    if (isset($_SESSION['rem_skill'])) unset($_SESSION['rem_skill']);
-    if (isset($_SESSION['rem_skill_level'])) unset($_SESSION['rem_skill_level']);
-    // Unset error values
-    if (isset($_SESSION['err_skill'])) unset($_SESSION['err_skill']);
-    if (isset($_SESSION['err_skill_level'])) unset($_SESSION['err_skill_level']);
 }
 
 function validateForm4S($school, $specialization, $school_start_date, $school_end_date, $school_city, $school_description)
@@ -614,22 +566,6 @@ function validateForm4S($school, $specialization, $school_start_date, $school_en
         $this->setInsertSchoolValues('description', $school_description);
         $this->itWorks('form4s');
     }
-
-
-    // Unset remembered values
-    if (isset($_SESSION['rem_school'])) unset($_SESSION['rem_school']);
-    if (isset($_SESSION['rem_specialization'])) unset($_SESSION['rem_specialization']);
-    if (isset($_SESSION['rem_school_start_date'])) unset($_SESSION['rem_school_start_date']);
-    if (isset($_SESSION['rem_school_end_date'])) unset($_SESSION['rem_school_end_date']);
-    if (isset($_SESSION['rem_school_city'])) unset($_SESSION['rem_school_city']);
-    if (isset($_SESSION['rem_school_description'])) unset($_SESSION['rem_school_description']);
-    // Unset error values
-    if (isset($_SESSION['err_school'])) unset($_SESSION['err_school']);
-    if (isset($_SESSION['err_specialization'])) unset($_SESSION['err_specialization']);
-    if (isset($_SESSION['err_school_start_date'])) unset($_SESSION['err_school_start_date']);
-    if (isset($_SESSION['err_school_end_date'])) unset($_SESSION['err_school_end_date']);
-    if (isset($_SESSION['err_school_city'])) unset($_SESSION['err_school_city']);
-    if (isset($_SESSION['err_school_description'])) unset($_SESSION['err_school_description']);
 }
 
 function validateFile($filename, $multi_file, $col_name)

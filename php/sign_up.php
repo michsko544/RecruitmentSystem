@@ -142,8 +142,18 @@ if ( isset($_SESSION['form1']) && isset($_SESSION['form2']) && isset($_SESSION['
                 throw new Exception(mysqli_connect_errno());
             } else {
                 if ($conn->query("insert into users (id_user, login, name, surname, pass, id_role) VALUES (null, '{$_SESSION['array']['val']['username']}', '{$_SESSION['array']['pd']['first_name']}', '{$_SESSION['array']['pd']['last_name']}', '{$_SESSION['array']['val']['password']}', 2)" ) ){
-                    $_SESSION['successful-sign-up'] = true;
-                    header ('Location: #.php'); // TODO add header
+
+                    $cv_Q = $conn->query("select id_cv from cv order by id_cv desc limit 1");
+                    $city_Q = $conn->query("select id_city from cv order by id_cv desc limit 1");
+                    $user_Q = $conn->query("select id_user from cv order by id_cv desc limit 1");
+                    $certificate_Q = $conn->query("select id_certificate from cv order by id_cv desc limit 1");
+                    $country_Q = $conn->query("select id_country from countries where country = '{$$_SESSION['array']['pd']['residence-country']}'");
+                    if ($conn->query("insert into applicants (id_applicants, phone, email, id_cv, id_city, id_user, id_certificate, id_country) VALUES (null, '{$_SESSION['array']['pd']['phone']}', '{$_SESSION['array']['val']['email']}', {$cv_Q['id_cv']++}, 1, 2, 1, 1)")){
+                        $_SESSION['successful-sign-up'] = true;
+                        header ('Location: sing_in.php');
+                    } else {
+                        throw new Exception($conn->error);
+                    }
                 } else {
                     throw new Exception($conn->error);
                 }
