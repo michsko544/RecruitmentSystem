@@ -135,6 +135,15 @@ if ( isset($_SESSION['form1']) && isset($_SESSION['form2']) && isset($_SESSION['
     if (($_SESSION['form1'] == true) && ($_SESSION['form2'] == true) && ($_SESSION['form3'] == true) && ($_SESSION['form4l'] == true) &&($_SESSION['form4sk'] == true) && ($_SESSION['form4s'] == true) && ($_SESSION['form5cv'] == true) && ($_SESSION['form5ce'] == true) &&($_SESSION['form5co'] == true))
     {
         echo "ales gut";
+        unset($_SESSION['form1']);
+        unset($_SESSION['form2']);
+        unset($_SESSION['form3']);
+        unset($_SESSION['form4l']);
+        unset($_SESSION['form4sk']);
+        unset($_SESSION['form4s']);
+        unset($_SESSION['form5cv']);
+        unset($_SESSION['form5ce']);
+        unset($_SESSION['form5co']);
         $sign_up_class->dispInJson();
         try {
             $db_insert->insertSignUp();

@@ -165,7 +165,8 @@ function valiDate($start_date, $end_date)
     if ($end_date == "Present")
     {
         $f_start_date = strtotime($start_date);
-        if ($curr_date < $f_start_date)
+        $ff_sd = date("d-m-Y", $f_start_date);
+        if ($curr_date < $ff_sd)
         {
             $this->notGood('err_date', 'End date must be after start date');
         }
@@ -481,7 +482,8 @@ function validateForm4L($language, $language_level)
         //Add to array and wait
         $this->setInsertSkillLanguageValues('language', $language);
         $this->setInsertSkillLanguageValues('language_level', $language_level);
-        $this->itWorks('form4l');
+        //$this->itWorks('form4l');
+        $_SESSION['form4l'] = true;
     }
 
     // Unset remembered values
@@ -516,7 +518,8 @@ function validateForm4Sk($skill, $skill_level)
         //Add to array and wait
         $this->setInsertSkillLanguageValues('skill', $skill);
         $this->setInsertSkillLanguageValues('skill_level', $skill_level);
-        $this->itWorks('form4sk');
+        //$this->itWorks('form4sk');
+        $_SESSION['form4sk'] = true;
     }
 }
 
@@ -564,7 +567,8 @@ function validateForm4S($school, $specialization, $school_start_date, $school_en
         $this->setInsertSchoolValues('end_date', $school_end_date);
         $this->setInsertSchoolValues('city', $school_city);
         $this->setInsertSchoolValues('description', $school_description);
-        $this->itWorks('form4s');
+        // $this->itWorks('form4s');
+        $_SESSION['form4s'] = true;
     }
 }
 
