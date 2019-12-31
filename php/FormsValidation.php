@@ -472,7 +472,7 @@ function validateForm4L($language, $language_level)
         $this->notGood('err_language', 'Language name may only contain letters and numbers');
     }
 
-    // Remember value TODO change to skills and school
+    // Remember value
     $_SESSION['rem_language'] = $language;
     $_SESSION['rem_language_level'] = $language_level;
 
@@ -507,7 +507,7 @@ function validateForm4Sk($skill, $skill_level)
     }
 
 
-    // Remember value TODO change to skills and school
+    // Remember value
     $_SESSION['rem_skill'] = $skill;
     $_SESSION['rem_skill_level'] = $skill_level;
 
@@ -547,7 +547,7 @@ function validateForm4S($school, $specialization, $school_start_date, $school_en
     {
         $this->notGood('err_school_description', 'Description must have less than 500 characters');
     }
-    // Remember value TODO change to skills and school
+    // Remember value
     $_SESSION['rem_school'] = $school;
     $_SESSION['rem_specialization'] = $specialization;
     $_SESSION['rem_school_start_date'] = $school_start_date;
@@ -645,7 +645,8 @@ function validateForm5Co($course)
 function itWorks($p)
 {
     $_SESSION[$p] = true;
-    echo "<div style='height: 20vh'> It works! " . $p . " </div>";
+    header("Location: /sign_up.php");
+    // echo "<div style='height: 20vh'> It works! " . $p . " </div>";
 }
 
 function dispInJson()

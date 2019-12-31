@@ -1,11 +1,11 @@
 <?php
 session_start();
 require_once "FormsValidation.php";
-// DB connection
+require_once "InsertToDB.php";
 require_once "connect.php";
 mysqli_report(MYSQLI_REPORT_STRICT);
 $sign_up_class = new FormsValidation(true);
-
+$db_insert = new InsertToDB($host, $db_user, $db_pass, $db_name);
 //Form 1
 if (isset($_POST['e-mail']))
 {
@@ -32,7 +32,7 @@ if (isset($_POST['first-name']))
 if (isset($_POST['job-title-0']))
 {
     $i = 0;
-    while (isset($_POST['job-title-' . $i])) // TODO kurwa ja jestem deklem
+    while (isset($_POST['job-title-' . $i]))
     {
         echo "while i=" . $i;
         $job_title = $_POST['job-title-' . $i];
@@ -137,28 +137,7 @@ if ( isset($_SESSION['form1']) && isset($_SESSION['form2']) && isset($_SESSION['
         echo "ales gut";
         $sign_up_class->dispInJson();
         try {
-            $conn = new mysqli($host, $db_user, $db_pass, $db_name);
-            if ($conn->connect_errno!=0) {
-                throw new Exception(mysqli_connect_errno());
-            } else {
-                if ($conn->query("insert into users (id_user, login, name, surname, pass, id_role) VALUES (null, '{$_SESSION['array']['val']['username']}', '{$_SESSION['array']['pd']['first_name']}', '{$_SESSION['array']['pd']['last_name']}', '{$_SESSION['array']['val']['password']}', 2)" ) ){
-
-                    $cv_Q = $conn->query("select id_cv from cv order by id_cv desc limit 1");
-                    $city_Q = $conn->query("select id_city from cv order by id_cv desc limit 1");
-                    $user_Q = $conn->query("select id_user from cv order by id_cv desc limit 1");
-                    $certificate_Q = $conn->query("select id_certificate from cv order by id_cv desc limit 1");
-                    $country_Q = $conn->query("select id_country from countries where country = '{$$_SESSION['array']['pd']['residence-country']}'");
-                    if ($conn->query("insert into applicants (id_applicants, phone, email, id_cv, id_city, id_user, id_certificate, id_country) VALUES (null, '{$_SESSION['array']['pd']['phone']}', '{$_SESSION['array']['val']['email']}', {$cv_Q['id_cv']++}, 1, 2, 1, 1)")){
-                        $_SESSION['successful-sign-up'] = true;
-                        header ('Location: sing_in.php');
-                    } else {
-                        throw new Exception($conn->error);
-                    }
-                } else {
-                    throw new Exception($conn->error);
-                }
-            }
-
+            $db_insert->insertSignUp();
         }catch (Exception $e){
             echo "<div class='server-error'>Server error! Please try again later. Err: ".$e."</div>";
         }
