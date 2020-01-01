@@ -10,7 +10,7 @@ require_once "php/profile.php";
 $role = $_SESSION['id_role'];
 switch ($role){
     case 1:
-        break; // TODO admin - what shall be shown (maybe nothing)
+        break; // TODO admin - what should be shown (maybe nothing)
     case 2:
         getProfileData($_SESSION['id_user']);
         break;

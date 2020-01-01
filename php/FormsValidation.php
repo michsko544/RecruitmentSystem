@@ -162,11 +162,12 @@ function checkDate($date)
 function valiDate($start_date, $end_date)
 {
     $curr_date = date("d-m-Y");
+    $ff_cur = strtotime($curr_date);
     if ($end_date == "Present")
     {
         $f_start_date = strtotime($start_date);
         $ff_sd = date("d-m-Y", $f_start_date);
-        if ($curr_date < $ff_sd)
+        if ($ff_cur < $f_start_date)
         {
             $this->notGood('err_date', 'End date must be after start date');
         }
@@ -175,10 +176,18 @@ function valiDate($start_date, $end_date)
     else
     {
         $f_start_date = strtotime($start_date);
+        echo "f_start" . $f_start_date;
+
         $ff_sd = date("d-m-Y", $f_start_date);
+        echo "ff_sd" . $ff_sd;
+
         $f_end_date = strtotime($end_date);
+        echo "f_end" . $f_end_date;
+
         $ff_ed = date("d-m-Y", $f_end_date);
-        if ($ff_ed < $ff_sd || $curr_date < $ff_sd)
+        echo "ff_ed" . $ff_ed;
+
+        if ($f_end_date < $f_start_date || $ff_cur < $f_start_date)
         {
             $this->notGood('err_date', 'End date must be after start date');
         }

@@ -1,1 +1,1 @@
-{"applications":{"personalData":{"email":null,"name":null,"surname":null},"position":null,"description":null,"status":null,"stage":null,"idConv":null,"convTopic":null},"counters":{"name":0,"position":0,"description":0,"status":0,"idConv":0,"convTopic":0}}
+{"applications":{"personalData":{"email":["rob@mail.com"],"name":["Robert"],"surname":["Barszcz"]},"position":["junior C#"],"description":["junior C# developer "],"status":["chat"],"stage":["rejected"]},"counters":{"name":1,"position":1,"description":1,"status":1}}

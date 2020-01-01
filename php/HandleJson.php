@@ -5,7 +5,6 @@ class HandleJson
 {
     //fetch data from db
     function fetchData($query, &$data_push, &$array, $host, $db_user, $db_pass, $db_name) {
-        $counter = 0;
         $connection = new mysqli($host, $db_user, $db_pass, $db_name);
         if ($connection->connect_errno != 0) {
             throw new Exception(mysqli_connect_errno());
