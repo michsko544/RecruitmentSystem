@@ -68,7 +68,7 @@ class InsertToDB
             // TODO add multiple filed insert
             $this->itWorks('pre-insert');
             if ($this->conn->query("insert into users (id_user, login, name, surname, pass, id_role) VALUES (null, '{$_SESSION['array']['val']['username']}', '{$_SESSION['array']['pd']['first_name']}', '{$_SESSION['array']['pd']['last_name']}', '{$_SESSION['array']['val']['password']}', 2)" ) ) {
-
+                // *************** COS SIE PIERDOLI *******************
                 $this->itWorks("</br> query-1-success");
 
                 $cv_Q = $this->conn->query("select id_cv from cv order by id_cv desc limit 1");
@@ -101,7 +101,7 @@ class InsertToDB
                 $id_country_Q = intval($country_V['id_country']);
 
                 $this->itWorks("</br> country-val: " . $id_country_Q);
-
+                // *************** COS SIE PIERDOLI END *******************
                 if ($this->conn->query("insert into applicants (id_applicants, phone, email, id_cv, id_city, id_user, id_certificate, id_country) VALUES (null, '{$_SESSION['array']['pd']['phone']}', '{$_SESSION['array']['val']['email']}', {$id_cv_Q}, {$id_city_Q}, {$id_user_Q}, {$id_cert_Q}, {$id_country_Q})")){
                     $id_city_Q = $this->checkCity($_SESSION['array']['emp']['city']);
 

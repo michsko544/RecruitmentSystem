@@ -83,7 +83,7 @@ if (isset($_POST['languages-0']))
     }
 }
 
-// Form 5
+// Form 5  dodawanie plikow
 if (isset($_FILES['cv[]']) || isset($_FILES['certificate[]']))
 {
     // TODO upload files
@@ -91,6 +91,7 @@ if (isset($_FILES['cv[]']) || isset($_FILES['certificate[]']))
     $cv = 'cv[]';
     if (isset($_FILES['cv[]'])) {
         // $sign_up_class->validateFile($cv, false, 'cv');
+        // ***********************UPLOAD FILE**********************************
         $uploads_dir = '/uploads';
         echo $_FILES['cv[]']['error'];
         foreach ($_FILES["cv[]"]["error"] as $key => $error) {
@@ -104,6 +105,7 @@ if (isset($_FILES['cv[]']) || isset($_FILES['certificate[]']))
                 $sign_up_class->itWorks("file is up");
             }
         }
+        // ********************************************************************
     }
 
     // Validate cover letter
@@ -144,7 +146,7 @@ if ( isset($_SESSION['form1']) && isset($_SESSION['form2']) && isset($_SESSION['
         unset($_SESSION['form5cv']);
         unset($_SESSION['form5ce']);
         unset($_SESSION['form5co']);
-        $sign_up_class->dispInJson();
+        //$sign_up_class->dispInJson();
         try {
             $db_insert->insertSignUp();
         }catch (Exception $e){
