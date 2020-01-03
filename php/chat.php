@@ -26,7 +26,7 @@ function getChatData($conv){
         // add db results to array
         $count_to = $new_json->fetchData($query_to, $data_push_to, $json_array['topic'], $host, $db_user, $db_pass, $db_name);
         $count_me = $new_json->fetchData($query_me, $data_push_me, $json_array['message'], $host, $db_user, $db_pass, $db_name);
-        $count_ti = $new_json->fetchData($query_ti, $data_push_ti, $json_array['time'], $host, $db_user, $db_pass, $db_name);
+        $count_ti = $new_json->fetchDataTime($query_ti, $data_push_ti, $json_array['time'], $host, $db_user, $db_pass, $db_name);
         $count_na = $new_json->fetchData($query_na, $data_push_na, $json_array['senderName'], $host, $db_user, $db_pass, $db_name);
         $count_su = $new_json->fetchData($query_su, $data_push_su, $json_array['senderSurname'], $host, $db_user, $db_pass, $db_name);
         $count_ro = $new_json->fetchData($query_ro, $data_push_ro, $json_array['senderRole'], $host, $db_user, $db_pass, $db_name);
@@ -52,7 +52,7 @@ function addMessage($mess){
             throw new Exception(mysqli_connect_errno());
         }
         else {
-            $timestamp = date("d-m-Y H:i:s");
+            $timestamp = date("Y-m-d H:i:s");
             // TODO add handleJson query with id_sender
             $ins = $connection->query("insert into conv_part (id_conv_part, id_conv, id_user) values (null, {$_SESSION['id_conv']}, {$_SESSION['id_user']})");
             $ins = $connection->query("insert into messages (id_message, id_sender, message, time, id_conv, id_user) values (null, {$_SESSION['id_user']}, {$mess}, {$timestamp}, {$_SESSION['id_conv']}, )");

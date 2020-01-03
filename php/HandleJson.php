@@ -27,6 +27,30 @@ class HandleJson
         return $counter;
     }
 
+    function fetchDataTime($query, &$data_push, &$array, $host, $db_user, $db_pass, $db_name) {
+        $connection = new mysqli($host, $db_user, $db_pass, $db_name);
+        if ($connection->connect_errno != 0) {
+            throw new Exception(mysqli_connect_errno());
+        }
+        else {
+            $table = $connection->query($query);
+            if (!$table) {
+                throw new Exception($connection->error);
+            }
+            $counter = $table->num_rows;
+            while ($assoc = $table->fetch_assoc()) {
+                foreach ($assoc as $key => $value) {
+                    $new_date = date("d-m-Y H:i:s", strtotime($value));
+                    @array_push($data_push, $new_date);
+                    $array = $data_push;
+                }
+            }
+        }
+        $table->free();
+        $connection->close();
+        return $counter;
+    }
+
     // add counters
     function addCounters(&$array, $value)
     {
