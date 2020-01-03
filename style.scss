@@ -651,6 +651,32 @@ input[type=submit]{
     height: 100vh;
     background-color: $color-background;
 
+    .big-title{
+        background-color: $color-titlebar;
+        height: 120px;
+        width: 100%;
+        border-bottom: 2px $color-list-line solid;
+        
+        .title{
+            text-align: center;
+            font-size: 18px;
+            color: $color-darkgrey;
+            padding: 20px 20px 7px;
+        }
+
+        .with{
+            color: $color-label;
+            font-size: 16px;
+            padding: 2px 20px;
+        }
+
+        .topic{
+            color: $color-seagrey;
+            font-size: 16px;
+            padding: 2px 20px;
+        }
+    }
+
     .small-title{
         background-color: $color-titlebar;
         font-size: 18px;
@@ -826,4 +852,5 @@ input[type=submit]{
     width:100%;
     margin-top: 20px;
 }
+
 

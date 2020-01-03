@@ -608,6 +608,28 @@ input[type=submit] {
   height: 100vh;
   background-color: #F6F6F6;
 }
+#container .big-title {
+  background-color: #E5E8E8;
+  height: 120px;
+  width: 100%;
+  border-bottom: 2px #95A5A659 solid;
+}
+#container .big-title .title {
+  text-align: center;
+  font-size: 18px;
+  color: #464650;
+  padding: 20px 20px 7px;
+}
+#container .big-title .with {
+  color: #95A5A6B3;
+  font-size: 16px;
+  padding: 2px 20px;
+}
+#container .big-title .topic {
+  color: #95A5A6;
+  font-size: 16px;
+  padding: 2px 20px;
+}
 #container .small-title {
   background-color: #E5E8E8;
   font-size: 18px;

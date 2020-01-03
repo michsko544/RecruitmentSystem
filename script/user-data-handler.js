@@ -128,8 +128,8 @@ const addExperience = ({jobTitle, employer, startDate, endDate, city, descriptio
         <div class="form-row">
             <label for="start-end-date">Start & End date</label>
             <div class="date">
-                <input type="text" id="start-exp-${countE}" class="start-date"  name="start-date-${countE}" placeholder="Oct, 2019" required>
-                <input type="text" id="end-exp-${countE}" class="end-date" name="end-date-${countE}" placeholder="Nov, 2019" required>
+                <input type="text" id="start-exp-${countE}" class="start-date"  name="start-date-${countE}" placeholder="29-03-2019" required>
+                <input type="text" id="end-exp-${countE}" class="end-date" name="end-date-${countE}" placeholder="13-12-2019" required>
             </div>
         </div>
         <div class="form-row">
@@ -243,8 +243,8 @@ const addSchool = ({schoolName, specialization, startDate, endDate, city, descri
         <div class="form-row">
             <label for="start-end-date">Start & End date</label>
             <div class="date">
-                <input type="text" id="start-school-${countS}" class="start-date" name="school-start-date-${countS}" placeholder="Oct, 2019" required>
-                <input type="text" id="end-school-${countS}" class="end-date" name="school-end-date-${countS}" placeholder="Nov, 2019" required>
+                <input type="text" id="start-school-${countS}" class="start-date" name="school-start-date-${countS}" placeholder="29-03-2019" required>
+                <input type="text" id="end-school-${countS}" class="end-date" name="school-end-date-${countS}" placeholder="13-12-2019" required>
             </div>
         </div>
         <div class="form-row">
