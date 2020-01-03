@@ -6,12 +6,17 @@ if ((!isset($_SESSION['logged_in'])) || ($_SESSION['logged_in'] == false)) {
 }
 
 require_once "php/chat.php";
-if (isset($_GET['id-conv'])){
-    $id_conv = $_GET['id-conv'];
+if (isset($_GET['cid'])){
+    $id_conv = $_GET['cid'];
+    $_SESSION['id_conv'] = $id_conv;
     getChatData($id_conv);
 }
 
-// TODO adding messages
+if (isset($_POST['message-field']))
+{
+    $mess = $_POST['message-field'];
+    addMessage($mess);
+}
 
 ?>
 

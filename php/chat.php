@@ -40,3 +40,26 @@ function getChatData($conv){
         echo "<div class='server-error'>Server error! Please try again later. Err: ".$e."</div>";
     }
 }
+
+function addMessage($mess){
+    require_once "connect.php";
+    require_once "HandleJson.php";
+    // validate message
+
+    try{
+        $connection = new mysqli($host, $db_user, $db_pass, $db_name);
+        if ($connection->connect_errno != 0) {
+            throw new Exception(mysqli_connect_errno());
+        }
+        else {
+            $timestamp = date("d-m-Y H:i:s");
+            // TODO add handleJson query with id_sender
+            $ins = $connection->query("insert into conv_part (id_conv_part, id_conv, id_user) values (null, {$_SESSION['id_conv']}, {$_SESSION['id_user']})");
+            $ins = $connection->query("insert into messages (id_message, id_sender, message, time, id_conv, id_user) values (null, {$_SESSION['id_user']}, {$mess}, {$timestamp}, {$_SESSION['id_conv']}, )");
+        }
+        $connection->close();
+    } catch (Exception $e) {
+        echo "<div class='server-error'>Server error! Please try again later. Err: ".$e."</div>";
+    }
+
+}
