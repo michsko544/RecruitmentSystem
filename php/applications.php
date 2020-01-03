@@ -3,7 +3,7 @@ function getApplicationsData($condition){
     require_once "connect.php";
     require_once "HandleJson.php";
 
-    $query_e = "SELECT a.email from users u join applicants a on u.id_user=a.id_user join applications ap on a.id_applicants=ap.id_applicants join statuses s on ap.id_status=s.id_status join positions p on ap.id_position=p.id_position WHERE {$condition}";
+    $query_e = "SELECT u.id_user from users u join applicants a on u.id_user=a.id_user join applications ap on a.id_applicants=ap.id_applicants join statuses s on ap.id_status=s.id_status join positions p on ap.id_position=p.id_position WHERE {$condition}";
     $query_n = "SELECT u.name from users u join applicants a on u.id_user=a.id_user join applications ap on a.id_applicants=ap.id_applicants join statuses s on ap.id_status=s.id_status join positions p on ap.id_position=p.id_position WHERE {$condition}";
     $query_su = "SELECT u.surname from users u join applicants a on u.id_user=a.id_user join applications ap on a.id_applicants=ap.id_applicants join statuses s on ap.id_status=s.id_status join positions p on ap.id_position=p.id_position WHERE {$condition}";
     $query_p = "SELECT p.position from users u join applicants a on u.id_user=a.id_user join applications ap on a.id_applicants=ap.id_applicants join statuses s on ap.id_status=s.id_status join positions p on ap.id_position=p.id_position WHERE {$condition}";
@@ -19,7 +19,7 @@ function getApplicationsData($condition){
     mysqli_report(MYSQLI_REPORT_STRICT);
     try
     {
-        $count_results_e = $new_json->fetchData($query_e, $data_push_e, $json_array['applications']['personalData']['email'], $host, $db_user, $db_pass, $db_name);
+        $count_results_e = $new_json->fetchData($query_e, $data_push_e, $json_array['applications']['personalData']['idUser'], $host, $db_user, $db_pass, $db_name);
         $count_results_n = $new_json->fetchData($query_n, $data_push_n, $json_array['applications']['personalData']['name'], $host, $db_user, $db_pass, $db_name);
         $count_results_su = $new_json->fetchData($query_su, $data_push_su, $json_array['applications']['personalData']['surname'], $host, $db_user, $db_pass, $db_name);
         $count_results_p = $new_json->fetchData($query_p, $data_push_p, $json_array['applications']['position'], $host, $db_user, $db_pass, $db_name);

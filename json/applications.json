@@ -1,1 +1,1 @@
-{"applications":{"personalData":{"email":["jakis@.com","rob@mail.com"],"name":["john","Robert"],"surname":["surname","Barszcz"]},"position":["front-end","junior C#"],"description":["front-end developer","junior C# developer "],"status":["sent","chat"],"stage":null},"counters":{"name":2,"position":2,"description":2,"status":2}}
+{"applications":{"personalData":{"idUser":["3"],"name":["Robert"],"surname":["Barszcz"]},"position":["junior C#"],"description":["junior C# developer "],"status":["chat"],"stage":null},"counters":{"name":1,"position":1,"description":1,"status":1}}
