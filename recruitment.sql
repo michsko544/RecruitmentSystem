@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Czas generowania: 27 Gru 2019, 23:34
--- Wersja serwera: 10.4.10-MariaDB
--- Wersja PHP: 7.1.33
+-- Host: 127.0.0.1
+-- Czas generowania: 03 Sty 2020, 17:45
+-- Wersja serwera: 10.4.8-MariaDB
+-- Wersja PHP: 7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -149,7 +149,8 @@ INSERT INTO `conv` (`id_conv`, `topic`) VALUES
 (1, 'welcome'),
 (2, 'very IMPORTANT'),
 (3, 'dO NoT rEaD tHiS mEsSaGe'),
-(4, 'welcome');
+(4, 'welcome'),
+(5, 'mess without position');
 
 -- --------------------------------------------------------
 
@@ -171,7 +172,9 @@ INSERT INTO `conv_part` (`id_conv_part`, `id_conv`, `id_user`) VALUES
 (1, 1, 1),
 (2, 2, 3),
 (3, 3, 3),
-(4, 4, 1);
+(4, 4, 1),
+(5, 1, 2),
+(6, 5, 2);
 
 -- --------------------------------------------------------
 
@@ -610,7 +613,12 @@ INSERT INTO `messages` (`id_message`, `id_sender`, `message`, `time`, `id_conv`,
 (1, 2, 'hello there', '2019-12-16', 1, 1),
 (2, 4, 'hi how u doin', '2019-12-03', 2, 3),
 (3, 4, 'idk', '2019-12-31', 3, 3),
-(4, 5, 'welcome to myCompany system', '2019-12-11', 4, 1);
+(4, 5, 'welcome to myCompany system', '2019-12-11', 4, 1),
+(5, 1, 'i have an offer', '2020-01-02', 1, 2),
+(6, 1, 'hm', '2020-01-01', 1, 2),
+(7, 2, 'good day', '2020-01-02', 1, 1),
+(8, 1, 'my third message', '2019-12-27', 1, 2),
+(9, 4, 'there is no position', '2020-01-03', 5, 2);
 
 -- --------------------------------------------------------
 
@@ -781,7 +789,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id_user`, `login`, `name`, `surname`, `pass`, `id_role`) VALUES
-(1, 'bob', 'john', 'surname', '$2y$10$9HJ5bdPQELb3XWV7gPJHueOVEUyBLdxZzOPrWZMRyJx/zDm3VP5zy', 2),
+(1, 'bob', 'Bob', 'Thebuilder', '$2y$10$9HJ5bdPQELb3XWV7gPJHueOVEUyBLdxZzOPrWZMRyJx/zDm3VP5zy', 2),
 (2, 'jerry', 'Jerry', 'Snow', '$2y$10$B2yosZmaSdLv.RcTTvnIg.dNBr6UTkvsSIgo5TzXNDSzbRd0k9wv.', 4),
 (3, 'rob', 'Robert', 'Barszcz', '$2y$10$URdbJa9Ha2zAO8YfFj0mguwUwhCEeGU4o.xUK4YLmv8WLLd5/Y6Gm', 2),
 (4, 'kate', 'Katrina', 'Novowolska', '$2y$10$MLhaUSCJTgpvqx4YRN64tucmJhCQ8lEu9tLo9OKixxHhpZFrLNi12', 5),
@@ -967,7 +975,7 @@ ALTER TABLE `users`
   ADD KEY `id_role` (`id_role`);
 
 --
--- AUTO_INCREMENT dla tabel zrzutów
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
@@ -1004,13 +1012,13 @@ ALTER TABLE `cl`
 -- AUTO_INCREMENT dla tabeli `conv`
 --
 ALTER TABLE `conv`
-  MODIFY `id_conv` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_conv` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT dla tabeli `conv_part`
 --
 ALTER TABLE `conv_part`
-  MODIFY `id_conv_part` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_conv_part` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT dla tabeli `countries`
@@ -1064,7 +1072,7 @@ ALTER TABLE `levels`
 -- AUTO_INCREMENT dla tabeli `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id_message` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_message` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT dla tabeli `positions`
