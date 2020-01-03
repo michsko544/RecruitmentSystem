@@ -8,7 +8,7 @@ const fromJsonToReplies = (json) => {
     const n = json.counters;
 
     for(let i = 0; i<n.message; ++i){
-        let name = names.name[i] + names.surname[i];
+        let name = names.name[i] + " " + names.surname[i];
         let props = {
             id: id[i],
             name,
