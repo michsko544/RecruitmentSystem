@@ -3,13 +3,13 @@ function getRepliesData($user){
     require_once "connect.php";
     require_once "HandleJson.php";
 
-    $query_id = "SELECT c.id_conv FROM users u join messages m on u.id_user=m.id_user join conv c on m.id_conv=c.id_conv join users u1 on u1.id_user=m.id_sender where u.id_user = '{$user}' group by c.id_conv";
-    $query_to = "SELECT c.topic FROM users u join messages m on u.id_user=m.id_user join conv c on m.id_conv=c.id_conv join users u1 on u1.id_user=m.id_sender where u.id_user = '{$user}' group by c.id_conv";
-    $query_ti = "SELECT m.time FROM users u join messages m on u.id_user=m.id_user join conv c on m.id_conv=c.id_conv join users u1 on u1.id_user=m.id_sender where u.id_user = '{$user}' group by c.id_conv";
-    $query_na = "SELECT u1.name FROM users u join messages m on u.id_user=m.id_user join conv c on m.id_conv=c.id_conv join users u1 on u1.id_user=m.id_sender where u.id_user = '{$user}' group by c.id_conv";
-    $query_su = "SELECT u1.surname FROM users u join messages m on u.id_user=m.id_user join conv c on m.id_conv=c.id_conv join users u1 on u1.id_user=m.id_sender where u.id_user = '{$user}' group by c.id_conv";
-    $query_ro = "SELECT r.name_role FROM users u join messages m on u.id_user=m.id_user join conv c on m.id_conv=c.id_conv join users u1 on u1.id_user=m.id_sender join roles r on r.id_role=u1.id_role where u.id_user = '{$user}' group by c.id_conv";
-    $query_po = "SELECT p.position FROM users u join applicants app on app.id_user=u.id_user join applications a on a.id_applicants=app.id_applicants join positions p on p.id_position=a.id_position join messages m on u.id_user=m.id_user join conv c on m.id_conv=c.id_conv join users u1 on u1.id_user=m.id_sender where u.id_user = '{$user}' group by c.id_conv";
+    $query_id = "SELECT c.id_conv FROM users u join messages m on u.id_user=m.id_user join conv c on m.id_conv=c.id_conv join users u1 on u1.id_user=m.id_sender where u.id_user = '{$user}' group by c.id_conv, m.time";
+    $query_to = "SELECT c.topic FROM users u join messages m on u.id_user=m.id_user join conv c on m.id_conv=c.id_conv join users u1 on u1.id_user=m.id_sender where u.id_user = '{$user}' group by c.id_conv, m.time";
+    $query_ti = "SELECT m.time FROM users u join messages m on u.id_user=m.id_user join conv c on m.id_conv=c.id_conv join users u1 on u1.id_user=m.id_sender where u.id_user = '{$user}' group by c.id_conv, m.time";
+    $query_na = "SELECT u1.name FROM users u join messages m on u.id_user=m.id_user join conv c on m.id_conv=c.id_conv join users u1 on u1.id_user=m.id_sender where u.id_user = '{$user}' group by c.id_conv, m.time";
+    $query_su = "SELECT u1.surname FROM users u join messages m on u.id_user=m.id_user join conv c on m.id_conv=c.id_conv join users u1 on u1.id_user=m.id_sender where u.id_user = '{$user}' group by c.id_conv, m.time";
+    $query_ro = "SELECT r.name_role FROM users u join messages m on u.id_user=m.id_user join conv c on m.id_conv=c.id_conv join users u1 on u1.id_user=m.id_sender join roles r on r.id_role=u1.id_role where u.id_user = '{$user}' group by c.id_conv, m.time";
+    $query_po = "SELECT c.topic, p.position FROM users u join applicants app on app.id_user=u.id_user join applications a on a.id_applicants=app.id_applicants join positions p on p.id_position=a.id_position join messages m on u.id_user=m.id_user join conv c on m.id_conv=c.id_conv join users u1 on u1.id_user=m.id_sender where u.id_user = '{$user}' group by c.id_conv";
 
     $data_push_id = array(); $data_push_to = array();
     $data_push_ti = array();
