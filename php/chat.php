@@ -42,7 +42,7 @@ function getChatData($conv){
         $count_ro = $new_json->fetchData($query_ro, $data_push_ro, $json_array['senderRole'], $host, $db_user, $db_pass, $db_name);
         $count_se = $new_json->fetchData($query_se, $data_push_se, $json_array['senderId'], $host, $db_user, $db_pass, $db_name);
 
-        $new_json->addCounters($json_array['counters']['messages'], $count_to);
+        $new_json->addCounters($json_array['counters']['messages'], $count_me);
 
         //fill .json file with data from db
         $new_json->createJsonFile('json/chat.json', $json_array);
