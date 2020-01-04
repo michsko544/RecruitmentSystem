@@ -4,7 +4,8 @@ function getChatData($conv){
     require_once "HandleJson.php";
 
     $query_to = "SELECT distinct c.topic from conv_part cp join users u on u.id_user=cp.id_user join conv c on c.id_conv=cp.id_conv join messages m on m.id_conv=c.id_conv join users us on us.id_user=m.id_sender where c.id_conv = {$conv} group by m.id_message";
-    $query_iu = "SELECT distinct u.id_user from conv_part cp join users u on u.id_user=cp.id_user join conv c on c.id_conv=cp.id_conv join messages m on m.id_conv=c.id_conv join users us on us.id_user=m.id_sender where c.id_conv = {$conv} group by m.id_message";
+    $query_iu = "SELECT distinct m.id_user from conv_part cp join users u on u.id_user=cp.id_user join conv c on c.id_conv=cp.id_conv join messages m on m.id_conv=c.id_conv join users us on us.id_user=m.id_sender where c.id_conv = {$conv} group by m.id_message limit 1";
+    $query_is = "SELECT distinct m.id_sender from conv_part cp join users u on u.id_user=cp.id_user join conv c on c.id_conv=cp.id_conv join messages m on m.id_conv=c.id_conv join users us on us.id_user=m.id_sender where c.id_conv = {$conv} group by m.id_message limit 1";
     $query_po = "SELECT distinct p.position from conv_part cp join users u on u.id_user=cp.id_user join applicants app on app.id_user=u.id_user join applications a on a.id_applicants=app.id_applicants join positions p on p.id_position=a.id_position join conv c on c.id_conv=cp.id_conv join messages m on m.id_conv=c.id_conv join users us on us.id_user=m.id_sender where c.id_conv = {$conv} group by m.id_message";
     $query_me = "SELECT m.message from conv_part cp join users u on u.id_user=cp.id_user join conv c on c.id_conv=cp.id_conv join messages m on m.id_conv=c.id_conv join users us on us.id_user=m.id_sender where c.id_conv = {$conv} group by m.id_message";
     $query_ti = "SELECT m.time from conv_part cp join users u on u.id_user=cp.id_user join conv c on c.id_conv=cp.id_conv join messages m on m.id_conv=c.id_conv join users us on us.id_user=m.id_sender where c.id_conv = {$conv} group by m.id_message";
@@ -15,6 +16,7 @@ function getChatData($conv){
 
     $data_push_to = array();
     $data_push_iu = array();
+    $data_push_is = array();
     $data_push_po = array();
     $data_push_me = array(); $data_push_ti = array();
     $data_push_na = array(); $data_push_su = array();
@@ -28,7 +30,9 @@ function getChatData($conv){
     mysqli_report(MYSQLI_REPORT_STRICT);
     try {
         // add db results to array
+        $count_lo = $json_array['idLoggedUser'] = $_SESSION['id_user'];
         $count_iu = $new_json->fetchData($query_iu, $data_push_iu, $json_array['idUser'], $host, $db_user, $db_pass, $db_name);
+        $count_is = $new_json->fetchData($query_is, $data_push_is, $json_array['idUser2'], $host, $db_user, $db_pass, $db_name);
         $count_to = $new_json->fetchData($query_to, $data_push_to, $json_array['topic'], $host, $db_user, $db_pass, $db_name);
         $count_po = $new_json->fetchData($query_po, $data_push_po, $json_array['position'], $host, $db_user, $db_pass, $db_name);
         $count_me = $new_json->fetchData($query_me, $data_push_me, $json_array['message'], $host, $db_user, $db_pass, $db_name);
