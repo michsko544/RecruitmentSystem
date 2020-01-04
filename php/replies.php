@@ -27,7 +27,7 @@ function getRepliesData($user){
         // add db results to array
         $count_id = $new_json->fetchData($query_id, $data_push_id, $json_array['idConv'], $host, $db_user, $db_pass, $db_name);
         $count_to = $new_json->fetchData($query_to, $data_push_to, $json_array['topic'], $host, $db_user, $db_pass, $db_name);
-        $count_ti = $new_json->fetchData($query_ti, $data_push_ti, $json_array['time'], $host, $db_user, $db_pass, $db_name);
+        $count_ti = $new_json->fetchDataTime($query_ti, $data_push_ti, $json_array['time'], $host, $db_user, $db_pass, $db_name);
         $count_na = $new_json->fetchData($query_na, $data_push_na, $json_array['fromUser']['name'], $host, $db_user, $db_pass, $db_name);
         $count_su = $new_json->fetchData($query_su, $data_push_su, $json_array['fromUser']['surname'], $host, $db_user, $db_pass, $db_name);
         $count_ro = $new_json->fetchData($query_ro, $data_push_ro, $json_array['fromUser']['idRole'], $host, $db_user, $db_pass, $db_name);
