@@ -613,12 +613,29 @@ input[type=submit] {
   height: 120px;
   width: 100%;
   border-bottom: 2px #95A5A659 solid;
+  position: relative;
 }
 #container .big-title .title {
   text-align: center;
   font-size: 18px;
   color: #464650;
   padding: 20px 20px 7px;
+}
+#container .big-title .back {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 20px;
+  height: 20px;
+  background-color: black;
+}
+#container .big-title .write {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 20px;
+  height: 20px;
+  background-color: black;
 }
 #container .big-title .with {
   color: #95A5A6B3;
@@ -629,6 +646,27 @@ input[type=submit] {
   color: #95A5A6;
   font-size: 16px;
   padding: 2px 20px;
+}
+#container .message {
+  position: relative;
+  width: 100%;
+  border-bottom: 2px #95A5A659 solid;
+}
+#container .message .date {
+  position: absolute;
+  color: #95A5A6B3;
+  font-size: 16px;
+}
+#container .message .content {
+  padding: 20px;
+  font-size: 16px;
+  color: #95A5A6;
+}
+#container .message .left {
+  text-align: left;
+}
+#container .message .right {
+  text-align: right;
 }
 #container .small-title {
   background-color: #E5E8E8;

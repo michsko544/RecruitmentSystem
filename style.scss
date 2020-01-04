@@ -656,12 +656,31 @@ input[type=submit]{
         height: 120px;
         width: 100%;
         border-bottom: 2px $color-list-line solid;
+        position: relative;
         
         .title{
             text-align: center;
             font-size: 18px;
             color: $color-darkgrey;
             padding: 20px 20px 7px;
+        }
+
+        .back{
+            position: absolute;
+            top:20px;
+            left:20px;
+            width: 20px;
+            height: 20px;
+            background-color: black;
+        }
+
+        .write{
+            position: absolute;
+            top:20px;
+            right:20px; 
+            width: 20px;
+            height: 20px;
+            background-color: black;
         }
 
         .with{
@@ -674,6 +693,32 @@ input[type=submit]{
             color: $color-seagrey;
             font-size: 16px;
             padding: 2px 20px;
+        }
+    }
+
+    .message{
+        position:relative;
+        width: 100%;
+        border-bottom: 2px $color-list-line solid;
+
+        .date{
+            position: absolute;
+            color: $color-label;
+            font-size: 16px;
+        }
+
+        .content{
+            padding: 20px;
+            font-size: 16px;
+            color: $color-seagrey;
+        }
+
+        .left{
+            text-align:left;
+        }
+
+        .right{
+            text-align:right;
         }
     }
 

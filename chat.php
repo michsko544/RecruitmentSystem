@@ -50,18 +50,12 @@ if (isset($_POST['message-field']))
         <div id="nav-help"></div>
     </nav>
     <div id="container">
-        <div class="big-title">
-            <div class="title">Chat</div>
-            <div class="with">With:</div>
-            <div class="topic">Topic:</div>
-        </div>
-        
     </div>
 </body>
 
 <script src="script/main.js"></script>
 <script src="script/burger.js"></script>
-<!--<script src="script/chat.js"></script>
-<script src="script/loadChat.js"></script>-->
+<script src="script/chat.js"></script>
+<script src="script/loadChat.js"></script>
 
 </html>

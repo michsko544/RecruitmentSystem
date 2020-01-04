@@ -1,9 +1,18 @@
 const fromJsonToChat = (json) => {
-
-    for(let i = 0; i<n.message; ++i){
-        
+    const sender = findConversator(json);
+    let titleProps = {
+        sender: sender,
+        topic: json.topic[0],
+        position: json.position[0]
+    }
+    const n = json.counters;
+    console.log(titleProps);
+    addConvesationTitle(titleProps);
+    for(let i = 0; i<n.messages; ++i){
         let props = {
-            
+            message: json.message[i],
+            date: json.time[i].slice(-9),
+            user: json.senderId[i] === json.idLoggedUser ? true : false
         };
         addMessage(props);
     }
