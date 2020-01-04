@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Czas generowania: 03 Sty 2020, 17:45
--- Wersja serwera: 10.4.8-MariaDB
--- Wersja PHP: 7.3.11
+-- Host: localhost
+-- Czas generowania: 05 Sty 2020, 00:27
+-- Wersja serwera: 10.4.10-MariaDB
+-- Wersja PHP: 7.1.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -600,7 +600,7 @@ CREATE TABLE `messages` (
   `id_message` int(11) NOT NULL,
   `id_sender` int(11) NOT NULL,
   `message` varchar(150) DEFAULT NULL,
-  `time` date NOT NULL,
+  `time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `id_conv` int(11) NOT NULL,
   `id_user` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -610,15 +610,15 @@ CREATE TABLE `messages` (
 --
 
 INSERT INTO `messages` (`id_message`, `id_sender`, `message`, `time`, `id_conv`, `id_user`) VALUES
-(1, 2, 'hello there', '2019-12-16', 1, 1),
-(2, 4, 'hi how u doin', '2019-12-03', 2, 3),
-(3, 4, 'idk', '2019-12-31', 3, 3),
-(4, 5, 'welcome to myCompany system', '2019-12-11', 4, 1),
-(5, 1, 'i have an offer', '2020-01-02', 1, 2),
-(6, 1, 'hm', '2020-01-01', 1, 2),
-(7, 2, 'good day', '2020-01-02', 1, 1),
-(8, 1, 'my third message', '2019-12-27', 1, 2),
-(9, 4, 'there is no position', '2020-01-03', 5, 2);
+(1, 2, 'hello there', '2019-12-15 23:00:00', 1, 1),
+(2, 4, 'hi how u doin', '2019-12-02 23:00:00', 2, 3),
+(3, 4, 'idk', '2019-12-30 23:00:00', 3, 3),
+(4, 5, 'welcome to myCompany system', '2019-12-10 23:00:00', 4, 1),
+(5, 1, 'i have an offer', '2020-01-01 23:00:00', 1, 2),
+(6, 1, 'hm', '2019-12-31 23:00:00', 1, 2),
+(7, 2, 'good day', '2020-01-01 23:00:00', 1, 1),
+(8, 1, 'my third message', '2019-12-26 23:00:00', 1, 2),
+(9, 4, 'there is no position', '2020-01-02 23:00:00', 5, 2);
 
 -- --------------------------------------------------------
 
@@ -975,7 +975,7 @@ ALTER TABLE `users`
   ADD KEY `id_role` (`id_role`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT dla tabel zrzutów
 --
 
 --
@@ -1018,7 +1018,7 @@ ALTER TABLE `conv`
 -- AUTO_INCREMENT dla tabeli `conv_part`
 --
 ALTER TABLE `conv_part`
-  MODIFY `id_conv_part` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_conv_part` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT dla tabeli `countries`
