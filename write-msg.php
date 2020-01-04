@@ -1,4 +1,7 @@
 <?php
+session_start();
+require_once "php/chat.php";
+
 $usr = $_GET['uid'];
 if (isset($_POST['message-field']))
 {
