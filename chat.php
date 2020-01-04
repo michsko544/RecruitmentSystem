@@ -12,12 +12,6 @@ if (isset($_GET['cid'])){
     getChatData($id_conv);
 }
 
-if (isset($_POST['message-field']))
-{
-    $mess = $_POST['message-field'];
-    addMessage($mess);
-}
-
 ?>
 
 <!DOCTYPE html>

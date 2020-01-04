@@ -51,7 +51,7 @@ function getChatData($conv){
     }
 }
 
-function addMessage($mess){
+function addMessage($mess, $usr){
     require_once "connect.php";
     require_once "HandleJson.php";
     // validate message
@@ -65,7 +65,7 @@ function addMessage($mess){
             $timestamp = date("Y-m-d H:i:s");
             // TODO add handleJson query with id_sender
             $ins = $connection->query("insert into conv_part (id_conv_part, id_conv, id_user) values (null, {$_SESSION['id_conv']}, {$_SESSION['id_user']})");
-            $ins = $connection->query("insert into messages (id_message, id_sender, message, time, id_conv, id_user) values (null, {$_SESSION['id_user']}, {$mess}, {$timestamp}, {$_SESSION['id_conv']}, )");
+            $ins = $connection->query("insert into messages (id_message, id_sender, message, time, id_conv, id_user) values (null, {$_SESSION['id_user']}, {$mess}, {$timestamp}, {$_SESSION['id_conv']}, {$usr})");
         }
         $connection->close();
     } catch (Exception $e) {
