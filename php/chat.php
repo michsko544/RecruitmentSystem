@@ -70,9 +70,14 @@ function addMessage($mess, $usr){
             }
             else {
                 $timestamp = date("Y-m-d H:i:s");
+                $user = intval($usr);
                 // TODO add handleJson query with id_sender
+                
                 $ins = $connection->query("insert into conv_part (id_conv_part, id_conv, id_user) values (null, {$_SESSION['id_conv']}, {$_SESSION['id_user']})");
-                $ins = $connection->query("insert into messages (id_message, id_sender, message, time, id_conv, id_user) values (null, {$_SESSION['id_user']}, {$mess}, {$timestamp}, {$_SESSION['id_conv']}, {$usr})");
+                if ($ins = $connection->query("insert into messages (id_message, id_sender, message, time, id_conv, id_user) values (null, {$_SESSION['id_user']}, {$mess}, {$timestamp}, {$_SESSION['id_conv']}, {$user})"))
+                    echo "works";
+                else
+                    echo $connection->error;
             }
             $connection->close();
         } catch (Exception $e) {
