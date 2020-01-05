@@ -51,6 +51,7 @@ class HandleJson
         return $counter;
     }
 
+
     // add counters
     function addCounters(&$array, $value)
     {

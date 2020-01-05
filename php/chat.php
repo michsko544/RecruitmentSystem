@@ -74,6 +74,7 @@ function addMessage($mess, $usr){
                 // TODO add handleJson query with id_sender
 
                 $ins = $connection->query("insert into conv_part (id_conv_part, id_conv, id_user) values (null, {$_SESSION['id_conv']}, {$_SESSION['id_user']})");
+                // $ins = $connection->query("insert into conv_part (id_conv_part, id_conv, id_user) values (null, {$_SESSION['id_conv']}, {$user})"); // query->where->OR probably solves this problem
                 if ($ins = $connection->query("insert into messages (id_message, id_sender, message, time, id_conv, id_user) values (null, {$_SESSION['id_user']}, '{$mess}', '{$timestamp}', {$_SESSION['id_conv']}, {$user})")){
                     header("Location: chat.php?cid=" . $_SESSION['id_conv']);
                     unset($_SESSION['id_conv']);
