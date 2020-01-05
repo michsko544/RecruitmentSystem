@@ -11,7 +11,7 @@ const fromJsonToChat = (json) => {
     for(let i = 0; i<n.messages; ++i){
         let props = {
             message: json.message[i],
-            date: json.time[i].slice(-9),
+            date: json.time[i].slice(0,10),
             user: json.senderId[i] === json.idLoggedUser ? true : false
         };
         addMessage(props);

@@ -148,6 +148,10 @@ const addExperience = ({jobTitle, employer, startDate, endDate, city, descriptio
     calendar(`exp-${countE}`);
     ++countE;
     addHighlightEvents();
+    let date = new Date(startDate.slice(0,4),startDate.slice(5,7),startDate.slice(8,10));
+    $(`#start-exp-${countE}`).datepicker("setDate", date );
+    console.log(date);
+    console.log($("#start-exp-"+countE));
 }
 
 document.getElementById("btn-experience").addEventListener("click", addExperience);
@@ -283,7 +287,7 @@ const addCertificate = ({cert}) => {
         let upload = document.querySelectorAll(".upload")
         let newDiv = document.createRange().createContextualFragment(
             `<div class="form-row">
-                <input type="text" name="certificate" value="${cert}">
+                <input type="text" name="certificate" value="${cert || ""}">
                 <div class="underline"></div>
                 <div class="btn-x"></div>
             </div>`

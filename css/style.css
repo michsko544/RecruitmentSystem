@@ -647,26 +647,34 @@ input[type=submit] {
   font-size: 16px;
   padding: 2px 20px;
 }
-#container .message {
+#container .msg {
+  margin: auto;
   position: relative;
-  width: 100%;
-  border-bottom: 2px #95A5A659 solid;
-}
-#container .message .date {
-  position: absolute;
-  color: #95A5A6B3;
-  font-size: 16px;
-}
-#container .message .content {
   padding: 20px;
+  border-bottom: 2px #95A5A659 solid;
+  padding-bottom: 30px;
+}
+#container .msg .msg-date {
+  position: absolute;
+  font-size: 16px;
+  color: #95A5A6B3;
+}
+#container .msg .content {
+  position: relative;
   font-size: 16px;
   color: #95A5A6;
 }
-#container .message .left {
+#container .msg .right {
+  text-align: right;
+}
+#container .msg .left {
   text-align: left;
 }
-#container .message .right {
-  text-align: right;
+#container .msg .left-date {
+  left: 20px;
+}
+#container .msg .right-date {
+  right: 20px;
 }
 #container .small-title {
   background-color: #E5E8E8;
@@ -676,6 +684,40 @@ input[type=submit] {
   height: 24px;
   width: 100%;
   padding: 20px 0;
+  position: relative;
+}
+#container .small-title .position {
+  position: absolute;
+  font-size: 16px;
+  color: #95A5A6;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 11px;
+}
+#container .small-title .name {
+  position: absolute;
+  font-size: 18px;
+  color: #464650;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 11px;
+}
+#container .small-title .back {
+  position: absolute;
+  left: 20px;
+  width: 30px;
+  height: 30px;
+  background: black;
+  top: 50%;
+  transform: translateY(-50%);
+}
+#container .small-title button {
+  position: absolute;
+  right: 20px;
+  width: 30px;
+  height: 30px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 #container .list-row {
   width: 100%;
@@ -722,6 +764,27 @@ input[type=submit] {
 }
 #container .msg-date {
   color: #95A5A680;
+}
+#container .message-wrapper {
+  width: 75%;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 28px;
+}
+#container .message-wrapper .msg-topic {
+  font-family: "avenirregular";
+  width: 100%;
+  outline: none;
+  border: none;
+  font-size: 16px;
+  color: #95A5A6;
+  border-bottom: 2px #95A5A6 solid;
+  background-color: #ffffff00;
+  padding: 5px 0 12px;
+}
+#container .message-wrapper textarea {
+  height: 50vh;
 }
 
 .title-element {

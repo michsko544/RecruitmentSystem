@@ -15,7 +15,7 @@ const fromJsonToReplies = (json) => {
             role: role[i].charAt(0).toUpperCase()+role[i].slice(1), //zmiana pierwszej litery na dużą
             position: pos[i],
             topic: topic[i],
-            date: time[i],
+            date: time[i].slice(0,10),
         };
         addReply(props);
     }

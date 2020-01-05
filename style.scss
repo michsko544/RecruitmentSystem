@@ -696,29 +696,39 @@ input[type=submit]{
         }
     }
 
-    .message{
-        position:relative;
-        width: 100%;
+    .msg{
+        margin:auto;
+        position: relative;
+        padding:20px;
         border-bottom: 2px $color-list-line solid;
+        padding-bottom: 30px;
 
-        .date{
+        .msg-date{
             position: absolute;
-            color: $color-label;
             font-size: 16px;
+            color: $color-label;
         }
 
         .content{
-            padding: 20px;
+            position:relative;
             font-size: 16px;
             color: $color-seagrey;
         }
-
-        .left{
-            text-align:left;
-        }
-
+          
         .right{
-            text-align:right;
+            text-align: right;
+        }
+          
+        .left{
+            text-align: left;
+        }
+          
+        .left-date{
+             left:20px;
+        }
+          
+        .right-date{
+             right:20px;
         }
     }
 
@@ -730,6 +740,48 @@ input[type=submit]{
         height: 24px;
         width: 100%;
         padding: 20px 0;
+        position: relative;
+
+        .position{
+            position: absolute;
+            font-size: 16px;
+            color: $color-seagrey;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 11px;
+        }
+
+        .name{
+            position: absolute;
+            font-size: 18px;
+            color: $color-darkgrey;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 11px;
+        }
+
+        .back{
+            position:absolute;
+            left: 20px;
+            width: 30px;
+            height: 30px;
+            background: black;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        button{
+            position:absolute;
+            right: 20px;
+            width: 30px;
+            height: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+
+            img{
+                
+            }
+        }
     }
 
     .list-row{
@@ -788,6 +840,31 @@ input[type=submit]{
 
     .msg-date{
         color: $color-placeholder;
+    }
+
+    .message-wrapper{
+        width: 75%;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 28px;
+        
+
+        .msg-topic{
+            font-family: 'avenirregular';
+            width:100%;
+            outline: none;
+            border: none;
+            font-size:16px;
+            color: $color-seagrey;
+            border-bottom: 2px $color-seagrey solid;
+            background-color: #ffffff00;
+            padding: 5px 0 12px;
+        }
+
+        textarea{
+            height:50vh;
+        }
     }
 }
 

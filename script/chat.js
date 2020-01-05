@@ -18,7 +18,7 @@ const addConvesationTitle = ({sender: {id, name, surname, role}, topic, position
     `<div class="big-title">
         <div class="title">Chat</div>
         <a href="replies.php"><div class="back"></div></a>
-        <a href="write-msg.php?uid="${id}"><div class="write"></div></a>
+        <a href="write-msg.php?uid=${id}"><div class="write"></div></a>
         <div class="with">With: ${name} ${surname}${role ? " - " + role : ""}</div>
         <div class="topic">Topic: ${topic ? topic : "Reply: " + position}</div>
     </div>`);
@@ -28,9 +28,9 @@ const addConvesationTitle = ({sender: {id, name, surname, role}, topic, position
 const addMessage = ({message, date, user}) => {
     let container = document.querySelector("#container");
     let newDiv = document.createRange().createContextualFragment(
-    `<div class="message">
-        <div class="date">${date}</div>
-        <div class="content ${user ? "right" : "left"}">${message}</div>
+    `<div class="msg">
+            <div class="msg-date ${user ? "left-date" : "right-date"}">${date}</div>
+            <div class="content ${user ? "right" : "left"}"><br/>${message}</div>
     </div>`);
     container.appendChild(newDiv);
 }
