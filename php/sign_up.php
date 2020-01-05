@@ -146,7 +146,7 @@ if ( isset($_SESSION['form1']) && isset($_SESSION['form2']) && isset($_SESSION['
         unset($_SESSION['form5cv']);
         unset($_SESSION['form5ce']);
         unset($_SESSION['form5co']);
-        //$sign_up_class->dispInJson();
+        $sign_up_class->dispInJson();
         try {
             $db_insert->insertSignUp();
         }catch (Exception $e){
