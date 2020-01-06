@@ -127,6 +127,7 @@ function notGood($err_name, $err_message)
 {
     $this->correct_data = false;
     $_SESSION["$err_name"] = $err_message;
+    header("Location: /sign_up.php");
 }
 
 function rememberValue($value_name)
@@ -203,7 +204,7 @@ function validateForm1 ($username, $email, $password_one, $password_two, $positi
     {
         $this->notGood('err_username', 'Username must have more than 3 and less than 20 characters');
     }
-    if (ctype_alnum($username) == false)
+    if (!preg_match('/^[a-z0-9\040.\-]+$/i', $username))
     {
         $this->notGood('err_username', 'Username must contain only letters and numbers');
     }
@@ -320,14 +321,14 @@ function validateForm2 ($first_name, $last_name, $phone, $residence_country, $re
 {
     // Validate first name
 
-    if (ctype_alpha($first_name) == false)
+    if (!preg_match('/^[a-z\040.\-]+$/i', $first_name))
     {
         $this->notGood('err_first_name', 'First name may contain only letters');
     }
 
     //Validate last name
 
-    if (ctype_alpha($last_name) == false)
+    if (!preg_match('/^[a-z\040.\-]+$/i', $last_name))
     {
         $this->notGood('err_last_name', 'Last name may contain only letters');
     }
@@ -375,7 +376,7 @@ function validateForm2 ($first_name, $last_name, $phone, $residence_country, $re
     }
 
     //Validate city
-    if (ctype_alpha($residence_city) == false)
+    if (!preg_match('/^[a-z\040.\-]+$/i', $residence_city))
     {
         $this->notGood('err_residence_city', 'City name may contain only letters');
     }
@@ -404,7 +405,7 @@ function validateForm3($job_title, $no_experience, $employer, $start_date, $end_
     if ($no_experience == false)
     {
         // Validate job title
-        if (ctype_alnum($job_title) == false)
+        if (!preg_match('/^[a-z0-9\040.\-]+$/i', $job_title))
         {
             $this->notGood('err_job_title', 'Job title may only contain letters and numbers');
         }
@@ -414,7 +415,7 @@ function validateForm3($job_title, $no_experience, $employer, $start_date, $end_
         }
 
         // Validate employer
-        if (ctype_alnum($employer) == false)
+        if (!preg_match('/^[a-z0-9\040.\-]+$/i', $employer))
         {
             $this->notGood('err_employer', 'Employer name may only contain letters and numbers');
         }
@@ -427,13 +428,13 @@ function validateForm3($job_title, $no_experience, $employer, $start_date, $end_
         $this->valiDate($start_date, $end_date);
 
         //Validate city
-        if (ctype_alpha($job_city) == false)
+        if (!preg_match('/^[a-z\040.\-]+$/i', $job_city))
         {
             $this->notGood('err_job_city', 'City name may contain only letters');
         }
 
         // Validate description
-        if (ctype_alnum($job_description) == false)
+        if (!preg_match('/^[a-z0-9\040.\-]+$/i', $job_description))
         {
             $this->notGood('err_job_description', 'Description may only contain letters and numbers');
         }
@@ -464,7 +465,7 @@ function validateForm3($job_title, $no_experience, $employer, $start_date, $end_
     }
     else
     {
-        // TODO co robic gdy nie ma doswiadczenia -- chyba nic
+        $this->itWorks('form3');
     }
 }
 
@@ -476,7 +477,7 @@ function validateForm4L($language, $language_level)
         $this->notGood('err_language_level', 'Language level must be between 1 and 5');
     }
 
-    if (ctype_alnum($language) == false)
+    if (!preg_match('/^[a-z0-9\040.\-]+$/i', $language))
     {
         $this->notGood('err_language', 'Language name may only contain letters and numbers');
     }
@@ -511,7 +512,7 @@ function validateForm4Sk($skill, $skill_level)
         $this->notGood('err_skill_level', 'Skill level must be between 1 and 5');
     }
 
-    if (ctype_alnum($skill) == false)
+    if (!preg_match('/^[a-z0-9\040.\-]+$/i', $skill))
     {
         $this->notGood('err_skill', 'Skill name may only contain letters and numbers');
     }
@@ -533,24 +534,24 @@ function validateForm4Sk($skill, $skill_level)
 
 function validateForm4S($school, $specialization, $school_start_date, $school_end_date, $school_city, $school_description)
 {
-    if (ctype_alnum($school) == false)
+    if (!preg_match('/^[a-z0-9\040.\-]+$/i', $school))
     {
         $this->notGood('err_school', 'School name may only contain letters and numbers');
     }
 
-    if (ctype_alnum($specialization) == false)
+    if (!preg_match('/^[a-z0-9\040.\-]+$/i', $specialization))
     {
         $this->notGood('err_specialization', 'Specialization name may only contain letters and numbers');
     }
 
     $this->valiDate($school_start_date, $school_end_date);
 
-    if (ctype_alpha($school_city) == false)
+    if (!preg_match('/^[a-z\040.\-]+$/i', $school_city))
     {
         $this->notGood('err_school_city', 'City name may contain only letters');
     }
 
-    if (ctype_alnum($school_description) == false)
+    if (!preg_match('/^[a-z0-9\040.\-]+$/i', $school_description))
     {
         $this->notGood('err_school_description', 'Description may only contain letters and numbers');
     }
@@ -634,7 +635,7 @@ function validateFile($filename, $multi_file, $col_name)
 function validateForm5Co($course)
 {
     // Validate course
-    if (ctype_alnum($course) == false)
+    if (!preg_match('/^[a-z0-9\040.\-]+$/i', $course))
     {
         $this->notGood('err_course', 'Course name may contain only letters and numbers');
     }
@@ -657,7 +658,7 @@ function validateForm5Co($course)
 function itWorks($p)
 {
     $_SESSION[$p] = true;
-    header("Location: /sign_up.php");
+    header("Location: /sign_up.php?f=" . $p);
     // echo "<div style='height: 20vh'> It works! " . $p . " </div>";
 }
 

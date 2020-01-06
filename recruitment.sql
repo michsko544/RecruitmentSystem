@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Czas generowania: 05 Sty 2020, 00:27
--- Wersja serwera: 10.4.10-MariaDB
--- Wersja PHP: 7.1.33
+-- Host: 127.0.0.1
+-- Czas generowania: 06 Sty 2020, 21:11
+-- Wersja serwera: 10.4.8-MariaDB
+-- Wersja PHP: 7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -174,7 +174,12 @@ INSERT INTO `conv_part` (`id_conv_part`, `id_conv`, `id_user`) VALUES
 (3, 3, 3),
 (4, 4, 1),
 (5, 1, 2),
-(6, 5, 2);
+(6, 5, 2),
+(11, 1, 1),
+(12, 4, 1),
+(13, 3, 3),
+(14, 2, 4),
+(15, 2, 4);
 
 -- --------------------------------------------------------
 
@@ -618,7 +623,12 @@ INSERT INTO `messages` (`id_message`, `id_sender`, `message`, `time`, `id_conv`,
 (6, 1, 'hm', '2019-12-31 23:00:00', 1, 2),
 (7, 2, 'good day', '2020-01-01 23:00:00', 1, 1),
 (8, 1, 'my third message', '2019-12-26 23:00:00', 1, 2),
-(9, 4, 'there is no position', '2020-01-02 23:00:00', 5, 2);
+(9, 4, 'there is no position', '2020-01-02 23:00:00', 5, 2),
+(10, 1, 'ne mes', '2020-01-06 15:09:19', 1, 2),
+(11, 1, 'othe  rmes', '2020-01-06 15:09:38', 4, 5),
+(12, 3, 'hello kate', '2020-01-06 20:03:42', 3, 4),
+(13, 4, 'should be on top', '2020-01-06 20:04:19', 2, 3),
+(14, 4, 'pod rzad', '2020-01-06 20:06:28', 2, 3);
 
 -- --------------------------------------------------------
 
@@ -975,7 +985,7 @@ ALTER TABLE `users`
   ADD KEY `id_role` (`id_role`);
 
 --
--- AUTO_INCREMENT dla tabel zrzutów
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
@@ -1018,7 +1028,7 @@ ALTER TABLE `conv`
 -- AUTO_INCREMENT dla tabeli `conv_part`
 --
 ALTER TABLE `conv_part`
-  MODIFY `id_conv_part` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_conv_part` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT dla tabeli `countries`
@@ -1072,7 +1082,7 @@ ALTER TABLE `levels`
 -- AUTO_INCREMENT dla tabeli `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id_message` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_message` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT dla tabeli `positions`

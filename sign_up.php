@@ -79,7 +79,7 @@ $sign_up_class = new FormsValidation(true);
                     unset($_SESSION['rem_terms']);}
                     ?>>I agree to&nbsp;<a href="documents/terms-of-use-contents.html">Terms&nbsp;</a> and&nbsp;<a href="documents/privacy-policy-contents.html">Privacy Policy</a>.</div>
                 <?php
-                //$sign_up_class->setError('err_terms');
+                $sign_up_class->setError('err_terms');
                 ?>
             </div>
             <?php
@@ -101,16 +101,25 @@ $sign_up_class = new FormsValidation(true);
                 <label for="first-name">First name</label>
                 <input type="text" name="first-name" placeholder="John" required>
                 <div class="underline"></div>
+                <?php
+                $sign_up_class->setError('err_first_name');
+                ?>
             </div>
             <div class="form-row">
                 <label for="last-name">Last name</label>
                 <input type="text" name="last-name" placeholder="Smith" required>
                 <div class="underline"></div>
+                <?php
+                $sign_up_class->setError('err_last_name');
+                ?>
             </div>
             <div class="form-row">
                 <label for="phone-num">Phone number</label>
                 <input type="tel" name="phone-num" placeholder="600 700 800" pattern="[0-9]{3}[0-9]{3}[0-9]{3}" required>
                 <div class="underline"></div>
+                <?php
+                $sign_up_class->setError('err_phone');
+                ?>
             </div>
             <div class="form-row">
                 <label for="residence-country">Your country</label>
@@ -122,18 +131,18 @@ $sign_up_class = new FormsValidation(true);
                     ?>
                 </select>
                 <div class="underline"></div>
+                <?php
+                $sign_up_class->setError('err_residence_country');
+                ?>
             </div>
             <div class="form-row">
                 <label for="residence-city">Your city</label>
                 <input type="text" name="residence-city" placeholder="London" required>
                 <div class="underline"></div>
+                <?php
+                $sign_up_class->setError('err_residence_city');
+                ?>
             </div>
-            <?php
-            if(isset($_SESSION['error']))
-            {
-                echo $_SESSION['error'];
-            }
-            ?>
             <div class="form-btn-wrapper">
                 <input type="submit" value="Next" class="btn btn-dark" id="btn-sign-up-2">
             </div>
@@ -150,9 +159,15 @@ $sign_up_class = new FormsValidation(true);
                 <input type="checkbox" name="no-experience" id="no-experience">I don't have any experience
                 </div>
             </div>
+            <?php
+            $sign_up_class->setError('err_job_title');
+            $sign_up_class->setError('err_employer');
+            $sign_up_class->setError('err_job_city');
+            $sign_up_class->setError('err_job_description');
+            ?>
             <div class="btn-add" id="btn-experience">
                 <div class="btn-text">
-                    Add employment <!--TODO var exp-count -->
+                    Add employment
                 </div>
                 <div class="btn-border">
                     <div class="btn-icon">
@@ -170,6 +185,10 @@ $sign_up_class = new FormsValidation(true);
     <div id="sign-up-4" class="sign-up-wrapper">
         <div class="step">Step 3/3</div>
         <form id="sform-4" action="php/sign_up.php" method="post">
+            <?php
+            $sign_up_class->setError('err_language');
+            $sign_up_class->setError('err_language_level');
+            ?>
             <div class="btn-add" id="btn-language">
                 <div class="btn-text">
                     Add language
@@ -181,10 +200,8 @@ $sign_up_class = new FormsValidation(true);
                 </div>
             </div>
             <?php
-            if(isset($_SESSION['error']))
-            {
-                echo $_SESSION['error'];
-            }
+            $sign_up_class->setError('err_skill');
+            $sign_up_class->setError('err_skill_level');
             ?>
             <div class="btn-add" id="btn-skill">
                 <div class="btn-text">
@@ -197,14 +214,14 @@ $sign_up_class = new FormsValidation(true);
                 </div>
             </div>
             <?php
-            if(isset($_SESSION['error']))
-            {
-                echo $_SESSION['error'];
-            }
+            $sign_up_class->setError('err_school');
+            $sign_up_class->setError('err_specialization');
+            $sign_up_class->setError('err_school_city');
+            $sign_up_class->setError('err_school_description');
             ?>
             <div class="btn-add" id="btn-school">
                 <div class="btn-text">
-                    Add school <!-- TODO var school-count -->
+                    Add school
                 </div>
                 <div class="btn-border">
                     <div class="btn-icon">
@@ -230,7 +247,7 @@ $sign_up_class = new FormsValidation(true);
         </div>
         <div class="form-row ">
         <label for="certificate-file">Certificates</label>
-        <div class="upload"> <!-- TODO var cert-count -->
+        <div class="upload">
             <input type="file" name="certificate[]" class="inputfile" accept="application/pdf" data-multiple-caption="{count} files selected" multiple>
             <label>Choose a file</label>
         </div>
@@ -242,18 +259,13 @@ $sign_up_class = new FormsValidation(true);
             <label>Choose a file</label>
         </div>
         </div>
-        <?php
-        $sign_up_class->setError('err_email');
-        ?>
-        <?php
-        if(isset($_SESSION['error']))
-        {
-            echo $_SESSION['error'];
-        }
-        ?>
+            <?php
+            $sign_up_class->setError('err_course');
+            $sign_up_class->setError('err_file');
+            ?>
         <div class="btn-add" id="btn-course">
             <div class="btn-text">
-                Add Course <!-- TODO var course-count -->
+                Add Course
             </div>
             <div class="btn-border">
                 <div class="btn-icon">
