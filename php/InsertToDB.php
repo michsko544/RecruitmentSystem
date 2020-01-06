@@ -111,20 +111,20 @@ class InsertToDB
                     $applicant_V = $applicant_Q->fetch_assoc();
                     $id_applicant_Q = intval($applicant_V['id_applicants']);
 
-                    if ($this->conn->query("INSERT INTO experiences (id_experience, job, employer, start_job, end_job, description, id_city, id_applicants) VALUES (null,'{$_SESSION['array']['emp']['job_title']}','{$_SESSION['array']['emp']['employer']}','{$_SESSION['array']['emp']['start_date']}', '{$_SESSION['array']['emp']['end_date']}','{$_SESSION['array']['emp']['description']}',{$id_city_Q}, {$id_applicant_Q})")) {
+                    if ($this->conn->query("insert into experiences (id_experience, job, employer, start_job, end_job, description, id_city, id_applicants) VALUES (null,'{$_SESSION['array']['emp']['job_title']}','{$_SESSION['array']['emp']['employer']}','{$_SESSION['array']['emp']['start_date']}', '{$_SESSION['array']['emp']['end_date']}','{$_SESSION['array']['emp']['description']}',{$id_city_Q}, {$id_applicant_Q})")) {
                         $id_language_Q = $this->checkLanguage($_SESSION['array']['sk_lang']['language']);
                         echo "</br> query-3-success";
                         $id_lang_level_Q = intval($_SESSION['array']['sk_lang']['language_level']);
 
-                        if ($this->conn->query("INSERT INTO knowledge (id_knowledge, id_level, id_applicants, id_language) VALUES (null, {$id_lang_level_Q}, {$id_applicant_Q}, {$id_language_Q})")){
+                        if ($this->conn->query("insert into knowledge (id_knowledge, id_level, id_applicants, id_language) VALUES (null, {$id_lang_level_Q}, {$id_applicant_Q}, {$id_language_Q})")){
                             $id_skill_Q = $this->checkSkill($_SESSION['array']['sk_lang']['skill']);
                             echo "</br> query-4-success";
                             $id_skill_level_Q = intval($_SESSION['array']['sk_lang']['skill_level']);
 
-                            if ($this->conn->query("INSERT INTO holders (id_holder, id_level, id_applicants, id_skill) VALUES (null, {$id_skill_level_Q}, {$id_applicant_Q}, {$id_skill_Q})")){
+                            if ($this->conn->query("insert into holders (id_holder, id_level, id_applicants, id_skill) VALUES (null, {$id_skill_level_Q}, {$id_applicant_Q}, {$id_skill_Q})")){
                                 $id_city_Q = $this->checkCity($_SESSION['array']['edu']['city']);
                                 echo "</br> query-4-success";
-                                if ($this->conn->query("INSERT INTO schools (id_school, name_school, specialization, start_learning, end_learning, description, id_city, id_applicants) VALUES (null, '{$_SESSION['array']['edu']['school']}', '{$_SESSION['array']['edu']['specialization']}', '{$_SESSION['array']['edu']['start_date']}', '{$_SESSION['array']['edu']['end_date']}', '{$_SESSION['array']['edu']['description']}', {$id_city_Q}, {$id_applicant_Q})")){
+                                if ($this->conn->query("insert into schools (id_school, name_school, specialization, start_learning, end_learning, description, id_city, id_applicants) VALUES (null, '{$_SESSION['array']['edu']['school']}', '{$_SESSION['array']['edu']['specialization']}', '{$_SESSION['array']['edu']['start_date']}', '{$_SESSION['array']['edu']['end_date']}', '{$_SESSION['array']['edu']['description']}', {$id_city_Q}, {$id_applicant_Q})")){
                                     echo "</br> query-5-success";
                                     $id_position_Q = $this->checkPosition($_SESSION['array']['val']['position']);
                                     // TODO cover letter

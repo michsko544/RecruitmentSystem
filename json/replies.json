@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 {"idLoggedUser":"1","idConv":["4","1"],"topic":["welcome",""],"time":["06-01-2020 00:00:00","06-01-2020 00:00:00"],"fromUser":{"idUser":["5","2"],"name":["Jack","Jerry"],"surname":["Theripper","Snow"],"idRole":["recruiter","manager"]},"toUser":{"idUser":["1","1"],"name":["Bob","Bob"],"surname":["Thebuilder","Thebuilder"],"idRole":["applicant","applicant"]},"position":["front-end","front-end"],"counters":{"message":2}}
+=======
+{"idLoggedUser":"4","idConv":["2","3","5"],"topic":["very IMPORTANT","dO NoT rEaD tHiS mEsSaGe","mess without position"],"time":["06-01-2020 21:06:28","06-01-2020 21:03:42","03-01-2020 00:00:00"],"fromUser":{"idUser":["3","3","2"],"name":["Robert","Robert","Jerry"],"surname":["Barszcz","Barszcz","Snow"],"idRole":["applicant","applicant","manager"]},"toUser":{"idUser":["3","3","2"],"name":["Robert","Robert","Jerry"],"surname":["Barszcz","Barszcz","Snow"],"idRole":["applicant","applicant","manager"]},"position":["junior C#","junior C#"],"counters":{"message":3}}
+>>>>>>> c3ae8831b6e9c999133c0448ebdfdf8f5bbc6cd5
