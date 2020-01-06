@@ -623,19 +623,29 @@ input[type=submit] {
 }
 #container .big-title .back {
   position: absolute;
-  top: 20px;
-  left: 20px;
-  width: 20px;
-  height: 20px;
-  background-color: black;
+  top: 16px;
+  left: 16px;
+  width: 12px;
+  height: 18px;
+  padding: 5px;
+  background-image: url(../img/assets/back.png);
+  background-repeat: no-repeat;
+  background-position: 5px 5px;
+  background-size: 12px 18px;
+  z-index: 1;
 }
 #container .big-title .write {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 18px;
+  right: 18px;
   width: 20px;
   height: 20px;
-  background-color: black;
+  padding: 5px;
+  background-image: url(../img/assets/chat.png);
+  background-repeat: no-repeat;
+  background-position: 5px 5px;
+  background-size: 20px 20px;
+  z-index: 1;
 }
 #container .big-title .with {
   color: #95A5A6B3;
@@ -704,20 +714,34 @@ input[type=submit] {
 }
 #container .small-title .back {
   position: absolute;
-  left: 20px;
-  width: 30px;
-  height: 30px;
-  background: black;
+  left: 16px;
   top: 50%;
   transform: translateY(-50%);
+  width: 12px;
+  height: 18px;
+  padding: 5px;
+  background-image: url(../img/assets/back.png);
+  background-repeat: no-repeat;
+  background-position: 5px 5px;
+  background-size: 12px 18px;
+  z-index: 1;
 }
 #container .small-title button {
   position: absolute;
-  right: 20px;
-  width: 30px;
-  height: 30px;
+  right: 16px;
+  width: 31px;
+  height: 28px;
   top: 50%;
   transform: translateY(-50%);
+  padding: 5px;
+  outline: none;
+  border: none;
+  background: none;
+  background-image: url(../img/assets/send.png);
+  background-repeat: no-repeat;
+  background-position: 5px 5px;
+  background-size: 21px 18px;
+  z-index: 1;
 }
 #container .list-row {
   width: 100%;

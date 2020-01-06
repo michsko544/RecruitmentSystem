@@ -115,7 +115,7 @@ let countE = 0;
 const addExperience = ({jobTitle, employer, startDate, endDate, city, description}) => {
     let btn = document.getElementById("btn-experience");
     let newDiv = document.createRange().createContextualFragment(
-        `<div class="form-row">
+        `${countE===0 ? "" : "<br/><br/><br/>"}<div class="form-row">
             <label for="job-title">Job title</label>
             <input type="text" name="job-title-${countE}" placeholder="Waiter" value="${jobTitle || ""}" required>
             <div class="underline"></div>
@@ -234,7 +234,7 @@ let countS = 0;
 const addSchool = ({schoolName, specialization, startDate, endDate, city, description}) => {
     let btn = document.getElementById("btn-school");
     let newDiv = document.createRange().createContextualFragment(
-        `<div class="form-row">
+        `${countS===0 ? "" : "<br/><br/><br/>"}<div class="form-row">
             <label for="school">School</label>
             <input type="text" name="school-${countS}" placeholder="Silesian University of Technology" value="${schoolName || ""}"required>
             <div class="underline"></div>
