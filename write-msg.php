@@ -1,7 +1,8 @@
 <?php
 session_start();
 require_once "php/chat.php";
-
+require_once "php/FormsValidation.php";
+$err = new FormsValidation(true);
 $usr = $_GET['uid'];
 if (isset($_POST['message-field']))
 {
@@ -62,6 +63,7 @@ if (isset($_POST['message-field']))
             </div>
             
         </form>
+        <?php $err->setError("err_message") ?>
     </div>
 </body>
 

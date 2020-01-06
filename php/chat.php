@@ -60,7 +60,7 @@ function addMessage($mess, $usr){
 
     // validate message
     if (!preg_match('/^[a-z0-9\040.\-]+$/i', $mess)) {
-        $vali->notGood('err_message', 'message cannot contain special characters');
+        $vali->notGood('err_message', 'Message cannot contain special characters');
     }
     if ($vali->checkFlag() == true){
         try{

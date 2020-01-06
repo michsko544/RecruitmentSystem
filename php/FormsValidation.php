@@ -127,7 +127,6 @@ function notGood($err_name, $err_message)
 {
     $this->correct_data = false;
     $_SESSION["$err_name"] = $err_message;
-    echo "<div style='height: 20vh'> $err_message </div>";
 }
 
 function rememberValue($value_name)
