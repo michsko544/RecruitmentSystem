@@ -45,10 +45,8 @@ if (isset($_POST['message-field']))
         <div class="small-title">
             <div class="position">Front-end Developer</div>
             <div class="name">John Smith</div>
-            <button type="submit" name="submit" value="Send">
-                <img src="img/assets/" alt="send">
-            </button>
-            <div class="back"></div>
+            <button type="submit" name="submit" value="Send"></button>
+            <a href="javascript:history.back();"><div class="back"></div></a>
         </div>
             <div class="message-wrapper">
                 <div class="form-row">
