@@ -103,7 +103,7 @@ if (isset($_SESSION['form5co'])) unset($_SESSION['form5co']);
         </div>
         <div class="input-wrapper">
             <div class="center-wrapper">
-
+            Congratulations my friend U R in!!!
             <form action="php/log_in/log_in.php" method="post">
                 <div class="sign-in-row">
                     <label for="login">Login</label>
@@ -115,12 +115,6 @@ if (isset($_SESSION['form5co'])) unset($_SESSION['form5co']);
                     <input type="password" name="password" placeholder="●●●●●●●●●●" autocomplete="off">
                     <div class="underline"></div>
                 </div>
-                <?php
-                    if(isset($_SESSION['error']))
-                    {
-                        echo $_SESSION['error'];
-                    }
-                ?>
                 <div class="form-btn-wrapper">
                     <input type="submit" value="Sign in">
                 </div>
