@@ -148,9 +148,12 @@ const addExperience = ({jobTitle, employer, startDate, endDate, city, descriptio
     calendar(`exp-${countE}`);
     ++countE;
     addHighlightEvents();
-    let date = new Date(startDate.slice(0,4),startDate.slice(5,7),startDate.slice(8,10));
-    $(`#start-exp-${countE}`).datepicker("setDate", date );
-    console.log(date);
+    if(startDate){
+        let date = new Date(new Number(startDate.slice(0,4)),new Number(startDate.slice(5,7))-1,new Number(startDate.slice(8,10)));
+        console.log(date);
+        $(`#start-exp-${countE}`).datepicker("setDate", date );
+    }
+
     console.log($("#start-exp-"+countE));
 }
 
