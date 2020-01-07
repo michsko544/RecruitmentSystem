@@ -4,6 +4,7 @@
 class InsertToDB
 {
     private $conn = null;
+    public $id_city_FQ = 0;
     function __construct($host, $db_user, $db_pass, $db_name)
     {
         $this->conn = new mysqli($host, $db_user, $db_pass, $db_name);
@@ -15,12 +16,13 @@ class InsertToDB
     }
 
     function checkCity($city){
-
         $cR = $this->conn->query("select id_city from cities where locality = '{$city}'");
         if ($cR->num_rows == 1) {
             $this->itWorks('checkCity');
             $cRV = $cR->fetch_assoc();
-            return $id_city_Q = intval($cRV['id_city']);
+            $id_city_Q = intval($cRV['id_city']);
+            echo "to se zwraca :L !@!!@ " . $id_city_Q;
+            $this->id_city_FQ = $id_city_Q;
         } else {
             if ($this->conn->query("insert into cities (id_city, locality) values (null, '{$city}')"))
                 $this->checkCity($city);
@@ -80,7 +82,7 @@ class InsertToDB
 
                 $id_city_Q = $this->checkCity($_SESSION['array']['pd']['residence_city']);
 
-                $this->itWorks("</br> city-val: " . $id_city_Q);
+                $this->itWorks("</br> city-val: " . $this->id_city_FQ);
 
                 $user_Q = $this->conn->query("select id_user from users order by id_user desc limit 1");
                 $user_V = $user_Q->fetch_assoc();
@@ -102,7 +104,7 @@ class InsertToDB
 
                 $this->itWorks("</br> country-val: " . $id_country_Q);
                 // *************** COS SIE PIERDOLI END *******************
-                if ($this->conn->query("insert into applicants (id_applicants, phone, email, id_cv, id_city, id_user, id_certificate, id_country) VALUES (null, '{$_SESSION['array']['pd']['phone']}', '{$_SESSION['array']['val']['email']}', {$id_cv_Q}, {$id_city_Q}, {$id_user_Q}, {$id_cert_Q}, {$id_country_Q})")){
+                if ($this->conn->query("insert into applicants (id_applicants, phone, email, id_cv, id_city, id_user, id_certificate, id_country) VALUES (null, '{$_SESSION['array']['pd']['phone']}', '{$_SESSION['array']['val']['email']}', {$id_cv_Q}, {$this->id_city_FQ}, {$id_user_Q}, {$id_cert_Q}, {$id_country_Q})")){
                     $id_city_Q = $this->checkCity($_SESSION['array']['emp']['city']);
 
                     $this->itWorks("</br> query-2-success");
