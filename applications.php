@@ -1,12 +1,15 @@
 <?php
-    session_start();
-   if ((!isset($_SESSION['logged_in'])) || ($_SESSION['logged_in'] == false))
-   {
-        header('Location: index.php');
-        exit();
-   }
+session_start();
+if ((!isset($_SESSION['logged_in'])) || ($_SESSION['logged_in'] == false))
+{
+    header('Location: index.php');
+    exit();
+}
 
+require_once "php/connect.php";
 require_once "php/applications.php";
+require_once "php/FormsValidation.php";
+$pos = new FormsValidation(true);
 $role = $_SESSION['id_role'];
 switch ($role) {
     case 1:
@@ -86,11 +89,15 @@ switch ($role) {
                 </div>
             </div>
             
-            <form action="">
+            <form action="php/applications.php" method="post">
                 <div class="form-row">
                     <label for="position">Position</label>
-                    <select name="" id="position">
-                
+                    <select name="position" id="position">
+                        <?php
+                        // Pick data from DB
+                        $query = "SELECT position FROM positions";
+                        $pos->pickDataFromDB($query, $host, $db_user, $db_pass, $db_name);
+                        ?>
                     </select>
                 </div>
                 <div class="form-row">

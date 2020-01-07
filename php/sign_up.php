@@ -105,8 +105,8 @@ if (isset($_FILES['cv[]']) || isset($_FILES['certificate[]']))
                 $sign_up_class->itWorks("file is up");
             }
         }
-        // ********************************************************************
     }
+        // ********************************************************************
 
     // Validate cover letter
     $cover_letter = 'cover-letter';
