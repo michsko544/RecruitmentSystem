@@ -255,7 +255,7 @@ $sign_up_class = new FormsValidation(true);
         <div class="form-row">
         <label for="lm-file">Cover Letter</label>
         <div class="upload">
-            <input type="file" name="cover-letter" class="inputfile" accept="application/pdf" data-multiple-caption="{count} files selected" multiple>
+            <input type="file" name="cover-letter" class="inputfile" accept="application/pdf">
             <label>Choose a file</label>
         </div>
         </div>
@@ -284,5 +284,6 @@ $sign_up_class = new FormsValidation(true);
 <script src="script/main.js"></script>
 <script src="script/calendar.js"></script>
 <script src="script/user-data-handler.js"></script>
+<script src="script/input-file.js"></script>
 <script src="script/sign-up.js"></script>
 </html>

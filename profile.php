@@ -214,6 +214,7 @@ switch ($role){
 <script src="script/burger.js"></script>
 <script src="script/calendar.js"></script>
 <script src="script/user-data-handler.js"></script>
+<script src="script/input-file.js"></script>
 <script src="script/profile.js"></script>
 <script src="script/loadProfile.js"></script>
 </html>

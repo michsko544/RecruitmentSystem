@@ -66,6 +66,45 @@ switch ($role) {
         <div class="small-title">
             Application status
         </div>
+        <div class="list-row bottom-row" id="btn-application">
+            <div class="btn-add ">
+                <div class="btn-border">
+                    <div class="btn-icon">
+                        +
+                    </div>
+                </div>
+                <div class="btn-text">
+                        Add application
+                </div>
+            </div>
+        </div>
+        <div id="app-form--hidden">
+            <div class="close">
+                <div class="btn-close">
+                    <div class="line1"></div>
+                    <div class="line2"></div>
+                </div>
+            </div>
+            
+            <form action="">
+                <div class="form-row">
+                    <label for="position">Position</label>
+                    <select name="" id="position">
+                
+                    </select>
+                </div>
+                <div class="form-row">
+                    <label for="lm-file">Cover Letter</label>
+                    <div class="upload">
+                        <input type="file" name="cover-letter" class="inputfile" accept="application/pdf">
+                        <label>Choose a file</label>
+                    </div>
+                </div>
+                <div class="btn-big-positioning">
+                    <input type="submit" value="Add" class="btn btn-cyan">
+                </div>
+            </form>
+        </div>
     </div>
 </body>
 
@@ -73,5 +112,6 @@ switch ($role) {
 <script src="script/burger.js"></script>
 <script src="script/applications.js"></script>
 <script src="script/loadApplications.js"></script>
+<script src="script/input-file.js"></script>
 
 </html>

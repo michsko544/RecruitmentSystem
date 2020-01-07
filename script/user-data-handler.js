@@ -148,9 +148,12 @@ const addExperience = ({jobTitle, employer, startDate, endDate, city, descriptio
     calendar(`exp-${countE}`);
     ++countE;
     addHighlightEvents();
-    let date = new Date(startDate.slice(0,4),startDate.slice(5,7),startDate.slice(8,10));
-    $(`#start-exp-${countE}`).datepicker("setDate", date );
-    console.log(date);
+    if(startDate){
+        let date = new Date(new Number(startDate.slice(0,4)),new Number(startDate.slice(5,7))-1,new Number(startDate.slice(8,10)));
+        console.log(date);
+        $(`#start-exp-${countE}`).datepicker("setDate", date );
+    }
+
     console.log($("#start-exp-"+countE));
 }
 
@@ -338,24 +341,3 @@ const addCourse = ({course}) => {
 }
 
 document.getElementById("btn-course").addEventListener("click", addCourse);
-
-var inputs = document.querySelectorAll( '.inputfile' );
-Array.prototype.forEach.call( inputs, function( input )
-{
-	var label	 = input.nextElementSibling,
-		labelVal = label.innerHTML;
-
-	input.addEventListener( 'change', function( e )
-	{
-		var fileName = '';
-		if( this.files && this.files.length > 1 )
-			fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
-		else
-			fileName = e.target.value.split( "\\" ).pop();
-
-		if( fileName )
-			label.innerHTML = fileName;
-		else
-			label.innerHTML = labelVal;
-	});
-});
