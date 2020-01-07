@@ -107,6 +107,7 @@ class InsertToDB
 
                 $this->itWorks("</br> country-val: " . $id_country_Q);
                 // *************** COS SIE Psuje END *******************
+                // TODO wiele formularzy
                 if ($this->conn->query("insert into applicants (id_applicants, phone, email, id_cv, id_city, id_user, id_certificate, id_country) VALUES (null, '{$_SESSION['array']['pd']['phone']}', '{$_SESSION['array']['val']['email']}', {$id_cv_Q}, {$this->id_city_FQ}, {$id_user_Q}, {$id_cert_Q}, {$id_country_Q})")){
                     $id_city_Q = $this->checkCity($_SESSION['array']['emp']['city'][0]);
 
