@@ -44,8 +44,9 @@ function getApplicationsData($condition){
 
 if (isset($_POST['position'])) {
     $position = $_POST['position'];
-    $cover_letter = $_FILES['cover-letter']; // TODO a kurwa nie wiem
-    if (isset($_FILES['cover-letter'])) {
+    $cover_letter = $_FILES['cover-letter']; // TODO nie dziala
+    echo $cover_letter;
+    /*if (isset($_FILES['cover-letter'])) {
         $uploads_dir = '../uploads';
         echo $_FILES['cover-letter']['error'];
         foreach ($_FILES["cover-letter"]["error"] as $key => $error) {
@@ -71,5 +72,5 @@ if (isset($_POST['position'])) {
                 echo 'bangla';
             }
         }
-    }
+    }*/
 }
