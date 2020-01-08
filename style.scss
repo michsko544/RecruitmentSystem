@@ -434,7 +434,11 @@ textarea:focus + .underlineTA::after{
 
 .sign-up-container{
     background-color: $color-background;
-    height: 100vh;
+    height: calc(100vh - 85px);
+
+    .error{
+        color: $color-cyan;
+    }
 }
 
 .sign-up-wrapper{
@@ -649,7 +653,7 @@ input[type=submit]{
 
 #container{
     width: 100%;
-    height: 100vh;
+    height: calc(100vh - 85px);
     background-color: $color-background;
 
     .big-title{
@@ -813,6 +817,7 @@ input[type=submit]{
 
         .upload{
             border: 2px $color-seagrey solid;
+            margin-top:15px;
         }
 
     }

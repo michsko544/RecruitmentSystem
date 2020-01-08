@@ -25,8 +25,8 @@ $sign_up_class = new FormsValidation(true);
 </div>
 
 <div class="sign-up-container">
-<div class="page-title cyan-color">Find your job by joining us!</div>
     <div id="sign-up-1" class="sign-up-wrapper">
+    <div class="page-title cyan-color">Find your job by joining us!</div>
         <form id="sform-1" action="php/sign_up.php" method="post">
             <div class="form-row">
                 <label for="login">Login</label>
@@ -48,18 +48,15 @@ $sign_up_class = new FormsValidation(true);
                 <label for="password-one">Password</label>
                 <input type="password" name="password-one" value="<?php $sign_up_class->rememberValue('rem_password_one'); ?>" placeholder="●●●●●●●●●●" required>
                 <div class="underline"></div>
-                <?php
-                $sign_up_class->setError('err_password');
-                ?>
             </div>
             <div class="form-row">
                 <label for="password-two">Password</label>
                 <input type="password" name="password-two" value="<?php $sign_up_class->rememberValue('rem_password_two'); ?>" placeholder="●●●●●●●●●●" required>
                 <div class="underline"></div>
-                <?php
+            </div>
+            <?php
                 $sign_up_class->setError('err_password');
                 ?>
-            </div>
             <div class="form-row">
                 <label for="position">Position</label>
                 <select name="position">
@@ -93,34 +90,35 @@ $sign_up_class = new FormsValidation(true);
             </div>
         </form>
     </div>
+    
+    <div id="sign-up-2--hidden" class="sign-up-wrapper">
     <div class="page-title dark-color">A few more things about you, employers need to know</div>
-    <div id="sign-up-2" class="sign-up-wrapper">
         <div class="step">Step 1/3</div>
         <form id="sform-2" action="php/sign_up.php" method="post">
             <div class="form-row">
                 <label for="first-name">First name</label>
                 <input type="text" name="first-name" placeholder="John" required>
                 <div class="underline"></div>
-                <?php
+            </div>
+            <?php
                 $sign_up_class->setError('err_first_name');
                 ?>
-            </div>
             <div class="form-row">
                 <label for="last-name">Last name</label>
                 <input type="text" name="last-name" placeholder="Smith" required>
                 <div class="underline"></div>
-                <?php
+            </div>
+            <?php
                 $sign_up_class->setError('err_last_name');
                 ?>
-            </div>
             <div class="form-row">
                 <label for="phone-num">Phone number</label>
                 <input type="tel" name="phone-num" placeholder="600 700 800" pattern="[0-9]{3}[0-9]{3}[0-9]{3}" required>
                 <div class="underline"></div>
-                <?php
+            </div>
+            <?php
                 $sign_up_class->setError('err_phone');
                 ?>
-            </div>
             <div class="form-row">
                 <label for="residence-country">Your country</label>
                 <select name="residence-country" placeholder="Choose">
@@ -131,26 +129,27 @@ $sign_up_class = new FormsValidation(true);
                     ?>
                 </select>
                 <div class="underline"></div>
-                <?php
+            </div>
+            <?php
                 $sign_up_class->setError('err_residence_country');
                 ?>
-            </div>
             <div class="form-row">
                 <label for="residence-city">Your city</label>
                 <input type="text" name="residence-city" placeholder="London" required>
                 <div class="underline"></div>
-                <?php
+            </div>
+            <?php
                 $sign_up_class->setError('err_residence_city');
                 ?>
-            </div>
             <div class="form-btn-wrapper">
                 <input type="submit" value="Next" class="btn btn-dark" id="btn-sign-up-2">
             </div>
         </form>
     </div>
 
+    
+    <div id="sign-up-3--hidden" class="sign-up-wrapper">
     <div class="page-title dark-color">What's your experience?</div>
-    <div id="sign-up-3" class="sign-up-wrapper">
         <div class="step">Step 2/3</div>
         <form id="sform-3" action="php/sign_up.php" method="post">
             <div id="form3-open-tag"></div>
@@ -181,8 +180,9 @@ $sign_up_class = new FormsValidation(true);
         </form>
     </div>
 
+    
+    <div id="sign-up-4--hidden" class="sign-up-wrapper">
     <div class="page-title dark-color">Skills & Education</div>
-    <div id="sign-up-4" class="sign-up-wrapper">
         <div class="step">Step 3/3</div>
         <form id="sform-4" action="php/sign_up.php" method="post">
             <?php
@@ -235,8 +235,9 @@ $sign_up_class = new FormsValidation(true);
         </form>
     </div>
 
+    
+    <div id="sign-up-5--hidden" class="sign-up-wrapper">
     <div class="page-title cyan-color">CV & Additional references</div>
-    <div id="sign-up-5" class="sign-up-wrapper">
         <form id="sform-5" action="php/sign_up.php" method="post" enctype="multipart/form-data">
         <div class="form-row">
         <label for="cv-file">Curriculum vitae</label>
