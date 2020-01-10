@@ -5,7 +5,7 @@ const addReply = ({id,name,role,position,topic,date}) => {
     let newDiv = document.createRange().createContextualFragment(
     `<a href="${'chat.php?cid=' + id || '#'}">
         <div class="list-row">
-            <div class="first-text">${topic ? topic : "Reply: " + position}</div>
+            <div class="first-text">${position ? "Reply: " + position : topic }</div>
             <div class="msg-topic last-text">${name}${role ? " - " + role : ""}</div>
             <div class="msg-date right-info">${date}</div>
         </div>

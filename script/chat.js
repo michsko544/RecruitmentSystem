@@ -20,7 +20,7 @@ const addConvesationTitle = ({sender: {id, name, surname, role}, topic, position
         <a href="replies.php"><div class="back"></div></a>
         <a href="write-msg.php?uid=${id}"><div class="write"></div></a>
         <div class="with">With: ${name} ${surname}${role ? " - " + role : ""}</div>
-        <div class="topic">Topic: ${topic ? topic : "Reply: " + position}</div>
+        <div class="topic">Topic: ${position ? "Reply: " + position : topic }</div>
     </div>`);
     container.appendChild(newDiv);
 }
