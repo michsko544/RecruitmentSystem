@@ -7,6 +7,7 @@ $color-seagrey: #95A5A6;
 $color-label: #95A5A6B3;
 $color-list-line: #95A5A659;
 $color-placeholder: #95A5A680;
+$color-appliction: #75757B;
 
 
 *{
@@ -931,15 +932,19 @@ input[type=submit]{
     }
 
     .app-status-opened{
-        color: #75757B;
+        color: $color-appliction;
     }
 
     .app-status-replied{
-        color: #75757B;
+        color: $color-appliction;
 
         a{
             color: $color-cyan
         }
+    }
+
+    .app-info{
+        color: $color-appliction;
     }
 
     .msg-topic{
@@ -985,10 +990,15 @@ input[type=submit]{
 
 }
 
+.rotate-to-right{
+    transform: rotate(-90deg);
+}
+
 .btn-element{
     position: absolute;
-    top: 28px;
-    right: 31px;
+    top: 18px;
+    right: 16px;
+    padding: 10px;
 
     .btn-unwrap{
         width: 16px;

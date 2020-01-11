@@ -856,6 +856,9 @@ input[type=submit] {
 #container .app-status-replied a {
   color: #36C3D9;
 }
+#container .app-info {
+  color: #75757B;
+}
 #container .msg-topic {
   color: #95A5A6B3;
 }
@@ -892,10 +895,15 @@ input[type=submit] {
   left: 21px;
 }
 
+.rotate-to-right {
+  transform: rotate(-90deg);
+}
+
 .btn-element {
   position: absolute;
-  top: 28px;
-  right: 31px;
+  top: 18px;
+  right: 16px;
+  padding: 10px;
 }
 .btn-element .btn-unwrap {
   width: 16px;
