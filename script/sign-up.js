@@ -61,15 +61,15 @@ const displaySignUpForm = () => {
             showDiv("sign-up-2--hidden")
             break;
         case "form2":
-            hideDiv("sign-up-2");
+            hideDiv("sign-up-1");
             showDiv("sign-up-3--hidden")
             break;
         case "form3":
-            hideDiv("sign-up-3");
+            hideDiv("sign-up-1");
             showDiv("sign-up-4--hidden")
             break;
         case "form4":
-            hideDiv("sign-up-4");
+            hideDiv("sign-up-1");
             showDiv("sign-up-5--hidden")
             break;
     }

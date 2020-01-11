@@ -1,1 +1,2 @@
+<<<<<<< HEAD
 {"idLoggedUser":"1","idConv":["4","1"],"topic":["welcome","welcome"],"time":["11-01-2020 01:07:33","11-01-2020 00:56:19"],"fromUser":{"idUser":["5","2"],"name":["Bob","Bob"],"surname":["Thebuilder","Thebuilder"],"idRole":["applicant","applicant"]},"toUser":{"idUser":["1","1"],"name":["Bob","Bob"],"surname":["Thebuilder","Thebuilder"],"idRole":["applicant","applicant"]},"position":["front-end","front-end"],"counters":{"message":2}}
