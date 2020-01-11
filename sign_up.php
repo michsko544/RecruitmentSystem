@@ -2,7 +2,7 @@
 session_start();
 require_once "php/FormsValidation.php";
 require_once "php/connect.php";
-$sign_up_class = new FormsValidation(true);
+$inst = new FormsValidation(true);
 ?>
 
 <!DOCTYPE html>
@@ -30,32 +30,32 @@ $sign_up_class = new FormsValidation(true);
         <form id="sform-1" action="php/sign_up.php" method="post">
             <div class="form-row">
                 <label for="login">Login</label>
-                <input type="text" name="login" value="<?php $sign_up_class->rememberValue('rem_username'); ?>" placeholder="Username" required>
+                <input type="text" name="login" value="<?php $inst->rememberValue('rem_username'); ?>" placeholder="Username" required>
                 <div class="underline"></div>
                 <?php
-                $sign_up_class->setError('err_username');
+                $inst->setError('err_username');
                 ?>
             </div>
             <div class="form-row">
                 <label for="e-mail">E-mail</label>
-                <input type="email" name="e-mail" value="<?php $sign_up_class->rememberValue('rem_email'); ?>" placeholder="john.smith@example.com" required>
+                <input type="email" name="e-mail" value="<?php $inst->rememberValue('rem_email'); ?>" placeholder="john.smith@example.com" required>
                 <div class="underline"></div>
                 <?php
-                $sign_up_class->setError('err_email');
+                $inst->setError('err_email');
                 ?>
             </div>
             <div class="form-row">
                 <label for="password-one">Password</label>
-                <input type="password" name="password-one" value="<?php $sign_up_class->rememberValue('rem_password_one'); ?>" placeholder="●●●●●●●●●●" required>
+                <input type="password" name="password-one" value="<?php $inst->rememberValue('rem_password_one'); ?>" placeholder="●●●●●●●●●●" required>
                 <div class="underline"></div>
             </div>
             <div class="form-row">
                 <label for="password-two">Password</label>
-                <input type="password" name="password-two" value="<?php $sign_up_class->rememberValue('rem_password_two'); ?>" placeholder="●●●●●●●●●●" required>
+                <input type="password" name="password-two" value="<?php $inst->rememberValue('rem_password_two'); ?>" placeholder="●●●●●●●●●●" required>
                 <div class="underline"></div>
             </div>
             <?php
-                $sign_up_class->setError('err_password');
+                $inst->setError('err_password');
                 ?>
             <div class="form-row">
                 <label for="position">Position</label>
@@ -63,7 +63,7 @@ $sign_up_class = new FormsValidation(true);
                     <?php
                     // Pick data from DB
                     $query = "SELECT position FROM positions";
-                    $sign_up_class->pickDataFromDB($query, $host, $db_user, $db_pass, $db_name);
+                    $inst->pickDataFromDB($query, $host, $db_user, $db_pass, $db_name);
                     ?>
                 </select>
             </div>
@@ -76,7 +76,7 @@ $sign_up_class = new FormsValidation(true);
                     unset($_SESSION['rem_terms']);}
                     ?>>I agree to&nbsp;<a href="documents/terms-of-use-contents.html">Terms&nbsp;</a> and&nbsp;<a href="documents/privacy-policy-contents.html">Privacy Policy</a>.</div>
                 <?php
-                $sign_up_class->setError('err_terms');
+                $inst->setError('err_terms');
                 ?>
             </div>
             <?php
@@ -101,7 +101,7 @@ $sign_up_class = new FormsValidation(true);
                 <div class="underline"></div>
             </div>
             <?php
-                $sign_up_class->setError('err_first_name');
+                $inst->setError('err_first_name');
                 ?>
             <div class="form-row">
                 <label for="last-name">Last name</label>
@@ -109,7 +109,7 @@ $sign_up_class = new FormsValidation(true);
                 <div class="underline"></div>
             </div>
             <?php
-                $sign_up_class->setError('err_last_name');
+                $inst->setError('err_last_name');
                 ?>
             <div class="form-row">
                 <label for="phone-num">Phone number</label>
@@ -117,7 +117,7 @@ $sign_up_class = new FormsValidation(true);
                 <div class="underline"></div>
             </div>
             <?php
-                $sign_up_class->setError('err_phone');
+                $inst->setError('err_phone');
                 ?>
             <div class="form-row">
                 <label for="residence-country">Your country</label>
@@ -125,13 +125,13 @@ $sign_up_class = new FormsValidation(true);
                     <?php
                     // Pick data from DB
                     $query = "SELECT country FROM countries";
-                    $sign_up_class->pickDataFromDB($query, $host, $db_user, $db_pass, $db_name);
+                    $inst->pickDataFromDB($query, $host, $db_user, $db_pass, $db_name);
                     ?>
                 </select>
                 <div class="underline"></div>
             </div>
             <?php
-                $sign_up_class->setError('err_residence_country');
+                $inst->setError('err_residence_country');
                 ?>
             <div class="form-row">
                 <label for="residence-city">Your city</label>
@@ -139,7 +139,7 @@ $sign_up_class = new FormsValidation(true);
                 <div class="underline"></div>
             </div>
             <?php
-                $sign_up_class->setError('err_residence_city');
+                $inst->setError('err_residence_city');
                 ?>
             <div class="form-btn-wrapper">
                 <input type="submit" value="Next" class="btn btn-dark" id="btn-sign-up-2">
@@ -159,10 +159,10 @@ $sign_up_class = new FormsValidation(true);
                 </div>
             </div>
             <?php
-            $sign_up_class->setError('err_job_title');
-            $sign_up_class->setError('err_employer');
-            $sign_up_class->setError('err_job_city');
-            $sign_up_class->setError('err_job_description');
+            $inst->setError('err_job_title');
+            $inst->setError('err_employer');
+            $inst->setError('err_job_city');
+            $inst->setError('err_job_description');
             ?>
             <div class="btn-add" id="btn-experience">
                 <div class="btn-text">
@@ -186,8 +186,8 @@ $sign_up_class = new FormsValidation(true);
         <div class="step">Step 3/3</div>
         <form id="sform-4" action="php/sign_up.php" method="post">
             <?php
-            $sign_up_class->setError('err_language');
-            $sign_up_class->setError('err_language_level');
+            $inst->setError('err_language');
+            $inst->setError('err_language_level');
             ?>
             <div class="btn-add" id="btn-language">
                 <div class="btn-text">
@@ -200,8 +200,8 @@ $sign_up_class = new FormsValidation(true);
                 </div>
             </div>
             <?php
-            $sign_up_class->setError('err_skill');
-            $sign_up_class->setError('err_skill_level');
+            $inst->setError('err_skill');
+            $inst->setError('err_skill_level');
             ?>
             <div class="btn-add" id="btn-skill">
                 <div class="btn-text">
@@ -214,10 +214,10 @@ $sign_up_class = new FormsValidation(true);
                 </div>
             </div>
             <?php
-            $sign_up_class->setError('err_school');
-            $sign_up_class->setError('err_specialization');
-            $sign_up_class->setError('err_school_city');
-            $sign_up_class->setError('err_school_description');
+            $inst->setError('err_school');
+            $inst->setError('err_specialization');
+            $inst->setError('err_school_city');
+            $inst->setError('err_school_description');
             ?>
             <div class="btn-add" id="btn-school">
                 <div class="btn-text">
@@ -261,8 +261,8 @@ $sign_up_class = new FormsValidation(true);
         </div>
         </div>
             <?php
-            $sign_up_class->setError('err_course');
-            $sign_up_class->setError('err_file');
+            $inst->setError('err_course');
+            $inst->setError('err_file');
             ?>
         <div class="btn-add" id="btn-course">
             <div class="btn-text">

@@ -47,7 +47,7 @@ try
                     $role = $_SESSION['id_role'];
                     switch ($role){
                         case 1:
-                            header('Location: /admin_panel.php?role=admin'); // TODO create admin_panel
+                            header('Location: /admin_create_user.php?role=admin'); // TODO create admin_panel
                             break;
                         case 2:
                             header('Location: /profile.php?role=applicant');
