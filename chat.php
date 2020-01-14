@@ -4,7 +4,8 @@ if ((!isset($_SESSION['logged_in'])) || ($_SESSION['logged_in'] == false)) {
     header('Location: index.php');
     exit();
 }
-
+require_once "php/connect.php";
+getRole($host, $db_user, $db_pass, $db_name);
 require_once "php/chat.php";
 if (isset($_GET['cid'])){
     $id_conv = $_GET['cid'];

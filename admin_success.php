@@ -1,5 +1,8 @@
 <?php
 session_start();
+require_once "php/connect.php";
+getRole($host, $db_user, $db_pass, $db_name);
+
 ?>
 
 

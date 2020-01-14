@@ -2,6 +2,8 @@
 session_start();
 require_once "php/chat.php";
 require_once "php/FormsValidation.php";
+require_once "php/connect.php";
+getRole($host, $db_user, $db_pass, $db_name);
 $err = new FormsValidation(true);
 $usr = $_GET['uid'];
 if (isset($_POST['message-field']))
@@ -9,6 +11,7 @@ if (isset($_POST['message-field']))
     $mess = $_POST['message-field'];
     addMessage($mess, $usr);
 }
+
 
 ?>
 

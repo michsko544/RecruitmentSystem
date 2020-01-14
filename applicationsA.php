@@ -5,8 +5,9 @@ if ((!isset($_SESSION['logged_in'])) || ($_SESSION['logged_in'] == false))
     header('Location: index.php');
     exit();
 }
-
 require_once "php/connect.php";
+getRole($host, $db_user, $db_pass, $db_name);
+
 require_once "php/applications.php";
 require_once "php/FormsValidation.php";
 $pos = new FormsValidation(true);

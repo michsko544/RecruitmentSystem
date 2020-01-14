@@ -8,6 +8,8 @@ if ((!isset($_SESSION['successful-sign-up'])) || ($_SESSION['successful-sign-up'
 } else {
   unset($_SESSION['successful-sign-up']);
 }
+require_once "php/connect.php";
+getRole($host, $db_user, $db_pass, $db_name);
 // Unset remembered values
 if (isset($_SESSION['rem_username'])) unset($_SESSION['rem_username']);
 if (isset($_SESSION['rem_email'])) unset($_SESSION['rem_email']);
