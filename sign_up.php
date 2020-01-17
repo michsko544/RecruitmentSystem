@@ -79,12 +79,6 @@ $inst = new FormsValidation(true);
                 $inst->setError('err_terms');
                 ?>
             </div>
-            <?php
-            if(isset($_SESSION['error']))
-            {
-                echo $_SESSION['error'];
-            }
-            ?>
             <div class="form-btn-wrapper">
                 <input type="submit" value="Sign in" class="btn btn-cyan" id="btn-sign-up-1">
             </div>

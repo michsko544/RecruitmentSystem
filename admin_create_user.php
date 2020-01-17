@@ -6,6 +6,7 @@ if ((!isset($_SESSION['logged_in'])) || ($_SESSION['logged_in'] == false))
     exit();
 }
 require_once "php/connect.php";
+require_once "php/getRole.php";
 getRole($host, $db_user, $db_pass, $db_name);
 require_once "php/FormsValidation.php";
 
@@ -31,10 +32,10 @@ $inst = new FormsValidation(true);
         <div class="logo-nav">myCompany</div>
         <ul class="nav-links">
             <li id="menu">Menu</li>
-            <li><a href="#">My profile</a></li>
-            <li><a href="#">Applications</a></li>
-            <li><a href="#">Replies</a></li>
-            <li><a href="#">Sign out</a></li>
+            <li><a href="admin_main.php">Main page</a></li>
+            <li><a href="admin_create_user.php">Add user</a></li>
+            <li><a href="admin_pick_role.php">Pick role</a></li>
+            <li><a href="php/log_in/log_out.php">Sign out</a></li>
         </ul>
         <div id="btn-burger" class="btn-nav">
             <div class="line1"></div>
@@ -45,7 +46,7 @@ $inst = new FormsValidation(true);
     <div id="nav-help"></div>
 </nav>
 
-<div class="sign-up-container">
+<div id="container">
     <div id="sign-up-1" class="sign-up-wrapper">
         <div class="page-title cyan-color">Add user</div>
 <form id="sform" action="php/admin/create_user.php" method="post">

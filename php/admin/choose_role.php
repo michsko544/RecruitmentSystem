@@ -1,10 +1,32 @@
 <?php
 session_start();
-
-if ((!isset($_POST['login'])) || (!isset($_POST['password'])))
+$role = $_GET['role'];
+switch ($role){
+    case "applicant":
+        $login = 'admin-applicant';
+        $password = 'qwert123';
+        break;
+    case "recruiter":
+        $login = 'admin-recruiter';
+        $password = 'qwert123';
+        break;
+    case "manager":
+        $login = 'admin-manager';
+        $password = 'qwert123';
+        break;
+    case "assistant":
+        $login = 'admin-assistant';
+        $password = 'qwert123';
+        break;
+    default:
+        $login = null;
+        $password = null;
+        break;
+}
+if (($login == null) || ($password == null))
 {
-   header('Location: /index.php');
-   exit();
+    header('Location: /admin_pick_role.php');
+    exit();
 }
 
 require_once "../connect.php";
@@ -18,9 +40,6 @@ try
     }
     else
     {
-        $login = $_POST['login'];
-        $password = $_POST['password'];
-
         $login = htmlentities($login, ENT_QUOTES, "UTF-8");
 
         if ($result_login = $connection->query(
@@ -90,4 +109,3 @@ catch (Exception $e)
 {
     echo "<div class='server-error'>Server error! Please try again later. Err: ".$e."</div>";
 }
-
