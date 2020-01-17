@@ -65,7 +65,7 @@ try
                 }
                 else
                 {
-                    $_SESSION['error'] = '<div class="error"> Incorrect username or password! </div>';
+                    $_SESSION['error'] = '<div class="error-log-in"> Incorrect username or password! </div>';
                     $_SESSION['wrong-input'] = true;
                     header('Location: /index.php?login=wrong');
                     //unset($_SESSION['wrong-input']);
@@ -73,7 +73,7 @@ try
             }
             else
             {
-                $_SESSION['error'] = '<div class="error"> Incorrect username or password! </div>';
+                $_SESSION['error'] = '<div class="error-log-in"> Incorrect username or password! </div>';
                 $_SESSION['wrong-input'] = true;
                 header('Location: /index.php?login=wrong');
                 //unset($_SESSION['wrong-input']);

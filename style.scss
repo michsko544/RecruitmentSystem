@@ -1081,12 +1081,20 @@ input[type=submit]{
     }
 }
 
-.error{
+.error-log-in{
     text-align: center;
     color: $color-white;
     margin-top: 20px;
 
 }
+
+.error{
+    text-align: center;
+    color: #000000;
+    margin-top: 20px;
+
+}
+
 
 .break {
     width:100%;

@@ -1,6 +1,6 @@
 <?php
 function getProfileData($user){
-    require_once "connect.php";
+    require "connect.php";
     require_once "HandleJson.php";
 
 

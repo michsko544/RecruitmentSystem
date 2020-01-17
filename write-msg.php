@@ -3,6 +3,7 @@ session_start();
 require_once "php/chat.php";
 require_once "php/FormsValidation.php";
 require_once "php/connect.php";
+require_once "php/getRole.php";
 getRole($host, $db_user, $db_pass, $db_name);
 $err = new FormsValidation(true);
 $usr = $_GET['uid'];
@@ -58,13 +59,14 @@ if (isset($_POST['message-field']))
                     <div class="msg-topic">Reply: FrontEnd bla bla bla</div>
                 </div>
                 <div class="form-row">
+                    <?php $err->setError("err_message") ?>
                     <label for="message-field">Message</label>
                     <textarea name="message-field" placeholder="Type your message here.."></textarea>
                 </div>
             </div>
             
         </form>
-        <?php $err->setError("err_message") ?>
+
     </div>
 </body>
 

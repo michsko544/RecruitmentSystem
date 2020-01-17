@@ -122,6 +122,9 @@ function checkFlag()
 {
     return $this->correct_data;
 }
+function setFlag($bool){
+    $this->correct_data= $bool;
+}
 
 function notGood($err_name, $err_message)
 {
