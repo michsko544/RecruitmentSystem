@@ -54,9 +54,6 @@ switch ($role) {
             <div class="logo-nav">myCompany</div>
             <ul class="nav-links">
                 <li id="menu">Menu</li>
-                <li><a href="applicationsA.php">Applications</a></li>
-                <li><a href="messagesA.php">Replies</a></li>
-                <li><a href="php/log_in/log_out.php">Sign out</a></li>
             </ul>
             <div id="btn-burger" class="btn-nav">
                 <div class="line1"></div>
@@ -82,9 +79,9 @@ switch ($role) {
             </div>
 </body>
 
-<script src="script/main.js"></script>
 <script src="script/burger.js"></script>
+<script src="script/main.js"></script>
 <script src="script/applicationsWorkers.js"></script>
-<script src="script/loadApplicationsWorkers.js"></script>
+<!--<script src="script/loadApplicationsWorkers.js"></script>-->
 
 </html>

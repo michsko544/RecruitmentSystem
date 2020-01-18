@@ -32,10 +32,6 @@ if (isset($_GET['cid'])){
             <div class="logo-nav">myCompany</div>
             <ul class="nav-links">
                 <li id="menu">Menu</li>
-                <li><a href="profile.php">My profile</a></li>
-                <li><a href="applications.php">Applications</a></li>
-                <li><a href="replies.php">Replies</a></li>
-                <li><a href="php/log_in/log_out.php">Sign out</a></li>
             </ul>
             <div id="btn-burger" class="btn-nav">
                 <div class="line1"></div>
@@ -49,8 +45,8 @@ if (isset($_GET['cid'])){
     </div>
 </body>
 
-<script src="script/main.js"></script>
 <script src="script/burger.js"></script>
+<script src="script/main.js"></script>
 <script src="script/chat.js"></script>
 <script src="script/loadChat.js"></script>
 

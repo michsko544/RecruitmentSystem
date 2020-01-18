@@ -46,6 +46,6 @@ const addApplication = ({position, name, decision, id}) => {
     !lastApp ? container.appendChild(newDiv) : container.insertBefore(newDiv, lastApp);
 }
 
-document.querySelector("#btn-application").addEventListener("click", ()=>showDiv("app-form--hidden"));
+//document.querySelector("#btn-application").addEventListener("click", ()=>showDiv("app-form--hidden"));
 
-document.querySelector(".close").addEventListener("click", ()=>hideDiv("app-form"));
+//document.querySelector(".close").addEventListener("click", ()=>hideDiv("app-form"));

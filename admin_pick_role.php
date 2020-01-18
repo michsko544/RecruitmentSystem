@@ -30,10 +30,6 @@ getRole($host, $db_user, $db_pass, $db_name);
         <div class="logo-nav">myCompany</div>
         <ul class="nav-links">
             <li id="menu">Menu</li>
-            <li><a href="admin_main.php">Main page</a></li>
-            <li><a href="admin_create_user.php">Add user</a></li>
-            <li><a href="admin_pick_role.php">Pick role</a></li>
-            <li><a href="php/log_in/log_out.php">Sign out</a></li>
         </ul>
         <div id="btn-burger" class="btn-nav">
             <div class="line1"></div>
@@ -52,8 +48,8 @@ getRole($host, $db_user, $db_pass, $db_name);
     <div class="element-wrapper"><a href="php/admin/choose_role.php?role=assistant">Assistant</a></div>
 </div>
 </body>
-<script src="script/main.js"></script>
 <script src="script/burger.js"></script>
+<script src="script/main.js"></script>
 <script src="script/user-data-handler.js"></script>
 <script src="script/input-file.js"></script>
 <script src="script/sign-up.js"></script>
