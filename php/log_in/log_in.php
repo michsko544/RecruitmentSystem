@@ -53,13 +53,13 @@ try
                             header('Location: /profile.php?role=applicant');
                             break;
                         case 3:
-                            header('Location: /applications.php?role=recruiter');
+                            header('Location: /applicationsW.php?role=recruiter');
                             break;
                         case 4:
-                            header('Location: /applications.php?role=manager');
+                            header('Location: /applicationsW.php?role=manager');
                             break;
                         case 5:
-                            header('Location: /applications.php?role=assistant');
+                            header('Location: /applicationsW.php?role=assistant');
                             break;
                     }
                 }
