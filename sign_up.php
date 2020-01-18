@@ -2,6 +2,7 @@
 session_start();
 require_once "php/FormsValidation.php";
 require_once "php/connect.php";
+
 $inst = new FormsValidation(true);
 ?>
 

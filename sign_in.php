@@ -9,6 +9,8 @@ if ((!isset($_SESSION['successful-sign-up'])) || ($_SESSION['successful-sign-up'
   unset($_SESSION['successful-sign-up']);
 }
 
+require "php/connect.php";
+
 // Unset remembered values
 if (isset($_SESSION['rem_username'])) unset($_SESSION['rem_username']);
 if (isset($_SESSION['rem_email'])) unset($_SESSION['rem_email']);
