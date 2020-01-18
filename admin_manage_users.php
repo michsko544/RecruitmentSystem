@@ -1,10 +1,5 @@
 <?php
-session_start();
-if ((!isset($_SESSION['logged_in'])) || ($_SESSION['logged_in'] == false))
-{
-    header('Location: index.php');
-    exit();
-}
+
 ?>
 
 <!DOCTYPE html>
@@ -45,22 +40,10 @@ if ((!isset($_SESSION['logged_in'])) || ($_SESSION['logged_in'] == false))
 <div id="container">
 
 
-<!-- TODO show website stats, restrict website , generate report -->
-    <div class="small-title"> Admin panel </div> <!-- TODO wyśrodkować -->
-    <div class="element-wrapper">Server time</div> <!-- TODO add server time -->
-    <div class="element-wrapper">Last week stats</div> <!-- TODO add stats -->
-    <div> New users: </div>
-    <div> New applications: </div>
-    <div> Visits: </div>
-    <div> Most popular position: </div>
-    <div> Rejected applications: </div>
-    <div> Accepted applications: </div> <!-- TODO maybe to report / manager's main page -->
 
-    <div> Users: </div>
-    <div> Applicants: </div>
-    <div> : </div>
-    <div class="element-wrapper"><a href="php/admin/restrict_access.php">Shut down service</a></div>
-    <div class="element-wrapper"><a href="php/generateReport.php">Generate report</a></div>
+    <div class="small-title"> Manage users </div>
+    <!-- TODO list users from json, buttons: block, remove  -->
+
 
 
 </div>
@@ -71,6 +54,4 @@ if ((!isset($_SESSION['logged_in'])) || ($_SESSION['logged_in'] == false))
 <script src="script/input-file.js"></script>
 <script src="script/sign-up.js"></script>
 </html>
-
-
 
