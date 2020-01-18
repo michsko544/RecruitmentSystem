@@ -2,6 +2,7 @@
 session_start();
 require_once "php/FormsValidation.php";
 require_once "php/connect.php";
+require_once "php/getRole.php";
 getRole($host, $db_user, $db_pass, $db_name);
 $inst = new FormsValidation(true);
 ?>

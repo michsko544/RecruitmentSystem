@@ -1,7 +1,5 @@
 <?php
 function getRole($host, $db_user, $db_pass, $db_name){
-    session_start();
-    require_once "connect.php";
     require_once "HandleJson.php";
      $array = array();
      $json = new HandleJson();
