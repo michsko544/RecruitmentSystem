@@ -1,6 +1,6 @@
 <?php
 function getRepliesData($user){
-    require_once "connect.php";
+    require "connect.php";
     require_once "HandleJson.php";
 
     $query_id = "SELECT c.id_conv FROM users u join messages m on u.id_user=m.id_user join conv c on m.id_conv=c.id_conv join conv_part cp on cp.id_conv=c.id_conv join users u1 on u1.id_user=m.id_sender where m.id_user = '{$user}' or m.id_sender = '{$user}' group by c.id_conv order by m.time";

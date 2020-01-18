@@ -1,6 +1,6 @@
 <?php
 function getChatData($conv){
-    require_once "connect.php";
+    require "connect.php";
     require_once "HandleJson.php";
 
     $query_to = "SELECT distinct c.topic from conv_part cp join users u on u.id_user=cp.id_user join conv c on c.id_conv=cp.id_conv join messages m on m.id_conv=c.id_conv join users us on us.id_user=m.id_sender where c.id_conv = {$conv} group by m.id_message";
@@ -60,7 +60,7 @@ function getChatData($conv){
 }
 
 function addMessage($mess, $usr){
-    require_once "connect.php";
+    require "connect.php";
     require_once "HandleJson.php";
     require_once "FormsValidation.php";
 
@@ -68,7 +68,8 @@ function addMessage($mess, $usr){
 
     // validate message
     if (!preg_match('/^[a-z0-9\040.\-]+$/i', $mess)) {
-        $vali->notGood('err_message', 'Message cannot contain special characters');
+        $vali->setFlag(false);
+        $_SESSION["err_message"] = 'Message cannot contain special characters';
     }
     if ($vali->checkFlag() == true){
         try{

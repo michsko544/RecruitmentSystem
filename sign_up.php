@@ -2,8 +2,10 @@
 session_start();
 require_once "php/FormsValidation.php";
 require_once "php/connect.php";
+
 require_once "php/getRole.php";
 getRole($host, $db_user, $db_pass, $db_name);
+
 $inst = new FormsValidation(true);
 ?>
 
@@ -81,12 +83,6 @@ $inst = new FormsValidation(true);
                 $inst->setError('err_terms');
                 ?>
             </div>
-            <?php
-            if(isset($_SESSION['error']))
-            {
-                echo $_SESSION['error'];
-            }
-            ?>
             <div class="form-btn-wrapper">
                 <input type="submit" value="Sign in" class="btn btn-cyan" id="btn-sign-up-1">
             </div>

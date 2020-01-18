@@ -2,7 +2,7 @@
 
 function notGood($err_name, $err_message, $inst)
 {
-    $inst->correct_data = false;
+    $inst->setFlag(false);
     $_SESSION["$err_name"] = $err_message;
     header("Location: /admin_create_user.php");
 }
@@ -93,8 +93,9 @@ if (isset($_POST['login'])){
 
             if ($inst->checkFlag() == true)
             {
+                echo "dziala";
                 if ($connection->query("insert into users (id_user, login, name, surname, pass, id_role) values (null, '{$username}', '{$first_name}', '{$last_name}', '{$hashed_password}', {$role_id})")){
-                    header("Location: admin_success.php");
+                    header("Location: /admin_success.php");
                 } else {
                     throw new Exception($connection->error);
                 }

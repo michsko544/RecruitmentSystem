@@ -1,12 +1,15 @@
 <?php
 session_start();
+if ((!isset($_SESSION['logged_in'])) || ($_SESSION['logged_in'] == false))
+{
+    header('Location: index.php');
+    exit();
+}
 require_once "php/connect.php";
 require_once "php/getRole.php";
 getRole($host, $db_user, $db_pass, $db_name);
 
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,10 +30,10 @@ getRole($host, $db_user, $db_pass, $db_name);
         <div class="logo-nav">myCompany</div>
         <ul class="nav-links">
             <li id="menu">Menu</li>
-            <li><a href="#">My profile</a></li>
-            <li><a href="#">Applications</a></li>
-            <li><a href="#">Replies</a></li>
-            <li><a href="#">Sign out</a></li>
+            <li><a href="admin_main.php">Main page</a></li>
+            <li><a href="admin_create_user.php">Add user</a></li>
+            <li><a href="admin_pick_role.php">Pick role</a></li>
+            <li><a href="php/log_in/log_out.php">Sign out</a></li>
         </ul>
         <div id="btn-burger" class="btn-nav">
             <div class="line1"></div>
@@ -40,22 +43,19 @@ getRole($host, $db_user, $db_pass, $db_name);
     </div>
     <div id="nav-help"></div>
 </nav>
+
 <div id="container">
-    <div class="small-title"> User added successfully! </div>
-    <div class="list-row">
-        <a href="admin_create_user.php">
-        <div class="btn-add" id="btn-skill">
-            <div class="btn-text">
-                Add next user
-            </div>
-            <div class="btn-border">
-                <div class="btn-icon">
-                    +
-                </div>
-            </div>
-        </div>
-        </a>
-    </div>
+    <div class="small-title"> Choose role </div> <!-- TODO wyśrodkować -->
+    <div class="element-wrapper"><a href="php/admin/choose_role.php?role=applicant">Applicant</a></div>
+    <div class="element-wrapper"><a href="php/admin/choose_role.php?role=recruiter">Recruiter</a></div>
+    <div class="element-wrapper"><a href="php/admin/choose_role.php?role=manager">Manager</a></div>
+    <div class="element-wrapper"><a href="php/admin/choose_role.php?role=assistant">Assistant</a></div>
 </div>
 </body>
+<script src="script/main.js"></script>
+<script src="script/burger.js"></script>
+<script src="script/user-data-handler.js"></script>
+<script src="script/input-file.js"></script>
+<script src="script/sign-up.js"></script>
 </html>
+

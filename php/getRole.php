@@ -1,5 +1,7 @@
 <?php
 function getRole($host, $db_user, $db_pass, $db_name){
+
+    require "connect.php";
     require_once "HandleJson.php";
      $array = array();
      $json = new HandleJson();
@@ -9,7 +11,7 @@ function getRole($host, $db_user, $db_pass, $db_name){
          $assoc = $query->fetch_assoc();
          $role = $assoc['name_role'];
          $array['role'] = $role;
-         $json->createJsonFile("../json/role.json", $array);
+         $json->createJsonFile("json/role.json", $array);
      }
 
 }

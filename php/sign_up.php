@@ -2,7 +2,7 @@
 session_start();
 require_once "FormsValidation.php";
 require_once "InsertToDB.php";
-require_once "connect.php";
+require "connect.php";
 mysqli_report(MYSQLI_REPORT_STRICT);
 $sign_up_class = new FormsValidation(true);
 $db_insert = new InsertToDB($host, $db_user, $db_pass, $db_name);

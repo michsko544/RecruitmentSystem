@@ -45,7 +45,6 @@ if ((isset($_SESSION['logged_in'])) && ($_SESSION['logged_in'] == true))
                         echo $_SESSION['error'];
                     }
                 ?>
-
                 <div class="form-btn-wrapper">
                     <input type="submit" value="Sign in">
                 </div>

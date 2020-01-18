@@ -8,9 +8,13 @@ if ((!isset($_SESSION['successful-sign-up'])) || ($_SESSION['successful-sign-up'
 } else {
   unset($_SESSION['successful-sign-up']);
 }
-require_once "php/connect.php";
+
+require "php/connect.php";
 require_once "php/getRole.php";
 getRole($host, $db_user, $db_pass, $db_name);
+
+
+
 // Unset remembered values
 if (isset($_SESSION['rem_username'])) unset($_SESSION['rem_username']);
 if (isset($_SESSION['rem_email'])) unset($_SESSION['rem_email']);
@@ -104,9 +108,9 @@ if (isset($_SESSION['form5co'])) unset($_SESSION['form5co']);
         <div class="nav-bar">
             <div class="logo-nav">myCompany</div>
         </div>
+        <div class="small-title"> Successful sign up! </div>
         <div class="input-wrapper">
             <div class="center-wrapper">
-            Congratulations my friend U R in!!!
             <form action="php/log_in/log_in.php" method="post">
                 <div class="sign-in-row">
                     <label for="login">Login</label>
