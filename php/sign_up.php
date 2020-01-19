@@ -129,9 +129,9 @@ if (isset($_FILES['cv[]']) || isset($_FILES['certificate[]']))
 }
 // For testing only
 //------------------------------+
-$_SESSION['form5cv'] = true; // |
-$_SESSION['form5ce'] = true; // |
-$_SESSION['form5co'] = true; // |
+//$_SESSION['form5cv'] = true; // |
+//$_SESSION['form5ce'] = true; // |
+//$_SESSION['form5co'] = true; // |
 //------------------------------+
 if ( isset($_SESSION['form1']) && isset($_SESSION['form2']) && isset($_SESSION['form3']) && isset($_SESSION['form4l']) && isset($_SESSION['form4sk']) && isset($_SESSION['form4s']) && isset($_SESSION['form5cv']) && isset($_SESSION['form5ce']) && isset($_SESSION['form5co']) )
     if (($_SESSION['form1'] == true) && ($_SESSION['form2'] == true) && ($_SESSION['form3'] == true) && ($_SESSION['form4l'] == true) &&($_SESSION['form4sk'] == true) && ($_SESSION['form4s'] == true) && ($_SESSION['form5cv'] == true) && ($_SESSION['form5ce'] == true) &&($_SESSION['form5co'] == true))
