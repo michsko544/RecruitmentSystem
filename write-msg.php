@@ -68,7 +68,6 @@ if (isset($_POST['message-field']))
 
 <script src="script/burger.js"></script>
 <script src="script/main.js"></script>
-<!--<script src="script/replies.js"></script>
-<script src="script/loadReplies.js"></script>-->
+<script src="script/userRecognizer.js"></script>
 
 </html>

@@ -65,6 +65,8 @@ if ((!isset($_SESSION['logged_in'])) || ($_SESSION['logged_in'] == false))
 <script src="script/user-data-handler.js"></script>
 <script src="script/input-file.js"></script>
 <script src="script/sign-up.js"></script>
+<script src="script/userRecognizer.js"></script>
+
 </html>
 
 

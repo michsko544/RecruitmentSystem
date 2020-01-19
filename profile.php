@@ -215,4 +215,6 @@ switch ($role){
 <script src="script/input-file.js"></script>
 <script src="script/profile.js"></script>
 <script src="script/loadProfile.js"></script>
+<script src="script/userRecognizer.js"></script>
+
 </html>

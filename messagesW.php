@@ -20,7 +20,7 @@ getRepliesData($user_rep);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Recruitment System - Replies</title>
+    <title>Recruitment System - Messages</title>
     <link rel="stylesheet" href="/css/style.css" type="text/css">
     <link rel="stylesheet" href="/font/stylesheet.css" type="text/css" charset="utf-8" />
 </head>
@@ -41,7 +41,7 @@ getRepliesData($user_rep);
     </nav>
     <div id="container">
         <div class="small-title">
-            Replies
+            Messages
         </div>
         <a href="#">
             <div class="list-row">
@@ -57,6 +57,5 @@ getRepliesData($user_rep);
 <script src="script/main.js"></script>
 <script src="script/replies.js"></script>
 <script src="script/loadReplies.js"></script>
-<script src="script/userRecognizer.js"></script>
 
 </html>

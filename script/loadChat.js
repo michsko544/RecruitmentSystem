@@ -3,7 +3,7 @@ const fromJsonToChat = (json) => {
     let titleProps = {
         sender: sender,
         topic: json.topic[0],
-        position: json.position[0]
+        position: json.position ? json.position[0] || "" : ""
     }
     const n = json.counters;
     console.log(titleProps);

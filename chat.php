@@ -49,5 +49,6 @@ if (isset($_GET['cid'])){
 <script src="script/main.js"></script>
 <script src="script/chat.js"></script>
 <script src="script/loadChat.js"></script>
+<script src="script/userRecognizer.js"></script>
 
 </html>

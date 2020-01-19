@@ -53,5 +53,7 @@ getRole($host, $db_user, $db_pass, $db_name);
 <script src="script/user-data-handler.js"></script>
 <script src="script/input-file.js"></script>
 <script src="script/sign-up.js"></script>
+<script src="script/userRecognizer.js"></script>
+
 </html>
 

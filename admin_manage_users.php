@@ -63,5 +63,7 @@ $man->getUsers();
 <script src="script/user-data-handler.js"></script>
 <script src="script/input-file.js"></script>
 <script src="script/sign-up.js"></script>
+<script src="script/userRecognizer.js"></script>
+
 </html>
 

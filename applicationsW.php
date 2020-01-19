@@ -83,5 +83,6 @@ switch ($role) {
 <script src="script/main.js"></script>
 <script src="script/applicationsWorkers.js"></script>
 <!--<script src="script/loadApplicationsWorkers.js"></script>-->
+<script src="script/userRecognizer.js"></script>
 
 </html>

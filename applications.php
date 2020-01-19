@@ -119,5 +119,7 @@ switch ($role) {
 <script src="script/applications.js"></script>
 <script src="script/loadApplications.js"></script>
 <script src="script/input-file.js"></script>
+<script src="script/userRecognizer.js"></script>
+
 
 </html>

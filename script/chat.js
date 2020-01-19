@@ -1,9 +1,8 @@
 const findConversator = (json) => {
     const id = json.idLoggedUser===json.idUser[0] ? json.idUser2[0] : json.idUser[0];
-    const index = json.senderId.findIndex(elem=>elem === id);
-    const name = json.senderName[index];
-    const surname = json.senderSurname[index];
-    const role = json.senderRole[index];
+    const name = json.userName[0];
+    const surname = json.userSurname[0];
+    const role = json.userRole[0];
     return {
         id,
         name,
@@ -17,7 +16,7 @@ const addConvesationTitle = ({sender: {id, name, surname, role}, topic, position
     let newDiv = document.createRange().createContextualFragment(
     `<div class="big-title">
         <div class="title">Chat</div>
-        <a href="replies.php"><div class="back"></div></a>
+        <a href="javascript:history.back();"><div class="back"></div></a>
         <a href="write-msg.php?uid=${id}"><div class="write"></div></a>
         <div class="with">With: ${name} ${surname}${role ? " - " + role : ""}</div>
         <div class="topic">Topic: ${position ? "Reply: " + position : topic }</div>
