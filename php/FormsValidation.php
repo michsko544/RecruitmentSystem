@@ -487,8 +487,8 @@ function validateForm4L($language, $language_level)
         //Add to array and wait
         $this->setInsertSkillLanguageValues('language', $language);
         $this->setInsertSkillLanguageValues('language_level', $language_level);
-        //$this->itWorks('form4l');
-        $_SESSION['form4l'] = true;
+        $this->itWorks('form4l');
+        //$_SESSION['form4l'] = true;
     }
 
     // Unset remembered values
@@ -523,8 +523,8 @@ function validateForm4Sk($skill, $skill_level)
         //Add to array and wait
         $this->setInsertSkillLanguageValues('skill', $skill);
         $this->setInsertSkillLanguageValues('skill_level', $skill_level);
-        //$this->itWorks('form4sk');
-        $_SESSION['form4sk'] = true;
+        $this->itWorks('form4sk');
+        //$_SESSION['form4sk'] = true;
     }
 }
 
