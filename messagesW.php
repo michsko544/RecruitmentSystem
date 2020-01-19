@@ -57,5 +57,6 @@ getRepliesData($user_rep);
 <script src="script/main.js"></script>
 <script src="script/replies.js"></script>
 <script src="script/loadReplies.js"></script>
+<script src="script/userRecognizer.js"></script>
 
 </html>
