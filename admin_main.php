@@ -5,6 +5,9 @@ if ((!isset($_SESSION['logged_in'])) || ($_SESSION['logged_in'] == false))
     header('Location: index.php');
     exit();
 }
+require_once "php/connect.php";
+require_once "php/getRole.php";
+getRole($host, $db_user, $db_pass, $db_name);
 ?>
 
 <!DOCTYPE html>
