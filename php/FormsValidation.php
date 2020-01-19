@@ -572,7 +572,7 @@ function validateForm4S($school, $specialization, $school_start_date, $school_en
         $this->setInsertSchoolValues('end_date', $school_end_date);
         $this->setInsertSchoolValues('city', $school_city);
         $this->setInsertSchoolValues('description', $school_description);
-        $this->itWorks('form4s');
+        $this->itWorks('form4');
         //$_SESSION['form4s'] = true;
     }
 }
@@ -647,7 +647,7 @@ function validateForm5Co($course)
     {
         //Add to array and wait
         $this->setInsertCertSkillValues('course', $course);
-        $this->itWorks('form5co');
+        $this->itWorks('form5');
     }
 }
 // TESTING FUNCTIONS
