@@ -8,11 +8,11 @@ const fromJsonToProfile = (json) => {
     const n = json.counters;
 
     let pDProps = {
-        firstName: pD.firstName,
-        lastName: pD.lastName,
-        phone: pD.phone,
-        country: pD.country,
-        city: pD.city
+        firstName: pD.firstName || "",
+        lastName: pD.lastName || "",
+        phone: pD.phone || "",
+        country: pD.country || "",
+        city: pD.city || ""
     };
     addPersonalData(pDProps);
 

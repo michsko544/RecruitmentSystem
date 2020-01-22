@@ -8,7 +8,7 @@ const addApplication = ({position, name, decision, id}) => {
         `<div class="list-row">
             <div class="position first-text">${position}</div>
             <div class="app-info last-text">${name} - Rejected</div>
-            <a href="profileA.php?uid=${id}" class="btn-element rotate-to-right" >
+            <a href="profileW.php?uid=${id}" class="btn-element rotate-to-right" >
                     <div class="btn-unwrap">
                         <div class="line1"></div>
                         <div class="line2"></div>
@@ -21,7 +21,7 @@ const addApplication = ({position, name, decision, id}) => {
             `<div class="list-row">
                 <div class="position first-text">${position}</div>
                 <div class="app-info last-text">${name} - Accepted</div>
-                <a href="profileA.php?uid=${id}" class="btn-element rotate-to-right" >
+                <a href="profileW.php?uid=${id}" class="btn-element rotate-to-right" >
                     <div class="btn-unwrap">
                         <div class="line1"></div>
                         <div class="line2"></div>
@@ -34,7 +34,19 @@ const addApplication = ({position, name, decision, id}) => {
             `<div class="list-row">
                 <div class="position first-text">${position}</div>
                 <div class="app-info last-text">${name} - <span class="cyan-color">Noteworthy</span></div>
-                <a href="profileA.php?uid=${id}" class="btn-element rotate-to-right" >
+                <a href="profileW.php?uid=${id}" class="btn-element rotate-to-right" >
+                    <div class="btn-unwrap">
+                        <div class="line1"></div>
+                        <div class="line2"></div>
+                    </div>
+                </a>
+            </div>`);
+    } else {
+        newDiv = document.createRange().createContextualFragment(
+            `<div class="list-row">
+                <div class="position first-text">${position}</div>
+                <div class="app-info last-text">${name} - New</div>
+                <a href="profileW.php?uid=${id}" class="btn-element rotate-to-right" >
                     <div class="btn-unwrap">
                         <div class="line1"></div>
                         <div class="line2"></div>

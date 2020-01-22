@@ -1,6 +1,6 @@
 const fromJsonToApplications = (json) => {
     const pos = json.applications.position;
-    const stat = json.applications.status
+    const stat = json.applications.status;
     const n = json.counters;
 
     for(let i = 0; i<n.position; ++i){

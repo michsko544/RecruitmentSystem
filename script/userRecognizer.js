@@ -4,6 +4,7 @@ async function readRole(path) {
     const role = data.role;
 
     loadMenu(role);
+    return role;
 }
 
-readRole("json/role.json");
+const role = readRole("json/role.json");

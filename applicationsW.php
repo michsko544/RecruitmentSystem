@@ -67,22 +67,12 @@ switch ($role) {
         <div class="small-title">
             Received Applications
         </div>
-        <div class="list-row">
-                <div class="position first-text">${position}</div>
-                <div class="app-info last-text">${name} - <span class="cyan-color">Noteworthy</span></div>
-                <a class="btn-element" href="#">
-                    <div class="btn-unwrap">
-                        <div class="line1"></div>
-                        <div class="line2"></div>
-                    </div>
-                </a>
-            </div>
 </body>
 
 <script src="script/burger.js"></script>
 <script src="script/main.js"></script>
 <script src="script/applicationsWorkers.js"></script>
-<!--<script src="script/loadApplicationsWorkers.js"></script>-->
+<script src="script/loadApplicationsWorkers.js"></script>
 <script src="script/userRecognizer.js"></script>
 
 </html>

@@ -43,41 +43,7 @@ const addHighlightEvents = () => {
     return true;
 }
 
-addHighlightEvents();
-
-calendar("exp-0");
-calendar("school-0");
-
-document.getElementById("no-experience").addEventListener("click", function(){
-    const form = this.parentNode.parentNode.parentNode.id;
-    if(this.checked===true){
-        document.getElementById(form).querySelectorAll('div.form-row').forEach(element=>{
-            if(element.children[1]!==undefined){
-                if(element.children[1].className!=="date") {
-                    element.children[1].required=false;
-                } else {
-                    element.children[1].children[0].required=false;
-                    element.children[1].children[1].required=false;
-                }
-            }
-        }); 
-
-        hideDiv("btn-experience");
-    } else {
-        document.getElementById(form).querySelectorAll('div.form-row').forEach(element=>{
-            if(element.children[1]!==undefined){
-                if(element.children[1].className!=="date") {
-                    element.children[1].required=true;
-                } else {
-                    element.children[1].children[0].required=true;
-                    element.children[1].children[1].required=true;
-                }
-            } 
-        }); 
-
-        showDiv("btn-experience--hidden");
-    }
-});
+//addHighlightEvents();
 
 const addPersonalData = ({firstName, lastName, phone, country, city}) => {
     let br = document.querySelector("#break-1");
@@ -113,7 +79,7 @@ const addPersonalData = ({firstName, lastName, phone, country, city}) => {
 
 let countE = 0;
 const addExperience = ({jobTitle, employer, startDate, endDate, city, description}) => {
-    let btn = document.getElementById("btn-experience");
+    let form = document.querySelector("#sform-2");
     let newDiv = document.createRange().createContextualFragment(
         `${countE===0 ? "" : "<br/><br/><br/>"}<div class="form-row">
             <label for="job-title">Job title</label>
@@ -143,26 +109,16 @@ const addExperience = ({jobTitle, employer, startDate, endDate, city, descriptio
             <div class="underlineTA"></div>
         </div>`
     );
-
-    btn.parentNode.insertBefore(newDiv, btn);
-    calendar(`exp-${countE}`);
+    form.appendChild(newDiv);
     ++countE;
-    if(startDate){
-        let date = new Date(new Number(startDate.slice(0,4)),new Number(startDate.slice(5,7))-1,new Number(startDate.slice(8,10)));
-        console.log(date);
-        $(`#start-exp-${countE}`).datepicker("setDate", date );
-    }
-
-    console.log($("#start-exp-"+countE));
 }
 
-document.getElementById("btn-experience").addEventListener("click", addExperience);
 
 let countL = 0;
 let firstLanguage = true;
 const addLanguage = ({lang, level}) => {
-    let btn = document.getElementById("btn-language");
-    let newDiv 
+    let brk = document.querySelector("#sform-4").querySelector(".break");
+    let newDiv;
     if(firstLanguage){
         newDiv = document.createRange().createContextualFragment(
             `<div class="form-row">
@@ -188,17 +144,15 @@ const addLanguage = ({lang, level}) => {
             </div>`
         );
     }
-    btn.parentNode.insertBefore(newDiv, btn);
+    brk.parentNode.insertBefore(newDiv,brk);
     ++countL;
-    addHighlightEvents();
 }
 
-document.getElementById("btn-language").addEventListener("click", addLanguage);
 
 let countSk = 0;
 let firstSkill = true;
 const addSkill = ({skill, level}) => {
-    let btn = document.getElementById("btn-skill");
+    let form = document.querySelector("#sform-4");
     let newDiv;
     if(firstSkill){
         newDiv = document.createRange().createContextualFragment(
@@ -225,16 +179,14 @@ const addSkill = ({skill, level}) => {
             </div>`
         );
     }
-    btn.parentNode.insertBefore(newDiv, btn);
+    form.appendChild(newDiv);
     ++countSk;
-    addHighlightEvents();
 }
 
-document.getElementById("btn-skill").addEventListener("click", addSkill);
 
 let countS = 0;
 const addSchool = ({schoolName, specialization, startDate, endDate, city, description}) => {
-    let btn = document.getElementById("btn-school");
+    let form = document.getElementById("sform-3");
     let newDiv = document.createRange().createContextualFragment(
         `${countS===0 ? "" : "<br/><br/><br/>"}<div class="form-row">
             <label for="school">School</label>
@@ -264,13 +216,10 @@ const addSchool = ({schoolName, specialization, startDate, endDate, city, descri
             <div class="underlineTA"></div>
         </div>`
     );
-    btn.parentNode.insertBefore(newDiv, btn);
-    calendar(`school-${countS}`);
+    form.appendChild(newDiv);
     ++countS;
-    addHighlightEvents();
 }
 
-document.getElementById("btn-school").addEventListener("click", addSchool);
 
 const addCV = ({cv}) => {
     let upload = document.querySelectorAll(".upload")
@@ -315,7 +264,7 @@ const addCertificate = ({cert}) => {
 let countC = 0;
 let firstCourse = true;
 const addCourse = ({course}) => {
-    let btn = document.getElementById("btn-course");
+    let form = document.getElementById("sform-5");
     let newDiv;
     if(firstCourse){
         newDiv = document.createRange().createContextualFragment(
@@ -334,9 +283,6 @@ const addCourse = ({course}) => {
             </div>`
         );
     }
-    btn.parentNode.insertBefore(newDiv, btn);
+    form.appendChild(newDiv);
     ++countC;
-    addHighlightEvents();
 }
-
-document.getElementById("btn-course").addEventListener("click", addCourse);
