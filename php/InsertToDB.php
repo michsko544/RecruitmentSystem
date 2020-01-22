@@ -118,6 +118,7 @@ class InsertToDB
                     $id_applicant_Q = $applicant_V['id_applicants'];
                     $this->itWorks("</br> id_applicant-val: " . $id_applicant_Q);
 
+                    // TODO --- add multi insert ---
                     if ($this->conn->query("insert into experiences (id_experience, job, employer, start_job, end_job, description, id_city, id_applicants) VALUES (null,'{$_SESSION['array']['emp']['job_title'][0]}','{$_SESSION['array']['emp']['employer'][0]}','{$_SESSION['array']['emp']['start_date'][0]}', '{$_SESSION['array']['emp']['end_date'][0]}','{$_SESSION['array']['emp']['description'][0]}',{$this->id_city_FQ}, {$id_applicant_Q})")) {
                         $this->checkLanguage($_SESSION['array']['sk_lang']['language'][0]);
                         echo "</br> query-3-success";
@@ -135,7 +136,7 @@ class InsertToDB
                                     echo "</br> query-5-success";
                                     $id_position_Q = $this->checkPosition($_SESSION['array']['val']['position']);
                                     // TODO cover letter
-
+                                    // TODO --- add multi insert ---
                                     if ($this->conn->query("insert into applications (id_application, id_applicants, id_decision, id_position, id_status, id_cl) values (null, {$id_applicant_Q}, 4, {$id_position_Q}, 1, 1)"));{ // TODO add cover letter id
                                         echo "</br> query-6-success";
                                         $_SESSION['successful-sign-up'] = true;
