@@ -136,7 +136,7 @@ class InsertToDB
                                     $id_position_Q = $this->checkPosition($_SESSION['array']['val']['position']);
                                     // TODO cover letter
 
-                                    if ($this->conn->query("insert into applications (id_application, id_applicants, id_decision, id_position, id_status, id_cl) values (null, {$id_applicant_Q}, 3, {$id_position_Q}, 1, 1)"));{ // TODO add cover letter id
+                                    if ($this->conn->query("insert into applications (id_application, id_applicants, id_decision, id_position, id_status, id_cl) values (null, {$id_applicant_Q}, 4, {$id_position_Q}, 1, 1)"));{ // TODO add cover letter id
                                         echo "</br> query-6-success";
                                         $_SESSION['successful-sign-up'] = true;
                                         header ('Location: ../sign_in.php');

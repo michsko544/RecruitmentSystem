@@ -47,9 +47,10 @@ getRole($host, $db_user, $db_pass, $db_name);
     <div class="small-title"> Admin panel </div> <!-- TODO wyśrodkować -->
     <div class="element-wrapper">Server time</div> <!-- TODO add server time -->
     <div class="element-wrapper">Last week stats</div> <!-- TODO add stats -->
+    <div> Visits: </div>
+
     <div> New users: </div>
     <div> New applications: </div>
-    <div> Visits: </div>
     <div> Most popular position: </div>
     <div> Rejected applications: </div>
     <div> Accepted applications: </div> <!-- TODO maybe to report / manager's main page -->
