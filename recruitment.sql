@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Czas generowania: 18 Sty 2020, 23:13
--- Wersja serwera: 10.4.10-MariaDB
--- Wersja PHP: 7.1.33
+-- Host: 127.0.0.1
+-- Czas generowania: 22 Sty 2020, 14:04
+-- Wersja serwera: 10.4.8-MariaDB
+-- Wersja PHP: 7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -760,7 +760,8 @@ CREATE TABLE `sor` (
 --
 
 INSERT INTO `sor` (`id_stage`, `name_stage`, `description`, `id_application`) VALUES
-(1, 'interview', 'ask about applicant\'s university', NULL);
+(1, 'interview', 'ask about applicant\'s university', 1),
+(2, 'evaluate experi', 'check if employed in Google', 2);
 
 -- --------------------------------------------------------
 
@@ -1018,7 +1019,7 @@ ALTER TABLE `users`
   ADD KEY `id_role` (`id_role`);
 
 --
--- AUTO_INCREMENT dla tabel zrzutów
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
@@ -1145,7 +1146,7 @@ ALTER TABLE `skills`
 -- AUTO_INCREMENT dla tabeli `sor`
 --
 ALTER TABLE `sor`
-  MODIFY `id_stage` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_stage` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT dla tabeli `statuses`
