@@ -9,7 +9,12 @@ require_once "php/connect.php";
 require_once "php/getRole.php";
 getRole($host, $db_user, $db_pass, $db_name);
 
-
+require_once "php/add_position.php";
+$inst = new AddPosition(true, $host, $db_user, $db_pass, $db_name);
+if (isset($_POST['position'])){
+    echo "hello there";
+    $inst->add();
+}
 
 ?>
 
@@ -46,19 +51,22 @@ getRole($host, $db_user, $db_pass, $db_name);
 <div id="container">
     <div id="sign-up-1" class="sign-up-wrapper">
         <div class="page-title cyan-color">Add position</div>
-        <form id="sform" action="php/add_position.php" method="post">
+        <form id="sform" action="" method="post">
             <div class="form-row">
                 <label for="login">Position name</label>
-                <input type="text" name="name" value="<?php //$inst->rememberValue('rem_name'); ?>" placeholder="Position" required>
+                <input type="text" name="position" value="<?php $inst->rememberValue('rem_position'); ?>" placeholder="Position" required>
                 <div class="underline"></div>
                 <?php
-                //$inst->setError('err_username');
+                $inst->setError('err_position');
                 ?>
             </div>
             <div class="form-row">
                 <label for="description">Description</label>
-                <textarea name="description" cols="35" rows="4" placeholder="e.g.  programming, data analysing, network designing, microprocessors coding"></textarea>
+                <textarea name="description" cols="35" rows="4" placeholder="e.g.  programming, data analysing, network designing, microprocessors coding"><?php $inst->rememberValue('rem_description'); ?></textarea>
                 <div class="underlineTA"></div>
+                <?php
+                $inst->setError('err_description');
+                ?>
             </div>
 
             <div class="form-btn-wrapper">
