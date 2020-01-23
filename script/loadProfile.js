@@ -78,9 +78,9 @@ const fromJsonToProfile = (json) => {
     }
 
     let CVProps = {
-        cv: add.cv[0]
+        //cv: add.cv[0]
     }
-    addCV(CVProps);
+    //addCV(CVProps);
 }
 
 
