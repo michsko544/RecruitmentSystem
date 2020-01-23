@@ -5,29 +5,34 @@ if ((!isset($_SESSION['logged_in'])) || ($_SESSION['logged_in'] == false))
     header('Location: index.php');
     exit();
 }
-require_once "php/connect.php";
-require_once "php/getRole.php";
-getRole($host, $db_user, $db_pass, $db_name);
-require_once "php/profile.php";
-$role = $_SESSION['id_role'];
-switch ($role){
-    case 1:
-        break; // TODO admin - what should be shown (maybe nothing)
-    case 2:
-        getProfileData($_SESSION['id_user']);
-        break;
-    case 3:
-        $user_profile = $_GET['id_user']; // TODO if recruiter / manager / assistant -> GET user's id
-        getProfileData($user_profile);
-        break;
-    case 4:
-        $user_profile = $_GET['id_user']; // TODO if recruiter / manager / assistant -> GET user's id
-        getProfileData($user_profile);
-        break;
-    case 5:
-        $user_profile = $_GET['id_user']; // TODO if recruiter / manager / assistant -> GET user's id
-        getProfileData($user_profile);
-        break;
+    require_once "php/connect.php";
+    require_once "php/getRole.php";
+    getRole($host, $db_user, $db_pass, $db_name);
+    require_once "php/profile.php";
+    $role = $_SESSION['id_role'];
+    if (isset($_GET['id_application'])){ // TODO move to view_stages.php if exists
+        require_once "php/AddStage.php";
+        $stage = new AddStage($host, $db_user, $db_pass, $db_name);
+        $stage->view($_GET['id_application']);
+    }
+    switch ($role){
+        case 1:
+            break; // TODO admin - what should be shown (maybe nothing)
+        case 2:
+            getProfileData($_SESSION['id_user']);
+            break;
+        case 3:
+            $user_profile = $_GET['id_user']; // TODO if recruiter / manager / assistant -> GET user's id
+            getProfileData($user_profile);
+            break;
+        case 4:
+            $user_profile = $_GET['id_user']; // TODO if recruiter / manager / assistant -> GET user's id
+            getProfileData($user_profile);
+            break;
+        case 5:
+            $user_profile = $_GET['id_user']; // TODO if recruiter / manager / assistant -> GET user's id
+            getProfileData($user_profile);
+            break;
 }
 ?>
 <!DOCTYPE html>

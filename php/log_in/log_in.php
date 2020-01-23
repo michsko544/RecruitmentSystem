@@ -1,13 +1,11 @@
 <?php
 session_start();
-
+require_once "../connect.php";
 if ((!isset($_POST['login'])) || (!isset($_POST['password'])))
 {
-   header('Location: /index.php');
-   exit();
+    header('Location: /index.php');
+    exit();
 }
-
-require_once "../connect.php";
 mysqli_report(MYSQLI_REPORT_STRICT);
 try
 {

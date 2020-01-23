@@ -17,12 +17,16 @@ class AddPosition extends FormsValidation {
         $this->conn = new mysqli($host, $db_user, $db_pass, $db_name);
     }
 
+    function __destruct()
+    {
+        $this->conn->close();
+    }
+
     function notGood($err_name, $err_message)
     {
         $this->setFlag(false);
         $_SESSION["$err_name"] = $err_message;
         header("Location: /manage_service.php");
-        echo " ah shit ..";
     }
 
     function add(){
@@ -47,20 +51,19 @@ class AddPosition extends FormsValidation {
             {
                 $this->notGood('err_description', 'Description must have less than 500 characters');
             }
-
+            $_SESSION['rem_position'] = $position;
+            $_SESSION['rem_description'] = $description;
             if ($this->checkFlag() == true){
                 try {
-                    echo " but our journey is not over";
                     if ($this->conn->connect_errno != 0) {
                         throw new Exception(mysqli_connect_errno());
                     } else {
-                        echo " almost there";
                         if (!$this->conn->query("insert into positions (id_position, position, description) values (null, '{$position}', '{$description}')")){
-                            echo " ahh man";
                             throw new Exception($this->conn->error);
                         } else {
-                            echo " whats your problem";
                             $_SESSION['position-success'] = true;
+                            if (isset($_SESSION['rem_position'])) unset($_SESSION['rem_position']);
+                            if (isset($_SESSION['rem_description'])) unset($_SESSION['rem_description']);
                             header("Location: manage_service.php?aP=success");
                         }
                     }

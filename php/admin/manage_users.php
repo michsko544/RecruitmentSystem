@@ -15,6 +15,11 @@ class ManageUsers extends HandleJson {
         $this->conn = new mysqli($host, $db_user, $db_pass, $db_name);
     }
 
+    function __destruct()
+    {
+        $this->conn->close();
+    }
+
     function getUsers(){
     $query_id = "select id_user from users order by id_user";
     $query_lo = "select login from users order by id_user";

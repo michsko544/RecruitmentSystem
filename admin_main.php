@@ -45,7 +45,7 @@ getRole($host, $db_user, $db_pass, $db_name);
 
 <!-- TODO show website stats, restrict website , generate report -->
     <div class="small-title"> Admin panel </div> <!-- TODO wyśrodkować -->
-    <div class="element-wrapper">Server time</div> <!-- TODO add server time -->
+    <div class="element-wrapper">Server time: </div> <!-- TODO add server time -->
     <div class="element-wrapper">Last week stats</div> <!-- TODO add stats -->
     <div> Visits: </div>
 
@@ -58,7 +58,7 @@ getRole($host, $db_user, $db_pass, $db_name);
     <div> Users: </div>
     <div> Applicants: </div>
     <div> : </div>
-    <div class="element-wrapper"><a href="php/admin/restrict_access.php">Shut down service</a></div>
+
     <div class="element-wrapper"><a href="php/generateReport.php">Generate report</a></div>
 
 
