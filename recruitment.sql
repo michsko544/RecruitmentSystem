@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 24 Sty 2020, 13:23
--- Wersja serwera: 10.4.8-MariaDB
--- Wersja PHP: 7.3.11
+-- Czas generowania: 24 Sty 2020, 19:01
+-- Wersja serwera: 10.1.38-MariaDB
+-- Wersja PHP: 7.3.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Baza danych: `recruitment`
+-- Baza danych: `rekrut`
 --
 
 -- --------------------------------------------------------
@@ -46,7 +46,7 @@ CREATE TABLE `applicants` (
 INSERT INTO `applicants` (`id_applicants`, `phone`, `email`, `id_cv`, `id_city`, `id_user`, `id_certificate`, `id_country`) VALUES
 (1, '000000000', 'jakis@.com', 1, 1, 1, 1, 1),
 (2, '123456789', 'rob@mail.com', 2, 3, 3, 2, 22),
-(3, '911911911', 'robin@bman.com', 3, 4, 6, 3, 237),
+(3, '911911911', 'robin@bman.com', 3, 4, 6, 3, 235),
 (4, '111111111', 'user@maiol.com', 3, 7, 7, 3, 235);
 
 -- --------------------------------------------------------
@@ -61,16 +61,19 @@ CREATE TABLE `applications` (
   `id_decision` int(11) NOT NULL,
   `id_position` int(11) NOT NULL,
   `id_status` int(11) NOT NULL,
-  `id_cl` int(11) NOT NULL
+  `id_cl` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `id_conv` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Zrzut danych tabeli `applications`
 --
 
-INSERT INTO `applications` (`id_application`, `id_applicants`, `id_decision`, `id_position`, `id_status`, `id_cl`) VALUES
-(1, 1, 2, 1, 1, 1),
-(2, 2, 2, 3, 3, 2);
+INSERT INTO `applications` (`id_application`, `id_applicants`, `id_decision`, `id_position`, `id_status`, `id_cl`, `date`, `id_conv`) VALUES
+(1, 1, 2, 1, 1, 1, '2020-01-19', NULL),
+(2, 2, 2, 5, 3, 2, '2020-01-20', NULL),
+(3, 4, 3, 3, 2, 1, '2020-01-25', 1);
 
 -- --------------------------------------------------------
 
@@ -616,8 +619,8 @@ INSERT INTO `levels` (`id_level`, `level`) VALUES
 CREATE TABLE `messages` (
   `id_message` int(11) NOT NULL,
   `id_sender` int(11) NOT NULL,
-  `message` text DEFAULT NULL,
-  `time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `message` text,
+  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `id_conv` int(11) NOT NULL,
   `id_user` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -819,29 +822,30 @@ CREATE TABLE `users` (
   `name` varchar(20) NOT NULL,
   `surname` varchar(20) NOT NULL,
   `pass` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_polish_ci NOT NULL,
-  `id_role` int(11) NOT NULL
+  `id_role` int(11) NOT NULL,
+  `date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Zrzut danych tabeli `users`
 --
 
-INSERT INTO `users` (`id_user`, `login`, `name`, `surname`, `pass`, `id_role`) VALUES
-(1, 'bob', 'Bob', 'Thebuilder', '$2y$10$9HJ5bdPQELb3XWV7gPJHueOVEUyBLdxZzOPrWZMRyJx/zDm3VP5zy', 2),
-(2, 'jerry', 'Jerry', 'Snow', '$2y$10$B2yosZmaSdLv.RcTTvnIg.dNBr6UTkvsSIgo5TzXNDSzbRd0k9wv.', 4),
-(3, 'rob', 'Robert', 'Barszcz', '$2y$10$URdbJa9Ha2zAO8YfFj0mguwUwhCEeGU4o.xUK4YLmv8WLLd5/Y6Gm', 2),
-(4, 'kate', 'Katrina', 'Novowolska', '$2y$10$MLhaUSCJTgpvqx4YRN64tucmJhCQ8lEu9tLo9OKixxHhpZFrLNi12', 5),
-(5, 'jack', 'Jack', 'Theripper', '$2y$10$4C/OeoDIIpVMchjEsggxSOR3u4.idHM9oHD5NwxQajEG8BYP9ib52', 3),
-(6, 'Robin', 'Robin', 'SUperhero', '$2y$10$9KBIfN9hz1vasEAoDZoJveXWlsgmLHagwWIDxYRkN4Ca3UlG3Mtym', 2),
-(7, 'user', 'John', 'Smith', '$2y$10$eevd2cg7RRUf.GiQZC2IceEXVMCRDE5TluSCAmwp9BZYILEtNGrqi', 2),
-(8, 'admin', 'Adam', 'Miniman', '$2y$10$eevd2cg7RRUf.GiQZC2IceEXVMCRDE5TluSCAmwp9BZYILEtNGrqi', 1),
-(9, 'maria', 'Maria', 'Curie', '$2y$10$x3R/AMydqILN/LSJnq6RRuGL.diaiXZ.VQUYgofBWg3p0RC1plCbu', 3),
-(10, 'greg', 'Gregor', 'McEvan', '$2y$10$e8pJ0Ygjmisas//nlr59EORWrAMXJOm5VmXAZS2Q8OXQGImm5Viqa', 4),
-(11, 'eddy', 'Edward', 'Snowden', '$2y$10$1dJG63ruj4TE/33/e.99FujzCo4ABVGjIwMq/ODvi4KDTC1Zi..lS', 3),
-(12, 'admin-applicant', 'Steve', 'Gorgonzola', '$2y$10$B2yosZmaSdLv.RcTTvnIg.dNBr6UTkvsSIgo5TzXNDSzbRd0k9wv.', 2),
-(13, 'admin-recruiter', 'John', 'Doe', '$2y$10$B2yosZmaSdLv.RcTTvnIg.dNBr6UTkvsSIgo5TzXNDSzbRd0k9wv.', 3),
-(14, 'admin-manager', 'Matty', 'Blue', '$2y$10$B2yosZmaSdLv.RcTTvnIg.dNBr6UTkvsSIgo5TzXNDSzbRd0k9wv.', 4),
-(15, 'admin-assistant', 'Hu', 'Dis', '$2y$10$B2yosZmaSdLv.RcTTvnIg.dNBr6UTkvsSIgo5TzXNDSzbRd0k9wv.', 5);
+INSERT INTO `users` (`id_user`, `login`, `name`, `surname`, `pass`, `id_role`, `date`) VALUES
+(1, 'bob', 'Bob', 'Thebuilder', '$2y$10$9HJ5bdPQELb3XWV7gPJHueOVEUyBLdxZzOPrWZMRyJx/zDm3VP5zy', 2, '2020-01-15'),
+(2, 'jerry', 'Jerry', 'Snow', '$2y$10$B2yosZmaSdLv.RcTTvnIg.dNBr6UTkvsSIgo5TzXNDSzbRd0k9wv.', 4, '2020-01-15'),
+(3, 'rob', 'Robert', 'Barszcz', '$2y$10$URdbJa9Ha2zAO8YfFj0mguwUwhCEeGU4o.xUK4YLmv8WLLd5/Y6Gm', 2, '2020-01-16'),
+(4, 'kate', 'Katrina', 'Novowolska', '$2y$10$MLhaUSCJTgpvqx4YRN64tucmJhCQ8lEu9tLo9OKixxHhpZFrLNi12', 5, '2020-01-17'),
+(5, 'jack', 'Jack', 'Theripper', '$2y$10$4C/OeoDIIpVMchjEsggxSOR3u4.idHM9oHD5NwxQajEG8BYP9ib52', 3, '2020-01-24'),
+(6, 'Robin', 'Robin', 'SUperhero', '$2y$10$9KBIfN9hz1vasEAoDZoJveXWlsgmLHagwWIDxYRkN4Ca3UlG3Mtym', 2, '2020-01-25'),
+(7, 'user', 'John', 'Smith', '$2y$10$eevd2cg7RRUf.GiQZC2IceEXVMCRDE5TluSCAmwp9BZYILEtNGrqi', 2, '2019-12-03'),
+(8, 'admin', 'Adam', 'Miniman', '$2y$10$eevd2cg7RRUf.GiQZC2IceEXVMCRDE5TluSCAmwp9BZYILEtNGrqi', 1, '2019-12-24'),
+(9, 'maria', 'Maria', 'Curie', '$2y$10$x3R/AMydqILN/LSJnq6RRuGL.diaiXZ.VQUYgofBWg3p0RC1plCbu', 3, NULL),
+(10, 'greg', 'Gregor', 'McEvan', '$2y$10$e8pJ0Ygjmisas//nlr59EORWrAMXJOm5VmXAZS2Q8OXQGImm5Viqa', 4, NULL),
+(11, 'eddy', 'Edward', 'Snowden', '$2y$10$1dJG63ruj4TE/33/e.99FujzCo4ABVGjIwMq/ODvi4KDTC1Zi..lS', 3, NULL),
+(12, 'admin-applicant', 'Steve', 'Gorgonzola', '$2y$10$B2yosZmaSdLv.RcTTvnIg.dNBr6UTkvsSIgo5TzXNDSzbRd0k9wv.', 2, NULL),
+(13, 'admin-recruiter', 'John', 'Doe', '$2y$10$B2yosZmaSdLv.RcTTvnIg.dNBr6UTkvsSIgo5TzXNDSzbRd0k9wv.', 3, NULL),
+(14, 'admin-manager', 'Matty', 'Blue', '$2y$10$B2yosZmaSdLv.RcTTvnIg.dNBr6UTkvsSIgo5TzXNDSzbRd0k9wv.', 4, NULL),
+(15, 'admin-assistant', 'Hu', 'Dis', '$2y$10$B2yosZmaSdLv.RcTTvnIg.dNBr6UTkvsSIgo5TzXNDSzbRd0k9wv.', 5, NULL);
 
 --
 -- Indeksy dla zrzutów tabel
@@ -867,7 +871,8 @@ ALTER TABLE `applications`
   ADD KEY `id_decision` (`id_decision`),
   ADD KEY `id_position` (`id_position`),
   ADD KEY `id_status` (`id_status`),
-  ADD KEY `id_cl` (`id_cl`);
+  ADD KEY `id_cl` (`id_cl`),
+  ADD KEY `id_conv` (`id_conv`);
 
 --
 -- Indeksy dla tabeli `certifications`
@@ -1189,7 +1194,8 @@ ALTER TABLE `applications`
   ADD CONSTRAINT `applications_ibfk_1` FOREIGN KEY (`id_applicants`) REFERENCES `applicants` (`id_applicants`),
   ADD CONSTRAINT `applications_ibfk_2` FOREIGN KEY (`id_decision`) REFERENCES `decisions` (`id_decision`),
   ADD CONSTRAINT `applications_ibfk_3` FOREIGN KEY (`id_position`) REFERENCES `positions` (`id_position`),
-  ADD CONSTRAINT `applications_ibfk_4` FOREIGN KEY (`id_status`) REFERENCES `statuses` (`id_status`);
+  ADD CONSTRAINT `applications_ibfk_4` FOREIGN KEY (`id_status`) REFERENCES `statuses` (`id_status`),
+  ADD CONSTRAINT `applications_ibfk_5` FOREIGN KEY (`id_conv`) REFERENCES `conv` (`id_conv`);
 
 --
 -- Ograniczenia dla tabeli `certifications`
