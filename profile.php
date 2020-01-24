@@ -63,7 +63,7 @@ switch ($role){
             Your profile
         </div>
         <div class="list-row">
-            <div class="title-element">Personal data</div>
+            <h4 class="title-element">Personal data</h4>
             <div class="btn-element">
                 <div class="btn-unwrap">
                     <div class="line1"></div>
@@ -77,7 +77,7 @@ switch ($role){
             </form>
         </div>
         <div class="list-row">
-            <div class="title-element">Experience</div>
+            <h4 class="title-element">Experience</h4>
             <div class="btn-element">
                 <div class="btn-unwrap">
                     <div class="line1"></div>
@@ -105,7 +105,7 @@ switch ($role){
             </form>
         </div>
         <div class="list-row">
-            <div class="title-element">Education</div>
+            <h4 class="title-element">Education</h4>
             <div class="btn-element">
                 <div class="btn-unwrap">
                     <div class="line1"></div>
@@ -128,7 +128,7 @@ switch ($role){
             </form>
         </div>
         <div class="list-row">
-            <div class="title-element">Skills</div>
+            <h4 class="title-element">Skills</h4>
             <div class="btn-element">
                 <div class="btn-unwrap">
                     <div class="line1"></div>
@@ -162,7 +162,7 @@ switch ($role){
             </form>
         </div>
         <div class="list-row">
-            <div class="title-element">Additional</div>
+            <h4 class="title-element">Additional</h4>
             <div class="btn-element">
                 <div class="btn-unwrap">
                     <div class="line1"></div>
