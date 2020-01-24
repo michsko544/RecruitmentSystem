@@ -12,9 +12,9 @@ function getChatData($conv){
     $query_na = "SELECT us.name as senderName from conv_part cp join users u on u.id_user=cp.id_user join conv c on c.id_conv=cp.id_conv join messages m on m.id_conv=c.id_conv join users us on us.id_user=m.id_sender where c.id_conv = {$conv} group by m.id_message order by m.time";
     $query_su = "SELECT us.surname as senderSurname from conv_part cp join users u on u.id_user=cp.id_user join conv c on c.id_conv=cp.id_conv join messages m on m.id_conv=c.id_conv join users us on us.id_user=m.id_sender where c.id_conv = {$conv} group by m.id_message order by m.time";
     $query_ro = "SELECT r.name_role as senderRole from conv_part cp join users u on u.id_user=cp.id_user join conv c on c.id_conv=cp.id_conv join messages m on m.id_conv=c.id_conv join users us on us.id_user=m.id_sender join roles r on r.id_role=us.id_role where c.id_conv = {$conv} group by m.id_message order by m.time";
-    $query_n2 = "SELECT u.name as senderName from conv_part cp join users u on u.id_user=cp.id_user join conv c on c.id_conv=cp.id_conv join messages m on m.id_conv=c.id_conv join users us on us.id_user=m.id_sender where c.id_conv = {$conv} group by m.id_message order by m.time";
-    $query_s2 = "SELECT u.surname as senderSurname from conv_part cp join users u on u.id_user=cp.id_user join conv c on c.id_conv=cp.id_conv join messages m on m.id_conv=c.id_conv join users us on us.id_user=m.id_sender where c.id_conv = {$conv} group by m.id_message order by m.time";
-    $query_r2 = "SELECT r.name_role as senderRole from conv_part cp join users u on u.id_user=cp.id_user join conv c on c.id_conv=cp.id_conv join messages m on m.id_conv=c.id_conv join users us on us.id_user=m.id_sender join roles r on r.id_role=u.id_role where c.id_conv = {$conv} group by m.id_message order by m.time";
+    $query_n2 = "SELECT distinct u.name as senderName from conv_part cp join users u on u.id_user=cp.id_user join conv c on c.id_conv=cp.id_conv join messages m on m.id_conv=c.id_conv join users us on us.id_user=m.id_sender where c.id_conv = {$conv} group by m.id_message order by m.time";
+    $query_s2 = "SELECT distinct u.surname as senderSurname from conv_part cp join users u on u.id_user=cp.id_user join conv c on c.id_conv=cp.id_conv join messages m on m.id_conv=c.id_conv join users us on us.id_user=m.id_sender where c.id_conv = {$conv} group by m.id_message order by m.time";
+    $query_r2 = "SELECT distinct r.name_role as senderRole from conv_part cp join users u on u.id_user=cp.id_user join conv c on c.id_conv=cp.id_conv join messages m on m.id_conv=c.id_conv join users us on us.id_user=m.id_sender join roles r on r.id_role=u.id_role where c.id_conv = {$conv} group by m.id_message order by m.time";
     $query_se = "SELECT m.id_sender from conv_part cp join users u on u.id_user=cp.id_user join conv c on c.id_conv=cp.id_conv join messages m on m.id_conv=c.id_conv join users us on us.id_user=m.id_sender where c.id_conv = {$conv} group by m.id_message order by m.time";
 
     $data_push_to = array();
@@ -97,6 +97,8 @@ function addMessage($mess, $usr){
             echo "<div class='server-error'>Server error! Please try again later. Err: ".$e."</div>";
         }
     }
+}
 
+function addNewConv($user){
 
 }

@@ -22,15 +22,15 @@ if ((!isset($_SESSION['logged_in'])) || ($_SESSION['logged_in'] == false))
             getProfileData($_SESSION['id_user']);
             break;
         case 3:
-            $user_profile = $_GET['id_user']; // TODO if recruiter / manager / assistant -> GET user's id
+            $user_profile = $_GET['uid']; // TODO if recruiter / manager / assistant -> GET user's id
             getProfileData($user_profile);
             break;
         case 4:
-            $user_profile = $_GET['id_user']; // TODO if recruiter / manager / assistant -> GET user's id
+            $user_profile = $_GET['uid']; // TODO if recruiter / manager / assistant -> GET user's id
             getProfileData($user_profile);
             break;
         case 5:
-            $user_profile = $_GET['id_user']; // TODO if recruiter / manager / assistant -> GET user's id
+            $user_profile = $_GET['uid']; // TODO if recruiter / manager / assistant -> GET user's id
             getProfileData($user_profile);
             break;
 }
