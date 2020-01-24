@@ -285,7 +285,6 @@ const addCV = ({cv}) => {
 }
 
 const addCertificate = ({cert}) => {
-    if(cert){
         let upload = document.querySelectorAll(".upload")
         let newDiv = document.createRange().createContextualFragment(
             `<div class="form-row">
@@ -295,7 +294,6 @@ const addCertificate = ({cert}) => {
             </div>`
         );
         upload[1].parentNode.insertBefore(newDiv, upload[1]);
-    }
 }
 
 /*const addCL = ({cl}) => {

@@ -224,7 +224,7 @@ let firstCert = true;
 const addCertificate = ({cert}) => {
     if(cert){
         if(firstCert){
-            let upload = document.querySelectorAll(".upload")
+            let upload = document.querySelectorAll(".upload-div")
             let newDiv = document.createRange().createContextualFragment(
                 `<div class="form-row">
                     <label for="certificate-file">Certificates</label>
@@ -235,7 +235,7 @@ const addCertificate = ({cert}) => {
             upload[1].parentNode.insertBefore(newDiv, upload[1]);
             firstCert=false;
         } else {
-            let upload = document.querySelectorAll(".upload")
+            let upload = document.querySelectorAll(".upload-div")
             let newDiv = document.createRange().createContextualFragment(
                 `<div class="form-row">
                     <div class="diplay-input">${cert}</div>
@@ -248,8 +248,8 @@ const addCertificate = ({cert}) => {
 }
 
 const addCL = ({cl}) => {
-    if(cl){
-        let upload = document.querySelectorAll(".upload")
+
+        let upload = document.querySelectorAll(".upload-div")
         let newDiv = document.createRange().createContextualFragment(
             `<div class="form-row">
                 <label for="lm-file">Cover Letter</label>
@@ -259,7 +259,6 @@ const addCL = ({cl}) => {
             </div>`
         );
         upload[2].parentNode.insertBefore(newDiv, upload[2]);
-    }
 }
 
 let countC = 0;

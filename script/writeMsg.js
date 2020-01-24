@@ -1,17 +1,3 @@
-const findConversator = (json) => {
-    const id = json.idLoggedUser===json.idUser[0] ? json.idUser2[0] : json.idUser[0];
-    const index = json.userId.findIndex((elem)=>elem===id);
-    const name = json.userName[index];
-    const surname = json.userSurname[index];
-    const role = json.userRole[index];
-    return {
-        id,
-        name,
-        surname,
-        role
-    };
-};
-
 const addMsgTitle = ({sender: {name, surname, role}, position}) => {
     let smallT = document.querySelector(".small-title");
     let newDiv = document.createRange().createContextualFragment(

@@ -1,13 +1,6 @@
 const fromJsonToProfileW = (json) => {
-    const pD = json.personalData;
     const add = json.additional;
     const n = json.counters;
-    
-    let titleProps = {
-    sender: {id:123, name:"John", surname:"Lemon"},
-    position: "Minecrafter"//json.position ? json.position[0] || "" : ""
-    }
-    addProfileTitle(titleProps);
 
 
     if(n.coverLetter!==0){
@@ -19,11 +12,30 @@ const fromJsonToProfileW = (json) => {
 
 }
 
+const fromJsonToTitle = (json) => {
+    let sender = findConversator(json);
+    let titleProps = {
+    sender: sender,
+    position: json.position ? json.position[0] : ""
+    }
+    addProfileTitle(titleProps);
+
+}
+
 
 async function readJSON(path) {
     var res = await fetch(path);
     var data = await res.json();
+    console.log(data);
     fromJsonToProfileW(data);
 }
 
+async function readJSON2(path) {
+    var res = await fetch(path);
+    var data = await res.json();
+    console.log(data);
+    fromJsonToTitle(data);
+}
+
 readJSON("json/profile.json");
+readJSON2("json/chat.json");
