@@ -9,12 +9,10 @@ function getChatData($conv){
     $query_po = "SELECT distinct p.position from conv_part cp join users u on u.id_user=cp.id_user join applicants app on app.id_user=u.id_user join applications a on a.id_applicants=app.id_applicants join positions p on p.id_position=a.id_position join conv c on c.id_conv=cp.id_conv join messages m on m.id_conv=c.id_conv join users us on us.id_user=m.id_sender where c.id_conv = {$conv} group by m.id_message order by m.time";
     $query_me = "SELECT m.message from conv_part cp join users u on u.id_user=cp.id_user join conv c on c.id_conv=cp.id_conv join messages m on m.id_conv=c.id_conv join users us on us.id_user=m.id_sender where c.id_conv = {$conv} group by m.id_message order by m.time";
     $query_ti = "SELECT m.time from conv_part cp join users u on u.id_user=cp.id_user join conv c on c.id_conv=cp.id_conv join messages m on m.id_conv=c.id_conv join users us on us.id_user=m.id_sender where c.id_conv = {$conv} group by m.id_message order by m.time";
+    $query_id = "SELECT distinct u.id_user, us.id_user from users u join messages m on m.id_user=u.id_user join users us on us.id_user=m.id_sender join conv c on c.id_conv=m.id_conv where c.id_conv = {$conv} group by m.id_message order by m.time limit 2";
     $query_na = "SELECT distinct u.name, us.name from users u join messages m on m.id_user=u.id_user join users us on us.id_user=m.id_sender join conv c on c.id_conv=m.id_conv where c.id_conv = {$conv} group by m.id_message order by m.time limit 2";
     $query_su = "SELECT distinct u.surname, us.surname from users u join messages m on m.id_user=u.id_user join users us on us.id_user=m.id_sender join conv c on c.id_conv=m.id_conv where c.id_conv = {$conv} group by m.id_message order by m.time limit 2";
     $query_ro = "SELECT distinct r.name_role, r2.name_role from users u join messages m on m.id_user=u.id_user join users us on us.id_user=m.id_sender join conv c on c.id_conv=m.id_conv join roles r on r.id_role=u.id_role join roles r2 on r2.id_role=us.id_role where c.id_conv = {$conv} group by m.id_message order by m.time limit 2";
-    $query_n2 = "SELECT distinct u.name as senderName from conv_part cp join users u on u.id_user=cp.id_user join conv c on c.id_conv=cp.id_conv join messages m on m.id_conv=c.id_conv join users us on us.id_user=m.id_sender where c.id_conv = {$conv} group by m.id_message order by m.time";
-    $query_s2 = "SELECT distinct u.surname as senderSurname from conv_part cp join users u on u.id_user=cp.id_user join conv c on c.id_conv=cp.id_conv join messages m on m.id_conv=c.id_conv join users us on us.id_user=m.id_sender where c.id_conv = {$conv} group by m.id_message order by m.time";
-    $query_r2 = "SELECT distinct r.name_role as senderRole from conv_part cp join users u on u.id_user=cp.id_user join conv c on c.id_conv=cp.id_conv join messages m on m.id_conv=c.id_conv join users us on us.id_user=m.id_sender join roles r on r.id_role=u.id_role where c.id_conv = {$conv} group by m.id_message order by m.time";
     $query_se = "SELECT m.id_sender from conv_part cp join users u on u.id_user=cp.id_user join conv c on c.id_conv=cp.id_conv join messages m on m.id_conv=c.id_conv join users us on us.id_user=m.id_sender where c.id_conv = {$conv} group by m.id_message order by m.time";
 
     $data_push_to = array();
@@ -22,10 +20,9 @@ function getChatData($conv){
     $data_push_is = array();
     $data_push_po = array();
     $data_push_me = array(); $data_push_ti = array();
+    $data_push_id = array();
     $data_push_na = array(); $data_push_su = array();
     $data_push_ro = array();
-    $data_push_n2 = array(); $data_push_s2 = array();
-    $data_push_r2 = array();
     $data_push_se = array();
     $json_array = array();
 
@@ -42,12 +39,10 @@ function getChatData($conv){
         $count_po = $new_json->fetchData($query_po, $data_push_po, $json_array['position'], $host, $db_user, $db_pass, $db_name);
         $count_me = $new_json->fetchData($query_me, $data_push_me, $json_array['message'], $host, $db_user, $db_pass, $db_name);
         $count_ti = $new_json->fetchDataTime($query_ti, $data_push_ti, $json_array['time'], $host, $db_user, $db_pass, $db_name);
-        $count_na = $new_json->fetchData($query_na, $data_push_na, $json_array['senderName'], $host, $db_user, $db_pass, $db_name);
-        $count_su = $new_json->fetchData($query_su, $data_push_su, $json_array['senderSurname'], $host, $db_user, $db_pass, $db_name);
-        $count_ro = $new_json->fetchData($query_ro, $data_push_ro, $json_array['senderRole'], $host, $db_user, $db_pass, $db_name);
-        $count_n2 = $new_json->fetchData($query_n2, $data_push_n2, $json_array['userName'], $host, $db_user, $db_pass, $db_name);
-        $count_s2 = $new_json->fetchData($query_s2, $data_push_s2, $json_array['userSurname'], $host, $db_user, $db_pass, $db_name);
-        $count_r2 = $new_json->fetchData($query_r2, $data_push_r2, $json_array['userRole'], $host, $db_user, $db_pass, $db_name);
+        $count_id = $new_json->fetchData($query_id, $data_push_id, $json_array['userId'], $host, $db_user, $db_pass, $db_name);
+        $count_na = $new_json->fetchData($query_na, $data_push_na, $json_array['userName'], $host, $db_user, $db_pass, $db_name);
+        $count_su = $new_json->fetchData($query_su, $data_push_su, $json_array['userSurname'], $host, $db_user, $db_pass, $db_name);
+        $count_ro = $new_json->fetchData($query_ro, $data_push_ro, $json_array['userRole'], $host, $db_user, $db_pass, $db_name);
         $count_se = $new_json->fetchData($query_se, $data_push_se, $json_array['senderId'], $host, $db_user, $db_pass, $db_name);
 
         $new_json->addCounters($json_array['counters']['messages'], $count_me);
