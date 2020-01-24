@@ -43,35 +43,35 @@ const addHighlightEvents = () => {
 }
 
 const addPersonalData = ({firstName, lastName, phone, country, city}) => {
-    let br = document.querySelector("#break-1");
+    let sform = document.querySelector("#sform-1");
     let newDiv = document.createRange().createContextualFragment(
         `<div class="form-row">
             <label for="first-name">First name</label>
-            <div>${firstName}</div>
+            <div class="diplay-input">${firstName}</div>
             
         </div>
         <div class="form-row">
             <label for="last-name">Last name</label>
-            <div>${lastName}</div>
+            <div class="diplay-input">${lastName}</div>
             
         </div>
         <div class="form-row">
             <label for="phone-num">Phone number</label>
-            <div>${phone}</div>
+            <div class="diplay-input">${phone}</div>
             
         </div>
         <div class="form-row">
             <label for="residence-country">Your country</label>
-            <div>${country}</div>
+            <div class="diplay-input">${country}</div>
             
         </div>
         <div class="form-row">
             <label for="residence-city">Your city</label>
-            <div>${city}</div>
+            <div class="diplay-input">${city}</div>
             
         </div>`
     );
-    br.parentNode.insertBefore(newDiv, br);
+    sform.appendChild(newDiv);
 }
 
 let countE = 0;
@@ -80,12 +80,12 @@ const addExperience = ({jobTitle, employer, startDate, endDate, city, descriptio
     let newDiv = document.createRange().createContextualFragment(
         `${countE===0 ? "" : "<br/><br/><br/>"}<div class="form-row">
             <label for="job-title">Job title</label>
-            <div>${jobTitle || ""}</div>
+            <div class="diplay-input">${jobTitle || ""}</div>
             
         </div>
         <div class="form-row">
             <label for="employer">Employer</label>
-            <div>${employer || ""}</div>
+            <div class="diplay-input">${employer || ""}</div>
             
         </div>
         <div class="form-row">
@@ -97,19 +97,18 @@ const addExperience = ({jobTitle, employer, startDate, endDate, city, descriptio
         </div>
         <div class="form-row">
             <label for="job-city">City</label>
-            <div>${city || ""}</div>
+            <div class="diplay-input">${city || ""}</div>
             
         </div>
         <div class="form-row">
             <label for="job-description">Description</label>
-            <div>${description || ""}</div>
+            <div class="diplay-input">${description || ""}</div>
             
         </div>`
     );
     form.appendChild(newDiv);
     ++countE;
 }
-
 
 let countL = 0;
 let firstLanguage = true;
@@ -120,7 +119,7 @@ const addLanguage = ({lang, level}) => {
         newDiv = document.createRange().createContextualFragment(
             `<div class="form-row">
                 <label for="languages">Languages</label>
-                <div>${lang || ""}</div>
+                <div class="diplay-input">${lang || ""}</div>
                 
                 <div class="degree">
                     <div>${level || 1}</div>
@@ -132,7 +131,7 @@ const addLanguage = ({lang, level}) => {
     } else {
         newDiv = document.createRange().createContextualFragment(
             `<div class="form-row">
-                <div>${lang || ""}</div>
+                <div class="diplay-input">${lang || ""}</div>
                 
                 <div class="degree">
                     <div>${level || 1}</div>
@@ -145,7 +144,6 @@ const addLanguage = ({lang, level}) => {
     ++countL;
 }
 
-
 let countSk = 0;
 let firstSkill = true;
 const addSkill = ({skill, level}) => {
@@ -155,10 +153,10 @@ const addSkill = ({skill, level}) => {
         newDiv = document.createRange().createContextualFragment(
             `<div class="form-row">
                 <label for="skills">Skills</label>
-                <input type="text" name="skills-${countSk}" placeholder="Marketing" value="${skill || ""}"required>
+                <div class="diplay-input">${skill || ""}</div>
                 
                 <div class="degree">
-                    <input type="number" name="skill-level-${countSk}" min=1 max=5 placeholder=1 value="${level || 1}">
+                    <div>${level || 1}</div>
                     <div class="limit">/5</div>
                 </div>
             </div>`
@@ -167,10 +165,10 @@ const addSkill = ({skill, level}) => {
     } else {
         newDiv = document.createRange().createContextualFragment(
             `<div class="form-row">
-                <input type="text" name="skills-${countSk}" placeholder="Marketing" value="${skill || ""}"required>
+                <div class="diplay-input">${skill || ""}</div>
                 
                 <div class="degree">
-                    <input type="number" name="skill-level-${countSk}" min=1 max=5 placeholder=1 value="${level || 1}">
+                    <div>${level || 1}</div>
                     <div class="limit">/5</div>
                 </div>
             </div>`
@@ -180,36 +178,35 @@ const addSkill = ({skill, level}) => {
     ++countSk;
 }
 
-
 let countS = 0;
 const addSchool = ({schoolName, specialization, startDate, endDate, city, description}) => {
     let form = document.getElementById("sform-3");
     let newDiv = document.createRange().createContextualFragment(
         `${countS===0 ? "" : "<br/><br/><br/>"}<div class="form-row">
             <label for="school">School</label>
-            <input type="text" name="school-${countS}" placeholder="Silesian University of Technology" value="${schoolName || ""}"required>
+            <div class="diplay-input">${schoolName || ""}</div>
             
         </div>
         <div class="form-row">
             <label for="specialization">Specialization</label>
-            <input type="text" name="specialization-${countS}" placeholder="Teleinformatics" value="${specialization || ""}" required>
+            <div class="diplay-input">${specialization || ""}</div>
             
         </div>
         <div class="form-row">
             <label for="start-end-date">Start & End date</label>
             <div class="date">
-                <input type="text" id="start-school-${countS}" class="start-date" name="school-start-date-${countS}" placeholder="29-03-2019" required>
-                <input type="text" id="end-school-${countS}" class="end-date" name="school-end-date-${countS}" placeholder="13-12-2019" required>
+                <div id="start-school-${countS}" class="start-date">${startDate}</div>
+                <div id="end-school-${countS}" class="end-date">${endDate}</div>
             </div>
         </div>
         <div class="form-row">
             <label for="school-city">City</label>
-            <input type="text" name="school-city-${countS}" placeholder="Gliwice" value="${city || ""}" required>
+            <div class="diplay-input">${city || ""}</div>
             
         </div>
         <div class="form-row">
             <label for="school-description">Description</label>
-            <textarea name="school-description-${countS}" cols="35" rows="4" placeholder="e.g.  programming, data analysing, network designing, microprocessors coding">${description || ""}</textarea>
+            <div class="diplay-input">${description || ""}<div>
             
         </div>`
     );
@@ -217,46 +214,59 @@ const addSchool = ({schoolName, specialization, startDate, endDate, city, descri
     ++countS;
 }
 
-
 const addCV = ({cv}) => {
-    let upload = document.querySelectorAll(".upload")
+    let upload = document.querySelectorAll(".upload-div")
     let newDiv = document.createRange().createContextualFragment(
         `<div class="form-row">
-            <input type="text" name="cv" value="${cv || ""}" required>
-            
+            <label for="cv-file">Curriculum vitae</label>
+            <div  class="diplay-input">${cv || ""}</div>
             <div class="btn-x"></div>
         </div>`
     );
     upload[0].parentNode.insertBefore(newDiv, upload[0]);
 }
 
+let firstCert = true;
 const addCertificate = ({cert}) => {
     if(cert){
-        let upload = document.querySelectorAll(".upload")
-        let newDiv = document.createRange().createContextualFragment(
-            `<div class="form-row">
-                <input type="text" name="certificate" value="${cert || ""}">
-                
-                <div class="btn-x"></div>
-            </div>`
-        );
-        upload[1].parentNode.insertBefore(newDiv, upload[1]);
+        if(firstCert){
+            let upload = document.querySelectorAll(".upload")
+            let newDiv = document.createRange().createContextualFragment(
+                `<div class="form-row">
+                    <label for="certificate-file">Certificates</label>
+                    <div class="diplay-input">${cert}</div>
+                    <div class="btn-x"></div>
+                </div>`
+            );
+            upload[1].parentNode.insertBefore(newDiv, upload[1]);
+            firstCert=false;
+        } else {
+            let upload = document.querySelectorAll(".upload")
+            let newDiv = document.createRange().createContextualFragment(
+                `<div class="form-row">
+                    <div class="diplay-input">${cert}</div>
+                    <div class="btn-x"></div>
+                </div>`
+            );
+            upload[1].parentNode.insertBefore(newDiv, upload[1]);
+        }
     }
 }
 
-/*const addCL = ({cl}) => {
+const addCL = ({cl}) => {
     if(cl){
         let upload = document.querySelectorAll(".upload")
         let newDiv = document.createRange().createContextualFragment(
             `<div class="form-row">
-                <input type="text" name="cl" value="${cl}">
+                <label for="lm-file">Cover Letter</label>
+                <div class="diplay-input">${cl}</div>
                 
                 <div class="btn-x"></div>
             </div>`
         );
         upload[2].parentNode.insertBefore(newDiv, upload[2]);
     }
-}*/
+}
 
 let countC = 0;
 let firstCourse = true;
@@ -267,7 +277,7 @@ const addCourse = ({course}) => {
         newDiv = document.createRange().createContextualFragment(
             `<div class="form-row">
                 <label for="course">Courses</label>
-                <input type="text" name="course-${countC}" placeholder="e.g. Google Internet Revolutions" value="${course || ""}">
+                <div class="diplay-input">${course || ""}</div>
                 
             </div>`
         );
@@ -275,7 +285,7 @@ const addCourse = ({course}) => {
     } else {
         newDiv = document.createRange().createContextualFragment(
             `<div class="form-row">
-                <input type="text" name="course-${countC}" placeholder="e.g. Google Internet Revolutions" value="${course || ""}">
+                <div class="diplay-input">${course || ""}</div>
                 
             </div>`
         );

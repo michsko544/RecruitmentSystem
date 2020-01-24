@@ -1,7 +1,6 @@
 var buttons = document.querySelectorAll(".btn-unwrap");
 var rows = document.querySelectorAll(".list-row");
 
-
 for(let i=0; i<buttons.length; ++i){
     var btn = buttons[i];
     btn.addEventListener("click", function(){
@@ -24,3 +23,14 @@ for(let i=0; i<buttons.length; ++i){
         }
     }
 }
+
+const addProfileTitle = ({sender: {id, name, surname}, position}) => {
+    let smallT = document.querySelector(".small-title");
+    let newDiv = document.createRange().createContextualFragment(
+        `<a href="javascript:history.back();"><div class="back"></div></a>
+        <a href="write-msg.php?uid=${id}"><div class="write"></div></a>
+        <div class="position">${position}</div>
+        <div class="name">${name} ${surname}</div>
+        `);
+    smallT.appendChild(newDiv);
+};

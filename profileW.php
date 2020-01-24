@@ -64,9 +64,7 @@ if ((!isset($_SESSION['logged_in'])) || ($_SESSION['logged_in'] == false))
         <div id="nav-help"></div>
     </nav>
     <div id="container">
-        <div class="small-title">
-            Worker look
-        </div>
+        <div class="small-title"></div>
         <div class="list-row">
             <div class="title-element">Personal data</div>
             <div class="btn-element">
@@ -77,9 +75,7 @@ if ((!isset($_SESSION['logged_in'])) || ($_SESSION['logged_in'] == false))
             </div>
         </div>
         <div class="list-row hide" id="personal-data">
-            <form id="sform-1" action="" method="post" class="element-wrapper">
-                <div class="break" id="break-1"></div>
-            </form>
+            <form id="sform-1" action="" method="post" class="element-wrapper"></form>
         </div>
         <div class="list-row">
             <div class="title-element">Experience</div>
@@ -138,26 +134,14 @@ if ((!isset($_SESSION['logged_in'])) || ($_SESSION['logged_in'] == false))
         <div class="list-row hide" id="addition">
             <form id="sform-5" action="" method="post" class="element-wrapper">
                 <div class="form-row">
-                    <label for="cv-file">Curriculum vitae</label>
-                    <div class="upload">
-                        <input type="file" name="cv-file" class="inputfile"  value="" accept="application/pdf">
-                        <label for="cv-file">Choose a file</label>
-                    </div>
+                    <div class="upload-div"></div>
                 </div>
                 <div class="form-row ">
-                <label for="certificate-file">Certificates</label>
-                    <div class="upload">
-                        <input type="file" name="certificate-file-0" class="inputfile" value="" accept="application/pdf" data-multiple-caption="{count} files selected"     multiple>
-                        <label>Choose a file</label>
-                    </div>
+                    <div class="upload-div"></div>
                 </div>
-                <!--<div class="form-row">
-                    <label for="lm-file">Cover Letter</label>
-                    <div class="upload">
-                        <input type="file" name="lm-file" class="inputfile" accept="application/pdf" data-multiple-caption="{count} files selected" multiple>
-                        <label>Choose a file</label>
-                    </div>
-                </div>-->
+                <div class="form-row">
+                    <div class="upload-div"></div>
+                </div>
                 
             </form>
         </div>
