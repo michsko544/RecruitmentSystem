@@ -869,16 +869,23 @@ input[type=submit]{
         }
     }
 
-    #app-form{
+    #add-bottom-btn-form{
         position: fixed;
         bottom: 0;
         border: none;
         border-top: 2px $color-list-line solid;
         display: flex;
         flex-direction: column;
-        height:45vh;
+        //height:45vh;
+        padding: 0 0 15%;
         width: 100%;
         background: $color-background;
+
+        .description{
+            color: $color-cyan;
+            text-align: center;
+            padding: 5px 0 10px;
+        }
 
         form{
             width: 75%;

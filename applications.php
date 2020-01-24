@@ -80,14 +80,14 @@ switch ($role) {
                 </div>
             </div>
         </div>
-        <div id="app-form--hidden">
+        <div id="add-bottom-btn-form--hidden">
             <div class="close">
                 <div class="btn-close">
                     <div class="line1"></div>
                     <div class="line2"></div>
                 </div>
             </div>
-            
+            <h3 class="description">Choose position</h3>
             <form action="php/applications.php" method="post">
                 <div class="form-row">
                     <label for="position">Position</label>

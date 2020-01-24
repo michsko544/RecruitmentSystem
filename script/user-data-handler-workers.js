@@ -90,7 +90,7 @@ const addExperience = ({jobTitle, employer, startDate, endDate, city, descriptio
         </div>
         <div class="form-row">
             <label for="start-end-date">Start & End date</label>
-                <div id="start-exp-${countE}" class="diplay-input">${startDate}/${endDate}</div>
+                <div id="start-exp-${countE}" class="diplay-input">${startDate} / ${endDate}</div>
         </div>
         <div class="form-row">
             <label for="job-city">City</label>
@@ -191,7 +191,7 @@ const addSchool = ({schoolName, specialization, startDate, endDate, city, descri
         </div>
         <div class="form-row">
             <label for="start-end-date">Start & End date</label>
-            <div id="start-school-${countS}" class="diplay-input">${startDate}/${endDate}</div>
+            <div id="start-school-${countS}" class="diplay-input">${startDate} / ${endDate}</div>
         </div>
         <div class="form-row">
             <label for="school-city">City</label>

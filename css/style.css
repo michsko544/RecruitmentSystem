@@ -795,54 +795,59 @@ input[type=submit] {
 #container .bottom-row .btn-add .btn-border {
   margin-left: 20px;
 }
-#container #app-form {
+#container #add-bottom-btn-form {
   position: fixed;
   bottom: 0;
   border: none;
   border-top: 2px #95A5A659 solid;
   display: flex;
   flex-direction: column;
-  height: 45vh;
+  padding: 0 0 15%;
   width: 100%;
   background: #F6F6F6;
 }
-#container #app-form form {
+#container #add-bottom-btn-form .description {
+  color: #36C3D9;
+  text-align: center;
+  padding: 5px 0 10px;
+}
+#container #add-bottom-btn-form form {
   width: 75%;
   margin-left: auto;
   margin-right: auto;
 }
-#container #app-form form .btn-big-positioning {
+#container #add-bottom-btn-form form .btn-big-positioning {
   margin-top: 35px;
   display: flex;
   align-content: center;
 }
-#container #app-form .upload {
+#container #add-bottom-btn-form .upload {
   border: 2px #95A5A6 solid;
 }
-#container #app-form label {
+#container #add-bottom-btn-form label {
   color: #95A5A6;
 }
-#container #app-form .close {
+#container #add-bottom-btn-form .close {
   cursor: pointer;
   margin-left: auto;
 }
-#container #app-form .close .btn-close {
+#container #add-bottom-btn-form .close .btn-close {
   position: relative;
   margin: 10px;
   width: 25px;
   height: 25px;
 }
-#container #app-form .close .btn-close div {
+#container #add-bottom-btn-form .close .btn-close div {
   width: 100%;
   height: 3px;
   background-color: #95A5A6;
   position: absolute;
   top: 12px;
 }
-#container #app-form .close .btn-close .line1 {
+#container #add-bottom-btn-form .close .btn-close .line1 {
   transform: rotate(45deg);
 }
-#container #app-form .close .btn-close .line2 {
+#container #add-bottom-btn-form .close .btn-close .line2 {
   transform: rotate(135deg);
 }
 #container .first-text {

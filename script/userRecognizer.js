@@ -1,4 +1,4 @@
-async function readRole(path) {
+async function setBurgerData(path) {
     var res = await fetch(path);
     var data = await res.json();
     const role = data.role;
@@ -7,7 +7,7 @@ async function readRole(path) {
     return role;
 }
 
-const role = readRole("json/role.json");
+const role = setBurgerData("json/role.json");
 
 const findConversator = (json) => {
     const id = json.idLoggedUser===json.idUser[0] ? json.idUser2[0] : json.idUser[0];
