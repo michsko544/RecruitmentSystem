@@ -7,12 +7,18 @@ const fromJsonToProfile = (json) => {
     const add = json.additional;
     const n = json.counters;
 
+    let titleProps = {
+        sender: {id:123, name:"John", surname:"Lemon"},
+        position: "Minecrafter"//json.position ? json.position[0] || "" : ""
+    }
+    addProfileTitle(titleProps);
+
     let pDProps = {
-        firstName: pD.firstName || "",
-        lastName: pD.lastName || "",
-        phone: pD.phone || "",
-        country: pD.country || "",
-        city: pD.city || ""
+        firstName: pD.firstName || "siema",
+        lastName: pD.lastName || "jestem",
+        phone: pD.phone || "marek",
+        country: pD.country || "co",
+        city: pD.city || "tam"
     };
     addPersonalData(pDProps);
 
@@ -55,13 +61,14 @@ const fromJsonToProfile = (json) => {
         };
         addLanguage(props);
     }
-        
-    /*for(let i = 0; i<n.coverLetter; ++i){
+    
+    if(n.coverLetter!==0){
         let props = {
-            cl: add.coverLetter
+            cl: add.coverLetter[0]
         }
         addCL(props);
-    }*/
+    }
+    
         
     for(let i = 0; i<n.certificate; ++i){
         let props = {
@@ -77,10 +84,12 @@ const fromJsonToProfile = (json) => {
         addCourse(props);
     }
 
-    let CVProps = {
-        //cv: add.cv[0]
+    if(n.cv!==0){
+        let props = {
+            cv: add.cv[0]
+        }
+        addCV(props);
     }
-    //addCV(CVProps);
 }
 
 

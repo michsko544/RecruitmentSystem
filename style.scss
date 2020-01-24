@@ -438,6 +438,9 @@ textarea:focus + .underlineTA::after{
 
     .error{
         color: $color-cyan;
+        font-size: 13px;
+        text-align: center;
+        margin-top: 8px;
     }
 }
 
@@ -460,7 +463,9 @@ input[type=tel],
 input[type=date],
 input[type=number],
 textarea,
-select
+select,
+.diplay-input,
+.diplay-input-TA
 {
     font-family: 'avenirregular';
     width:100%;
@@ -474,6 +479,12 @@ select
     padding: 5px 0 12px;
     resize: none;
 }
+.diplay-input,
+.diplay-input-TA {
+    border-bottom: none;
+    //padding:3px 0 0;
+}
+
 input[type=password]{
     font: large Verdana,sans-serif;
 
@@ -511,15 +522,15 @@ input[type=checkbox]{
         cursor: pointer;
     }
 }
-input[type=date]{
-    width: 46%;
-}
+
 .date{
     width: 100%;
     display: flex;
     justify-content: space-between;
 
-    input[type=text]{
+    input[type=text],
+    .diplay-input-TA
+    {
         width: 46%;
     }
 }
@@ -787,6 +798,20 @@ input[type=submit]{
             background-repeat: no-repeat;
             background-position: 5px 5px;
             background-size: 12px 18px;
+            z-index: 1;
+        }
+
+        .write{
+            position: absolute;
+            top:18px;
+            right:18px; 
+            width: 20px;
+            height: 20px;
+            padding: 5px;
+            background-image: url(../img/assets/chat.png);
+            background-repeat: no-repeat;
+            background-position: 5px 5px;
+            background-size: 20px 20px;
             z-index: 1;
         }
 
@@ -1080,7 +1105,7 @@ input[type=submit]{
     }
 }
 
-.error{
+.errorLogIn{
     text-align: center;
     color: $color-white;
     margin-top: 20px;

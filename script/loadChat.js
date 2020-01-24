@@ -6,7 +6,7 @@ const fromJsonToChat = (json) => {
         position: json.position ? json.position[0] || "" : ""
     }
     const n = json.counters;
-    console.log(titleProps);
+
     addConvesationTitle(titleProps);
     for(let i = 0; i<n.messages; ++i){
         let props = {
