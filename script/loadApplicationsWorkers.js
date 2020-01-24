@@ -4,14 +4,16 @@ const fromJsonToApplications = (json) => {
     const lastName = json.applications.personalData.surname;
     const id = json.applications.personalData.idUser;
     const decision = json.applications.decision;
+    const aid = json.applications.personalData.idApplication;
     const n = json.counters;
     console.log("HEllo");
     for(let i=0; i<n.position; ++i){
         let props = {
             position: pos[i],
             name: firstName[i]+" "+lastName[i],
-            decision: "",
-            id: id[i]
+            decision: decision ? decision[i] : "" || "",
+            id: id[i],
+            aid: aid[i]
         };
         
         addApplication(props);
