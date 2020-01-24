@@ -154,6 +154,7 @@ if ((!isset($_SESSION['logged_in'])) || ($_SESSION['logged_in'] == false))
 <script src="script/user-data-handler-workers.js"></script>
 <script src="script/profile.js"></script>
 <script src="script/loadProfile.js"></script>
+<script src="script/loadProfileWorkers.js"></script>
 <script src="script/userRecognizer.js"></script>
 
 </html>

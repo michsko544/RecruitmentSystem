@@ -1,8 +1,10 @@
 const findConversator = (json) => {
     const id = json.idLoggedUser===json.idUser[0] ? json.idUser2[0] : json.idUser[0];
-    const name = json.userName[0];
-    const surname = json.userSurname[0];
-    const role = json.userRole[0];
+    const index = json.senderId.findIndex((elem)=>elem===id);
+    const name = json.senderName[index];
+    const surname = json.senderSurname[index];
+    const role = json.senderRole[index];
+    console.log()
     return {
         id,
         name,

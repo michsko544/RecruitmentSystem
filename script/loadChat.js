@@ -2,9 +2,9 @@ const fromJsonToChat = (json) => {
     const sender = findConversator(json);
     let titleProps = {
         sender: sender,
-        topic: json.topic[0],
+        topic: json.topic ? json.topic[0] || "" : "",
         position: json.position ? json.position[0] || "" : ""
-    }
+    };
     const n = json.counters;
 
     addConvesationTitle(titleProps);
@@ -22,7 +22,6 @@ const fromJsonToChat = (json) => {
 async function readJSON(path) {
     var res = await fetch(path);
     var data = await res.json();
-    console.log(data);
     fromJsonToChat(data);
 }
 

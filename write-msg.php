@@ -43,12 +43,7 @@ if (isset($_POST['message-field']))
     </nav>
     <div id="container">
         <form action="" method="post">
-        <div class="small-title">
-            <div class="position">Front-end Developer</div>
-            <div class="name">John Smith</div>
-            <button type="submit" name="submit" value="Send"></button>
-            <a href="javascript:history.back();"><div class="back"></div></a>
-        </div>
+        <div class="small-title"></div>
             <div class="message-wrapper">
                 <div class="form-row">
                     <label for="msg-topic">Topic</label>
@@ -69,5 +64,7 @@ if (isset($_POST['message-field']))
 <script src="script/burger.js"></script>
 <script src="script/main.js"></script>
 <script src="script/userRecognizer.js"></script>
+<script src="script/writeMsg.js"></script>
+<script src="script/loadWriteMsg.js"></script>
 
 </html>
