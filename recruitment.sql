@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 22 Sty 2020, 14:04
+-- Czas generowania: 24 Sty 2020, 13:23
 -- Wersja serwera: 10.4.8-MariaDB
 -- Wersja PHP: 7.3.11
 
@@ -483,9 +483,10 @@ CREATE TABLE `decisions` (
 --
 
 INSERT INTO `decisions` (`id_decision`, `name_decision`) VALUES
-(1, 'rejected'),
-(2, 'accepted'),
-(3, 'noteworthy');
+(1, 'Rejected'),
+(2, 'Accepted'),
+(3, 'Noteworthy'),
+(4, 'New');
 
 -- --------------------------------------------------------
 
@@ -657,8 +658,8 @@ INSERT INTO `messages` (`id_message`, `id_sender`, `message`, `time`, `id_conv`,
 
 CREATE TABLE `positions` (
   `id_position` int(11) NOT NULL,
-  `position` varchar(20) NOT NULL,
-  `description` varchar(150) NOT NULL
+  `position` varchar(70) CHARACTER SET utf8 COLLATE utf8_polish_ci NOT NULL,
+  `description` varchar(500) CHARACTER SET utf8 COLLATE utf8_polish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -666,9 +667,12 @@ CREATE TABLE `positions` (
 --
 
 INSERT INTO `positions` (`id_position`, `position`, `description`) VALUES
-(1, 'front-end', 'front-end developer'),
+(1, '\0front-end', 'front-end developer'),
 (2, 'full-stack', 'full-stack developer'),
-(3, 'junior C#', 'junior C# developer ');
+(3, '\0junior C#', 'junior C# developer '),
+(5, 'Senior PHP developer', 'knowledge how to upload files'),
+(9, 'Java intern', 'basic knowlegde about Java'),
+(10, 'helper', 'helping other people');
 
 -- --------------------------------------------------------
 
@@ -761,7 +765,7 @@ CREATE TABLE `sor` (
 
 INSERT INTO `sor` (`id_stage`, `name_stage`, `description`, `id_application`) VALUES
 (1, 'interview', 'ask about applicant\'s university', 1),
-(2, 'evaluate experi', 'check if employed in Google', 2);
+(2, 'evaluate exp', 'check if employed in Google', 2);
 
 -- --------------------------------------------------------
 
@@ -1080,7 +1084,7 @@ ALTER TABLE `cv`
 -- AUTO_INCREMENT dla tabeli `decisions`
 --
 ALTER TABLE `decisions`
-  MODIFY `id_decision` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_decision` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT dla tabeli `experiences`
@@ -1122,7 +1126,7 @@ ALTER TABLE `messages`
 -- AUTO_INCREMENT dla tabeli `positions`
 --
 ALTER TABLE `positions`
-  MODIFY `id_position` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_position` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT dla tabeli `roles`
