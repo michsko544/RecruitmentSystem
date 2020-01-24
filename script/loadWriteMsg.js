@@ -19,6 +19,7 @@ const fromJsonToMsg = (json) => {
 async function readJSON(path) {
     var res = await fetch(path);
     var data = await res.json();
+    console.log(data);
     fromJsonToMsg(data);
 }
 
