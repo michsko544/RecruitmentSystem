@@ -7,12 +7,6 @@ const fromJsonToProfile = (json) => {
     const add = json.additional;
     const n = json.counters;
 
-    let titleProps = {
-        sender: {id:123, name:"John", surname:"Lemon"},
-        position: "Minecrafter"//json.position ? json.position[0] || "" : ""
-    }
-    addProfileTitle(titleProps);
-
     let pDProps = {
         firstName: pD.firstName || "siema",
         lastName: pD.lastName || "jestem",
@@ -61,15 +55,7 @@ const fromJsonToProfile = (json) => {
         };
         addLanguage(props);
     }
-    
-    if(n.coverLetter!==0){
-        let props = {
-            cl: add.coverLetter[0]
-        }
-        addCL(props);
-    }
-    
-        
+   
     for(let i = 0; i<n.certificate; ++i){
         let props = {
             cert: add.certificates

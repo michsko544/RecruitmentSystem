@@ -6,7 +6,7 @@ const fromJsonToApplications = (json) => {
     const decision = json.applications.decision;
     const aid = json.applications.personalData.idApplication;
     const n = json.counters;
-    console.log("HEllo");
+
     for(let i=0; i<n.position; ++i){
         let props = {
             position: pos[i],
