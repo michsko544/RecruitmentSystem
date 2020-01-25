@@ -73,7 +73,8 @@ class InsertToDB
         } else {
             // TODO add multiple filed insert
             $this->itWorks('pre-insert');
-            if ($this->conn->query("insert into users (id_user, login, name, surname, pass, id_role) VALUES (null, '{$_SESSION['array']['val']['username']}', '{$_SESSION['array']['pd']['first_name']}', '{$_SESSION['array']['pd']['last_name']}', '{$_SESSION['array']['val']['password']}', 2)" ) ) {
+            $timestamp = date("Y-m-d");
+            if ($this->conn->query("insert into users (id_user, login, name, surname, pass, id_role, date) VALUES (null, '{$_SESSION['array']['val']['username']}', '{$_SESSION['array']['pd']['first_name']}', '{$_SESSION['array']['pd']['last_name']}', '{$_SESSION['array']['val']['password']}', 2, '{$timestamp}')" ) ) {
                 // *************** COS SIE Psuje *******************
                 $this->itWorks("</br> query-1-success");
 
@@ -137,7 +138,7 @@ class InsertToDB
                                     $id_position_Q = $this->checkPosition($_SESSION['array']['val']['position']);
                                     // TODO cover letter
                                     // TODO --- add multi insert ---
-                                    if ($this->conn->query("insert into applications (id_application, id_applicants, id_decision, id_position, id_status, id_cl) values (null, {$id_applicant_Q}, 4, {$id_position_Q}, 1, 1)"));{ // TODO add cover letter id
+                                    if ($this->conn->query("insert into applications (id_application, id_applicants, id_decision, id_position, id_status, id_cl, date, id_conv) values (null, {$id_applicant_Q}, 4, {$id_position_Q}, 1, 1, '{$timestamp}', )"));{ // TODO add cover letter id
                                         echo "</br> query-6-success";
                                         $_SESSION['successful-sign-up'] = true;
                                         header ('Location: ../sign_in.php');

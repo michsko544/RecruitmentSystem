@@ -9,7 +9,6 @@ $err = new FormsValidation(true);
 $usr = $_GET['uid'];
 if (isset($_POST['message-field']))
 {
-    //if (isset($_POST['']))
     $mess = $_POST['message-field'];
     addMessage($mess, $usr);
 }

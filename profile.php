@@ -11,21 +11,12 @@ getRole($host, $db_user, $db_pass, $db_name);
 require_once "php/profile.php";
 $role = $_SESSION['id_role'];
 switch ($role){
-    case 1:
-        break; // TODO admin - what should be shown (maybe nothing)
     case 2:
         getProfileData($_SESSION['id_user']);
+        updateData($_SESSION['id_user']);
         break;
-    case 3:
-        $user_profile = $_GET['uid']; // TODO if recruiter / manager / assistant -> GET user's id
-        getProfileData($user_profile);
-        break;
-    case 4:
-        $user_profile = $_GET['uid']; // TODO if recruiter / manager / assistant -> GET user's id
-        getProfileData($user_profile);
-        break;
-    case 5:
-        $user_profile = $_GET['uid']; // TODO if recruiter / manager / assistant -> GET user's id
+    default:
+        $user_profile = $_GET['uid'];
         getProfileData($user_profile);
         break;
 }
