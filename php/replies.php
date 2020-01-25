@@ -66,10 +66,10 @@ function getRepliesData($user){
 
 function listEmployees($host, $db_user, $db_pass, $db_name){
     require_once "HandleJson.php";
-    $query_a = 'select CONCAT(name, " ", surname) as userList from users where id_role = 5';
-    $query_m = 'select CONCAT(name, " ", surname) as userList from users where id_role = 4';
-    $query_r = 'select CONCAT(name, " ", surname) as userList from users where id_role = 3';
-    $query_d = 'select CONCAT(name, " ", surname) as userList from users where id_role = 1';
+    $query_a = 'select CONCAT(name, " ", surname) as userList from users where id_role = 5 and id_user != ' .$_SESSION['id_user'];
+    $query_m = 'select CONCAT(name, " ", surname) as userList from users where id_role = 4 and id_user != ' .$_SESSION['id_user'];
+    $query_r = 'select CONCAT(name, " ", surname) as userList from users where id_role = 3 and id_user != ' .$_SESSION['id_user'];
+    $query_d = 'select CONCAT(name, " ", surname) as userList from users where id_role = 1 and id_user != ' .$_SESSION['id_user'];
     $json_array = array();
     $data_push_a = array();
     $data_push_m = array();
