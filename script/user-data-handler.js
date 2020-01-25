@@ -86,11 +86,11 @@ const addOnChangeEventsToDisplayBtn = (input) => {
 }
 
 //addHighlightEvents();
-
 calendar("exp-0");
 calendar("school-0");
 
-document.getElementById("no-experience").addEventListener("click", function(){
+const checkbox = document.getElementById("no-experience");
+checkbox.addEventListener("click", function(){
     const form = this.parentNode.parentNode.parentNode.id;
     if(this.checked===true){
         document.getElementById(form).querySelectorAll('div.form-row').forEach(element=>{
@@ -120,6 +120,7 @@ document.getElementById("no-experience").addEventListener("click", function(){
         showDiv("btn-experience--hidden");
     }
 });
+addOnChangeEventsToDisplayBtn(checkbox);
 
 const addPersonalData = ({firstName, lastName, phone, country, city}) => {
     let br = document.querySelector("#break-1");
@@ -196,6 +197,11 @@ const addExperience = ({jobTitle, employer, startDate, endDate, city, descriptio
         let date = new Date(new Number(startDate.slice(0,4)),new Number(startDate.slice(5,7))-1,new Number(startDate.slice(8,10)));
         console.log(date);
         $(`#start-exp-${countE}`).datepicker("setDate", date );
+    }
+    if(endDate){
+        let date = new Date(new Number(endDate.slice(0,4)),new Number(endDate.slice(5,7))-1,new Number(endDate.slice(8,10)));
+        console.log(date);
+        $(`#end-exp-${countE}`).datepicker("setDate", date );
     }
 
     btn.parentNode.querySelectorAll(`.input-${countE}`).forEach(elem=>{
@@ -300,6 +306,18 @@ const addSchool = ({schoolName, specialization, startDate, endDate, city, descri
     );
     btn.parentNode.insertBefore(newDiv, btn);
     calendar(`school-${countS}`);
+    if(startDate){
+        let date = new Date(new Number(startDate.slice(0,4)),new Number(startDate.slice(5,7))-1,new Number(startDate.slice(8,10)));
+        console.log(date);
+        $(`#start-school-${countS}`).datepicker("setDate", date );
+    }
+    if(endDate){
+        let date = new Date(new Number(endDate.slice(0,4)),new Number(endDate.slice(5,7))-1,new Number(endDate.slice(8,10)));
+        console.log(date);
+        $(`#end-school-${countS}`).datepicker("setDate", date );
+    }
+
+
     btn.parentNode.querySelectorAll(`.input-${countS}`).forEach(elem=>{
         addOnChangeEventsToDisplayBtn(elem);
     });
