@@ -2,23 +2,13 @@ let beenChanged = false;
 const addSaveChangesBtn = () => {
     beenChanged = true;
     if(beenChanged){
-        console.log("przycisk zostal klikniety albo dodales event");
-        const container = document.querySelector("#container");
+        const form = document.querySelector("#profile-form");
         const newDiv = document.createRange().createContextualFragment(
             `<div class="list-row bottom-row" id="btn-profile">
-                <div class="btn-add ">
-                    <div class="btn-border">
-                        <div class="btn-icon">
-                            +
-                        </div>
-                    </div>
-                    <div class="btn-text">
-                            Confirm changes
-                    </div>
-                </div>
+                <input type="submit" value="Confirm changes">
             </div>`
         );
-        container.appendChild(newDiv);
+        form.appendChild(newDiv);
     }
 };
 

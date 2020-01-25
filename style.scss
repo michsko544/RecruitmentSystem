@@ -848,6 +848,8 @@ input[type=submit]{
     }
 
     .bottom-row{
+        width:100%;
+        min-height:65px;
         position: fixed;
         bottom: 0;
         border: none;
@@ -867,6 +869,17 @@ input[type=submit]{
             .btn-border{
                 margin-left: 20px;
             }
+        }
+        input[type=submit]{
+            width: 100%;
+            min-height:65px;
+            outline: none;
+            border:none;
+            color: $color-cyan;
+            justify-content: flex-start;
+            align-items: center;
+            font-size: 
+            background-color: $color-background;
         }
     }
 
