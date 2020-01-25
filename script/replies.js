@@ -39,7 +39,7 @@ const addChangeConversatorBtn = () => {
             <form action="" method="post">
                 <div class="form-row">
                     <label for="user">Colleague</label>
-                    <select></select>
+                    <select>  </select>
                 </div>
                 <div class="btn-big-positioning">
                     <input type="submit" value="Write" class="btn btn-cyan">
