@@ -150,7 +150,7 @@ if ((!isset($_SESSION['logged_in'])) || ($_SESSION['logged_in'] == false))
 
 <script src="script/burger.js"></script>
 <script src="script/main.js"></script>
-<script src="script/userRecognizer.js"></script>wybierz do kogo chcesz napisać
+<script src="script/userRecognizer.js"></script>
 <script src="script/input-file.js"></script>
 <script src="script/user-data-handler-workers.js"></script>
 <script src="script/profile.js"></script>

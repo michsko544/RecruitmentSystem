@@ -782,6 +782,7 @@ input[type=submit] {
   bottom: 0;
   border: none;
   border-top: 2px #95A5A659 solid;
+  background-color: #F6F6F6;
   display: flex;
 }
 #container .bottom-row .btn-add {

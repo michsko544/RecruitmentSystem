@@ -852,6 +852,7 @@ input[type=submit]{
         bottom: 0;
         border: none;
         border-top: 2px $color-list-line solid;
+        background-color: $color-background;
         display: flex;
 
         .btn-add{

@@ -32,7 +32,7 @@ const loadMenu = (role) => {
             link.innerHTML = "<a href='messagesW.php'>Messages</a>";
             menu.appendChild(link);
             link = document.createElement("li");
-            link.innerHTML = "<a href='report.php'>Generate report</a>";
+            link.innerHTML = "<a href='manage_service.php'>Generate report</a>";
             menu.appendChild(link);
             link = document.createElement("li");
             link.innerHTML = "<a href='php/log_in/log_out.php'>Sign out</a>";
