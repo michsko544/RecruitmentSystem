@@ -59,7 +59,7 @@ getRole($host, $db_user, $db_pass, $db_name);
     <div> Applicants: </div>
     <div> : </div>
 
-    <div class="element-wrapper"><a href="php/generateReport.php">Generate report</a></div>
+    <div class="element-wrapper"><a href="php/generateReport.php" target="_blank">Generate report</a></div>
 
 
 </div>
