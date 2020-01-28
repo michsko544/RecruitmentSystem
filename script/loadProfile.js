@@ -76,6 +76,7 @@ const fromJsonToProfile = (json) => {
         }
         addCV(props);
     }
+
 }
 
 
@@ -86,3 +87,4 @@ async function readJSON(path) {
 }
 
 readJSON("json/profile.json");
+

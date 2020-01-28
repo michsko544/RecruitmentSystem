@@ -66,7 +66,7 @@ if ((!isset($_SESSION['logged_in'])) || ($_SESSION['logged_in'] == false))
     <div id="container">
         <div class="small-title"></div>
         <div class="list-row">
-            <div class="title-element">Personal data</div>
+            <h4 class="title-element">Personal data</h4>
             <div class="btn-element">
                 <div class="btn-unwrap">
                     <div class="line1"></div>
@@ -78,7 +78,7 @@ if ((!isset($_SESSION['logged_in'])) || ($_SESSION['logged_in'] == false))
             <form id="sform-1" action="" method="post" class="element-wrapper"></form>
         </div>
         <div class="list-row">
-            <div class="title-element">Experience</div>
+            <h4 class="title-element">Experience</h4>
             <div class="btn-element">
                 <div class="btn-unwrap">
                     <div class="line1"></div>
@@ -93,7 +93,7 @@ if ((!isset($_SESSION['logged_in'])) || ($_SESSION['logged_in'] == false))
             </form>
         </div>
         <div class="list-row">
-            <div class="title-element">Education</div>
+            <h4 class="title-element">Education</h4>
             <div class="btn-element">
                 <div class="btn-unwrap">
                     <div class="line1"></div>
@@ -107,7 +107,7 @@ if ((!isset($_SESSION['logged_in'])) || ($_SESSION['logged_in'] == false))
             </form>
         </div>
         <div class="list-row">
-            <div class="title-element">Skills</div>
+            <h4 class="title-element">Skills</h4>
             <div class="btn-element">
                 <div class="btn-unwrap">
                     <div class="line1"></div>
@@ -123,7 +123,7 @@ if ((!isset($_SESSION['logged_in'])) || ($_SESSION['logged_in'] == false))
             </form>
         </div>
         <div class="list-row">
-            <div class="title-element">Additional</div>
+            <h4 class="title-element">Additional</h4>
             <div class="btn-element">
                 <div class="btn-unwrap">
                     <div class="line1"></div>
@@ -150,11 +150,11 @@ if ((!isset($_SESSION['logged_in'])) || ($_SESSION['logged_in'] == false))
 
 <script src="script/burger.js"></script>
 <script src="script/main.js"></script>
+<script src="script/userRecognizer.js"></script>
 <script src="script/input-file.js"></script>
 <script src="script/user-data-handler-workers.js"></script>
 <script src="script/profile.js"></script>
 <script src="script/loadProfile.js"></script>
 <script src="script/loadProfileWorkers.js"></script>
-<script src="script/userRecognizer.js"></script>
 
 </html>

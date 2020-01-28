@@ -63,3 +63,37 @@ function getRepliesData($user){
         echo "<div class='server-error'>Server error! Please try again later. Err: ".$e."</div>";
     }
 }
+
+function listEmployees($host, $db_user, $db_pass, $db_name){
+    require_once "HandleJson.php";
+    $query_a = 'select CONCAT(name, " ", surname) as userList from users where id_role = 5 and id_user != ' .$_SESSION['id_user'];
+    $query_m = 'select CONCAT(name, " ", surname) as userList from users where id_role = 4 and id_user != ' .$_SESSION['id_user'];
+    $query_r = 'select CONCAT(name, " ", surname) as userList from users where id_role = 3 and id_user != ' .$_SESSION['id_user'];
+    $query_d = 'select CONCAT(name, " ", surname) as userList from users where id_role = 1 and id_user != ' .$_SESSION['id_user'];
+    $json_array = array();
+    $data_push_a = array();
+    $data_push_m = array();
+    $data_push_r = array();
+    $data_push_d = array();
+    $json = new HandleJson();
+
+    mysqli_report(MYSQLI_REPORT_STRICT);
+    try
+    {
+        $count_a = $json->fetchData($query_a, $data_push_a, $json_array['assistant'], $host, $db_user, $db_pass, $db_name);
+        $count_m = $json->fetchData($query_m, $data_push_m, $json_array['manager'], $host, $db_user, $db_pass, $db_name);
+        $count_r = $json->fetchData($query_r, $data_push_r, $json_array['recruiter'], $host, $db_user, $db_pass, $db_name);
+        $count_d = $json->fetchData($query_d, $data_push_d, $json_array['admin'], $host, $db_user, $db_pass, $db_name);
+
+        $json->addCounters($json_array['counters']['assistant'], $count_a);
+        $json->addCounters($json_array['counters']['manager'], $count_m);
+        $json->addCounters($json_array['counters']['recruiter'], $count_r);
+        $json->addCounters($json_array['counters']['admin'], $count_d);
+        $json->createJsonFile("json/co-workers.json", $json_array);
+    }
+    catch
+    (Exception $e) {
+        echo "<div class='server-error'>Server error! Please try again later. Err: " . $e . "</div>";
+    }
+
+}

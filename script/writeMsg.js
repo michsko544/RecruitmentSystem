@@ -1,17 +1,3 @@
-const findConversator = (json) => {
-    const id = json.idLoggedUser===json.idUser[0] ? json.idUser2[0] : json.idUser[0];
-    const index = json.userId.findIndex((elem)=>elem===id);
-    const name = json.userName[index];
-    const surname = json.userSurname[index];
-    const role = json.userRole[index];
-    return {
-        id,
-        name,
-        surname,
-        role
-    };
-};
-
 const addMsgTitle = ({sender: {name, surname, role}, position}) => {
     let smallT = document.querySelector(".small-title");
     let newDiv = document.createRange().createContextualFragment(
@@ -19,6 +5,16 @@ const addMsgTitle = ({sender: {name, surname, role}, position}) => {
         <button type="submit" name="submit" value="Send"></button>
         <div class="position">${position?position:role}</div>
         <div class="name">${name} ${surname}</div>
+        `);
+    smallT.appendChild(newDiv);
+};
+
+const addMsgTitleApplicant = ({sender: {name, surname}}) => {
+    let smallT = document.querySelector(".small-title");
+    let newDiv = document.createRange().createContextualFragment(
+        `<a href="javascript:history.back();"><div class="back"></div></a>
+        <button type="submit" name="submit" value="Send"></button>
+        ${name} ${surname}
         `);
     smallT.appendChild(newDiv);
 };
@@ -31,4 +27,9 @@ const addTopicEditor = ({topic, position}) => {
         `<input type="text" class="msg-topic" value="${ position ? "Reply: "+position : topic || ""}">`);
     parent.appendChild(input);
 
+};
+
+const addTopic = ({topic, position}) => {
+    const msgTopic = document.querySelector(".msg-topic");
+    msgTopic.innerHTML = position ? "Reply: "+position : topic || "";
 };

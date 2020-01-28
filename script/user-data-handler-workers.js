@@ -90,7 +90,7 @@ const addExperience = ({jobTitle, employer, startDate, endDate, city, descriptio
         </div>
         <div class="form-row">
             <label for="start-end-date">Start & End date</label>
-                <div id="start-exp-${countE}" class="diplay-input">${startDate}/${endDate}</div>
+                <div id="start-exp-${countE}" class="diplay-input">${startDate} / ${endDate}</div>
         </div>
         <div class="form-row">
             <label for="job-city">City</label>
@@ -191,7 +191,7 @@ const addSchool = ({schoolName, specialization, startDate, endDate, city, descri
         </div>
         <div class="form-row">
             <label for="start-end-date">Start & End date</label>
-            <div id="start-school-${countS}" class="diplay-input">${startDate}/${endDate}</div>
+            <div id="start-school-${countS}" class="diplay-input">${startDate} / ${endDate}</div>
         </div>
         <div class="form-row">
             <label for="school-city">City</label>
@@ -224,7 +224,7 @@ let firstCert = true;
 const addCertificate = ({cert}) => {
     if(cert){
         if(firstCert){
-            let upload = document.querySelectorAll(".upload")
+            let upload = document.querySelectorAll(".upload-div")
             let newDiv = document.createRange().createContextualFragment(
                 `<div class="form-row">
                     <label for="certificate-file">Certificates</label>
@@ -235,7 +235,7 @@ const addCertificate = ({cert}) => {
             upload[1].parentNode.insertBefore(newDiv, upload[1]);
             firstCert=false;
         } else {
-            let upload = document.querySelectorAll(".upload")
+            let upload = document.querySelectorAll(".upload-div")
             let newDiv = document.createRange().createContextualFragment(
                 `<div class="form-row">
                     <div class="diplay-input">${cert}</div>
@@ -248,8 +248,8 @@ const addCertificate = ({cert}) => {
 }
 
 const addCL = ({cl}) => {
-    if(cl){
-        let upload = document.querySelectorAll(".upload")
+
+        let upload = document.querySelectorAll(".upload-div")
         let newDiv = document.createRange().createContextualFragment(
             `<div class="form-row">
                 <label for="lm-file">Cover Letter</label>
@@ -259,7 +259,6 @@ const addCL = ({cl}) => {
             </div>`
         );
         upload[2].parentNode.insertBefore(newDiv, upload[2]);
-    }
 }
 
 let countC = 0;

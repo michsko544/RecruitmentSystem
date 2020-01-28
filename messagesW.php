@@ -11,6 +11,7 @@ getRole($host, $db_user, $db_pass, $db_name);
 require_once "php/replies.php";
 $user_rep = $_SESSION['id_user'];
 getRepliesData($user_rep);
+listEmployees($host, $db_user, $db_pass, $db_name);
 
 ?>
 

@@ -30,3 +30,7 @@ async function readJSON(path) {
 }
 
 readJSON("json/replies.json");
+addChangeConversatorBtn();
+document.querySelector("#btn-application").addEventListener("click", ()=>showDiv("add-bottom-btn-form--hidden"));
+
+document.querySelector(".close").addEventListener("click", ()=>hideDiv("add-bottom-btn-form"));

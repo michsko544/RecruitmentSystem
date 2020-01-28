@@ -27,3 +27,4 @@ async function readJSON(path) {
 }
 
 readJSON("json/chat.json");
+

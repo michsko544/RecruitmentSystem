@@ -848,10 +848,13 @@ input[type=submit]{
     }
 
     .bottom-row{
+        width:100%;
+        min-height:65px;
         position: fixed;
         bottom: 0;
         border: none;
         border-top: 2px $color-list-line solid;
+        background-color: $color-background;
         display: flex;
 
         .btn-add{
@@ -867,18 +870,36 @@ input[type=submit]{
                 margin-left: 20px;
             }
         }
+        input[type=submit]{
+            width: 100%;
+            min-height:65px;
+            outline: none;
+            border:none;
+            color: $color-cyan;
+            justify-content: flex-start;
+            align-items: center;
+            font-size: 18px;
+            background-color: $color-background;
+        }
     }
 
-    #app-form{
+    #add-bottom-btn-form{
         position: fixed;
         bottom: 0;
         border: none;
         border-top: 2px $color-list-line solid;
         display: flex;
         flex-direction: column;
-        height:45vh;
+        //height:45vh;
+        padding: 0 0 15%;
         width: 100%;
         background: $color-background;
+
+        .description{
+            color: $color-cyan;
+            text-align: center;
+            padding: 5px 0 10px;
+        }
 
         form{
             width: 75%;
