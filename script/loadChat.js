@@ -1,5 +1,6 @@
 const fromJsonToChat = (json) => {
     const sender = findConversator(json);
+    console.log(sender);
     let titleProps = {
         sender: sender,
         topic: json.topic ? json.topic[0] || "" : "",
