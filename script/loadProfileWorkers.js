@@ -13,10 +13,20 @@ const fromJsonToProfileW = (json) => {
 }
 
 const fromJsonToTitle = (json) => {
-    let sender = findConversator(json);
+    var url_string = window.location.href;
+    var url = new URL(url_string);
+    var id = url.searchParams.get("uid");
+    let index = json.applications.personalData.idUser.findIndex(elem=>elem===id);
+    console.log(index);
+    let sender = {
+        id,
+        name: json.applications.personalData.name[index],
+        surname: json.applications.personalData.surname[index]
+    }
+    console.log(sender);
     let titleProps = {
-    sender: sender,
-    position: json.position ? json.position[0] : ""
+        sender,
+        position: json.applications.position ? json.applications.position[index] : ""
     }
     addProfileTitle(titleProps);
 
@@ -38,4 +48,4 @@ async function readJSON2(path) {
 }
 
 readJSON("json/profile.json");
-readJSON2("json/chat.json");
+readJSON2("json/applications.json");

@@ -24,6 +24,7 @@ async function readJSON(path) {
     var res = await fetch(path);
     var data = await res.json();
     fromJsonToApplications(data);
+    console.log(data);
 }
 
 readJSON("json/applications.json");
