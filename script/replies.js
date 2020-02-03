@@ -16,7 +16,7 @@ const addReply = ({id,name,role,position,topic,date}) => {
 const addChangeConversatorBtn = (json) => {
     let container = document.querySelector("#container");
     let newDiv = document.createRange().createContextualFragment(
-        `<div class="list-row bottom-row" id="btn-application">
+        `<div class="list-row bottom-row" id="btn-new-message">
             <div class="btn-add ">
                 <div class="btn-border">
                     <div class="btn-icon">

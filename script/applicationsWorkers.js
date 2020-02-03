@@ -84,7 +84,13 @@ const addPositionBtn = () => {
             <form action="" method="post">
                 <div class="form-row">
                     <label for="user">Position title</label>
-                    <input type="text">
+                    <input type="text" name="position" required>
+                    <div class="underline"></div>
+                </div>
+                <div class="form-row">
+                    <label for="description">Description</label>
+                    <textarea name="description" cols="35" rows="4" placeholder="e.g.  programming, data analysing, network designing, microprocessors coding"></textarea>
+                    <div class="underlineTA"></div>
                 </div>
                 <div class="btn-big-positioning">
                     <input type="submit" value="Add" class="btn btn-cyan">

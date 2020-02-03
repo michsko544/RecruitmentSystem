@@ -10,7 +10,7 @@ if ((!isset($_SESSION['logged_in'])) || ($_SESSION['logged_in'] == false))
     getRole($host, $db_user, $db_pass, $db_name);
     require_once "php/profile.php";
     $role = $_SESSION['id_role'];
-    if (isset($_GET['id_application'])){ // TODO move to view_stages.php if exists
+    if (isset($_GET['id_application'])) { // TODO move to view_stages.php if exists
         require_once "php/AddStage.php";
         $stage = new AddStage($host, $db_user, $db_pass, $db_name);
         $stage->view($_GET['id_application']);

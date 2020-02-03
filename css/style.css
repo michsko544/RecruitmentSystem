@@ -858,6 +858,7 @@ input[type=submit] {
   width: 75%;
   margin-left: auto;
   margin-right: auto;
+  overflow: hidden;
 }
 #container #add-bottom-btn-form form .btn-big-positioning {
   margin-top: 35px;

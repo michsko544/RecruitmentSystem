@@ -120,13 +120,13 @@ function addNewConv($mess, $topic, $usr) {
                 $user = intval($usr);
                 if ($connection->query("insert into conv (id_conv, topic) values (null, '{$topic}')"))
                 {
-                    $select = $connection->query("select id_conv_part from conv_part where id_conv = '{$_SESSION['id_conv']}'");
+                    $select = $connection->query("select id_conv from conv order by id_conv desc limit 1");
+                    $idc = $select->fetch_assoc();
+                    $select = $connection->query("select id_conv_part from conv_part where id_conv = '{$idc['id_conv']}'");
                     $select_counter = $select->num_rows;
                     if ($select_counter == 0)
-                        $ins = $connection->query("insert into conv_part (id_conv_part, id_conv, id_user) values (null, {$_SESSION['id_conv']}, {$_SESSION['id_user']})");
-                    if ($ins = $connection->query("insert into messages (id_message, id_sender, message, time, id_conv, id_user) values (null, {$_SESSION['id_user']}, '{$mess}', '{$timestamp}', {$_SESSION['id_conv']}, {$user})")){
-                        $select = $connection->query("select id_conv from conv order by id_conv desc limit 1");
-                        $idc = $select->fetch_assoc();
+                        $ins = $connection->query("insert into conv_part (id_conv_part, id_conv, id_user) values (null, {$idc['id_conv']}, {$_SESSION['id_user']})");
+                    if ($ins = $connection->query("insert into messages (id_message, id_sender, message, time, id_conv, id_user) values (null, {$_SESSION['id_user']}, '{$mess}', '{$timestamp}', {$idc['id_conv']}, {$user})")){
                         header("Location: chat.php?cid=" . $idc['id_conv']);
                     }
                     else
