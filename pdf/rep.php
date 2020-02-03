@@ -60,21 +60,11 @@ $pdf->SetFont('Times','B',20);
 $pdf->Cell(40,10,'Last week statistics', 0, 1);
 $pdf->SetFont('Times','',12);
 $pdf->Cell(40,10,'Users: ', 0, 1);
-
-$pdf->Table($link,'SELECT login, date from users u WHERE u.date>=date(CURRENT_DATE) - 7 ORDER by date desc');
+$pdf->Table($link,'SELECT login, date from users u WHERE u.date BETWEEN DATE_ADD(NOW(), INTERVAL -8 DAY) AND CURRENT_DATE ORDER by date desc');
 $pdf->Cell(40,10,'Applications: ', 0, 1);
-$pdf->Table($link,'SELECT u.login, p.position, a.date from applicants app inner join
-            users u on app.id_user=u.id_user INNER JOIN
-            applications a on app.id_applicants=a.id_applicants
-            inner join positions as p on p.id_position=a.id_position  
-            WHERE a.date>=date(CURRENT_DATE) -7 
-            ORDER by a.date desc');
+$pdf->Table($link,'SELECT u.login, p.position, a.date from applicants app inner join users u on app.id_user=u.id_user INNER JOIN applications a on app.id_applicants=a.id_applicants inner join positions p on p.id_position=a.id_position WHERE a.date BETWEEN DATE_ADD(NOW(), INTERVAL -8 DAY) AND CURRENT_DATE ORDER by a.date desc');
 $pdf->Cell(40,10,'Decisions: ', 0, 1);
-$pdf->Table($link,'SELECT count(a.id_decision) as Number_of_decisions, name_decision from decisions d inner JOIN
-    		applications a ON d.id_decision=a.id_decision 
-			WHERE date>=date(CURRENT_DATE) -7 
-			GROUP by a.id_decision 
-			order by count(a.id_decision)');
+$pdf->Table($link,'SELECT count(a.id_decision) as liczba_poz_tydz, name_decision from decisions d inner JOIN applications a ON d.id_decision=a.id_decision WHERE date BETWEEN DATE_ADD(NOW(), INTERVAL -8 DAY) AND CURRENT_DATE ORDER by count(a.id_decision)');
 
 $pdf->Output();
 ?>
