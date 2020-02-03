@@ -9,8 +9,14 @@ $err = new FormsValidation(true);
 $usr = $_GET['uid'];
 if (isset($_POST['message-field']))
 {
-    $mess = $_POST['message-field'];
-    addMessage($mess, $usr);
+    if (isset($_POST['topic'])){
+        $mess = $_POST['message-field'];
+        $topic = $_POST['topic'];
+        addNewConv($mess, $topic, $usr);
+    } else {
+        $mess = $_POST['message-field'];
+        addMessage($mess, $usr);
+    }
 }
 
 

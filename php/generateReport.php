@@ -1,7 +1,15 @@
 <?php
 require('../pdf/fpdf.php');
+require_once "connect.php";
+MYSQLI_REPORT_STRICT;
+try
+{
+    $conn = new mysqli($host, $db_user, $db_pass, $db_name);
+}
+catch (Exception $e)
+{
 
-
+}
 $pdf = new FPDF();
 $pdf->AddPage();
 $pdf->SetDrawColor(54, 195, 217);

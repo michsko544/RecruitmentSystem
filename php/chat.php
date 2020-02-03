@@ -94,6 +94,50 @@ function addMessage($mess, $usr){
     }
 }
 
-function addNewConv($user){
+function addNewConv($mess, $topic, $usr) {
+    require "connect.php";
+    require_once "HandleJson.php";
+    require_once "FormsValidation.php";
 
+    $vali = new FormsValidation(true);
+    // validate message
+    if (!preg_match('/^[a-z0-9\040.\-]+$/i', $mess)) {
+        $vali->setFlag(false);
+        $_SESSION["err_message"] = 'Message cannot contain special characters';
+    }
+    if (!preg_match('/^[a-z0-9\040.\-]+$/i', $topic)) {
+        $vali->setFlag(false);
+        $_SESSION["err_topic"] = 'Topic cannot contain special characters';
+    }
+    if ($vali->checkFlag() == true){
+        try{
+            $connection = new mysqli($host, $db_user, $db_pass, $db_name);
+            if ($connection->connect_errno != 0) {
+                throw new Exception(mysqli_connect_errno());
+            }
+            else {
+                $timestamp = date("Y-m-d H:i:s");
+                $user = intval($usr);
+                if ($connection->query("insert into conv (id_conv, topic) values (null, '{$topic}')"))
+                {
+                    $select = $connection->query("select id_conv_part from conv_part where id_conv = '{$_SESSION['id_conv']}'");
+                    $select_counter = $select->num_rows;
+                    if ($select_counter == 0)
+                        $ins = $connection->query("insert into conv_part (id_conv_part, id_conv, id_user) values (null, {$_SESSION['id_conv']}, {$_SESSION['id_user']})");
+                    if ($ins = $connection->query("insert into messages (id_message, id_sender, message, time, id_conv, id_user) values (null, {$_SESSION['id_user']}, '{$mess}', '{$timestamp}', {$_SESSION['id_conv']}, {$user})")){
+                        $select = $connection->query("select id_conv from conv order by id_conv desc limit 1");
+                        $idc = $select->fetch_assoc();
+                        header("Location: chat.php?cid=" . $idc['id_conv']);
+                    }
+                    else
+                        throw new Exception($connection->error);
+                } else
+                    throw new Exception($connection->error);
+
+            }
+            $connection->close();
+        } catch (Exception $e) {
+            echo "<div class='server-error'>Server error! Please try again later. Err: ".$e."</div>";
+        }
+    }
 }
