@@ -20,3 +20,4 @@ async function readJSON(path) {
 }
 
 readJSON("json/applications.json");
+

@@ -27,4 +27,20 @@ async function readJSON(path) {
     console.log(data);
 }
 
-readJSON("json/applications.json");
+
+
+
+async function readRole(path) {
+    var res = await fetch(path);
+    var data = await res.json();
+    const role = data.role;
+    readJSON("json/applications.json");
+
+    if(role==="manager"){
+        addPositionBtn();
+        document.querySelector("#btn-position").addEventListener("click", ()=>showDiv("add-bottom-btn-form--hidden"));
+        document.querySelector(".close").addEventListener("click", ()=>hideDiv("add-bottom-btn-form"));
+    }
+}
+
+readRole("json/role.json");

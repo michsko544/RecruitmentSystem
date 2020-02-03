@@ -47,5 +47,19 @@ async function readJSON2(path) {
     fromJsonToTitle(data);
 }
 
-readJSON("json/profile.json");
-readJSON2("json/applications.json");
+
+
+async function readRole(path) {
+    var res = await fetch(path);
+    var data = await res.json();
+    const role = data.role;
+    readJSON("json/profile.json");
+    readJSON2("json/applications.json");
+
+    if(role==="recruiter" || role==="manager"){
+        addStageBtn();
+        viewStageBtn();
+    }
+}
+
+readRole("json/role.json");

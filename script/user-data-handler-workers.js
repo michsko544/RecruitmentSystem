@@ -286,3 +286,39 @@ const addCourse = ({course}) => {
     form.appendChild(newDiv);
     ++countC;
 }
+
+const addStageBtn = () => {
+    let container = document.querySelector("#container");
+    let newDiv = document.createRange().createContextualFragment(
+        `<div class="list-row bottom-row left-btn" id="btn-add-stage">
+            <div class="btn-add ">
+                <div class="btn-border">
+                    <div class="btn-icon">
+                        +
+                    </div>
+                </div>
+                <div class="btn-text">
+                    Add stage
+                </div>
+            </div>
+        </div>`);
+    container.appendChild(newDiv);
+    console.log("added",container,newDiv)
+};
+
+const viewStageBtn = () => {
+    let container = document.querySelector("#container");
+    let newDiv = document.createRange().createContextualFragment(
+        `<div class="list-row bottom-row right-btn" id="btn-view-stage">
+            <div class="btn-add ">
+                <div class="btn-border">
+                    <div class="btn-icon" id="btn-list"></div>
+                </div>
+                <div class="btn-text">
+                    View stages
+                </div>
+            </div>
+        </div>`);
+    container.appendChild(newDiv);
+    console.log("added",container,newDiv)
+};
