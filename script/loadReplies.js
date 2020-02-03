@@ -29,8 +29,27 @@ async function readJSON(path) {
     fromJsonToReplies(data);
 }
 
-readJSON("json/replies.json");
-addChangeConversatorBtn();
-document.querySelector("#btn-application").addEventListener("click", ()=>showDiv("add-bottom-btn-form--hidden"));
+async function readColleagues(path) {
+    var res = await fetch(path);
+    var data = await res.json();
+    console.log(data);
+    addChangeConversatorBtn(data);
+    document.querySelector("#btn-new-message").addEventListener("click", ()=>showDiv("add-bottom-btn-form--hidden"));
+    document.querySelector(".close").addEventListener("click", ()=>hideDiv("add-bottom-btn-form"));
+}
 
-document.querySelector(".close").addEventListener("click", ()=>hideDiv("add-bottom-btn-form"));
+async function readRole(path) {
+    var res = await fetch(path);
+    var data = await res.json();
+    const role = data.role;
+    readJSON("json/replies.json");
+
+    if(role!=="applicant"){
+        readColleagues("json/co-workers.json");
+        
+    }
+}
+
+readRole("json/role.json");
+
+

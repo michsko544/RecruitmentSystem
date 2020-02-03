@@ -848,7 +848,6 @@ input[type=submit]{
     }
 
     .bottom-row{
-        width:100%;
         min-height:65px;
         position: fixed;
         bottom: 0;
@@ -883,6 +882,42 @@ input[type=submit]{
         }
     }
 
+    .left-btn{
+        left:0;
+        width:50%;
+        text-align: center;
+
+    }
+
+    .right-btn{
+        right:0;
+        width:50%;
+        background-color: $color-cyan !important;
+        text-align: center;
+
+        .btn-text{
+            color:white;
+        }
+
+        .btn-border{
+            border: white 2px solid;
+            position: relative;
+        }
+    }
+
+    #btn-list{
+        content: "";
+        width: 17px;
+        height: 14px;
+        position: absolute;
+        background-image: url(../img/assets/list@2x.png);
+        background-repeat: no-repeat;
+        top:12px;
+        left:1px;
+        background-size: 17px 14px;
+        z-index: 1;
+    }
+
     #add-bottom-btn-form{
         position: fixed;
         bottom: 0;
@@ -905,6 +940,7 @@ input[type=submit]{
             width: 75%;
             margin-left: auto;
             margin-right: auto;
+            overflow: hidden;
 
             .btn-big-positioning{
                 margin-top: 35px;

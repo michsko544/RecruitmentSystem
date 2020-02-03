@@ -13,10 +13,10 @@ const addReply = ({id,name,role,position,topic,date}) => {
     !lastMsg ? container.appendChild(newDiv) : container.insertBefore(newDiv, lastMsg);
 }
 
-const addChangeConversatorBtn = () => {
+const addChangeConversatorBtn = (json) => {
     let container = document.querySelector("#container");
     let newDiv = document.createRange().createContextualFragment(
-        `<div class="list-row bottom-row" id="btn-application">
+        `<div class="list-row bottom-row" id="btn-new-message">
             <div class="btn-add ">
                 <div class="btn-border">
                     <div class="btn-icon">
@@ -39,7 +39,9 @@ const addChangeConversatorBtn = () => {
             <form action="" method="post">
                 <div class="form-row">
                     <label for="user">Colleague</label>
-                    <select>  </select>
+                    <select>
+                        ${json.coWorkers.reduce((acc,elem)=>acc+`<option>${elem}</option>`,"")}
+                    </select>
                 </div>
                 <div class="btn-big-positioning">
                     <input type="submit" value="Write" class="btn btn-cyan">
