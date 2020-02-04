@@ -25,7 +25,7 @@ class AddDecision
                 throw new Exception(mysqli_connect_errno());
             } else {
                 if($this->conn->query("update applications set id_decision = $decision where id_application = $id_application"))
-                    header("Location: ../applicationsW.php?role=recruiter");
+                    header("Location: ../applicationsW.php?role=recruiter&aD=success");
                 else
                     throw new Exception($this->conn->error);
             }

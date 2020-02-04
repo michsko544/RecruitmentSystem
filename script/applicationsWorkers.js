@@ -180,9 +180,9 @@ const addChangeDecisionForm = () => {
                 <div class="form-row">
                     <label for="user">Decision</label>
                     <select name="name-decision">
-                        <option value="Noteworthy"></option>
-                        <option value="Accepted"></option>
-                        <option value="Rejected"></option>
+                        <option value="Noteworthy">Noteworthy</option>
+                        <option value="Accepted">Accepted</option>
+                        <option value="Rejected">Rejected</option>
                     </select>
                 </div>
                 <div class="btn-big-positioning">

@@ -1,5 +1,5 @@
 <?php
-require_once "php/FormsValidation.php";
+require_once "FormsValidation.php";
 class AddPosition extends FormsValidation {
     private $host;
     private $user;
@@ -26,26 +26,27 @@ class AddPosition extends FormsValidation {
     {
         $this->setFlag(false);
         $_SESSION["$err_name"] = $err_message;
-        header("Location: /manage_service.php");
+        header("Location: /applicationsW.php?er=". $err_name);
     }
 
     function add(){
         if (isset($_POST['position'])){
-            $position = $_POST['position'];
-            $description = $_POST['description'];
-            echo " we got far";
-            if (!preg_match('/^[a-zA-Z0-9\040.\-:#@?,]+$/s', $position))
+            $position_r = $_POST['position'];
+            $description_r = $_POST['description'];
+            $position = htmlspecialchars($position_r, ENT_QUOTES, "UTF-8");
+            $description = htmlspecialchars($description_r, ENT_QUOTES, "UTF-8");
+            //if (!preg_filter('/^[a-zA-Z0-9\040.\'\"]+$/s', $position))
             {
-                $this->notGood('err_position', 'Position may contain only letters and numbers');
+                //$this->notGood('err_position', 'Position may contain only letters and numbers');
             }
             if ((strlen($position) < 1) || (strlen($position) > 70))
             {
                 $this->notGood('err_position', 'Position must have more than 1 and less than 70 characters');
             }
 
-            if (!preg_match('/^[a-zA-Z0-9\040.\-:#@?,]+$/s', $description))
+            //if (!preg_filter('/^[a-zA-Z0-9\040.\'"]+$/s', $description))
             {
-                $this->notGood('err_description', 'Description may contain only letters and numbers');
+                //$this->notGood('err_description', 'Description may contain only letters and numbers');
             }
             if (strlen($description) > 500)
             {
@@ -64,7 +65,7 @@ class AddPosition extends FormsValidation {
                             $_SESSION['position-success'] = true;
                             if (isset($_SESSION['rem_position'])) unset($_SESSION['rem_position']);
                             if (isset($_SESSION['rem_description'])) unset($_SESSION['rem_description']);
-                            header("Location: manage_service.php?aP=success");
+                            header("Location: ../applicationsW.php?aP=success");
                         }
                     }
                 }
@@ -75,5 +76,8 @@ class AddPosition extends FormsValidation {
         }
     }
 }
+require_once "connect.php";
+$add_pos = new AddPosition(true, $host, $db_user, $db_pass, $db_name);
+$add_pos->add();
 
 
