@@ -179,10 +179,10 @@ const addChangeDecisionForm = () => {
             <form action="../php/AddDecision.php" method="post">
                 <div class="form-row">
                     <label for="user">Decision</label>
-                    <select>
-                        <option>Noteworthy</option>
-                        <option>Accepted</option>
-                        <option>Rejected</option>
+                    <select name="name-decision">
+                        <option value="Noteworthy"></option>
+                        <option value="Accepted"></option>
+                        <option value="Rejected"></option>
                     </select>
                 </div>
                 <div class="btn-big-positioning">
