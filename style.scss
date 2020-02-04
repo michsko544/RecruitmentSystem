@@ -986,6 +986,85 @@ input[type=submit]{
         }
     }
 
+    #add-bottom-btn-form2{
+        position: fixed;
+        bottom: 0;
+        border: none;
+        border-top: 2px $color-list-line solid;
+        display: flex;
+        flex-direction: column;
+        //height:45vh;
+        padding: 0 0 15%;
+        width: 100%;
+        background: $color-background;
+
+        .description{
+            color: $color-cyan;
+            text-align: center;
+            padding: 5px 0 10px;
+        }
+
+        form{
+            width: 75%;
+            margin-left: auto;
+            margin-right: auto;
+            overflow: hidden;
+
+            .btn-big-positioning{
+                margin-top: 35px;
+                display:flex;
+                align-content: center;
+            }
+        }
+
+        label{
+            color: $color-seagrey;
+        }
+
+        .close2{
+            cursor: pointer;
+            margin-left: auto;
+
+            .btn-close{
+                position:relative;
+                margin: 10px;
+                width: 25px;
+                height: 25px;
+
+                div {
+                    width: 100%;
+                    height: 3px;
+                    background-color: $color-seagrey;
+                    position: absolute;
+                    top: 12px;
+                }
+            
+                .line1{
+                    transform: rotate(45deg);
+                }
+            
+                .line2{
+                    transform: rotate(135deg);
+                }
+            }
+        }
+    }
+
+
+    .change-btn{
+        position: absolute;
+        top:18px;
+        left:16px;
+        width: 18px;
+        height: 19px;
+        padding: 5px;
+        background-image: url(../img/assets/edit.png);
+        background-repeat: no-repeat;
+        background-position: 5px 5px;
+        background-size: 18px 19px;
+        z-index: 1;
+    }
+
     .first-text{
         position: absolute;
         font-size: 16px;
@@ -999,6 +1078,21 @@ input[type=submit]{
         font-size: 16px;
         bottom:10px;
         left: 21px;
+    }
+
+    .first-text-after-btn{
+        position: absolute;
+        font-size: 16px;
+        color: $color-seagrey;
+        top:10px;
+        left: 60px;
+    }
+
+    .last-text-after-btn{
+        position: absolute;
+        font-size: 16px;
+        bottom:10px;
+        left: 60px;
     }
 
     .right-info{

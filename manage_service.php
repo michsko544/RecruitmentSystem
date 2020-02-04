@@ -53,7 +53,7 @@ if (isset($_GET['report'])){
 
 <div id="container">
     <div id="sign-up-1" class="sign-up-wrapper">
-        <div class="page-title cyan-color">Add position</div>
+        <!--<div class="page-title cyan-color">Add position</div>
         <form id="sform" action="" method="post">
             <div class="form-row">
                 <label for="login">Position name</label>
@@ -75,7 +75,7 @@ if (isset($_GET['report'])){
             <div class="form-btn-wrapper">
                 <input type="submit" value="Create" class="btn btn-cyan" id="btn-sign-up-1">
             </div>
-        </form>
+        </form>-->
 
         Generate report
     </div>

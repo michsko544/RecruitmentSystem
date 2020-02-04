@@ -894,6 +894,72 @@ input[type=submit] {
 #container #add-bottom-btn-form .close .btn-close .line2 {
   transform: rotate(135deg);
 }
+#container #add-bottom-btn-form2 {
+  position: fixed;
+  bottom: 0;
+  border: none;
+  border-top: 2px #95A5A659 solid;
+  display: flex;
+  flex-direction: column;
+  padding: 0 0 15%;
+  width: 100%;
+  background: #F6F6F6;
+}
+#container #add-bottom-btn-form2 .description {
+  color: #36C3D9;
+  text-align: center;
+  padding: 5px 0 10px;
+}
+#container #add-bottom-btn-form2 form {
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+}
+#container #add-bottom-btn-form2 form .btn-big-positioning {
+  margin-top: 35px;
+  display: flex;
+  align-content: center;
+}
+#container #add-bottom-btn-form2 label {
+  color: #95A5A6;
+}
+#container #add-bottom-btn-form2 .close2 {
+  cursor: pointer;
+  margin-left: auto;
+}
+#container #add-bottom-btn-form2 .close2 .btn-close {
+  position: relative;
+  margin: 10px;
+  width: 25px;
+  height: 25px;
+}
+#container #add-bottom-btn-form2 .close2 .btn-close div {
+  width: 100%;
+  height: 3px;
+  background-color: #95A5A6;
+  position: absolute;
+  top: 12px;
+}
+#container #add-bottom-btn-form2 .close2 .btn-close .line1 {
+  transform: rotate(45deg);
+}
+#container #add-bottom-btn-form2 .close2 .btn-close .line2 {
+  transform: rotate(135deg);
+}
+#container .change-btn {
+  position: absolute;
+  top: 18px;
+  left: 16px;
+  width: 18px;
+  height: 19px;
+  padding: 5px;
+  background-image: url(../img/assets/edit.png);
+  background-repeat: no-repeat;
+  background-position: 5px 5px;
+  background-size: 18px 19px;
+  z-index: 1;
+}
 #container .first-text {
   position: absolute;
   font-size: 16px;
@@ -906,6 +972,19 @@ input[type=submit] {
   font-size: 16px;
   bottom: 10px;
   left: 21px;
+}
+#container .first-text-after-btn {
+  position: absolute;
+  font-size: 16px;
+  color: #95A5A6;
+  top: 10px;
+  left: 60px;
+}
+#container .last-text-after-btn {
+  position: absolute;
+  font-size: 16px;
+  bottom: 10px;
+  left: 60px;
 }
 #container .right-info {
   position: absolute;
