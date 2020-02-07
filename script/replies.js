@@ -36,11 +36,11 @@ const addChangeConversatorBtn = (json) => {
                 </div>
             </div>
             <h3 class="description">Choose who you want to message</h3>
-            <form action="" method="post">
+            <form action="../php/coWorkerChat.php" method="post">
                 <div class="form-row">
                     <label for="user">Colleague</label>
-                    <select>
-                        ${json.coWorkers.reduce((acc,elem)=>acc+`<option>${elem}</option>`,"")}
+                    <select name="co-worker">
+                        ${json.coWorkers.reduce((acc,elem)=>acc+`<option >${elem}</option>`,"")}
                     </select>
                 </div>
                 <div class="btn-big-positioning">

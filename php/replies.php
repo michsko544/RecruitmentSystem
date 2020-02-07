@@ -66,18 +66,18 @@ function getRepliesData($user){
 
 function listEmployees($host, $db_user, $db_pass, $db_name){
     require_once "HandleJson.php";
-    $query_a = 'select CONCAT(name, " ", surname) as userList from users where id_role != 2 and id_user != ' .$_SESSION['id_user'];
+    $query_a = 'select CONCAT(name, " ", surname) as userList from users where id_role != 2 and id_user != ' .$_SESSION['id_user'] .' order by id_user desc';
+    $query_i = 'select id_user from users where id_role != 2 and id_user != ' .$_SESSION['id_user'] .' order by id_user desc';
     $json_array = array();
     $data_push_a = array();
-    $data_push_m = array();
-    $data_push_r = array();
-    $data_push_d = array();
+    $data_push_i = array();
     $json = new HandleJson();
 
     mysqli_report(MYSQLI_REPORT_STRICT);
     try
     {
         $count_a = $json->fetchData($query_a, $data_push_a, $json_array['coWorkers'], $host, $db_user, $db_pass, $db_name);
+        $count_i = $json->fetchData($query_i, $data_push_i, $json_array['idWorkers'], $host, $db_user, $db_pass, $db_name);
 
         $json->addCounters($json_array['counters']['coWorkers'], $count_a);
         $json->createJsonFile("json/co-workers.json", $json_array);
