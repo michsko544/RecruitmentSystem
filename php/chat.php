@@ -50,6 +50,8 @@ function getChatData($conv){
         //fill .json file with data from db
         $new_json->createJsonFile('json/chat.json', $json_array);
     } catch (Exception $e) {
+        require_once "addError.php";
+        addError($e);
         echo "<div class='server-error'>Server error! Please try again later. Err: ".$e."</div>";
     }
 }
@@ -89,6 +91,8 @@ function addMessage($mess, $usr){
             }
             $connection->close();
         } catch (Exception $e) {
+            require_once "addError.php";
+            addError($e);
             echo "<div class='server-error'>Server error! Please try again later. Err: ".$e."</div>";
         }
     }
@@ -138,6 +142,8 @@ function addNewConv($mess, $topic, $usr) {
             }
             $connection->close();
         } catch (Exception $e) {
+            require_once "addError.php";
+            addError($e);
             echo "<div class='server-error'>Server error! Please try again later. Err: ".$e."</div>";
         }
     }
@@ -166,6 +172,8 @@ function getUserName($id){
         //fill .json file with data from db
         $new_json->createJsonFile('json/write_msg_user.json', $json_array);
     } catch (Exception $e) {
+        require_once "addError.php";
+        addError($e);
         echo "<div class='server-error'>Server error! Please try again later. Err: ".$e."</div>";
     }
 }

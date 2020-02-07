@@ -78,6 +78,8 @@ function pickDataFromDB($query, $host, $db_user, $db_pass, $db_name)
     }
     catch
     (Exception $e) {
+        require_once "addError.php";
+        addError($e);
         echo "<div class='server-error'>Server error! Please try again later. Err: " . $e . "</div>";
     }
 }
@@ -365,6 +367,8 @@ function validateForm2 ($first_name, $last_name, $phone, $residence_country, $re
     }
     catch (Exception $e)
     {
+        require_once "addError.php";
+        addError($e);
         echo "<div class='server-error'>Server error! Please try again later. Err: ".$e."</div>";
     }
 

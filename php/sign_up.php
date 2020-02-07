@@ -150,6 +150,8 @@ if ( isset($_SESSION['form1']) && isset($_SESSION['form2']) && isset($_SESSION['
         try {
             $db_insert->insertSignUp();
         }catch (Exception $e){
+            require_once "addError.php";
+            addError($e);
             echo "<div class='server-error'>Server error! Please try again later. Err: ".$e."</div>";
         }
     }

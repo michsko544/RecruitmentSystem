@@ -104,6 +104,8 @@ if (isset($_POST['login'])){
         }
     catch(Exception $e)
     {
+        require_once ($_SERVER['DOCUMENT_ROOT'] . "/php/addError.php");
+        addError($e);
         echo "<div class='server-error'>Server error! Please try again later. Err: ".$e."</div>";
     }
 }

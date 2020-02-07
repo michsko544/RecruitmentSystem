@@ -39,36 +39,43 @@ getRole($host, $db_user, $db_pass, $db_name);
     </div>
     <div id="nav-help"></div>
 </nav>
-
 <div id="container">
 
+<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+<!-- TODO generalnie to tylko taki zamysł jak by to mogło wyglądać, więc najlepiej pytaj o co mi tu chodziło -->
+<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
 
-<!-- TODO show website stats, restrict website , generate report -->
-    <div class="small-title"> Admin panel </div> <!-- TODO wyśrodkować -->
+
+    <div class="small-title"> Admin panel </div>
+    <!-- TODO wyśrodkować -->
     <div class="element-wrapper">Server time: </div> <!-- TODO add server time -->
-    <div class="element-wrapper">Last week stats</div> <!-- TODO add stats -->
-    <div> Visits: </div>
 
-    <div> New users: </div>
-    <div> New applications: </div>
-    <div> Most popular position: </div>
-    <div> Rejected applications: </div>
-    <div> Accepted applications: </div> <!-- TODO maybe to report / manager's main page -->
+    <div> Visits: </div>
 
     <div> Users: </div>
     <div> Applicants: </div>
-    <div> : </div>
+    <div class="list-row">
+        <h4 class="title-element">Error log</h4>
+        <!-- wyświetlanie listy errorów z json/log.json" -->
+        <div class="btn-element">
+            <div class="btn-unwrap">
+                <div class="line1"></div>
+                <div class="line2"></div>
+            </div>
+
+        </div>
+    </div>
 
     <div class="element-wrapper"><a href="pdf/rep.php" target="_blank">Generate report</a></div>
-
-
 </div>
 </body>
+<!-- nie wiem czy te wszystkie są potrzebne -->
 <script src="script/burger.js"></script>
 <script src="script/main.js"></script>
 <script src="script/user-data-handler.js"></script>
-<script src="script/input-file.js"></script>
 <script src="script/sign-up.js"></script>
+<script src="script/profile.js"></script>
+<script src="script/loadProfile.js"></script>
 <script src="script/userRecognizer.js"></script>
 
 </html>

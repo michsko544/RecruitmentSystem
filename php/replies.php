@@ -60,6 +60,8 @@ function getRepliesData($user){
         //fill .json file with data from db
         $new_json->createJsonFile('json/replies.json', $json_array);
     } catch (Exception $e) {
+        require_once "addError.php";
+        addError($e);
         echo "<div class='server-error'>Server error! Please try again later. Err: ".$e."</div>";
     }
 }
@@ -84,6 +86,8 @@ function listEmployees($host, $db_user, $db_pass, $db_name){
     }
     catch
     (Exception $e) {
+        require_once "addError.php";
+        addError($e);
         echo "<div class='server-error'>Server error! Please try again later. Err: " . $e . "</div>";
     }
 

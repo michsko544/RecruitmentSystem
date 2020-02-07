@@ -30,6 +30,8 @@ class AddDecision
                     throw new Exception($this->conn->error);
             }
         } catch (Exception $e){
+            require_once "addError.php";
+            addError($e);
             echo "<div class='server-error'>Server error! Please try again later. Err: ".$e."</div>";
         }
     }
