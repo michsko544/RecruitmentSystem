@@ -1,7 +1,7 @@
 <?php
 class FormsValidation
 {
-    private $correct_data = true;
+    protected $correct_data = true;
     private $insert_values = array(
         'username' => '',
         'email' => '',
@@ -169,7 +169,6 @@ function valiDate($start_date, $end_date)
     if ($end_date == "Present")
     {
         $f_start_date = strtotime($start_date);
-        $ff_sd = date("d-m-Y", $f_start_date);
         if ($ff_cur < $f_start_date)
         {
             $this->notGood('err_date', 'End date must be after start date');
@@ -179,9 +178,7 @@ function valiDate($start_date, $end_date)
     else
     {
         $f_start_date = strtotime($start_date);
-        $ff_sd = date("d-m-Y", $f_start_date);
         $f_end_date = strtotime($end_date);
-        $ff_ed = date("d-m-Y", $f_end_date);
 
         if ($f_end_date < $f_start_date || $ff_cur < $f_start_date)
         {
@@ -231,7 +228,7 @@ function validateForm1 ($username, $email, $password_one, $password_two, $positi
     // Validate terms of use
     if (!isset($_POST['terms-of-use']))
     {
-        $correct_data = false;
+        $this->correct_data = false;
         $this->notGood('err_terms', 'You must accept our Terms of Use and Privacy Policy');
     }
 
@@ -609,11 +606,8 @@ function validateFile($filename, $multi_file, $col_name)
     } else {
         $target_dir = "uploads/";
         if( isset($_FILES[$filename]['name'])) {
-
             $total_files = count($_FILES[$filename]['name']);
-
             for($key = 0; $key < $total_files; $key++) {
-
                 // Check if file is selected
                 if(isset($_FILES[$filename]['name'][$key]) && $_FILES[$filename]['size'][$key] > 0) {
                     $original_filename = $_FILES[$filename]['name'][$key];

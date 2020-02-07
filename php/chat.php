@@ -142,3 +142,30 @@ function addNewConv($mess, $topic, $usr) {
         }
     }
 }
+
+function getUserName($id){
+    require "connect.php";
+    require_once "HandleJson.php";
+
+    $query_iu = "SELECT name from users where id_user = {$id}";
+    $query_is = "SELECT surname from users where id_user = {$id}";
+
+    $data_push_iu = array();
+    $data_push_is = array();
+
+    $json_array = array();
+    $new_json = new HandleJson();
+
+    // connect with db
+    mysqli_report(MYSQLI_REPORT_STRICT);
+    try {
+        // add db results to array
+        $count_iu = $new_json->fetchData($query_iu, $data_push_iu, $json_array['personalData']['name'], $host, $db_user, $db_pass, $db_name);
+        $count_is = $new_json->fetchData($query_is, $data_push_is, $json_array['personalData']['surname'], $host, $db_user, $db_pass, $db_name);
+
+        //fill .json file with data from db
+        $new_json->createJsonFile('json/write_msg_user.json', $json_array);
+    } catch (Exception $e) {
+        echo "<div class='server-error'>Server error! Please try again later. Err: ".$e."</div>";
+    }
+}

@@ -3,7 +3,7 @@
 
 class InsertToDB
 {
-    private $conn = null;
+    protected $conn = null;
     public $id_city_FQ = 0;
     public $id_language_FQ = 0;
     public $id_skill_FQ = 0;
@@ -120,6 +120,14 @@ class InsertToDB
                     $this->itWorks("</br> id_applicant-val: " . $id_applicant_Q);
 
                     // TODO --- add multi insert ---
+                    /*
+                     * sth like that
+                     * $w=0;
+                     * while (isset($_SESSION['array']['emp']['job-title'][$w]){
+                     *      insert ($_SESSION['array']['emp']['job-title'][$w])
+                     *      w++;
+                     * }
+                     * */
                     if ($this->conn->query("insert into experiences (id_experience, job, employer, start_job, end_job, description, id_city, id_applicants) VALUES (null,'{$_SESSION['array']['emp']['job_title'][0]}','{$_SESSION['array']['emp']['employer'][0]}','{$_SESSION['array']['emp']['start_date'][0]}', '{$_SESSION['array']['emp']['end_date'][0]}','{$_SESSION['array']['emp']['description'][0]}',{$this->id_city_FQ}, {$id_applicant_Q})")) {
                         $this->checkLanguage($_SESSION['array']['sk_lang']['language'][0]);
                         echo "</br> query-3-success";
