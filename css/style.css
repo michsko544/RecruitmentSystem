@@ -767,6 +767,12 @@ input[type=submit] {
   background-size: 21px 18px;
   z-index: 1;
 }
+#container .small-title #add {
+  width: 28px;
+  height: 28px;
+  background-size: 18px 18px;
+  background-image: url(../img/assets/plus.png);
+}
 #container .list-row {
   width: 100%;
   min-height: 65px;

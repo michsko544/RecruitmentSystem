@@ -290,18 +290,20 @@ const addCourse = ({course}) => {
 const addStageBtn = () => {
     let container = document.querySelector("#container");
     let newDiv = document.createRange().createContextualFragment(
-        `<div class="list-row bottom-row left-btn" id="btn-add-stage">
-            <div class="btn-add ">
-                <div class="btn-border">
-                    <div class="btn-icon">
-                        +
+        `<a href="add-stage.php">   
+            <div class="list-row bottom-row left-btn" id="btn-add-stage">
+                <div class="btn-add ">
+                    <div class="btn-border">
+                        <div class="btn-icon">
+                            +
+                        </div>
+                    </div>
+                    <div class="btn-text">
+                        Add stage
                     </div>
                 </div>
-                <div class="btn-text">
-                    Add stage
-                </div>
             </div>
-        </div>`);
+        </a>`);
     container.appendChild(newDiv);
     console.log("added",container,newDiv)
 };

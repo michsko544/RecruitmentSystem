@@ -39,6 +39,7 @@ const loadMenu = (role) => {
             menu.appendChild(link);
             break;
         case "admin":
+
             link = document.createElement("li");
             link.innerHTML = "<a href='admin_main.php'>Main page</a>";
             menu.appendChild(link);
@@ -54,6 +55,10 @@ const loadMenu = (role) => {
             link = document.createElement("li");
             link.innerHTML = "<a href='php/log_in/log_out.php'>Sign out</a>";
             menu.appendChild(link);
+            const navLinks = document.querySelectorAll(".nav-links li");
+            navLinks.forEach((link, index)=>{
+            });
+
             break;
         default:
             link = document.createElement("li");
