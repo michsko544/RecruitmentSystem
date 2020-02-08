@@ -14,7 +14,17 @@ class AddPosition extends FormsValidation {
         $this->user = $db_user;
         $this->pass = $db_pass;
         $this->name = $db_name;
-        $this->conn = new mysqli($host, $db_user, $db_pass, $db_name);
+        mysqli_report(MYSQLI_REPORT_STRICT);
+        try{
+            $this->conn = new mysqli($host, $db_user, $db_pass, $db_name);
+            if ($this->conn->connect_errno!=0){
+                throw new Exception($this->conn->error);
+            }
+        } catch (Exception $e){
+            require_once "addError.php";
+            addError($e);
+            echo "<div class='server-error'>Server error! Please try again later. Err: ".$e."</div>";
+        }
     }
 
     function __destruct()

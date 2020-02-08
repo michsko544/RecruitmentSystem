@@ -10,6 +10,7 @@ if ((!isset($_SESSION['logged_in'])) || ($_SESSION['logged_in'] == false))
     getRole($host, $db_user, $db_pass, $db_name);
     require_once "php/profile.php";
     $role = $_SESSION['id_role'];
+
     if (isset($_GET['id_application'])) { // TODO move to view_stages.php if exists
         require_once "php/AddStage.php";
         $stage = new AddStage($host, $db_user, $db_pass, $db_name);
@@ -21,15 +22,7 @@ if ((!isset($_SESSION['logged_in'])) || ($_SESSION['logged_in'] == false))
         case 2:
             getProfileData($_SESSION['id_user']);
             break;
-        case 3:
-            $user_profile = $_GET['uid']; // TODO if recruiter / manager / assistant -> GET user's id
-            getProfileData($user_profile);
-            break;
-        case 4:
-            $user_profile = $_GET['uid']; // TODO if recruiter / manager / assistant -> GET user's id
-            getProfileData($user_profile);
-            break;
-        case 5:
+        default:
             $user_profile = $_GET['uid']; // TODO if recruiter / manager / assistant -> GET user's id
             getProfileData($user_profile);
             break;

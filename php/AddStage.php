@@ -13,7 +13,17 @@ class AddStage extends HandleJson
         $this->user = $db_user;
         $this->pass = $db_pass;
         $this->name = $db_name;
-        $this->conn = new mysqli($host, $db_user, $db_pass, $db_name);
+        mysqli_report(MYSQLI_REPORT_STRICT);
+        try{
+            $this->conn = new mysqli($host, $db_user, $db_pass, $db_name);
+            if ($this->conn->connect_errno!=0){
+                throw new Exception($this->conn->error);
+            }
+        } catch (Exception $e){
+            require_once "addError.php";
+            addError($e);
+            echo "<div class='server-error'>Server error! Please try again later. Err: ".$e."</div>";
+        }
     }
 
     function __destruct()
@@ -21,8 +31,20 @@ class AddStage extends HandleJson
         $this->conn->close();
     }
 
-    function add($id_application){
-
+    function add($id_application, $name, $notes){
+        mysqli_report(MYSQLI_REPORT_STRICT);
+        try{
+            if ($this->conn->query("insert into sor (id_sor, name_stage, description, id_application) values (null, '{$name}', '{$notes}', $id_application)")){
+                header("Location: " . $_SERVER['DOCUMENT_ROOT'] . "/view-stage.php?aid=" . $id_application);
+            } else {
+                throw new Exception($this->conn->error);
+            }
+        } catch (Exception $e)
+        {
+            require_once "addError.php";
+            addError($e);
+            echo "<div class='server-error'>Server error! Please try again later. Err: ".$e."</div>";
+        }
     }
 
     function view($id_application){
@@ -51,3 +73,5 @@ class AddStage extends HandleJson
         }
     }
 }
+
+

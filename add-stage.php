@@ -1,3 +1,22 @@
+<?php
+try{
+    if (isset($_GET['id_application'])) {
+        if (isset($_POST['topic'])){
+            require_once "php/AddStage.php";
+            $stage = new AddStage($host, $db_user, $db_pass, $db_name);
+            $name = $_POST['topic'];
+            $notes = $_POST['notes'];
+            $stage->add($_GET['id_application'], $name, $notes);}
+    } else {
+        throw new Exception("_GET parameter not found");
+    }
+} catch (Exception $e){
+    require_once "php/addError.php";
+    addError($e);
+    echo "<div class='server-error'>Server error! Please try again later. Err: ".$e."</div>";
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
