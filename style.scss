@@ -831,6 +831,14 @@ input[type=submit]{
             background-position: 5px 5px;
             background-size: 21px 18px;
             z-index: 1;
+
+        }
+
+        #add{
+            width: 28px;
+            height: 28px;
+            background-size: 18px 18px;
+            background-image: url(../img/assets/plus.png);
         }
     }
 
