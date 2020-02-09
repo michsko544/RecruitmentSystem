@@ -57,7 +57,7 @@ async function readJSON2(path) {
     addChangeDecisionForm();
     console.log(document.querySelector(".change-btn"));
     document.querySelectorAll(".change-btn").forEach(elem=>elem.addEventListener("click", ()=>{
-        document.querySelector("#change-decision").action=`../php/AddDecision?aid=${elem.id}`;
+        document.querySelector("#change-decision").action=`../php/AddDecision.php?aid=${elem.id}`;
         showDiv("add-bottom-btn-form2--hidden")
     }));
     document.querySelector(".close2").addEventListener("click", ()=>hideDiv("add-bottom-btn-form2"));
