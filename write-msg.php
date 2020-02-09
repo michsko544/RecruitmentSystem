@@ -55,7 +55,7 @@ if (isset($_POST['message-field']))
             <div class="message-wrapper">
                 <div class="form-row">
                     <label for="msg-topic">Topic</label>
-                    <div class="msg-topic">Reply: FrontEnd bla bla bla</div>
+                    <div class="msg-topic">Reply: FrontEnd interview</div>
                 </div>
                 <div class="form-row">
                     <?php $err->setError("err_message") ?>
