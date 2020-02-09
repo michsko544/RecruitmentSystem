@@ -1,1 +1,4 @@
+<<<<<<< HEAD
 {"email":["user@maiol.com"],"personalData":{"firstName":["John"],"lastName":["Smith"],"phone":["111111111"],"country":["Uzbekistan"],"city":["L"]},"experience":{"jobTitle":["Waiter"],"employer":["Wait"],"startDate":["01-01-2020"],"endDate":["Present"],"city":["London"],"description":["desc"]},"education":{"schoolName":["school"],"specialization":["special"],"startDate":["02-01-2020"],"endDate":["07-01-2020"],"city":["gliwice"],"description":["desc"]},"skills":{"languages":{"lang":["german"],"level":["4"]},"skills":{"skill":["marketing"],"level":["5"]}},"additional":{"cv":null,"coverLetter":null,"certificates":null,"courses":null},"counters":{"personalData":1,"experience":1,"education":1,"language":1,"skill":1,"cv":0,"coverLetter":0,"certificate":0,"course":0}}
+=======
+>>>>>>> 8e0fad927792e68eeb755528e92778cf7e0f4336
