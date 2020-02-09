@@ -51,7 +51,6 @@ getRole($host, $db_user, $db_pass, $db_name);
     <div class="element-wrapper">Server time: </div> <!-- TODO add server time -->
 
     <div> Visits: </div>
-
     <div> Users: </div>
     <div> Applicants: </div>
     <div class="list-row">
@@ -62,7 +61,11 @@ getRole($host, $db_user, $db_pass, $db_name);
                 <div class="line1"></div>
                 <div class="line2"></div>
             </div>
-
+        </div>
+    </div>
+    <div class="list-row hide" id="">
+        <div id="sform-1" class="element-wrapper">
+            <div class="break" id="break-1"></div>
         </div>
     </div>
 
@@ -73,9 +76,7 @@ getRole($host, $db_user, $db_pass, $db_name);
 <script src="script/burger.js"></script>
 <script src="script/main.js"></script>
 <script src="script/user-data-handler.js"></script>
-<script src="script/sign-up.js"></script>
 <script src="script/profile.js"></script>
-<script src="script/loadProfile.js"></script>
 <script src="script/userRecognizer.js"></script>
 
 </html>
