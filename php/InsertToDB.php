@@ -10,6 +10,7 @@ class InsertToDB
 
     function __construct($host, $db_user, $db_pass, $db_name)
     {
+        session_start();
         mysqli_report(MYSQLI_REPORT_STRICT);
         try{
             $this->conn = new mysqli($host, $db_user, $db_pass, $db_name);
@@ -95,13 +96,7 @@ class InsertToDB
                 $country_V = $country_Q->fetch_assoc();
                 $id_country_Q = $country_V['id_country'];
 
-                // TODO wiele formularzy
                 if ($this->conn->query("insert into applicants (id_applicants, phone, email, id_cv, id_city, id_user, id_certificate, id_country) VALUES (null, '{$_SESSION['array']['pd']['phone']}', '{$_SESSION['array']['val']['email']}', {$id_cv_Q}, {$this->id_city_FQ}, {$id_user_Q}, {$id_cert_Q}, {$id_country_Q})")){
-                    $id_city_Q = $this->checkCity($_SESSION['array']['emp']['city'][0]);
-
-                    $applicant_Q = $this->conn->query("select id_applicants from applicants where email = '{$_SESSION['array']['val']['email']}'");
-                    $applicant_V = $applicant_Q->fetch_assoc();
-                    $id_applicant_Q = $applicant_V['id_applicants'];
 
                     // TODO --- add multi insert ---
                     /*
@@ -112,20 +107,27 @@ class InsertToDB
                      *      w++;
                      * }
                      * */
+
+                    $id_city_Q = $this->checkCity($_SESSION['array']['emp']['city'][0]);
+                    $applicant_Q = $this->conn->query("select id_applicants from applicants where email = '{$_SESSION['array']['val']['email']}'");
+                    $applicant_V = $applicant_Q->fetch_assoc();
+                    $id_applicant_Q = $applicant_V['id_applicants'];
                     if ($this->conn->query("insert into experiences (id_experience, job, employer, start_job, end_job, description, id_city, id_applicants) VALUES (null,'{$_SESSION['array']['emp']['job_title'][0]}','{$_SESSION['array']['emp']['employer'][0]}','{$_SESSION['array']['emp']['start_date'][0]}', '{$_SESSION['array']['emp']['end_date'][0]}','{$_SESSION['array']['emp']['description'][0]}',{$this->id_city_FQ}, {$id_applicant_Q})")) {
+
                         $this->checkLanguage($_SESSION['array']['sk_lang']['language'][0]);
                         $id_lang_level_Q = intval($_SESSION['array']['sk_lang']['language_level'][0]);
-
                         if ($this->conn->query("insert into knowledge (id_knowledge, id_level, id_applicants, id_language) VALUES (null, {$id_lang_level_Q}, {$id_applicant_Q}, {$this->id_language_FQ})")){
+
                             $this->checkSkill($_SESSION['array']['sk_lang']['skill'][0]);
                             $id_skill_level_Q = intval($_SESSION['array']['sk_lang']['skill_level'][0]);
-
                             if ($this->conn->query("insert into holders (id_holder, id_level, id_applicants, id_skill) VALUES (null, {$id_skill_level_Q}, {$id_applicant_Q}, {$this->id_skill_FQ})")){
+
                                 $id_city_Q = $this->checkCity($_SESSION['array']['edu']['city'][0]);
                                 if ($this->conn->query("insert into schools (id_school, name_school, specialization, start_learning, end_learning, description, id_city, id_applicants) VALUES (null, '{$_SESSION['array']['edu']['school'][0]}', '{$_SESSION['array']['edu']['specialization'][0]}', '{$_SESSION['array']['edu']['start_date'][0]}', '{$_SESSION['array']['edu']['end_date'][0]}', '{$_SESSION['array']['edu']['description'][0]}', {$this->id_city_FQ}, {$id_applicant_Q})")){
+
                                     $id_position_Q = $this->checkPosition($_SESSION['array']['val']['position']);
                                     // TODO cover letter
-                                    if ($this->conn->query("insert into applications (id_application, id_applicants, id_decision, id_position, id_status, id_cl, date, id_conv) values (null, {$id_applicant_Q}, 4, {$id_position_Q}, 1, 1, '{$timestamp}', )"));{ // TODO add cover letter id
+                                    if ($this->conn->query("insert into applications (id_application, id_applicants, id_decision, id_position, id_status, id_cl, date, id_conv) values (null, {$id_applicant_Q}, 4, {$id_position_Q}, 1, 1, '{$timestamp}', null)"));{ // TODO add cover letter id
                                         $_SESSION['successful-sign-up'] = true;
                                         header ('Location: ../sign_in.php');
                                     }
