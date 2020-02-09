@@ -317,7 +317,7 @@ const viewStageBtn = () => {
     var url = new URL(url_string);
     let id = url.searchParams.get("aid");
     let newDiv = document.createRange().createContextualFragment(
-        `<a href="stages.php?aid=${id}">   
+        `<a href="stages.php?aid=${id}">  
             <div class="list-row bottom-row right-btn" id="btn-view-stage">
                 <div class="btn-add ">
                     <div class="btn-border">
