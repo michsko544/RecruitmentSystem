@@ -153,11 +153,13 @@ function getUserName($id, $uid){
     require "connect.php";
     require_once "HandleJson.php";
 
+    $query_id = "SELECT u.id_user from users u join applicants a on a.id_user=u.id_user join applications ap on ap.id_applicants=a.id_applicants where ap.id_application = {$id}";
     $query_iu = "SELECT u.name from users u join applicants a on a.id_user=u.id_user join applications ap on ap.id_applicants=a.id_applicants where ap.id_application = {$id}";
     $query_is = "SELECT u.surname from users u join applicants a on a.id_user=u.id_user join applications ap on ap.id_applicants=a.id_applicants where ap.id_application = {$id}";
     $query_ip = "SELECT p.position from positions p join applications ap on ap.id_position=p.id_position where ap.id_application = {$id}";
     $query_ir = "SELECT r.name_role from roles r join users u on u.id_role=r.id_role where u.id_user = {$uid}";
 
+    $data_push_id = array();
     $data_push_iu = array();
     $data_push_is = array();
     $data_push_ip = array();
@@ -170,6 +172,7 @@ function getUserName($id, $uid){
     mysqli_report(MYSQLI_REPORT_STRICT);
     try {
         // add db results to array
+        $count_id = $new_json->fetchData($query_id, $data_push_id, $json_array['personalData']['id'], $host, $db_user, $db_pass, $db_name);
         $count_iu = $new_json->fetchData($query_iu, $data_push_iu, $json_array['personalData']['name'], $host, $db_user, $db_pass, $db_name);
         $count_is = $new_json->fetchData($query_is, $data_push_is, $json_array['personalData']['surname'], $host, $db_user, $db_pass, $db_name);
         $count_ip = $new_json->fetchData($query_ip, $data_push_ip, $json_array['personalData']['position'], $host, $db_user, $db_pass, $db_name);
