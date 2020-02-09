@@ -1,12 +1,12 @@
 <?php
 try{
-    if (isset($_GET['id_application'])) {
+    if (isset($_GET['aid'])) {
         if (isset($_POST['topic'])){
             require_once "php/AddStage.php";
             $stage = new AddStage($host, $db_user, $db_pass, $db_name);
             $name = $_POST['topic'];
             $notes = $_POST['notes'];
-            $stage->add($_GET['id_application'], $name, $notes);}
+            $stage->add($_GET['aid'], $name, $notes);}
     } else {
         throw new Exception("Couldn't resolve _GET parameter");
     }

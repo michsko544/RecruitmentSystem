@@ -108,10 +108,25 @@ class InsertToDB
                      * }
                      * */
 
-                    $id_city_Q = $this->checkCity($_SESSION['array']['emp']['city'][0]);
                     $applicant_Q = $this->conn->query("select id_applicants from applicants where email = '{$_SESSION['array']['val']['email']}'");
                     $applicant_V = $applicant_Q->fetch_assoc();
                     $id_applicant_Q = $applicant_V['id_applicants'];
+
+                    $w0 = 0;
+                    $w1 = 0;
+                    $w2 = 0;
+                    $w3 = 0;
+                    $w4 = 0;
+                    while (isset($_SESSION['array']['emp']['city'][$w0])){
+
+                        while (isset($_SESSION['array']['emp']['city'][$w0])){
+
+
+                            $w1++;
+                        }
+                        $w0++;
+                    }
+                    $id_city_Q = $this->checkCity($_SESSION['array']['emp']['city'][0]);
                     if ($this->conn->query("insert into experiences (id_experience, job, employer, start_job, end_job, description, id_city, id_applicants) VALUES (null,'{$_SESSION['array']['emp']['job_title'][0]}','{$_SESSION['array']['emp']['employer'][0]}','{$_SESSION['array']['emp']['start_date'][0]}', '{$_SESSION['array']['emp']['end_date'][0]}','{$_SESSION['array']['emp']['description'][0]}',{$this->id_city_FQ}, {$id_applicant_Q})")) {
 
                         $this->checkLanguage($_SESSION['array']['sk_lang']['language'][0]);
