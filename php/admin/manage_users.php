@@ -77,7 +77,7 @@ class ManageUsers extends HandleJson {
                 throw new Exception($this->conn->error);
             } else {
                 $tmp_pass = substr($table['pass'], 11);
-                if (!($update = $this->conn->query("update users set pass = '{$tmp_pass}' where id_user = $user"))){
+                if (!($update = $this->conn->query("update users set pass = '{$tmp_pass}' where id_user = $user"))) {
                     throw new Exception($this->conn->error);
                 }
             }
