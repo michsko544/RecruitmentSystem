@@ -619,6 +619,20 @@ input[type=submit] {
   height: calc(100vh - 85px);
   background-color: #F6F6F6;
 }
+#container .admin-info {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  padding: 20px;
+  border-bottom: #95A5A659 2px solid;
+}
+#container .admin-info .element {
+  color: #95A5A6;
+  margin-top: 5px;
+}
+#container .admin-info .element:first-child {
+  margin-top: 0;
+}
 #container .big-title {
   background-color: #E5E8E8;
   height: 120px;
@@ -1087,6 +1101,12 @@ input[type=submit] {
   color: #95A5A6;
   margin: 22.5px auto 40px;
   overflow: hidden;
+}
+.element-wrapper .big-text {
+  font-size: 30px;
+  color: #464650;
+  text-align: center;
+  margin-top: 20px;
 }
 .element-wrapper .form-row label {
   font-size: 13px;

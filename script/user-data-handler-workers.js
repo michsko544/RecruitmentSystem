@@ -289,8 +289,11 @@ const addCourse = ({course}) => {
 
 const addStageBtn = () => {
     let container = document.querySelector("#container");
+    var url_string = window.location.href;
+    var url = new URL(url_string);
+    let id = url.searchParams.get("aid");
     let newDiv = document.createRange().createContextualFragment(
-        `<a href="add-stage.php">   
+        `<a href="add-stage.php?aid=${id}">   
             <div class="list-row bottom-row left-btn" id="btn-add-stage">
                 <div class="btn-add ">
                     <div class="btn-border">
@@ -310,17 +313,22 @@ const addStageBtn = () => {
 
 const viewStageBtn = () => {
     let container = document.querySelector("#container");
+    var url_string = window.location.href;
+    var url = new URL(url_string);
+    let id = url.searchParams.get("aid");
     let newDiv = document.createRange().createContextualFragment(
-        `<div class="list-row bottom-row right-btn" id="btn-view-stage">
-            <div class="btn-add ">
-                <div class="btn-border">
-                    <div class="btn-icon" id="btn-list"></div>
-                </div>
-                <div class="btn-text">
-                    View stages
+        `<a href="stages.php?aid=${id}">   
+            <div class="list-row bottom-row right-btn" id="btn-view-stage">
+                <div class="btn-add ">
+                    <div class="btn-border">
+                        <div class="btn-icon" id="btn-list"></div>
+                    </div>
+                    <div class="btn-text">
+                        View stages
+                    </div>
                 </div>
             </div>
-        </div>`);
+        </a>`);
     container.appendChild(newDiv);
     console.log("added",container,newDiv)
 };

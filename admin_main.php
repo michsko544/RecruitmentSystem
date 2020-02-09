@@ -47,12 +47,13 @@ getRole($host, $db_user, $db_pass, $db_name);
 
 
     <div class="small-title"> Admin panel </div>
-    <!-- TODO wyśrodkować -->
-    <div class="element-wrapper">Server time: </div> <!-- TODO add server time -->
-
-    <div> Visits: </div>
-    <div> Users: </div>
-    <div> Applicants: </div>
+    <div class="admin-info">
+        <div class="element">Server time:</div>
+        <div class="element">Visits:</div>
+        <div class="element">Users:</div>
+        <div class="element">Applicants:</div>
+    </div>
+    
     <div class="list-row">
         <h4 class="title-element">Error log</h4>
         <!-- wyświetlanie listy errorów z json/log.json" -->
@@ -69,7 +70,21 @@ getRole($host, $db_user, $db_pass, $db_name);
         </div>
     </div>
 
-    <div class="element-wrapper"><a href="pdf/rep.php" target="_blank">Generate report</a></div>
+    <a href="pdf/rep.php" target="_blank">
+        <div class="list-row bottom-row" id="btn-report">
+            <div class="btn-add ">
+                <div class="btn-border">
+                    <div class="btn-icon">
+                        +
+                    </div>
+                </div>
+                <div class="btn-text">
+                        Generate report
+                </div>
+            </div>
+        </div>
+    </a>
+
 </div>
 </body>
 <!-- nie wiem czy te wszystkie są potrzebne -->
