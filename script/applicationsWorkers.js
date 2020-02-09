@@ -66,7 +66,7 @@ const addApplicationWithChangeDecision = ({position, name, decision, id, aid})=>
     if(decision==="rejected"){
         newDiv = document.createRange().createContextualFragment(
         `<div class="list-row">
-            <div class="change-btn"></div>
+            <div class="change-btn" id="${aid}"></div>
             <div class="position first-text-after-btn">${position}</div>
             <div class="app-info last-text-after-btn">${name} - Rejected</div>
             <a href="profileW.php?uid=${id}&aid=${aid}" class="btn-element rotate-to-right" >
@@ -80,7 +80,7 @@ const addApplicationWithChangeDecision = ({position, name, decision, id, aid})=>
     else if(decision==="accepted"){
         newDiv = document.createRange().createContextualFragment(
             `<div class="list-row">
-                <div class="change-btn"></div>
+                <div class="change-btn" id="${aid}"></div>
                 <div class="position first-text-after-btn">${position}</div>
                 <div class="app-info last-text-after-btn">${name} - Accepted</div>
                 <a href="profileW.php?uid=${id}&aid=${aid}" class="btn-element rotate-to-right" >
@@ -94,7 +94,7 @@ const addApplicationWithChangeDecision = ({position, name, decision, id, aid})=>
     else if(decision==="noteworthy"){
         newDiv = document.createRange().createContextualFragment(
             `<div class="list-row">
-                <div class="change-btn"></div>
+                <div class="change-btn" id="${aid}"></div>
                 <div class="position first-text-after-btn">${position}</div>
                 <div class="app-info last-text-after-btn">${name} - <span class="cyan-color">Noteworthy</span></div>
                 <a href="profileW.php?uid=${id}&aid=${aid}" class="btn-element rotate-to-right" >
@@ -107,7 +107,7 @@ const addApplicationWithChangeDecision = ({position, name, decision, id, aid})=>
     } else {
         newDiv = document.createRange().createContextualFragment(
             `<div class="list-row">
-                <div class="change-btn"></div>
+                <div class="change-btn" id="${aid}"></div>
                 <div class="position first-text-after-btn">${position}</div>
                 <div class="app-info last-text-after-btn">${name} - New</div>
                 <a href="profileW.php?uid=${id}&aid=${aid}" class="btn-element rotate-to-right" >
@@ -176,7 +176,7 @@ const addChangeDecisionForm = () => {
                 </div>
             </div>
             <h3 class="description">Found interesting applicant?</h3>
-            <form action="../php/AddDecision.php" method="post"> <!-- TODO URL application id -->
+            <form action="../php/AddDecision.php" id="change-decision" method="post"> <!-- TODO URL application id -->
                 <div class="form-row">
                     <label for="user">Decision</label>
                     <select name="name-decision">
