@@ -2,6 +2,11 @@
 require "php/connect.php";
 require_once "manage_users.php";
 
+if ($_SESSION['id_role'] != 1) {
+    header("Location: /index.php");
+    exit();
+}
+
 if ((isset($_GET['id_user'])) and (isset($_GET['action']))){
     $man = new ManageUsers($host, $db_user, $db_pass, $db_name);
     switch ($_GET['action']){

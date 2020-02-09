@@ -47,6 +47,13 @@ class AddDecision
     }
 }
 
+session_start();
+if ((!isset($_SESSION['logged_in'])) || ($_SESSION['logged_in'] == false))
+{
+    header('Location: /index.php');
+    exit();
+}
+
 require "connect.php";
 if (isset($_GET['aid'])){
     if (isset($_POST['name-decision'])){

@@ -1,5 +1,11 @@
 <?php
 session_start();
+
+if ($_SESSION['id_role'] != 1) {
+    header("Location: /index.php");
+    exit();
+}
+
 $role = $_GET['role'];
 switch ($role){
     case "applicant":

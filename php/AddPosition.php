@@ -88,6 +88,13 @@ class AddPosition extends FormsValidation {
         }
     }
 }
+
+session_start();
+if ((!isset($_SESSION['logged_in'])) || ($_SESSION['logged_in'] == false))
+{
+    header('Location: /index.php');
+    exit();
+}
 require_once "connect.php";
 $add_pos = new AddPosition(true, $host, $db_user, $db_pass, $db_name);
 $add_pos->add();
