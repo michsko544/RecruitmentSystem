@@ -1,8 +1,8 @@
 <?php
 session_start();
-if ((!isset($_SESSION['logged_in'])) || ($_SESSION['logged_in'] == false))
-{
-    header('Location: index.php');
+
+if ($_SESSION['id_role'] != 1) {
+    header("Location: /index.php");
     exit();
 }
 require_once "php/connect.php";

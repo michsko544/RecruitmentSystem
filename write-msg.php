@@ -7,8 +7,10 @@ require_once "php/getRole.php";
 getRole($host, $db_user, $db_pass, $db_name);
 $err = new FormsValidation(true);
 $usr = $_GET['uid'];
-$aid = $_GET['aid'];
-getUserName($aid, $usr);
+if (isset($_GET['aid'])){
+    $aid = $_GET['aid'];
+    getUserName($aid, $usr);
+}
 if (isset($_POST['message-field']))
 {
     if (isset($_POST['topic'])){

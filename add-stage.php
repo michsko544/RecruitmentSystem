@@ -1,4 +1,6 @@
 <?php
+
+
 try{
     if (isset($_GET['aid'])) {
         if (isset($_POST['topic'])){

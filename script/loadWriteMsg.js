@@ -21,14 +21,19 @@ const fromJsonToMsg = (json) => {
 }
 
 const fromJsonToMsgApplicant = (json) => {
-    const sender = findConversator(json);
+    const sender = {
+        id: json.personalData.id[0],
+        name: json.personalData.name[0],
+        surname: json.personalData.surname[0],
+        role: json.personalData.role[0]
+    };
     let titleProps = {
         sender: sender
     };
 
     let topic = {
-        topic: json.topic ? json.topic[0] || "" : "",
-        position: json.position ? json.position[0] || "" : ""
+        topic: json.personalData.topic ? json.personalData.topic[0] || "" : "",
+        position: json.personalData.position ? json.personalData.position[0] || "" : ""
     };
 
     addMsgTitleApplicant(titleProps);
