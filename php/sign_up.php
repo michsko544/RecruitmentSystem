@@ -34,7 +34,6 @@ if (isset($_POST['job-title-0']))
     $i = 0;
     while (isset($_POST['job-title-' . $i]))
     {
-        echo "while i=" . $i;
         $job_title = $_POST['job-title-' . $i];
         if (isset($_POST['no-experience']))
             $no_experience = true;
