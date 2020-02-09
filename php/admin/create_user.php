@@ -7,6 +7,11 @@ function notGood($err_name, $err_message, $inst)
     header("Location: /admin_create_user.php");
 }
 
+if ($_SESSION['id_role'] != 1) {
+    header("Location: /index.php");
+    exit();
+}
+
 if (isset($_POST['login'])){
     require_once "../FormsValidation.php";
     require_once "../connect.php";
