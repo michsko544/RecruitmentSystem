@@ -6,6 +6,7 @@ const fromJsonToReplies = (json) => {
     const topic = json.topic;
     const time = json.time;
     const n = json.counters;
+    const uid = json.fromUser.idUser;
 
     for(let i = 0; i<n.message; ++i){
         let name = names.name[i] + " " + names.surname[i];
@@ -16,6 +17,7 @@ const fromJsonToReplies = (json) => {
             position: pos[i],
             topic: topic[i],
             date: time[i].slice(0,10),
+            uid: uid[i]
         };
         addReply(props);
     }

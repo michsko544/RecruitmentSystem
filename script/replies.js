@@ -1,9 +1,9 @@
-const addReply = ({id,name,role,position,topic,date}) => {
+const addReply = ({id,name,role,position,topic,date,uid}) => {
     console.log(id);
     let lastMsg = document.querySelector(".list-row").parentNode;
     let container = document.querySelector("#container");
     let newDiv = document.createRange().createContextualFragment(
-    `<a href="${'chat.php?cid=' + id || '#'}">
+    `<a href="chat.php?cid=${id}&uid=${uid}">
         <div class="list-row">
             <div class="first-text">${position ? "Reply: " + position : topic }</div>
             <div class="msg-topic last-text">${name}${role ? " - " + role : ""}</div>
