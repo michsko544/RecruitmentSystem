@@ -149,15 +149,19 @@ function addNewConv($mess, $topic, $usr) {
     }
 }
 
-function getUserName($id){
+function getUserName($id, $uid){
     require "connect.php";
     require_once "HandleJson.php";
 
-    $query_iu = "SELECT name from users where id_user = {$id}";
-    $query_is = "SELECT surname from users where id_user = {$id}";
+    $query_iu = "SELECT u.name from users u join applicants a on a.id_user=u.id_user join applications ap on ap.id_applicants=a.id_applicants where ap.id_application = {$id}";
+    $query_is = "SELECT u.surname from users u join applicants a on a.id_user=u.id_user join applications ap on ap.id_applicants=a.id_applicants where ap.id_application = {$id}";
+    $query_ip = "SELECT p.position from positions p join applications ap on ap.id_position=p.id_position where ap.id_application = {$id}";
+    $query_ir = "SELECT r.name_role from roles r join users u on u.id_role=r.id_role where u.id_user = {$uid}";
 
     $data_push_iu = array();
     $data_push_is = array();
+    $data_push_ip = array();
+    $data_push_ir = array();
 
     $json_array = array();
     $new_json = new HandleJson();
@@ -168,6 +172,8 @@ function getUserName($id){
         // add db results to array
         $count_iu = $new_json->fetchData($query_iu, $data_push_iu, $json_array['personalData']['name'], $host, $db_user, $db_pass, $db_name);
         $count_is = $new_json->fetchData($query_is, $data_push_is, $json_array['personalData']['surname'], $host, $db_user, $db_pass, $db_name);
+        $count_ip = $new_json->fetchData($query_ip, $data_push_ip, $json_array['personalData']['position'], $host, $db_user, $db_pass, $db_name);
+        $count_ir = $new_json->fetchData($query_ir, $data_push_ir, $json_array['personalData']['role'], $host, $db_user, $db_pass, $db_name);
 
         //fill .json file with data from db
         $new_json->createJsonFile('json/write_msg_user.json', $json_array);

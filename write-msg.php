@@ -7,7 +7,8 @@ require_once "php/getRole.php";
 getRole($host, $db_user, $db_pass, $db_name);
 $err = new FormsValidation(true);
 $usr = $_GET['uid'];
-getUserName($usr);
+$aid = $_GET['aid'];
+getUserName($aid, $usr);
 if (isset($_POST['message-field']))
 {
     if (isset($_POST['topic'])){
@@ -54,7 +55,7 @@ if (isset($_POST['message-field']))
             <div class="message-wrapper">
                 <div class="form-row">
                     <label for="msg-topic">Topic</label>
-                    <div class="msg-topic">Reply: FrontEnd bla bla bla</div>
+                    <div class="msg-topic">Reply: FrontEnd interview</div>
                 </div>
                 <div class="form-row">
                     <?php $err->setError("err_message") ?>
