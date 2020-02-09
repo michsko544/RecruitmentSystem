@@ -26,9 +26,12 @@ for(let i=0; i<buttons.length; ++i){
 
 const addProfileTitle = ({sender: {id, name, surname}, position}) => {
     let smallT = document.querySelector(".small-title");
+    var url_string = window.location.href;
+    var url = new URL(url_string);
+    let aid = url.searchParams.get("aid");
     let newDiv = document.createRange().createContextualFragment(
         `<a href="javascript:history.back();"><div class="back"></div></a>
-        <a href="write-msg.php?uid=${id}"><div class="write"></div></a>
+        <a href="write-msg.php?uid=${id}&aid=${aid}"><div class="write"></div></a>
         <div class="position">${position}</div>
         <div class="name">${name} ${surname}</div>
         `);
