@@ -667,6 +667,23 @@ input[type=submit]{
     height: calc(100vh - 85px);
     background-color: $color-background;
 
+    .admin-info{
+        display: flex;
+        text-align:center;
+        flex-direction: column;
+        padding:20px;
+        border-bottom: $color-list-line 2px solid;
+
+        .element{
+            color:$color-seagrey;
+            margin-top: 5px;
+
+            &:first-child{
+                margin-top:0;
+            }
+        }
+    }
+
     .big-title{
         background-color: $color-titlebar;
         height: 120px;
@@ -1216,6 +1233,13 @@ input[type=submit]{
     color: $color-seagrey;
     margin: 22.5px auto 40px;
     overflow: hidden;
+
+    .big-text{
+        font-size: 30px;
+        color: $color-darkgrey;
+        text-align: center;
+        margin-top: 20px;
+    }
 
     .form-row{
 

@@ -41,18 +41,40 @@ getRole($host, $db_user, $db_pass, $db_name);
 </nav>
 
 <div id="container">
-    <div class="small-title"> Choose role </div> <!-- TODO wyśrodkować -->
-    <div class="element-wrapper"><a href="php/admin/choose_role.php?role=applicant">Applicant</a></div>
-    <div class="element-wrapper"><a href="php/admin/choose_role.php?role=recruiter">Recruiter</a></div>
-    <div class="element-wrapper"><a href="php/admin/choose_role.php?role=manager">Manager</a></div>
-    <div class="element-wrapper"><a href="php/admin/choose_role.php?role=assistant">Assistant</a></div>
+    <div class="small-title"> Change role </div>
+    <div class="break"></div>
+    <a href="php/admin/choose_role.php?role=applicant">
+        <div class="element-wrapper">
+            <h4 class="big-text">
+                Applicant
+            </h4>
+        </div>
+    </a>
+    <a href="php/admin/choose_role.php?role=recruiter">
+        <div class="element-wrapper">
+            <h4 class="big-text">
+                Recruiter
+            </h4>
+        </div>
+    </a>
+    <a href="php/admin/choose_role.php?role=manager">
+        <div class="element-wrapper">
+            <h4 class="big-text">
+                Manager
+            </h4>
+        </div>
+    </a>
+    <a href="php/admin/choose_role.php?role=assistant">
+        <div class="element-wrapper">
+            <h4 class="big-text">
+                Assistant
+            </h4>
+        </div>
+    </a>
 </div>
 </body>
 <script src="script/burger.js"></script>
 <script src="script/main.js"></script>
-<script src="script/user-data-handler.js"></script>
-<script src="script/input-file.js"></script>
-<script src="script/sign-up.js"></script>
 <script src="script/userRecognizer.js"></script>
 
 </html>
