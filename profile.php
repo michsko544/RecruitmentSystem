@@ -15,9 +15,13 @@ $role = $_SESSION['id_role'];
 switch ($role){
     case 2:
         getProfileData($_SESSION['id_user']);
-        updateData($_SESSION['id_user']);
         if (isset($_POST['first-name'])){
             $pro = new ChangeProfile(true, $host, $db_user, $db_pass, $db_name);
+            $flag_pd = false;
+            $flag_exp = false;
+            $flag_edu = false;
+            $flag_s = false;
+            $flag_l = false;
             if (isset($_POST['first-name']))
             {
                 $first_name = $_POST['first-name'];
@@ -78,12 +82,14 @@ switch ($role){
                 }
             }
             // TODO add files
-            if ($flag_pd==true && $flag_exp==true && $flag_edu==true && $flag_s==true && $flag_l==true){
+            if (($flag_pd==true) && ($flag_exp==true) && ($flag_edu==true) && ($flag_s==true) && ($flag_l==true)){
                 try {
                     require_once "php/UpdateData.php";
                     $up = new UpdateData($host, $db_user, $db_pass, $db_name);
                     $up->updateProfile();
                 }catch (Exception $e){
+                    require_once "php/addError.php";
+                    addError($e);
                     echo "<div class='server-error'>Server error! Please try again later. Err: ".$e."</div>";
                 }
             }

@@ -17,13 +17,11 @@ if ((!isset($_SESSION['logged_in'])) || ($_SESSION['logged_in'] == false))
         $stage->view($_GET['id_application']);
     }
     switch ($role){
-        case 1:
-            break; // TODO admin - what should be shown (maybe nothing)
         case 2:
             getProfileData($_SESSION['id_user']);
             break;
         default:
-            $user_profile = $_GET['uid']; // TODO if recruiter / manager / assistant -> GET user's id
+            $user_profile = $_GET['uid'];
             getProfileData($user_profile);
             break;
 }

@@ -102,7 +102,3 @@ function getProfileData($user){
     }
 }
 
-function updateData($id_user){
-    // TODO update user's data
-
-}

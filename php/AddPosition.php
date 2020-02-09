@@ -56,13 +56,6 @@ class AddPosition extends FormsValidation {
 
             //if (!preg_filter('/^[a-zA-Z0-9\040.\'"]+$/s', $description))
             {
-                //
-                //
-                //
-                //
-                //
-                //
-                //
                 //$this->notGood('err_description', 'Description may contain only letters and numbers');
             }
             if (strlen($description) > 500)

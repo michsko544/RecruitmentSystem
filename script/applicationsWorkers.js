@@ -176,7 +176,7 @@ const addChangeDecisionForm = () => {
                 </div>
             </div>
             <h3 class="description">Found interesting applicant?</h3>
-            <form action="../php/AddDecision.php?aid=" method="post"> <!-- TODO URL application id -->
+            <form action="../php/AddDecision.php" method="post"> <!-- TODO URL application id -->
                 <div class="form-row">
                     <label for="user">Decision</label>
                     <select name="name-decision">

@@ -8,7 +8,7 @@ try{
             $notes = $_POST['notes'];
             $stage->add($_GET['id_application'], $name, $notes);}
     } else {
-        throw new Exception("_GET parameter not found");
+        throw new Exception("Couldn't resolve _GET parameter");
     }
 } catch (Exception $e){
     require_once "php/addError.php";
