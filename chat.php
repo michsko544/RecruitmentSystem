@@ -8,6 +8,9 @@ require_once "php/connect.php";
 require_once "php/getRole.php";
 getRole($host, $db_user, $db_pass, $db_name);
 require_once "php/chat.php";
+if ((isset($_GET['aid'])) && (isset($_GET['uid']))){
+    getUserName($_GET['aid'], $_GET['uid']);
+}
 if (isset($_GET['cid'])){
     $id_conv = $_GET['cid'];
     $_SESSION['id_conv'] = $id_conv;
