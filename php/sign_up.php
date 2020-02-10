@@ -83,39 +83,36 @@ if (isset($_POST['languages-0']))
 }
 
 // Form 5  dodawanie plikow
-if (isset($_FILES['cv']['name']) || isset($_FILES['certificate[]']['name']))
-{
-        $uploads_dir = 'uploads/';
-        echo $_FILES['cv']['error'];
-
-        if ($_FILES['cv']['error'] == UPLOAD_ERR_OK) {
-            $tmp_name = $_FILES["cv"]["tmp_name"];
-            $name = basename($_FILES["cv"]["name"]);
-            move_uploaded_file($tmp_name, "$uploads_dir/$name");
-            echo 'bangla';
-        }
-
-        // ********************************************************************
-
-    // Validate cover letter
-    $cover_letter = 'cover-letter';
-    if (isset($_FILES['cover-letter']))
-        $sign_up_class->validateFile($cover_letter, false, 'cover_letter');
-
-    // Validate certificate
-    $cert = 'certificate[]';
-    if (isset($_FILES['certificate[]']))
-        $sign_up_class->validateFile($cert, true, 'certificate');
-
-    // Validate course
-    $j = 0;
-    while (isset($_POST['course-' . $j]))
-    {
-        $course = $_POST['course-' . $j];
-        $sign_up_class->validateForm5Co($course);
-        $j++;
+if (isset($_FILES['cv']['name'])) {
+    $uploads_dir = 'uploads/cv/';
+    if ($_FILES['cv']['error'] == UPLOAD_ERR_OK) {
+        $tmp_name = $_FILES["cv"]["tmp_name"];
+        $name = basename($_FILES["cv"]["name"]);
+        move_uploaded_file($tmp_name, "$uploads_dir/$name");
+        $_SESSION['array']['docs']['cv'] = $name;
+        $_SESSION['form5cv'] = true;
     }
 }
+
+if (isset($_FILES['cover-letter']['name'])) {
+    $uploads_dir = 'uploads/cl/';
+    if ($_FILES['cover-letter']['error'] == UPLOAD_ERR_OK) {
+        $tmp_name = $_FILES['cover-letter']["tmp_name"];
+        $name = basename($_FILES['cover-letter']["name"]);
+        move_uploaded_file($tmp_name, "$uploads_dir/$name");
+        $_SESSION['array']['docs']['cl'] = $name;
+        $_SESSION['form5ce'] = true;
+    }
+}
+// Validate course
+$j = 0;
+while (isset($_POST['course-' . $j]))
+{
+    $course = $_POST['course-' . $j];
+    $sign_up_class->validateForm5Co($course);
+    $j++;
+}
+
 // For testing only
 //------------------------------+
 //$_SESSION['form5cv'] = true; // |
