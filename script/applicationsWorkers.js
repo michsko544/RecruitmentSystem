@@ -3,7 +3,7 @@ const addApplication = ({position, name, decision, id, aid}) => {
     let container = document.querySelector("#container");
     let newDiv;
 
-    if(decision==="rejected"){
+    if(decision==="Rejected"){
         newDiv = document.createRange().createContextualFragment(
         `<div class="list-row">
             <div class="position first-text">${position}</div>
@@ -16,11 +16,11 @@ const addApplication = ({position, name, decision, id, aid}) => {
                 </a>
         </div>`);
     }
-    else if(decision==="accepted"){
+    else if(decision==="Accepted"){
         newDiv = document.createRange().createContextualFragment(
             `<div class="list-row">
                 <div class="position first-text">${position}</div>
-                <div class="app-info last-text">${name} - Accepted</div>
+                <div class="app-info last-text">${name} - <span class="dark-color">Accepted</span></div>
                 <a href="profileW.php?uid=${id}&aid=${aid}" class="btn-element rotate-to-right" >
                     <div class="btn-unwrap">
                         <div class="line1"></div>
@@ -29,7 +29,7 @@ const addApplication = ({position, name, decision, id, aid}) => {
                 </a>
             </div>`);
     }
-    else if(decision==="noteworthy"){
+    else if(decision==="Noteworthy"){
         newDiv = document.createRange().createContextualFragment(
             `<div class="list-row">
                 <div class="position first-text">${position}</div>
@@ -45,7 +45,7 @@ const addApplication = ({position, name, decision, id, aid}) => {
         newDiv = document.createRange().createContextualFragment(
             `<div class="list-row">
                 <div class="position first-text">${position}</div>
-                <div class="app-info last-text">${name} - New</div>
+                <div class="app-info last-text">${name} - <span style="opacity:0.65;">New</span></div>
                 <a href="profileW.php?uid=${id}&aid=${aid}" class="btn-element rotate-to-right" >
                     <div class="btn-unwrap">
                         <div class="line1"></div>
