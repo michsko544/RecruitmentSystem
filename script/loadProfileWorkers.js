@@ -48,7 +48,6 @@ async function readJSON2(path) {
 }
 
 
-
 async function readRole(path) {
     var res = await fetch(path);
     var data = await res.json();

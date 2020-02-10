@@ -291,9 +291,10 @@ const addStageBtn = () => {
     let container = document.querySelector("#container");
     var url_string = window.location.href;
     var url = new URL(url_string);
-    let id = url.searchParams.get("aid");
+    let aid = url.searchParams.get("aid");
+    let uid = url.searchParams.get("uid");
     let newDiv = document.createRange().createContextualFragment(
-        `<a href="add-stage.php?aid=${id}">   
+        `<a href="add-stage.php?aid=${aid}&uid=${uid}">   
             <div class="list-row bottom-row left-btn" id="btn-add-stage">
                 <div class="btn-add ">
                     <div class="btn-border">
@@ -315,9 +316,10 @@ const viewStageBtn = () => {
     let container = document.querySelector("#container");
     var url_string = window.location.href;
     var url = new URL(url_string);
-    let id = url.searchParams.get("aid");
+    let aid = url.searchParams.get("aid");
+    let uid = url.searchParams.get("uid");
     let newDiv = document.createRange().createContextualFragment(
-        `<a href="stages.php?aid=${id}">  
+        `<a href="stages.php?aid=${aid}&uid=${uid}">  
             <div class="list-row bottom-row right-btn" id="btn-view-stage">
                 <div class="btn-add ">
                     <div class="btn-border">

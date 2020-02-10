@@ -1,11 +1,4 @@
 const fromJsonToChat = (json) => {
-    const sender = findConversator(json);
-    console.log(sender);
-    let titleProps = {
-        sender: sender,
-        topic: json.topic ? json.topic[0] || "" : "",
-        position: json.position ? json.position[0] || "" : ""
-    };
     const n = json.counters;
 
     addConvesationTitle(titleProps);
@@ -19,6 +12,21 @@ const fromJsonToChat = (json) => {
     }
 }
 
+const fromJsonToTitle= (json) => {
+    const sender = {
+        id: json.personalData.id[0],
+        name: json.personalData.name[0],
+        surname: json.personalData.surname[0],
+        role: json.personalData.role[0]
+    };
+    let titleProps = {
+        sender: sender,
+        topic: json.personalData.topic ? json.personalData.topic[0] || "" : "",
+        position: json.personalData.position ? json.personalData.position[0] || "" : ""
+    };
+
+    addConvesationTitle(titleProps);
+}
 
 async function readJSON(path) {
     var res = await fetch(path);
@@ -27,5 +35,13 @@ async function readJSON(path) {
     fromJsonToChat(data);
 }
 
+async function readJSON2(path) {
+    var res = await fetch(path);
+    var data = await res.json();
+    console.log(data);
+    fromJsonToTitle(data);
+}
+
 readJSON("json/chat.json");
+readJSON2("json/write_msg_user.json");
 

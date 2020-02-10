@@ -4,7 +4,6 @@ var rows = document.querySelectorAll(".list-row");
 for(let i=0; i<buttons.length; ++i){
     var btn = buttons[i];
     btn.addEventListener("click", function(){
-        console.log(i);
         rows[i*2+1].classList.toggle("hide");
     })
     btn.onclick = function(){

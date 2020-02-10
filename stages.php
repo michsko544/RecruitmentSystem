@@ -41,29 +41,14 @@ if (isset($_GET['aid'])){
         <a href="javascript:history.back();"><div class="back"></div></a>
             Recruitment stages
         </div>
-            <div class="list-row">
-                <div class="position first-text">Job Interview</div>
-                <div class="app-status-sent last-text">John Smith</div>
-                <div class="btn-element">
-                    <div class="btn-unwrap">
-                        <div class="line1"></div>
-                        <div class="line2"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="list-row hide" id="">
-                <div id="sform-1" class="element-wrapper">
-                    <div class="break" id="break-1"></div>
-                </div>
-            </div>
             
     </div>  <!-- #container -->
 </body>
 
 <script src="script/burger.js"></script>
 <script src="script/main.js"></script>
-<script src="script/user-data-handler.js"></script>
-<script src="script/profile.js"></script>
+<script src="script/stages.js"></script>
+<script src="script/loadStages.js"></script>
 <script src="script/userRecognizer.js"></script>
 
 </html>
