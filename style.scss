@@ -1024,6 +1024,8 @@ input[type=submit]{
         padding: 0 0 15%;
         width: 100%;
         background: $color-background;
+        z-index: 10;
+
 
         .description{
             color: $color-cyan;
