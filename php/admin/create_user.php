@@ -98,8 +98,8 @@ if (isset($_POST['login'])){
 
             if ($inst->checkFlag() == true)
             {
-                echo "dziala";
-                if ($connection->query("insert into users (id_user, login, name, surname, pass, id_role) values (null, '{$username}', '{$first_name}', '{$last_name}', '{$hashed_password}', {$role_id})")){
+                $timestamp = date("Y-m-d");
+                if ($connection->query("insert into users (id_user, login, name, surname, pass, id_role, date) values (null, '{$username}', '{$first_name}', '{$last_name}', '{$hashed_password}', {$role_id}, '{$timestamp}')")){
                     header("Location: /admin_success.php");
                 } else {
                     throw new Exception($connection->error);
