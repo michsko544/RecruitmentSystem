@@ -54,8 +54,8 @@ class AddStage extends HandleJson
         if ($this->correct_data==true){
             mysqli_report(MYSQLI_REPORT_STRICT);
             try{
-                if ($this->conn->query("insert into sor (id_sor, name_stage, description, id_application) values (null, '{$name}', '{$notes}', $id_application)")){
-                    header("Location: " . $_SERVER['DOCUMENT_ROOT'] . "/view-stage.php?aid=" . $id_application);
+                if ($this->conn->query("insert into sor (id_stage, name_stage, description, id_application) values (null, '{$name}', '{$notes}', $id_application)")){
+                    header("Location: /stages.php?aid=" . $id_application);
                 } else {
                     throw new Exception($this->conn->error);
                 }

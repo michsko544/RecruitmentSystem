@@ -1,0 +1,1 @@
+{"serverError":"Exception: Unknown column 'id_sor' in 'field list' in \/Applications\/XAMPP\/xamppfiles\/htdocs\/php\/AddStage.php:60\nStack trace:\n#0 \/Applications\/XAMPP\/xamppfiles\/htdocs\/add-stage.php(16): AddStage->add('5', 'stageing', 'starting to sta...')\n#1 {main}"}

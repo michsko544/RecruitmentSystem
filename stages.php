@@ -1,3 +1,13 @@
+<?php
+session_start();
+require_once "php/connect.php";
+require_once "php/AddStage.php";
+
+$stage = new AddStage($host, $db_user, $db_pass, $db_name);
+if (isset($_GET['aid'])){
+    $stage->view($_GET['aid']);
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
