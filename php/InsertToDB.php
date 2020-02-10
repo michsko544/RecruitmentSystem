@@ -148,14 +148,17 @@ class InsertToDB
                     // TODO cover letter
                     if ($this->conn->query("insert into applications (id_application, id_applicants, id_decision, id_position, id_status, id_cl, date, id_conv) values (null, {$id_applicant_Q}, 4, {$id_position_Q}, 1, 1, '{$timestamp}', null)"));{ // TODO add cover letter id
 
+                        // TODO finish that shit
                         $application_Q = $this->conn->query("select id_application from applications where id_applicants = {$id_applicant_Q} order by date desc limit 1");
                         $application_V = $application_Q->fetch_assoc();
                         $id_application_Q = $application_V['id_application'];
                         $this->addDocs($id_applicant_Q, $_SESSION['array']['docs']['cv'], 'cv');
                         $this->addDocs($id_applicant_Q, $_SESSION['array']['docs']['cert'], 'cert');
                         $this->addDocs($id_application_Q, $_SESSION['array']['docs']['cl'], 'cl');
-                        $_SESSION['successful-sign-up'] = true;
-                        header ('Location: ../sign_in.php');
+                        if ($this->conn->query("insert into training (id_training, training, description, id_applicants) values (null, '{$_SESSION['array']['docs']['course']}', '', {$id_applicant_Q})")){
+                            $_SESSION['successful-sign-up'] = true;
+                            header ('Location: ../sign_in.php');
+                        }
                     }
                 } else {
                     throw new Exception($this->conn->error);
