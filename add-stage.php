@@ -1,10 +1,12 @@
 <?php
-
+require_once "php/chat.php";
+if ((isset($_GET['aid'])) && (isset($_GET['uid']))){
+    getUserName($_GET['aid'], $_GET['uid']);
+}
 
 try{
     if (isset($_GET['aid'])) {
         if (isset($_POST['topic'])){
-            require_once "php/chat.php";
             require_once "php/AddStage.php";
             require_once "php/connect.php";
             if (isset($_GET['uid'])){

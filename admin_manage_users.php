@@ -6,7 +6,7 @@ if ($_SESSION['id_role'] != 1) {
     exit();
 }
 require "php/connect.php";
-require_once "php/admin/manage_users.php";
+require_once "php/admin/ManageUsers.php";
 $man = new ManageUsers($host, $db_user, $db_pass, $db_name);
 $man->getUsers();
 
@@ -44,9 +44,6 @@ $man->getUsers();
 
 <div id="container">
     <div class="small-title"> Manage users </div>
-    <!-- TODO list users from json, buttons: block, remove  -->
-
-
     <a href="admin_create_user.php" target="_blank">
         <div class="list-row bottom-row" id="btn-report">
             <div class="btn-add ">
