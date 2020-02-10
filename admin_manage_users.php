@@ -43,22 +43,31 @@ $man->getUsers();
 </nav>
 
 <div id="container">
-
-
-
     <div class="small-title"> Manage users </div>
     <!-- TODO list users from json, buttons: block, remove  -->
 
 
-
+    <a href="admin_create_user.php" target="_blank">
+        <div class="list-row bottom-row" id="btn-report">
+            <div class="btn-add ">
+                <div class="btn-border">
+                    <div class="btn-icon">
+                        +
+                    </div>
+                </div>
+                <div class="btn-text">
+                        Add new user
+                </div>
+            </div>
+        </div>
+    </a>
 </div>
 </body>
 <script src="script/main.js"></script>
 <script src="script/burger.js"></script>
-<script src="script/user-data-handler.js"></script>
-<script src="script/input-file.js"></script>
-<script src="script/sign-up.js"></script>
 <script src="script/userRecognizer.js"></script>
+<script src="script/manageUsers.js"></script>
+<script src="script/loadManageUsers.js"></script>
 
 </html>
 

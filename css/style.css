@@ -805,6 +805,7 @@ input[type=submit] {
   border-top: 2px #95A5A659 solid;
   background-color: #F6F6F6;
   display: flex;
+  z-index: 5;
 }
 #container .bottom-row .btn-add {
   margin-top: 0px;
@@ -868,6 +869,7 @@ input[type=submit] {
   padding: 0 0 15%;
   width: 100%;
   background: #F6F6F6;
+  z-index: 10;
 }
 #container #add-bottom-btn-form .description {
   color: #36C3D9;
@@ -966,6 +968,32 @@ input[type=submit] {
 }
 #container #add-bottom-btn-form2 .close2 .btn-close .line2 {
   transform: rotate(135deg);
+}
+#container .delete-btn {
+  position: absolute;
+  top: 18px;
+  left: 16px;
+  width: 14px;
+  height: 18px;
+  padding: 5px;
+  background-image: url(../img/assets/delete.png);
+  background-repeat: no-repeat;
+  background-position: 5px 5px;
+  background-size: 14px 18px;
+  z-index: 0;
+}
+#container .block-btn {
+  position: absolute;
+  top: 18px;
+  right: 16px;
+  width: 18px;
+  height: 18px;
+  padding: 5px;
+  background-image: url(../img/assets/block.png);
+  background-repeat: no-repeat;
+  background-position: 5px 5px;
+  background-size: 18px 18px;
+  z-index: 0;
 }
 #container .change-btn {
   position: absolute;

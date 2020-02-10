@@ -90,7 +90,6 @@ getRole($host, $db_user, $db_pass, $db_name);
 <!-- nie wiem czy te wszystkie są potrzebne -->
 <script src="script/burger.js"></script>
 <script src="script/main.js"></script>
-<script src="script/user-data-handler.js"></script>
 <script src="script/profile.js"></script>
 <script src="script/userRecognizer.js"></script>
 

@@ -44,9 +44,6 @@ const loadMenu = (role) => {
             link.innerHTML = "<a href='admin_main.php'>Main page</a>";
             menu.appendChild(link);
             link = document.createElement("li");
-            link.innerHTML = "<a href='admin_create_user.php'>Add user</a>";
-            menu.appendChild(link);
-            link = document.createElement("li");
             link.innerHTML = "<a href='admin_pick_role.php'>Pick role</a>";
             menu.appendChild(link);
             link = document.createElement("li");
