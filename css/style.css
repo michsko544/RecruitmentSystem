@@ -926,6 +926,7 @@ input[type=submit] {
   padding: 0 0 15%;
   width: 100%;
   background: #F6F6F6;
+  z-index: 10;
 }
 #container #add-bottom-btn-form2 .description {
   color: #36C3D9;
