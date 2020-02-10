@@ -83,28 +83,18 @@ if (isset($_POST['languages-0']))
 }
 
 // Form 5  dodawanie plikow
-if (isset($_FILES['cv[]']) || isset($_FILES['certificate[]']))
+if (isset($_FILES['cv']['name']) || isset($_FILES['certificate[]']['name']))
 {
-    // TODO upload files
-    // Validate cv
-    $cv = 'cv[]';
-    if (isset($_FILES['cv[]'])) {
-        // $sign_up_class->validateFile($cv, false, 'cv');
-        // ***********************UPLOAD FILE**********************************
-        $uploads_dir = '/uploads';
-        echo $_FILES['cv[]']['error'];
-        foreach ($_FILES["cv[]"]["error"] as $key => $error) {
-            if ($error == UPLOAD_ERR_OK) {
-                $tmp_name = $_FILES["cv[]"]["tmp_name"][$key];
-                // basename() may prevent filesystem traversal attacks;
-                // further validation/sanitation of the filename may be appropriate
-                $name = basename($_FILES["cv[]"]["name"][$key]);
-                move_uploaded_file($tmp_name, "$uploads_dir/$name");
-                $sign_up_class->setInsertValue('cv[]', $name);
-                $sign_up_class->itWorks("file is up");
-            }
+        $uploads_dir = 'uploads/';
+        echo $_FILES['cv']['error'];
+
+        if ($_FILES['cv']['error'] == UPLOAD_ERR_OK) {
+            $tmp_name = $_FILES["cv"]["tmp_name"];
+            $name = basename($_FILES["cv"]["name"]);
+            move_uploaded_file($tmp_name, "$uploads_dir/$name");
+            echo 'bangla';
         }
-    }
+
         // ********************************************************************
 
     // Validate cover letter

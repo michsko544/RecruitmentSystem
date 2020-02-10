@@ -23,6 +23,28 @@ class InsertToDB
         }
     }
 
+    function addDocs($id_applicants, $filename, $file_type){
+        try{
+            if ($this->conn->connect_errno!=0){
+                throw new Exception($this->conn->error);
+            } else {
+                if ($file_type == 'cv'){
+                    $this->conn->query("insert into cv (id_cv, description, id_applicants) values (null, '{$filename}', {$id_applicants})");
+                } elseif ($file_type == 'cert'){
+
+                } elseif ($file_type == 'cl'){
+                    $this->conn->query("insert into cl (id_cl, description, id_application) values (null, '{$filename}', {$id_applicants})");
+                }
+
+            }
+            $this->conn->close();
+        } catch (Exception $e){
+            require_once ($_SERVER['DOCUMENT_ROOT']."/php/addError.php");
+            addError($e);
+            echo "<div class='server-error'>Server error! Please try again later. Err: ".$e."</div>";
+        }
+    }
+
     function checkCity($city){
         $cR = $this->conn->query("select id_city from cities where locality = '{$city}'");
         if ($cR->num_rows == 1) {
@@ -68,7 +90,6 @@ class InsertToDB
     }
 
     function insertSignUp(){
-
         if ($this->conn->connect_errno!=0) {
             throw new Exception(mysqli_connect_errno());
         } else {
@@ -79,33 +100,18 @@ class InsertToDB
                 $cv_V = $cv_Q->fetch_assoc();
                 $id_cv_Q = $cv_V['id_cv'];
                 $id_cv_Q++;
-
                 $id_city_Q = $this->checkCity($_SESSION['array']['pd']['residence_city'][0]);
-
                 $user_Q = $this->conn->query("select id_user from users order by id_user desc limit 1");
                 $user_V = $user_Q->fetch_assoc();
                 $id_user_Q = $user_V['id_user'];
-
                 $certificate_Q = $this->conn->query("select id_certificate from certifications order by id_certificate desc limit 1");
                 $certificate_V = $certificate_Q->fetch_assoc();
                 $id_cert_Q = $certificate_V['id_certificate'];
                 $id_cert_Q++;
-
                 $country_Q = $this->conn->query("select id_country from countries where country = '{$_SESSION['array']['pd']['residence_country']}'");
                 $country_V = $country_Q->fetch_assoc();
                 $id_country_Q = $country_V['id_country'];
-
                 if ($this->conn->query("insert into applicants (id_applicants, phone, email, id_cv, id_city, id_user, id_certificate, id_country) VALUES (null, '{$_SESSION['array']['pd']['phone']}', '{$_SESSION['array']['val']['email']}', {$id_cv_Q}, {$this->id_city_FQ}, {$id_user_Q}, {$id_cert_Q}, {$id_country_Q})")){
-
-                    // TODO --- add multi insert ---
-                    /*
-                     * sth like that
-                     * $w=0;
-                     * while (isset($_SESSION['array']['emp']['job-title'][$w]){
-                     *      insert ($_SESSION['array']['emp']['job-title'][$w])
-                     *      w++;
-                     * }
-                     * */
 
                     $applicant_Q = $this->conn->query("select id_applicants from applicants where email = '{$_SESSION['array']['val']['email']}'");
                     $applicant_V = $applicant_Q->fetch_assoc();
@@ -141,6 +147,13 @@ class InsertToDB
                     $id_position_Q = $this->checkPosition($_SESSION['array']['val']['position']);
                     // TODO cover letter
                     if ($this->conn->query("insert into applications (id_application, id_applicants, id_decision, id_position, id_status, id_cl, date, id_conv) values (null, {$id_applicant_Q}, 4, {$id_position_Q}, 1, 1, '{$timestamp}', null)"));{ // TODO add cover letter id
+
+                        $application_Q = $this->conn->query("select id_application from applications where id_applicants = {$id_applicant_Q} order by date desc limit 1");
+                        $application_V = $application_Q->fetch_assoc();
+                        $id_application_Q = $application_V['id_application'];
+                        $this->addDocs($id_applicant_Q, $_SESSION['array']['docs']['cv'], 'cv');
+                        $this->addDocs($id_applicant_Q, $_SESSION['array']['docs']['cert'], 'cert');
+                        $this->addDocs($id_application_Q, $_SESSION['array']['docs']['cl'], 'cl');
                         $_SESSION['successful-sign-up'] = true;
                         header ('Location: ../sign_in.php');
                     }
