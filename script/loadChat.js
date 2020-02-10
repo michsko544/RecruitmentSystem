@@ -39,8 +39,9 @@ async function readJSON2(path) {
     var data = await res.json();
     console.log(data);
     fromJsonToTitle(data);
+    readJSON("json/chat.json");
 }
 
-readJSON("json/chat.json");
+
 readJSON2("json/write_msg_user.json");
 
