@@ -10,7 +10,6 @@ class InsertToDB
 
     function __construct($host, $db_user, $db_pass, $db_name)
     {
-        session_start();
         mysqli_report(MYSQLI_REPORT_STRICT);
         try{
             $this->conn = new mysqli($host, $db_user, $db_pass, $db_name);
