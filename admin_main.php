@@ -65,8 +65,8 @@ getRole($host, $db_user, $db_pass, $db_name);
         </div>
     </div>
     <div class="list-row hide" id="">
-        <div id="sform-1" class="element-wrapper">
-            <div class="break" id="break-1"></div>
+        <div id="logs" class="element-wrapper">
+            
         </div>
     </div>
 
@@ -91,6 +91,8 @@ getRole($host, $db_user, $db_pass, $db_name);
 <script src="script/burger.js"></script>
 <script src="script/main.js"></script>
 <script src="script/profile.js"></script>
+<script src="script/log.js"></script>
+<script src="script/loadLogs.js"></script>
 <script src="script/userRecognizer.js"></script>
 
 </html>
