@@ -194,10 +194,10 @@ function getUserNameM($uid){
     require "connect.php";
     require_once "HandleJson.php";
 
-    $query_id = "SELECT u.id_user from users u join applicants a on a.id_user=u.id_user join applications ap on ap.id_applicants=a.id_applicants where u.id_user = {$uid}";
-    $query_iu = "SELECT u.name from users u join applicants a on a.id_user=u.id_user join applications ap on ap.id_applicants=a.id_applicants where u.id_user = {$uid}";
-    $query_is = "SELECT u.surname from users u join applicants a on a.id_user=u.id_user join applications ap on ap.id_applicants=a.id_applicants where u.id_user = {$uid}";
-    $query_it = "SELECT c.topic from applications ap join conv c on c.id_conv=ap.id_conv join applicants a on a.id_applicants=ap.id_applicants join users u on u.id_user=a.id_user where u.id_user = {$uid}";
+    $query_id = "SELECT u.id_user from users u where u.id_user = {$uid}";
+    $query_iu = "SELECT u.name from users u where u.id_user = {$uid}";
+    $query_is = "SELECT u.surname from users u where u.id_user = {$uid}";
+    $query_it = "SELECT c.topic from conv c join messages m on m.id_conv=c.id_conv join users u on u.id_user=m.id_user join users u1 on u1.id_user=m.id_sender where u.id_user = {$uid} or u1.id_user = {$uid}";
     //$query_ip = "SELECT p.position from positions p join applications ap on ap.id_position=p.id_position where u.id_user = {$uid}";
     $query_ir = "SELECT r.name_role from roles r join users u on u.id_role=r.id_role where u.id_user = {$uid}";
 
