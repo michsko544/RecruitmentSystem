@@ -49,5 +49,4 @@ const addChangeConversatorBtn = (json) => {
             </form>
         </div>`);
     container.appendChild(newDiv);
-    console.log("added",container,newDiv)
 };

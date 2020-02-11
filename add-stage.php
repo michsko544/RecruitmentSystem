@@ -58,10 +58,12 @@ try{
                 <div class="form-row">
                     <label for="stage">Stage</label>
                     <input type="text" name="topic" class="msg-topic" value="" placeholder="e.g. Job interview">
+                    <div class="underline"></div>
                 </div>
                 <div class="form-row">
                     <label for="notes">Notes</label>
                     <textarea name="notes" placeholder="Type your notes here.."></textarea>
+                    <div class="underlineTA"></div>
                 </div>
             </div>
             

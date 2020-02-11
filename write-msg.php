@@ -63,6 +63,7 @@ if (isset($_POST['message-field']))
                     <?php $err->setError("err_message") ?>
                     <label for="message-field">Message</label>
                     <textarea name="message-field" placeholder="Type your message here.."></textarea>
+                    <div class="underlineTA"></div>
                 </div>
             </div>
             
