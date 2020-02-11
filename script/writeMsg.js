@@ -24,7 +24,8 @@ const addTopicEditor = ({topic, position}) => {
     const parent = document.querySelector(".message-wrapper").querySelector(".form-row");
     parent.removeChild(msgTopic);
     let input = document.createRange().createContextualFragment(
-        `<input type="text" name="topic" class="msg-topic" value="${ position ? "Reply: "+position : topic || ""}">`);
+        `<input type="text" name="topic" class="msg-topic" value="${ position ? "Reply: "+position : topic || ""}">
+        <div class="underline"></div>`);
     parent.appendChild(input);
 
 };
