@@ -7,11 +7,6 @@ function notGood($err_name, $err_message, $inst)
     header("Location: /admin_create_user.php");
 }
 
-if ($_SESSION['id_role'] != 1) {
-    header("Location: /index.php");
-    exit();
-}
-
 if (isset($_POST['login'])){
     require_once "../FormsValidation.php";
     require_once "../connect.php";
@@ -99,7 +94,7 @@ if (isset($_POST['login'])){
             {
                 $timestamp = date("Y-m-d");
                 if ($connection->query("insert into users (id_user, login, name, surname, pass, id_role, date) values (null, '{$username}', '{$first_name}', '{$last_name}', '{$hashed_password}', {$role_id}, '{$timestamp}')")){
-                    header("Location: /admin_success.php");
+                    header("Location: /admin_manage_users.php?aU=success");
                 } else {
                     throw new Exception($connection->error);
                 }
