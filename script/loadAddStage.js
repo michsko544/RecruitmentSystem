@@ -1,9 +1,14 @@
 const fromJsonToStage = (json) => {
-    const sender = findConversator(json);
+    const sender = {
+        id: json.personalData.id[0],
+        name: json.personalData.name[0],
+        surname: json.personalData.surname[0],
+        role: json.personalData.role[0]
+    };
     let titleProps = {
         sender: sender,
-        topic: json.topic ? json.topic[0] || "" : "",
-        position: json.position ? json.position[0] || "" : ""
+        topic: json.personalData.topic ? json.personalData.topic[0] || "" : "",
+        position: json.personalData.position ? json.personalData.position[0] || "" : ""
     };
 
     addStageTitle(titleProps);
@@ -24,7 +29,7 @@ async function readRole(path) {
     const role = data.role;
 
     if(role!=="applicant"){
-        readJSON("json/chat.json");
+        readJSON("json/write_msg_user.json");
         //if(recruiter) ... add etaps, add positions
     }
 }

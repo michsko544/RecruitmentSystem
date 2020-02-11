@@ -22,3 +22,4 @@ async function readJSON(path) {
 }
 
 readJSON("json/stage.json");
+activeRoll();
