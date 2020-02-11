@@ -31,13 +31,11 @@ class InsertToDB
                 if ($file_type == 'cv'){
                     $this->conn->query("insert into cv (id_cv, description, id_applicants) values (null, '{$filename}', {$id_applicants})");
                 } elseif ($file_type == 'cert'){
-
+                    $this->conn->query("insert into certifications (id_certificate, descriptions, id_applicants) values (null, '{$filename}', {$id_applicants})");
                 } elseif ($file_type == 'cl'){
                     $this->conn->query("insert into cl (id_cl, description, id_application) values (null, '{$filename}', {$id_applicants})");
                 }
-
             }
-            $this->conn->close();
         } catch (Exception $e){
             require_once ($_SERVER['DOCUMENT_ROOT']."/php/addError.php");
             addError($e);

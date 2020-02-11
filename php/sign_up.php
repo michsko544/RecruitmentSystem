@@ -89,7 +89,7 @@ if (isset($_FILES['cv']['name'])) {
         $tmp_name = $_FILES["cv"]["tmp_name"];
         $name = basename($_FILES["cv"]["name"]);
         move_uploaded_file($tmp_name, "$uploads_dir/$name");
-        $_SESSION['array']['docs']['cv'] = $name;
+        $_SESSION['array']['docs']['cv'] = "{$name}";
         $_SESSION['form5cv'] = true;
     }
 }
@@ -100,7 +100,7 @@ if (isset($_FILES['cover-letter']['name'])) {
         $tmp_name = $_FILES['cover-letter']["tmp_name"];
         $name = basename($_FILES['cover-letter']["name"]);
         move_uploaded_file($tmp_name, "$uploads_dir/$name");
-        $_SESSION['array']['docs']['cl'] = $name;
+        $_SESSION['array']['docs']['cl'] = "{$name}";
         $_SESSION['form5ce'] = true;
     }
 }
@@ -119,8 +119,8 @@ while (isset($_POST['course-' . $j]))
 //$_SESSION['form5ce'] = true; // |
 //$_SESSION['form5'] = true; // |
 //------------------------------+
-if ( isset($_SESSION['form1']) && isset($_SESSION['form2']) && isset($_SESSION['form3']) && isset($_SESSION['form4l']) && isset($_SESSION['form4sk']) && isset($_SESSION['form4']) && isset($_SESSION['form5cv']) && isset($_SESSION['form5ce']) && isset($_SESSION['form5']) )
-    if (($_SESSION['form1'] == true) && ($_SESSION['form2'] == true) && ($_SESSION['form3'] == true) && ($_SESSION['form4l'] == true) &&($_SESSION['form4sk'] == true) && ($_SESSION['form4'] == true) && ($_SESSION['form5cv'] == true) && ($_SESSION['form5ce'] == true) &&($_SESSION['form5'] == true))
+if ( isset($_SESSION['form1']) && isset($_SESSION['form2']) && isset($_SESSION['form3']) && isset($_SESSION['form4l']) && isset($_SESSION['form4sk']) && isset($_SESSION['form4']) && isset($_SESSION['form5cv']) && isset($_SESSION['form5ce']) && isset($_SESSION['form5co']) )
+    if (($_SESSION['form1'] == true) && ($_SESSION['form2'] == true) && ($_SESSION['form3'] == true) && ($_SESSION['form4l'] == true) &&($_SESSION['form4sk'] == true) && ($_SESSION['form4'] == true) && ($_SESSION['form5cv'] == true) && ($_SESSION['form5ce'] == true) &&($_SESSION['form5co'] == true))
     {
         echo "ales gut";
         unset($_SESSION['form1']);

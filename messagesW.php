@@ -7,6 +7,10 @@ if ((!isset($_SESSION['logged_in'])) || ($_SESSION['logged_in'] == false))
 }
 require_once "php/connect.php";
 require_once "php/getRole.php";
+require_once "php/chat.php";
+if ((isset($_GET['aid'])) && (isset($_GET['uid']))){
+    getUserName($_GET['aid'], $_GET['uid']);
+}
 getRole($host, $db_user, $db_pass, $db_name);
 require_once "php/replies.php";
 $user_rep = $_SESSION['id_user'];

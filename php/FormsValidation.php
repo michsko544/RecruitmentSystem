@@ -645,7 +645,7 @@ function validateForm5Co($course)
     {
         //Add to array and wait
         $this->setInsertCertSkillValues('course', $course);
-        $this->itWorks('form5');
+        $this->itWorks('form5co');
     }
 }
 // TESTING FUNCTIONS

@@ -52,33 +52,48 @@ function getApplicationsData($condition){
 
 if (isset($_POST['position'])) {
     $position = $_POST['position'];
-    $cover_letter = $_FILES['cover-letter']; // TODO nie dziala
-    echo $cover_letter;
-    /*if (isset($_FILES['cover-letter'])) {
-        $uploads_dir = '../uploads';
-        echo $_FILES['cover-letter']['error'];
-        foreach ($_FILES["cover-letter"]["error"] as $key => $error) {
-            if ($error == UPLOAD_ERR_OK) {
-                $tmp_name = $_FILES["cover-letter"]["tmp_name"][$key];
-                // basename() may prevent filesystem traversal attacks;
-                // further validation/sanitation of the filename may be appropriate
-                $name = basename($_FILES["cover-letter"]["name"][$key]);
-                move_uploaded_file($tmp_name, "$uploads_dir/$name");
-                $connection = @new mysqli($host, $db_user, $db_pass, $db_name);
-                $id_app_query = $connection->query("select id_application from applications");
-                $id_app = $id_app_query->num_rows + 1;
-                $id_app_user_query = $connection->query("select id_applicants from applicants where id_user = '{$_SESSION['id_user']}'");
-                $id_app_user_table = $id_app_user_query->fetch_assoc();
-                $id_appuser = $id_app_user_table['id_applicants'];
-                $id_position_query = $connection->query("select id_position from positions where position = '{$position}'");
-                $id_pos_table = $id_position_query->fetch_assoc();
-                $id_position = $id_pos_table['id_position'];
-                $ret = $connection->query("insert into cl (id_cl, description, id_application) values (null, 'uploads/{$name}', {$id_app})");
-                $id_cl_query = $connection->query("select id_cl from cl");
-                $id_cl = $id_cl_query->num_rows;
-                $ret = $connection->query("insert into applications (id_application, id_applicants, id_decision, id_position, id_status, id_cl) values (null, {$id_appuser}, 3, {$id_position}, 1, {$id_cl})");
-                echo 'bangla';
+    if (isset($_FILES['cover-letter']['name'])) {
+        echo "holybka";
+        $uploads_dir = 'uploads/cl/';
+        if ($_FILES['cover-letter']['error'] == UPLOAD_ERR_OK) {
+            echo "o ja jebe";
+            $tmp_name = $_FILES['cover-letter']["tmp_name"];
+            $name = basename($_FILES['cover-letter']["name"]);
+            move_uploaded_file($tmp_name, "$uploads_dir/$name");
+
+            require_once "connect.php";
+            try{
+                $conn = new mysqli($host, $db_user, $db_pass, $db_name);
+                if ($conn->connect_errno!=0){
+                    throw new Exception($conn->error);
+                } else {
+                    echo "chuj";
+                    $adi = $conn->query("select id_applicants from applicants where id_user={$_SESSION['id_user']}");
+                    $t_adi = $adi->fetch_assoc();
+                    $id_appcant = $t_adi['id_applicants'];
+                    $timestamp = date("Y-m-d");
+                    $pdi = $conn->query("select id_position from positions where position={$position}");
+                    $t_pdi = $pdi->fetch_assoc();
+                    $id_pos = $t_pdi['id_position'];
+                    $cdi = $conn->query("select id_cl from cl order by id_cl desc limit 1");
+                    $t_cdi = $cdi->fetch_assoc();
+                    $fuc = intval($t_cdi['id_cl']);
+                    $id_cl = $fuc++;
+                    if($conn->query("insert into applications (id_application, id_applicants, id_decision, id_position, id_status, id_cl, date, id_conv) values (null, {$id_appcant}, 4, {$id_pos}, 1, {$id_cl}, '{$timestamp}', null)")){
+                        echo "kurwa";
+                        $aadi = $conn->query("select id_application from applications order by id_application desc limit 1");
+                        $t_aadi = $aadi->fetch_assoc();
+                        $id_appcation = $t_aadi['id_application'];
+                        if($conn->query("insert into cl (id_cl, description, id_application) values (null, '{$name}', {$id_appcation})")){
+                            header("Location: /applications.php?aP=success");
+                        }
+                    }
+                }
+            } catch (Exception $e){
+                require_once "addError.php";
+                addError($e);
+                echo "<div class='server-error'>Server error! Please try again later. Err: ".$e."</div>";
             }
         }
-    }*/
+    }
 }
