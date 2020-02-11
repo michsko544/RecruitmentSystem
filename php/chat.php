@@ -189,3 +189,44 @@ function getUserName($id, $uid){
         echo "<div class='server-error'>Server error! Please try again later. Err: ".$e."</div>";
     }
 }
+
+function getUserNameM($uid){
+    require "connect.php";
+    require_once "HandleJson.php";
+
+    $query_id = "SELECT u.id_user from users u join applicants a on a.id_user=u.id_user join applications ap on ap.id_applicants=a.id_applicants where u.id_user = {$uid}";
+    $query_iu = "SELECT u.name from users u join applicants a on a.id_user=u.id_user join applications ap on ap.id_applicants=a.id_applicants where u.id_user = {$uid}";
+    $query_is = "SELECT u.surname from users u join applicants a on a.id_user=u.id_user join applications ap on ap.id_applicants=a.id_applicants where u.id_user = {$uid}";
+    $query_it = "SELECT c.topic from applications ap join conv c on c.id_conv=ap.id_conv join applicants a on a.id_applicants=ap.id_applicants join users u on u.id_user=a.id_user where u.id_user = {$uid}";
+    //$query_ip = "SELECT p.position from positions p join applications ap on ap.id_position=p.id_position where u.id_user = {$uid}";
+    $query_ir = "SELECT r.name_role from roles r join users u on u.id_role=r.id_role where u.id_user = {$uid}";
+
+    $data_push_id = array();
+    $data_push_iu = array();
+    $data_push_is = array();
+    $data_push_it = array();
+    //$data_push_ip = array();
+    $data_push_ir = array();
+
+    $json_array = array();
+    $new_json = new HandleJson();
+
+    // connect with db
+    mysqli_report(MYSQLI_REPORT_STRICT);
+    try {
+        // add db results to array
+        $count_id = $new_json->fetchData($query_id, $data_push_id, $json_array['personalData']['id'], $host, $db_user, $db_pass, $db_name);
+        $count_iu = $new_json->fetchData($query_iu, $data_push_iu, $json_array['personalData']['name'], $host, $db_user, $db_pass, $db_name);
+        $count_is = $new_json->fetchData($query_is, $data_push_is, $json_array['personalData']['surname'], $host, $db_user, $db_pass, $db_name);
+        $count_it = $new_json->fetchData($query_it, $data_push_it, $json_array['personalData']['topic'], $host, $db_user, $db_pass, $db_name);
+        //$count_ip = $new_json->fetchData($query_ip, $data_push_ip, $json_array['personalData']['position'], $host, $db_user, $db_pass, $db_name);
+        $count_ir = $new_json->fetchData($query_ir, $data_push_ir, $json_array['personalData']['role'], $host, $db_user, $db_pass, $db_name);
+
+        //fill .json file with data from db
+        $new_json->createJsonFile('json/write_msg_user.json', $json_array);
+    } catch (Exception $e) {
+        require_once "addError.php";
+        addError($e);
+        echo "<div class='server-error'>Server error! Please try again later. Err: ".$e."</div>";
+    }
+}

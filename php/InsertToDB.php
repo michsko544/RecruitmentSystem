@@ -154,7 +154,7 @@ class InsertToDB
                         $this->addDocs($id_application_Q, $_SESSION['array']['docs']['cl'], 'cl');
                         if ($this->conn->query("insert into training (id_training, training, description, id_applicants) values (null, '{$_SESSION['array']['docs']['course']}', '', {$id_applicant_Q})")){
                             $_SESSION['successful-sign-up'] = true;
-                            header ('Location: ../sign_in.php');
+                            header ('Location: ../index.php?login=wrong');
                         }
                     }
                 } else {
