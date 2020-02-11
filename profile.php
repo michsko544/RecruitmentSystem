@@ -77,9 +77,7 @@ switch ($role){
                 $k++;
             }
 
-            // TODO add files
             if (($flag_pd==true) && ($flag_exp==true) && ($flag_edu==true) && ($flag_s==true) && ($flag_l==true)){
-
                 try {
                     require_once "php/UpdateData.php";
                     $up = new UpdateData($host, $db_user, $db_pass, $db_name);

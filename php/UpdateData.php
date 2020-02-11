@@ -13,25 +13,17 @@ class UpdateData extends InsertToDB
             throw new Exception(mysqli_connect_errno());
         } else {
             $success = false;
-            // TODO add multiple filed insert
-            $this->itWorks('pre-insert');
+
             $timestamp = date("Y-m-d");
             if ($this->conn->query("UPDATE users SET name='{$_SESSION['array']['pd']['name']}', surname='{$_SESSION['array']['pd']['surname']}' WHERE id_user = {$_SESSION['id_user']}" ) ) {
 
                 $id_city_Q = $this->checkCity($_SESSION['array']['pd']['residence_city']);
-                // TODO sth is no yes
+
                 $country_Q = $this->conn->query("select id_country from countries where country = '{$_SESSION['array']['pd']['residence_country']}'");
                 $country_V = $country_Q->fetch_assoc();
                 $id_country_Q = $country_V['id_country'];
 
                 if ($this->conn->query("UPDATE applicants SET phone='{$_SESSION['array']['pd']['phone']}', id_city={$this->id_city_FQ}, id_country={$id_country_Q} WHERE id_user = {$_SESSION['id_user']}")){
-                    // TODO --- add multi insert ---
-
-                    // !!!!!!!!!!!!!!!!!!!!!!!!! CUIDADO !!!!!!!!!!!!!!!!!!!!!!!!!
-                    // !!!!!!!!!!!!!!!!! CRAZY SHIT IS GOING DOWN !!!!!!!!!!!!!!!!
-                    // !!!!!!!!!!!!!!!!!!!!!!!! ATTENTION !!!!!!!!!!!!!!!!!!!!!!!!
-                    // !!!!!!!!!!!!!!!!!!!!!!!! help plox !!!!!!!!!!!!!!!!!!!!!!!!
-                    // !!!!!!!!!!!!!!!!!!!!!!!!! kill me !!!!!!!!!!!!!!!!!!!!!!!!!
 
                     $applicant_Q = $this->conn->query("select id_applicants from applicants where id_user = {$_SESSION['id_user']}");
                     $applicant_V = $applicant_Q->fetch_assoc();

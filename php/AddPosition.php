@@ -45,19 +45,12 @@ class AddPosition extends FormsValidation {
             $description_r = $_POST['description'];
             $position = htmlspecialchars($position_r, ENT_QUOTES, "UTF-8");
             $description = htmlspecialchars($description_r, ENT_QUOTES, "UTF-8");
-            //if (!preg_filter('/^[a-zA-Z0-9\040.\'\"]+$/s', $position))
-            {
-                //$this->notGood('err_position', 'Position may contain only letters and numbers');
-            }
+
             if ((strlen($position) < 1) || (strlen($position) > 70))
             {
                 $this->notGood('err_position', 'Position must have more than 1 and less than 70 characters');
             }
 
-            //if (!preg_filter('/^[a-zA-Z0-9\040.\'"]+$/s', $description))
-            {
-                //$this->notGood('err_description', 'Description may contain only letters and numbers');
-            }
             if (strlen($description) > 500)
             {
                 $this->notGood('err_description', 'Description must have less than 500 characters');

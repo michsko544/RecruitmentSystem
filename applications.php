@@ -102,7 +102,7 @@ switch ($role) {
                 <div class="form-row">
                     <label for="lm-file">Cover Letter</label>
                     <div class="upload">
-                        <input name="cover-letter" type="file" class="inputfile" accept="application/pdf">
+                        <input type="file" name="cl" class="inputfile" accept="application/pdf">
                         <label>Choose a file</label>
                     </div>
                 </div>

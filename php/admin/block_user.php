@@ -1,12 +1,6 @@
 <?php
-
 require "../connect.php";
 require_once ($_SERVER['DOCUMENT_ROOT'] . "/php/admin/ManageUsers.php");
-
-//if ($_SESSION['id_role'] != 1) {
-  //  header("Location: /index.php");
-  //  exit();
-//}
 
 if (isset($_GET['uid'])) {
     try {

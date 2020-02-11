@@ -94,6 +94,17 @@ if (isset($_FILES['cv']['name'])) {
     }
 }
 
+if (isset($_FILES['certificate']['name'])) {
+    $uploads_dir = 'uploads/cert/';
+    if ($_FILES['certificate']['error'] == UPLOAD_ERR_OK) {
+        $tmp_name = $_FILES["certificate"]["tmp_name"];
+        $name = basename($_FILES["certificate"]["name"]);
+        move_uploaded_file($tmp_name, "$uploads_dir/$name");
+        $_SESSION['array']['docs']['cert'] = "{$name}";
+        $_SESSION['form5ce'] = true;
+    }
+}
+
 if (isset($_FILES['cover-letter']['name'])) {
     $uploads_dir = 'uploads/cl/';
     if ($_FILES['cover-letter']['error'] == UPLOAD_ERR_OK) {
@@ -113,12 +124,6 @@ while (isset($_POST['course-' . $j]))
     $j++;
 }
 
-// For testing only
-//------------------------------+
-//$_SESSION['form5cv'] = true; // |
-//$_SESSION['form5ce'] = true; // |
-//$_SESSION['form5'] = true; // |
-//------------------------------+
 if ( isset($_SESSION['form1']) && isset($_SESSION['form2']) && isset($_SESSION['form3']) && isset($_SESSION['form4l']) && isset($_SESSION['form4sk']) && isset($_SESSION['form4']) && isset($_SESSION['form5cv']) && isset($_SESSION['form5ce']) && isset($_SESSION['form5co']) )
     if (($_SESSION['form1'] == true) && ($_SESSION['form2'] == true) && ($_SESSION['form3'] == true) && ($_SESSION['form4l'] == true) &&($_SESSION['form4sk'] == true) && ($_SESSION['form4'] == true) && ($_SESSION['form5cv'] == true) && ($_SESSION['form5ce'] == true) &&($_SESSION['form5co'] == true))
     {
@@ -141,9 +146,4 @@ if ( isset($_SESSION['form1']) && isset($_SESSION['form2']) && isset($_SESSION['
             echo "<div class='server-error'>Server error! Please try again later. Err: ".$e."</div>";
         }
     }
-
-
-// TODO unset insert values
-// $sign_up_class->dispInJson();
-
 unset($sign_up_class);

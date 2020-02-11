@@ -51,13 +51,11 @@ class HandleJson
         return $counter;
     }
 
-
     // add counters
     function addCounters(&$array, $value)
     {
         $array = $value;
     }
-
     // save data to file
     function createJsonFile($filename, &$array)
     {

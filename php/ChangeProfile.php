@@ -66,7 +66,6 @@ class ChangeProfile extends FormsValidation
         //Validate country
         try
         {
-
             if ($this->conn->connect_errno != 0)
             {
                 throw new Exception(mysqli_connect_errno());
@@ -171,7 +170,6 @@ class ChangeProfile extends FormsValidation
             $_SESSION['rem_end_date'] = $end_date;
             $_SESSION['rem_job_city'] = $job_city;
             $_SESSION['rem_description'] = $job_description;
-
 
             if ($this->checkFlag() == true)
             {
@@ -290,5 +288,4 @@ class ChangeProfile extends FormsValidation
         } else return false;
     }
 
-    function validateFormDox(){}
 }

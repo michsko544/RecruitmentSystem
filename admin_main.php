@@ -41,22 +41,24 @@ getRole($host, $db_user, $db_pass, $db_name);
 </nav>
 <div id="container">
 
-<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-<!-- TODO generalnie to tylko taki zamysł jak by to mogło wyglądać, więc najlepiej pytaj o co mi tu chodziło -->
-<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-
-
     <div class="small-title"> Admin panel </div>
     <div class="admin-info">
-        <div class="element">Server time:</div>
-        <div class="element">Visits:</div>
-        <div class="element">Users:</div>
-        <div class="element">Applicants:</div>
+        <?php
+        $connection = new mysqli($host, $db_user, $db_pass, $db_name);
+        $q_users = $connection->query("SELECT count(id_user) from users");
+        $us_T = $q_users->fetch_assoc();
+        $us = $us_T['count(id_user)'];
+        $q_applications = $connection->query("select count(id_application) from applications");
+        $ap_T = $q_applications->fetch_assoc();
+        $ap = $ap_T['count(id_application)'];
+        ?>
+        <div class="element">Users: <?=$us?></div>
+        <div class="element">Applicants: <?=$ap?></div>
     </div>
     
     <div class="list-row">
         <h4 class="title-element">Error log</h4>
-        <!-- wyświetlanie listy errorów z json/log.json" -->
+
         <div class="btn-element">
             <div class="btn-unwrap">
                 <div class="line1"></div>
@@ -87,7 +89,7 @@ getRole($host, $db_user, $db_pass, $db_name);
 
 </div>
 </body>
-<!-- nie wiem czy te wszystkie są potrzebne -->
+
 <script src="script/burger.js"></script>
 <script src="script/main.js"></script>
 <script src="script/profile.js"></script>

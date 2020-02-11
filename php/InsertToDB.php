@@ -143,10 +143,9 @@ class InsertToDB
                     }
 
                     $id_position_Q = $this->checkPosition($_SESSION['array']['val']['position']);
-                    // TODO cover letter
-                    if ($this->conn->query("insert into applications (id_application, id_applicants, id_decision, id_position, id_status, id_cl, date, id_conv) values (null, {$id_applicant_Q}, 4, {$id_position_Q}, 1, 1, '{$timestamp}', null)"));{ // TODO add cover letter id
 
-                        // TODO finish that shit
+                    if ($this->conn->query("insert into applications (id_application, id_applicants, id_decision, id_position, id_status, id_cl, date, id_conv) values (null, {$id_applicant_Q}, 4, {$id_position_Q}, 1, 1, '{$timestamp}', null)"));{
+
                         $application_Q = $this->conn->query("select id_application from applications where id_applicants = {$id_applicant_Q} order by date desc limit 1");
                         $application_V = $application_Q->fetch_assoc();
                         $id_application_Q = $application_V['id_application'];

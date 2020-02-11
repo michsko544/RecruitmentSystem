@@ -244,7 +244,7 @@ $inst = new FormsValidation(true);
         <div class="form-row ">
         <label for="certificate-file">Certificates</label>
         <div class="upload">
-            <input type="file" name="certificate[]" class="inputfile" accept="application/pdf" data-multiple-caption="{count} files selected" multiple>
+            <input type="file" name="certificate" class="inputfile" accept="application/pdf" data-multiple-caption="{count} files selected" multiple>
             <label>Choose a file</label>
         </div>
         </div>

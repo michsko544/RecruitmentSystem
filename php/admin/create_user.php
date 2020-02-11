@@ -67,7 +67,6 @@ if (isset($_POST['login'])){
         else
         {
             // Validate username uniqueness
-
             $result_username = $connection->query("SELECT id_user FROM users WHERE login='$username'");
             if (!$result_username)
             {

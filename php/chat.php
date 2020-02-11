@@ -77,7 +77,7 @@ function addMessage($mess, $usr){
             else {
                 $timestamp = date("Y-m-d H:i:s");
                 $user = intval($usr);
-                // TODO add handleJson query with id_sender
+
                 $select = $connection->query("select id_conv_part from conv_part where id_conv = '{$_SESSION['id_conv']}'");
                 $select_counter = $select->num_rows;
                 if ($select_counter == 0)

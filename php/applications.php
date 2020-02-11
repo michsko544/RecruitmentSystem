@@ -12,8 +12,6 @@ function getApplicationsData($condition){
     $query_ns = "SELECT s.name_status from users u join applicants a on u.id_user=a.id_user join applications ap on a.id_applicants=ap.id_applicants join statuses s on ap.id_status=s.id_status join positions p on ap.id_position=p.id_position WHERE {$condition}";
     $query_st = "SELECT sor.name_stage from users u join applicants a on u.id_user=a.id_user join applications ap on a.id_applicants=ap.id_applicants join statuses s on ap.id_status=s.id_status join sor sor on ap.id_application=sor.id_application join positions p on ap.id_position=p.id_position WHERE {$condition}";
     $query_de = "SELECT d.name_decision from users u join applicants a on u.id_user=a.id_user join applications ap on a.id_applicants=ap.id_applicants join decisions d on d.id_decision=ap.id_decision join statuses s on ap.id_status=s.id_status join sor sor on ap.id_application=sor.id_application join positions p on ap.id_position=p.id_position WHERE {$condition}";
-    //$query_idc = "SELECT c.id_conv from users u join applicants a on u.id_user=a.id_user join applications ap on a.id_applicants=ap.id_applicants join statuses s on ap.id_status=s.id_status join positions p on ap.id_position=p.id_position join messages m on u.id_user=u.id_user join conv c on m.id_conv=c.id_conv WHERE {$condition}";
-    //$query_t = "SELECT c.topic from users u join applicants a on u.id_user=a.id_user join applications ap on a.id_applicants=ap.id_applicants join statuses s on ap.id_status=s.id_status join positions p on ap.id_position=p.id_position join messages m on u.id_user=u.id_user join conv c on m.id_conv=c.id_conv WHERE {$condition}";
     $data_push_e = array(); $data_push_a = array(); $data_push_n = array(); $data_push_su = array(); $data_push_p = array(); $data_push_d = array(); $data_push_ns = array(); $data_push_st = array(); //$data_push_idc = array(); $data_push_t = array();
     $data_push_de = array();
     $json_array = array();
@@ -31,15 +29,11 @@ function getApplicationsData($condition){
         $count_results_ns = $new_json->fetchData($query_ns, $data_push_ns, $json_array['applications']['status'], $host, $db_user, $db_pass, $db_name);
         $count_results_st = $new_json->fetchData($query_st, $data_push_st, $json_array['applications']['stage'], $host, $db_user, $db_pass, $db_name);
         $count_results_de = $new_json->fetchData($query_de, $data_push_de, $json_array['applications']['decision'], $host, $db_user, $db_pass, $db_name);
-        //$count_results_idc = $new_json->fetchData($query_idc, $data_push_idc, $json_array['applications']['idConv'], $host, $db_user, $db_pass, $db_name);
-        //$count_results_t = $new_json->fetchData($query_t, $data_push_t, $json_array['applications']['convTopic'], $host, $db_user, $db_pass, $db_name);
         $new_json->addCounters($json_array['counters']['name'], $count_results_n);
         $new_json->addCounters($json_array['counters']['position'], $count_results_p);
         $new_json->addCounters($json_array['counters']['description'], $count_results_d);
         $new_json->addCounters($json_array['counters']['status'], $count_results_ns);
         $new_json->addCounters($json_array['counters']['decision'], $count_results_de);
-        //$new_json->addCounters($json_array['counters']['idConv'], $count_results_idc);
-        //$new_json->addCounters($json_array['counters']['convTopic'], $count_results_t);
         $new_json->createJsonFile('json/applications.json', $json_array);
     }
     catch (Exception $e)
@@ -49,30 +43,21 @@ function getApplicationsData($condition){
         echo "<div class='server-error'>Server error! Please try again later. Err: ".$e."</div>";
     }
 }
-
+@session_start();
 if (isset($_POST['position'])) {
     $position = $_POST['position'];
-    if (isset($_FILES['cover-letter']['name'])) {
-        echo "holybka";
-        $uploads_dir = 'uploads/cl/';
-        if ($_FILES['cover-letter']['error'] == UPLOAD_ERR_OK) {
-            echo "o ja jebe";
-            $tmp_name = $_FILES['cover-letter']["tmp_name"];
-            $name = basename($_FILES['cover-letter']["name"]);
-            move_uploaded_file($tmp_name, "$uploads_dir/$name");
-
             require_once "connect.php";
+            mysqli_report(MYSQLI_REPORT_STRICT);
             try{
                 $conn = new mysqli($host, $db_user, $db_pass, $db_name);
                 if ($conn->connect_errno!=0){
                     throw new Exception($conn->error);
                 } else {
-                    echo "chuj";
                     $adi = $conn->query("select id_applicants from applicants where id_user={$_SESSION['id_user']}");
                     $t_adi = $adi->fetch_assoc();
                     $id_appcant = $t_adi['id_applicants'];
                     $timestamp = date("Y-m-d");
-                    $pdi = $conn->query("select id_position from positions where position={$position}");
+                    $pdi = $conn->query("select id_position from positions where position='{$position}'");
                     $t_pdi = $pdi->fetch_assoc();
                     $id_pos = $t_pdi['id_position'];
                     $cdi = $conn->query("select id_cl from cl order by id_cl desc limit 1");
@@ -80,7 +65,6 @@ if (isset($_POST['position'])) {
                     $fuc = intval($t_cdi['id_cl']);
                     $id_cl = $fuc++;
                     if($conn->query("insert into applications (id_application, id_applicants, id_decision, id_position, id_status, id_cl, date, id_conv) values (null, {$id_appcant}, 4, {$id_pos}, 1, {$id_cl}, '{$timestamp}', null)")){
-                        echo "kurwa";
                         $aadi = $conn->query("select id_application from applications order by id_application desc limit 1");
                         $t_aadi = $aadi->fetch_assoc();
                         $id_appcation = $t_aadi['id_application'];
@@ -94,6 +78,4 @@ if (isset($_POST['position'])) {
                 addError($e);
                 echo "<div class='server-error'>Server error! Please try again later. Err: ".$e."</div>";
             }
-        }
-    }
 }

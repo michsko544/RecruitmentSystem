@@ -194,7 +194,6 @@ function valiDate($start_date, $end_date)
 function validateForm1 ($username, $email, $password_one, $password_two, $position, $host, $db_user, $db_pass, $db_name)
 {
     // Validate username
-
     if ((strlen($username) < 3) || (strlen($username) > 20))
     {
         $this->notGood('err_username', 'Username must have more than 3 and less than 20 characters');
@@ -205,7 +204,6 @@ function validateForm1 ($username, $email, $password_one, $password_two, $positi
     }
 
     // Validate e-mail
-
     $sanitized_email = filter_var($email, FILTER_SANITIZE_EMAIL);
     if ((filter_var($sanitized_email, FILTER_VALIDATE_EMAIL) == false) || ($sanitized_email != $email))
     {
@@ -213,7 +211,6 @@ function validateForm1 ($username, $email, $password_one, $password_two, $positi
     }
 
     // Validate password
-
     if ((strlen($password_one) < 8) || (strlen($password_one) > 30))
     {
         $this->notGood('err_password', 'Password must have more than 8 and less than 30 characters');
@@ -223,18 +220,12 @@ function validateForm1 ($username, $email, $password_one, $password_two, $positi
         $this->notGood('err_password', 'Passwords are not identical');
     }
     $hashed_password = password_hash($password_one, PASSWORD_DEFAULT);
-
-    // Validate position
-
-
     // Validate terms of use
     if (!isset($_POST['terms-of-use']))
     {
         $this->correct_data = false;
         $this->notGood('err_terms', 'You must accept our Terms of Use and Privacy Policy');
     }
-
-    // Validate CAPTCHA TODO add reCAPTCHA
 
     // Remember value
     $_SESSION['rem_username'] = $username;
@@ -300,7 +291,6 @@ function validateForm1 ($username, $email, $password_one, $password_two, $positi
                 $this->setInsertValue('password', $hashed_password);
                 $this->setInsertValue('position', $position);
                 $this->itWorks("form1");
-
             }
             $connection->close();
         }
@@ -489,7 +479,6 @@ function validateForm4L($language, $language_level)
         $this->setInsertSkillLanguageValues('language', $language);
         $this->setInsertSkillLanguageValues('language_level', $language_level);
         $this->itWorks('form4l');
-        //$_SESSION['form4l'] = true;
     }
 
     // Unset remembered values
@@ -525,7 +514,6 @@ function validateForm4Sk($skill, $skill_level)
         $this->setInsertSkillLanguageValues('skill', $skill);
         $this->setInsertSkillLanguageValues('skill_level', $skill_level);
         $this->itWorks('form4sk');
-        //$_SESSION['form4sk'] = true;
     }
 }
 
@@ -648,12 +636,11 @@ function validateForm5Co($course)
         $this->itWorks('form5co');
     }
 }
-// TESTING FUNCTIONS
+
 function itWorks($p)
 {
     $_SESSION[$p] = true;
     header("Location: /sign_up.php?f=" . $p);
-    // echo "<div style='height: 20vh'> It works! " . $p . " </div>";
 }
 
 function dispInJson()
